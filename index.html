@@ -179,7 +179,7 @@ transform: translateY(0);
 </div>
 <div class="flex flex-col md:flex-row items-center gap-10">
 <div class="md:w-1/2">
-<img src="https://readdy.ai/api/search-image?query=A%20small%20group%20of%204%20diverse%20IT%20professionals%20collaborating%20in%20a%20bright%2C%20modern%20office%20space.%20They%20are%20standing%20together%2C%20looking%20at%20the%20camera%20with%20warm%2C%20approachable%20smiles.%20Their%20body%20language%20shows%20confidence%20and%20teamwork.%20They%20are%20wearing%20business%20casual%20attire.%20The%20lighting%20is%20soft%20and%20natural%2C%20creating%20a%20welcoming%20atmosphere.%20The%20background%20features%20clean%2C%20minimal%20office%20design%20with%20subtle%20tech%20elements.&width=600&height=400&seq=team124&orientation=landscape" alt="Quest Team" class="rounded-lg shadow-lg w-full object-cover object-top">
+<img src="https://readdy.ai/api/search-image?query=A%20small%20group%20of%204%20diverse%20IT%20professionals%20collaborating%20in%20a%20bright%2C%20modern%20office%20space.%20They%20are%20standing%20together%2C%20looking%20at%20the%20camera%20with%20warm%2C%20approachable%20smiles.%20Their%20body%20language%20shows%20confidence%20and%20teamwork.%20They%20are%20wearing%20business%20casual%20attire.%20The%20lighting%20is%20soft%20and%20natural%2C%20creating%20a%20welcoming%20atmosphere.%20The%20background%20features%20clean%2C%20minimal%20office%20design%20with%20subtle%20tech%20elements.&width=600&height=400&seq=team124&orientation=landscape" alt="Quests Team" class="rounded-lg shadow-lg w-full object-cover object-top">
 </div>
 <div class="md:w-1/2">
 <h3 class="text-2xl font-semibold text-gray-900 mb-4">Our Mission</h3>
@@ -546,7 +546,7 @@ View details <i class="ri-arrow-down-s-line"></i>
 <div class="container mx-auto px-6">
 <div class="text-center mb-8">
 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Contact Us</h2>
-<p class="text-lg text-gray-600 max-w-3xl mx-auto">Ready to transform your business with advanced technology solutions? Get in touch with our team.</p>
+<p class="text-lg text-gray-600 max-w-3xl mx-auto">Ready to transform your business with advanced technology solutions?<br>Get in touch with our team.</p>
 </div>
 <div class="flex flex-col lg:flex-row gap-10">
 <div class="lg:w-1/2">
@@ -585,11 +585,11 @@ View details <i class="ri-arrow-down-s-line"></i>
 </div>
 <div class="mb-6">
 <label class="flex items-center">
-<input type="checkbox" class="custom-checkbox mr-2">
-<span class="text-gray-700">I agree to receive communications from Quest Ltd.</span>
+<input type="checkbox" id="agreeCheckbox" class="custom-checkbox mr-2">
+<span class="text-gray-700">I agree to receive communications from Quests Ltd.</span>
 </label>
 </div>
-<button type="submit" class="w-full bg-primary text-white py-3 px-6 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors">Submit Request</button>
+<button type="submit" id="submitButton" class="w-full bg-primary text-white py-3 px-6 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors opacity-50 cursor-not-allowed" disabled>Submit Request</button>
 </form>
 </div>
 <div class="lg:w-1/2">
@@ -599,7 +599,7 @@ View details <i class="ri-arrow-down-s-line"></i>
 <i class="ri-customer-service-2-line ri-2x text-primary"></i>
 </div>
 <h3 class="text-2xl font-semibold text-gray-900 mb-4">We're Here to Help</h3>
-<p class="text-gray-700 mb-6">Our team will get back to you within 24 hours during business days. For urgent matters, please use the contact form with high priority selected.</p>
+<p class="text-gray-700 mb-6">Our team will get back to you within 24 hours during business days.</p>
 <div class="flex flex-col gap-4">
 <div class="p-4 bg-gray-50 rounded-lg">
 <div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mx-auto mb-2">
@@ -626,8 +626,72 @@ View details <i class="ri-arrow-down-s-line"></i>
 </div>
 </div>
 </section>
+<!-- Location Section -->
+<!-- <section id="location" class="py-12 bg-gray-50/50 section-fade">
+<div class="container mx-auto px-6">
+<div class="flex flex-col lg:flex-row gap-10">
+<div class="lg:w-1/2">
+<div class="bg-white rounded-lg shadow-md p-8">
+<h2 class="text-3xl font-bold text-gray-900 mb-6">Our Location</h2>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mt-1">
+<i class="ri-map-pin-2-line text-primary"></i>
+</div>
+<div class="max-w-sm">
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Headquarters</h3>
+<p class="text-gray-700">Trust Company Complex, Ajeltake Road, Ajeltake Island, Majuro, Republic of the Marshall Islands, MH 96960</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mt-1">
+<i class="ri-map-pin-2-line text-primary"></i>
+</div>
+<div class="max-w-sm">
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Branch Office</h3>
+<p class="text-gray-700">Sample Sdn. Bhd., Unit 01-01, Level 1, Menara Labuan, Jalan Merdeka, 87000 Labuan FT, MALAYSIA</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mt-1">
+<i class="ri-time-line text-primary"></i>
+</div>
+<div>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Business Hours</h3>
+<p class="text-gray-700">Monday - Friday: 9:00 AM - 6:00 PM (SGT)<br>Saturday - Sunday: Closed</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mt-1">
+<i class="ri-phone-line text-primary"></i>
+</div>
+<div>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Phone</h3>
+<p class="text-gray-700">+1 (415) 555-0123</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mt-1">
+<i class="ri-mail-line text-primary"></i>
+</div>
+<div>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Email</h3>
+<p class="text-gray-700">contact@questsltd.com</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:w-1/2">
+<div class="bg-white rounded-lg shadow-md overflow-hidden h-full">
+<div class="h-full w-full" style="min-height: 400px; background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png'); background-size: cover; background-position: center;"></div>
+</div>
+</div>
+</div>
+</div>
+</section> -->
 <!-- Privacy Policy Section -->
-<section id="privacy-policy" class="py-12 bg-gray-50/50 section-fade">
+<section id="privacy-policy" class="py-12 bg-white section-fade">
 <div class="container mx-auto px-6">
 <h2 class="text-3xl font-bold text-gray-900 mb-8">Privacy Policy</h2>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -671,7 +735,7 @@ View details <i class="ri-arrow-down-s-line"></i>
 </div>
 </section>
 <!-- Terms of Service Section -->
-<section id="terms-of-service" class="py-12 bg-white section-fade">
+<section id="terms-of-service" class="py-12 bg-gray-50/50 section-fade">
 <div class="container mx-auto px-6">
 <h2 class="text-3xl font-bold text-gray-900 mb-8">Terms of Service</h2>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -696,9 +760,9 @@ View details <i class="ri-arrow-down-s-line"></i>
 <div class="flex flex-col md:flex-row gap-10">
 <div class="md:w-1/2">
 <a href="#hero" class="text-3xl font-['Pacifico'] text-white mb-4 inline-block">Quests Ltd.</a>
-<p class="text-gray-400 mb-6">Transforming businesses through advanced technology solutions. We deliver expertise that drives growth and innovation.</p>
+<p class="text-gray-400 mb-6">Transforming businesses through advanced technology solutions.<br>We deliver expertise that drives growth and innovation.</p>
 <div class="flex space-x-4">
-<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<!-- <a href="#" class="text-gray-400 hover:text-white transition-colors">
 <div class="w-8 h-8 flex items-center justify-center">
 <i class="ri-linkedin-fill ri-lg"></i>
 </div>
@@ -717,7 +781,7 @@ View details <i class="ri-arrow-down-s-line"></i>
 <div class="w-8 h-8 flex items-center justify-center">
 <i class="ri-instagram-fill ri-lg"></i>
 </div>
-</a>
+</a> -->
 </div>
 </div>
 <div class="md:w-1/2 flex gap-10">
@@ -727,7 +791,7 @@ View details <i class="ri-arrow-down-s-line"></i>
 <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
 <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
 <li><a href="#cases" class="text-gray-400 hover:text-white transition-colors">Case Studies</a></li>
-<li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+<li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
 </ul>
 </div>
 <div class="flex-1">
@@ -1022,6 +1086,17 @@ handleScroll(); // Check on initial load
 <script id="contactFormScript">
 document.addEventListener('DOMContentLoaded', function() {
 const contactForm = document.getElementById('contactForm');
+const agreeCheckbox = document.getElementById('agreeCheckbox');
+const submitButton = document.getElementById('submitButton');
+agreeCheckbox.addEventListener('change', function() {
+if (this.checked) {
+submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
+submitButton.removeAttribute('disabled');
+} else {
+submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+submitButton.setAttribute('disabled', '');
+}
+});
 contactForm.addEventListener('submit', function(e) {
 e.preventDefault();
 // Get form values
