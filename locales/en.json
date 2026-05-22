@@ -1,0 +1,279 @@
+{
+  "meta": {
+    "htmlLang": "en",
+    "title": "Quests Ltd. - Pioneering the Future with Intelligent Technology"
+  },
+  "nav": {
+    "about": "About Us",
+    "services": "Services",
+    "cases": "Case Studies",
+    "contact": "Contact Us"
+  },
+  "hero": {
+    "titleLine1": "Pioneering the Future",
+    "titleLine2Prefix": "with ",
+    "titleHighlight": "Intelligent Technology",
+    "subtitle": "Empowering your business success through cutting-edge AI and transformative technology. We'll turn your vision into reality.",
+    "scroll": "Scroll to explore"
+  },
+  "about": {
+    "title": "About Quests Ltd.",
+    "subtitle": "We're a team of technology experts with experience from leading global tech companies, dedicated to delivering exceptional IT solutions.",
+    "missionTitle": "Our Mission",
+    "missionText": "We founded Quests Ltd. to move beyond the usual limits—where support is only available for large contracts or development is restricted by strict agreements. Our mission is to provide flexible and fast support to help your business transform and grow.",
+    "expertiseTitle": "Our Expertise",
+    "expertiseText": "With strong technical skills and broad consulting experience from companies like AWS, Google, and Microsoft, we deliver solutions tailored to your unique needs."
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "We support your entire IT journey—from business transformation consulting and system development to operations and in-house training.",
+    "viewDetails": "View details",
+    "hideDetails": "Hide details",
+    "items": {
+      "consulting": {
+        "title": "IT Consulting for Business Transformation",
+        "short": "Strategic guidance to align your technology with business goals and drive digital transformation.",
+        "details": "Our consulting services help you navigate complex technology decisions with confidence. We analyze your current systems, identify opportunities for improvement, and create roadmaps for successful digital transformation.",
+        "bullets": [
+          "Digital strategy development",
+          "IT architecture assessment",
+          "Technology selection guidance",
+          "Process optimization",
+          "Change management support"
+        ]
+      },
+      "system": {
+        "title": "System Development using Cloud and AI",
+        "short": "Custom software solutions leveraging cutting-edge cloud technologies and artificial intelligence.",
+        "details": "We design and build scalable, secure, and innovative systems that solve your unique business challenges. Our development approach combines technical excellence with business understanding.",
+        "bullets": [
+          "Custom application development",
+          "Cloud-native architecture",
+          "AI and machine learning integration",
+          "Legacy system modernization",
+          "API development and integration"
+        ]
+      },
+      "operations": {
+        "title": "IT Infrastructure Operations Support",
+        "short": "Reliable management and optimization of your technology infrastructure for maximum performance.",
+        "details": "Keep your systems running smoothly with our comprehensive operations support. We handle the technical complexities so you can focus on your core business activities.",
+        "bullets": [
+          "Cloud infrastructure management",
+          "24/7 monitoring and support",
+          "Security management",
+          "Performance optimization",
+          "Disaster recovery planning"
+        ]
+      },
+      "training": {
+        "title": "Training and Support for In-house IT Teams",
+        "short": "Empower your internal teams with the knowledge and skills needed to excel in technology management.",
+        "details": "Build capability within your organization through our specialized training programs. We help your teams develop the expertise needed to maintain and enhance your technology systems.",
+        "bullets": [
+          "Technical skills development",
+          "Knowledge transfer programs",
+          "Customized training workshops",
+          "Mentoring and coaching",
+          "Documentation and best practices"
+        ]
+      }
+    }
+  },
+  "cases": {
+    "title": "Case Studies",
+    "subtitle": "Explore how we've helped organizations solve complex challenges and achieve remarkable results.",
+    "viewDetails": "View details",
+    "hideDetails": "Hide details",
+    "filters": {
+      "all": "All Projects",
+      "ai": "AI Solutions",
+      "analytics": "Analytics",
+      "modernization": "Modernization"
+    },
+    "labels": {
+      "challenge": "Challenge",
+      "solution": "Solution",
+      "results": "Results",
+      "technologies": "Technologies Used"
+    },
+    "items": {
+      "material": {
+        "title": "AI-Powered Material Development",
+        "short": "Accelerating research processes through advanced AI algorithms for a leading materials science laboratory.",
+        "challenge": "The client needed to significantly reduce the time required to test and validate new material compositions, facing intense competitive pressure in their industry.",
+        "solution": "We developed a machine learning system that could predict material properties based on composition data, reducing the need for physical testing and accelerating the research cycle.",
+        "results": [
+          "Reduced research cycle time by 68%",
+          "Increased successful material discoveries by 42%",
+          "Saved approximately $1.2M in annual testing costs"
+        ]
+      },
+      "chatbot": {
+        "title": "Generative AI Customer Support",
+        "short": "Implementing advanced chatbots and AI systems to automate and enhance customer service operations.",
+        "challenge": "A global e-commerce company was struggling with increasing customer support volumes and rising costs while maintaining service quality.",
+        "solution": "We developed a multi-channel AI support system using generative AI to handle routine inquiries, with seamless handoff to human agents for complex issues.",
+        "results": [
+          "Automated resolution of 78% of customer inquiries",
+          "Reduced response time from 4 hours to 3 minutes",
+          "Improved customer satisfaction scores by 22%",
+          "30% reduction in support operating costs"
+        ]
+      },
+      "predictive": {
+        "title": "Predictive Maintenance AI System",
+        "short": "Reducing downtime and maintenance costs through AI-powered predictive analytics for manufacturing equipment.",
+        "challenge": "A manufacturing company was experiencing significant production losses due to unexpected equipment failures and inefficient maintenance scheduling.",
+        "solution": "We implemented an IoT sensor network connected to an AI system that analyzes equipment performance data to predict failures before they occur.",
+        "results": [
+          "Reduced unplanned downtime by 83%",
+          "Decreased maintenance costs by 47%",
+          "Extended equipment lifespan by an average of 35%",
+          "ROI achieved within 9 months of implementation"
+        ]
+      },
+      "dashboard": {
+        "title": "Executive Management Dashboard",
+        "short": "Creating comprehensive data visualization tools to support strategic decision-making for executive leadership.",
+        "challenge": "A multinational corporation's leadership team was struggling to access and interpret critical business data from disparate systems for timely decision-making.",
+        "solution": "We developed a centralized executive dashboard that integrates data from multiple sources and presents key metrics and insights through intuitive visualizations.",
+        "results": [
+          "Reduced reporting time from 2 weeks to real-time",
+          "Improved data accuracy by eliminating manual reporting",
+          "Enabled data-driven decision making across 12 departments",
+          "Identified $3.4M in cost-saving opportunities"
+        ]
+      },
+      "voice": {
+        "title": "Voice-Guided Store Navigation",
+        "short": "Implementing Alexa-powered voice navigation to enhance customer experience in large retail environments.",
+        "challenge": "A major retailer wanted to improve customer experience and reduce frustration in their large-format stores where finding products was difficult.",
+        "solution": "We developed a voice-activated navigation system using Amazon Alexa, integrated with the store's inventory management system and indoor positioning technology.",
+        "results": [
+          "Reduced customer time spent searching by 64%",
+          "Increased customer satisfaction scores by 28%",
+          "Boosted sales of previously hard-to-find items by 31%",
+          "Successfully deployed across 87 locations"
+        ]
+      },
+      "legacy": {
+        "title": "Legacy System Modernization",
+        "short": "Transforming outdated infrastructure into modern, cloud-native services for enhanced performance and scalability.",
+        "challenge": "A financial services company was struggling with an aging monolithic system that was expensive to maintain, difficult to update, and couldn't scale to meet growing business demands.",
+        "solution": "We designed and implemented a phased migration to a microservices architecture on AWS, breaking down the monolith into scalable, independently deployable services.",
+        "results": [
+          "Reduced infrastructure costs by 62%",
+          "Decreased deployment time from weeks to minutes",
+          "Improved system uptime from 98.2% to 99.99%",
+          "Enabled rapid feature development with 3x faster releases"
+        ]
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitleLine1": "Ready to transform your business with advanced technology solutions?",
+    "subtitleLine2": "Get in touch with our team.",
+    "form": {
+      "name": "Full Name",
+      "namePlaceholder": "Enter your name",
+      "email": "Email Address",
+      "emailPlaceholder": "Enter your email",
+      "company": "Company Name",
+      "companyPlaceholder": "Enter your company name",
+      "budget": "Budget Range",
+      "budgetPlaceholder": "Select your budget range",
+      "budgetOptions": {
+        "under50k": "Under $50,000",
+        "50k-100k": "$50,000 - $100,000",
+        "100k-250k": "$100,000 - $250,000",
+        "250k-500k": "$250,000 - $500,000",
+        "over500k": "Over $500,000"
+      },
+      "message": "Project Description",
+      "messagePlaceholder": "Tell us about your project or requirements",
+      "agree": "I agree to receive communications from Quests Ltd.",
+      "submit": "Submit Request",
+      "sending": "Sending...",
+      "validationError": "Please fill in all required fields.",
+      "submitError": "Failed to send message. Please try again later.",
+      "successTitle": "Thank You!",
+      "successMessage": "Your message has been sent successfully. We'll get back to you shortly."
+    },
+    "side": {
+      "title": "We're Here to Help",
+      "description": "Our team will get back to you within 24 hours during business days.",
+      "fastResponse": "Fast Response Time",
+      "secureCommunication": "Secure Communication",
+      "globalSupport": "Global Support"
+    }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "cards": {
+      "collect": {
+        "title": "1. Information We Collect",
+        "items": [
+          "Name and contact information",
+          "Company details",
+          "Project requirements",
+          "Technical usage information"
+        ]
+      },
+      "use": {
+        "title": "2. How We Use Information",
+        "items": [
+          "Provide and improve services",
+          "Communicate with you",
+          "Respond to inquiries",
+          "Comply with obligations"
+        ]
+      },
+      "sharing": {
+        "title": "3. Information Sharing",
+        "items": [
+          "Service providers",
+          "Professional advisors",
+          "Law enforcement",
+          "With your consent"
+        ]
+      },
+      "rights": {
+        "title": "4. Your Rights",
+        "items": [
+          "Access your data",
+          "Correct information",
+          "Request deletion",
+          "Opt-out of marketing"
+        ]
+      }
+    }
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "cards": {
+      "acceptance": {
+        "title": "1. Acceptance of Terms",
+        "text": "By accessing or using our services, you agree to be bound by these Terms of Service and all applicable laws and regulations."
+      },
+      "services": {
+        "title": "2. Services",
+        "text": "Quests Ltd. provides IT consulting, system development, and related services. We reserve the right to modify or discontinue any service at any time."
+      },
+      "liability": {
+        "title": "3. Limitation of Liability",
+        "text": "Quests Ltd. shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use or inability to use our services."
+      }
+    }
+  },
+  "footer": {
+    "taglineLine1": "Transforming businesses through advanced technology solutions.",
+    "taglineLine2": "We deliver expertise that drives growth and innovation.",
+    "quickLinks": "Quick Links",
+    "legal": "Legal",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "copyrightSuffix": "Quests Ltd. All rights reserved."
+  }
+}

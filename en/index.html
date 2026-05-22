@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quests Ltd. - Pioneering the Future with Intelligent Technology</title>
+<link rel="icon" type="image/svg+xml" sizes="any" href="/images/corporate-logo.svg"/>
+<link rel="canonical" href="/en/">
+<link rel="alternate" hreflang="en" href="/en/">
+<link rel="alternate" hreflang="ja" href="/ja/">
+<link rel="alternate" hreflang="x-default" href="/en/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#0047AB',secondary:'#00264d'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<script src="/assets/js/i18n.js" defer></script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+scroll-behavior: smooth;
+}
+.hero-gradient {
+background: linear-gradient(90deg, rgba(17,24,39,1) 0%, rgba(17,24,39,0.9) 50%, rgba(17,24,39,0) 100%);
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+.custom-checkbox {
+appearance: none;
+-webkit-appearance: none;
+width: 20px;
+height: 20px;
+border: 2px solid #0047AB;
+border-radius: 4px;
+position: relative;
+cursor: pointer;
+}
+.custom-checkbox:checked {
+background-color: #0047AB;
+}
+.custom-checkbox:checked::after {
+content: "";
+position: absolute;
+width: 5px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+top: 2px;
+left: 6px;
+transform: rotate(45deg);
+}
+.custom-switch {
+position: relative;
+display: inline-block;
+width: 48px;
+height: 24px;
+}
+.custom-switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+transition: .4s;
+border-radius: 24px;
+}
+.slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .slider {
+background-color: #0047AB;
+}
+input:checked + .slider:before {
+transform: translateX(24px);
+}
+.service-card {
+transition: all 0.3s ease;
+}
+.service-card .service-details {
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.5s ease;
+}
+.service-card.expanded .service-details {
+max-height: 1000px;
+}
+.case-study {
+transition: all 0.3s ease;
+}
+.case-study.expanded .case-details {
+max-height: 1000px;
+}
+.case-details {
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.5s ease;
+}
+.counter-value {
+transition: all 0.5s ease;
+}
+.section-fade {
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.section-fade.visible {
+opacity: 1;
+transform: translateY(0);
+}
+.lang-switcher { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; }
+.lang-switcher button { color: #6b7280; transition: color 0.2s; background: none; border: none; cursor: pointer; padding: 0; font-family: inherit; font-size: inherit; }
+.lang-switcher button:hover { color: #0047AB; }
+.lang-switcher button.lang-active { color: #0047AB; font-weight: 600; }
+.lang-switcher .lang-divider { color: #d1d5db; }
+.site-header {
+  background: rgba(17,24,39,0);
+  backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
+  border-bottom: 1px solid rgba(255,255,255,0);
+  transition: background-color .25s ease, backdrop-filter .25s ease, -webkit-backdrop-filter .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.site-header.is-scrolled {
+  background: rgba(35,47,62,.8);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.site-header .brand,
+.site-header .nav-link { color: #fff; transition: color .25s ease; }
+.site-header .nav-link:hover { color: #93c5fd; }
+.site-header .lang-switcher button,
+.site-header .lang-switcher i { color: rgba(255,255,255,.85); }
+.site-header .lang-switcher .lang-divider { color: rgba(255,255,255,.35); }
+.site-header .lang-switcher button:hover,
+.site-header .lang-switcher button.lang-active { color: #93c5fd; }
+.site-header #mobileMenuBtn { color: #fff; }
+#mobileMenu {
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+</style>
+</head>
+<body class="bg-white">
+<!-- Header/Navigation -->
+<header class="site-header fixed top-0 left-0 right-0 z-50">
+<div class="container mx-auto px-6 py-2 flex justify-between items-center">
+<a href="#hero" class="brand text-3xl font-['Inter'] font-bold">Quests Ltd.</a>
+<nav class="hidden md:flex items-center space-x-8">
+<a href="#about" class="nav-link transition-colors" data-i18n="nav.about">About Us</a>
+<a href="#services" class="nav-link transition-colors" data-i18n="nav.services">Services</a>
+<a href="#cases" class="nav-link transition-colors" data-i18n="nav.cases">Case Studies</a>
+<a href="#contact" class="nav-link transition-colors" data-i18n="nav.contact">Contact Us</a>
+<div class="lang-switcher pl-5 ml-1">
+<i class="ri-global-line text-base"></i>
+<button type="button" data-lang-switch="en">English</button>
+<span class="lang-divider">|</span>
+<button type="button" data-lang-switch="ja">日本語</button>
+</div>
+</nav>
+<div class="md:hidden flex items-center gap-4">
+<div class="lang-switcher">
+<i class="ri-global-line text-base"></i>
+<button type="button" data-lang-switch="en">English</button>
+<span class="lang-divider">|</span>
+<button type="button" data-lang-switch="ja">日本語</button>
+</div>
+<div class="w-8 h-8 flex items-center justify-center cursor-pointer" id="mobileMenuBtn">
+<i class="ri-menu-line ri-lg"></i>
+</div>
+</div>
+</div>
+<!-- Mobile Menu -->
+<div id="mobileMenu" class="hidden md:hidden shadow-lg absolute w-full">
+<div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
+<a href="#about" class="text-gray-700 hover:text-primary transition-colors py-2" data-i18n="nav.about">About Us</a>
+<a href="#services" class="text-gray-700 hover:text-primary transition-colors py-2" data-i18n="nav.services">Services</a>
+<a href="#cases" class="text-gray-700 hover:text-primary transition-colors py-2" data-i18n="nav.cases">Case Studies</a>
+<a href="#contact" class="text-gray-700 hover:text-primary transition-colors py-2" data-i18n="nav.contact">Contact Us</a>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section id="hero" class="pt-16 min-h-[600px] lg:h-[50vh] relative overflow-hidden bg-gray-900" style="background-image: url('https://readdy.ai/api/search-image?query=Abstract%20futuristic%20technology%20background%20with%20glowing%20geometric%20patterns%20and%20neural%20network%20connections.%20Dark%20sophisticated%20atmosphere%20with%20deep%20blue%20and%20purple%20accents.%20Flowing%20digital%20particles%20and%20energy%20streams%20create%20a%20sense%20of%20advanced%20AI%20and%20technological%20innovation.%20No%20screens%20or%20monitors%20visible.&width=1920&height=1080&seq=hero126&orientation=landscape'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/95 to-transparent"></div>
+<div class="container mx-auto px-6 h-full flex items-center relative py-12 lg:py-0">
+<div class="w-full lg:w-3/5 px-4 md:px-10">
+<h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+<div class="break-words sm:whitespace-nowrap" data-i18n="hero.titleLine1">Pioneering the Future</div>
+<div class="break-words sm:whitespace-nowrap"><span data-i18n="hero.titleLine2Prefix">with </span><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400" data-i18n="hero.titleHighlight">Intelligent Technology</span></div>
+</h1>
+<p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl" data-i18n="hero.subtitle">Empowering your business success through cutting-edge AI and transformative technology. We'll turn your vision into reality.</p>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+<span class="text-gray-400 mb-2" data-i18n="hero.scroll">Scroll to explore</span>
+<div class="w-8 h-8 flex items-center justify-center animate-bounce text-gray-400">
+<i class="ri-arrow-down-line ri-lg"></i>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section id="about" class="py-12 bg-gray-50/50 section-fade">
+<div class="container mx-auto px-6">
+<div class="text-center mb-8">
+<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-i18n="about.title">About Quests Ltd.</h2>
+<p class="text-lg text-gray-600 max-w-3xl mx-auto" data-i18n="about.subtitle">We're a team of technology experts with experience from leading global tech companies, dedicated to delivering exceptional IT solutions.</p>
+</div>
+<div class="flex flex-col md:flex-row items-center gap-10">
+<div class="md:w-1/2">
+<img src="https://readdy.ai/api/search-image?query=A%20small%20group%20of%204%20diverse%20IT%20professionals%20collaborating%20in%20a%20bright%2C%20modern%20office%20space.%20They%20are%20standing%20together%2C%20looking%20at%20the%20camera%20with%20warm%2C%20approachable%20smiles.%20Their%20body%20language%20shows%20confidence%20and%20teamwork.%20They%20are%20wearing%20business%20casual%20attire.%20The%20lighting%20is%20soft%20and%20natural%2C%20creating%20a%20welcoming%20atmosphere.%20The%20background%20features%20clean%2C%20minimal%20office%20design%20with%20subtle%20tech%20elements.&width=600&height=400&seq=team124&orientation=landscape" alt="Quests Team" class="rounded-lg shadow-lg w-full object-cover object-top">
+</div>
+<div class="md:w-1/2">
+<h3 class="text-2xl font-semibold text-gray-900 mb-4" data-i18n="about.missionTitle">Our Mission</h3>
+<p class="text-gray-700 mb-6" data-i18n="about.missionText">We founded Quests Ltd. to move beyond the usual limits—where support is only available for large contracts or development is restricted by strict agreements. Our mission is to provide flexible and fast support to help your business transform and grow.</p>
+<h3 class="text-2xl font-semibold text-gray-900 mb-4" data-i18n="about.expertiseTitle">Our Expertise</h3>
+<p class="text-gray-700 mb-6" data-i18n="about.expertiseText">With strong technical skills and broad consulting experience from companies like AWS, Google, and Microsoft, we deliver solutions tailored to your unique needs.</p>
+<div class="flex flex-wrap gap-8 mt-8">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-amazon-fill ri-2x text-gray-500"></i>
+</div>
+<span class="text-gray-700 font-medium">AWS</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-google-fill ri-2x text-gray-500"></i>
+</div>
+<span class="text-gray-700 font-medium">Google</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-microsoft-fill ri-2x text-gray-500"></i>
+</div>
+<span class="text-gray-700 font-medium">Microsoft</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section id="services" class="py-12 bg-white section-fade">
+<div class="container mx-auto px-6">
+<div class="text-center mb-8">
+<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-i18n="services.title">Our Services</h2>
+<p class="text-lg text-gray-600 max-w-3xl mx-auto" data-i18n="services.subtitle">We support your entire IT journey—from business transformation consulting and system development to operations and in-house training.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Service 1 -->
+<div class="service-card bg-white rounded-lg shadow-md overflow-hidden">
+<div class="h-36 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Business%20professionals%20in%20a%20modern%20meeting%20room%20discussing%20digital%20transformation%20strategies.%20They%20are%20analyzing%20data%20visualizations%20and%20charts%20on%20screens.%20The%20atmosphere%20is%20collaborative%20and%20forward-thinking%2C%20with%20a%20clean%2C%20professional%20aesthetic.%20The%20image%20conveys%20strategic%20planning%20and%20business%20consulting.&width=400&height=300&seq=service1&orientation=landscape" alt="IT Consulting" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="services.items.consulting.title">IT Consulting for Business Transformation</h3>
+<p class="text-gray-700 mb-4" data-i18n="services.items.consulting.short">Strategic guidance to align your technology with business goals and drive digital transformation.</p>
+<div class="service-details hidden">
+<p class="text-gray-700 mb-4" data-i18n="services.items.consulting.details">Our consulting services help you navigate complex technology decisions with confidence. We analyze your current systems, identify opportunities for improvement, and create roadmaps for successful digital transformation.</p>
+<ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="services.items.consulting.bullets">
+<li>Digital strategy development</li>
+<li>IT architecture assessment</li>
+<li>Technology selection guidance</li>
+<li>Process optimization</li>
+<li>Change management support</li>
+</ul>
+</div>
+<button class="service-toggle text-primary font-medium flex items-center gap-1 hover:underline">
+<span class="service-toggle-label" data-i18n="services.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
+</button>
+</div>
+</div>
+<!-- Service 2 -->
+<div class="service-card bg-white rounded-lg shadow-md overflow-hidden">
+<div class="h-36 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Modern%20IT%20system%20development%20visualization%20with%20advanced%20AI%20algorithms%20and%20neural%20networks.%20Abstract%203D%20representations%20of%20data%20processing%20and%20machine%20learning%20models.%20Holographic%20displays%20showing%20system%20architecture%20and%20data%20flows.%20Clean%2C%20professional%20environment%20with%20blue%20and%20white%20technological%20aesthetics.%20Ambient%20lighting%20creating%20depth.%20Focus%20on%20AI%20system%20design%20and%20development.%20No%20cloud%20illustrations%20or%20physical%20hardware%20visible.&width=400&height=300&seq=service2&orientation=landscape" alt="System Development" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="services.items.system.title">System Development using Cloud and AI</h3>
+<p class="text-gray-700 mb-4" data-i18n="services.items.system.short">Custom software solutions leveraging cutting-edge cloud technologies and artificial intelligence.</p>
+<div class="service-details hidden">
+<p class="text-gray-700 mb-4" data-i18n="services.items.system.details">We design and build scalable, secure, and innovative systems that solve your unique business challenges. Our development approach combines technical excellence with business understanding.</p>
+<ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="services.items.system.bullets">
+<li>Custom application development</li>
+<li>Cloud-native architecture</li>
+<li>AI and machine learning integration</li>
+<li>Legacy system modernization</li>
+<li>API development and integration</li>
+</ul>
+</div>
+<button class="service-toggle text-primary font-medium flex items-center gap-1 hover:underline">
+<span class="service-toggle-label" data-i18n="services.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
+</button>
+</div>
+</div>
+<!-- Service 3 -->
+<div class="service-card bg-white rounded-lg shadow-md overflow-hidden">
+<div class="h-36 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=IT%20operations%20center%20with%20multiple%20monitors%20displaying%20infrastructure%20metrics%2C%20network%20diagrams%2C%20and%20system%20health%20dashboards.%20The%20environment%20is%20organized%20and%20professional%2C%20with%20IT%20specialists%20monitoring%20systems.%20The%20lighting%20is%20balanced%20with%20blue%20technical%20elements%2C%20conveying%20reliability%20and%20operational%20excellence.&width=400&height=300&seq=service3&orientation=landscape" alt="IT Operations" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="services.items.operations.title">IT Infrastructure Operations Support</h3>
+<p class="text-gray-700 mb-4" data-i18n="services.items.operations.short">Reliable management and optimization of your technology infrastructure for maximum performance.</p>
+<div class="service-details hidden">
+<p class="text-gray-700 mb-4" data-i18n="services.items.operations.details">Keep your systems running smoothly with our comprehensive operations support. We handle the technical complexities so you can focus on your core business activities.</p>
+<ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="services.items.operations.bullets">
+<li>Cloud infrastructure management</li>
+<li>24/7 monitoring and support</li>
+<li>Security management</li>
+<li>Performance optimization</li>
+<li>Disaster recovery planning</li>
+</ul>
+</div>
+<button class="service-toggle text-primary font-medium flex items-center gap-1 hover:underline">
+<span class="service-toggle-label" data-i18n="services.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
+</button>
+</div>
+</div>
+<!-- Service 4 -->
+<div class="service-card bg-white rounded-lg shadow-md overflow-hidden">
+<div class="h-36 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=A%20professional%20training%20environment%20where%20IT%20experts%20are%20teaching%20a%20diverse%20group%20of%20business%20professionals.%20They%20are%20engaged%20in%20hands-on%20learning%20with%20computers%20and%20digital%20tools.%20The%20setting%20is%20bright%20and%20collaborative%2C%20with%20visual%20aids%20and%20technology%20demonstrations.%20The%20image%20conveys%20knowledge%20transfer%20and%20skill%20development.&width=400&height=300&seq=service4&orientation=landscape" alt="IT Training" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="services.items.training.title">Training and Support for In-house IT Teams</h3>
+<p class="text-gray-700 mb-4" data-i18n="services.items.training.short">Empower your internal teams with the knowledge and skills needed to excel in technology management.</p>
+<div class="service-details hidden">
+<p class="text-gray-700 mb-4" data-i18n="services.items.training.details">Build capability within your organization through our specialized training programs. We help your teams develop the expertise needed to maintain and enhance your technology systems.</p>
+<ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="services.items.training.bullets">
+<li>Technical skills development</li>
+<li>Knowledge transfer programs</li>
+<li>Customized training workshops</li>
+<li>Mentoring and coaching</li>
+<li>Documentation and best practices</li>
+</ul>
+</div>
+<button class="service-toggle text-primary font-medium flex items-center gap-1 hover:underline">
+<span class="service-toggle-label" data-i18n="services.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Case Studies Section -->
+<section id="cases" class="py-12 bg-gray-50/50 section-fade">
+<div class="container mx-auto px-6">
+<div class="text-center mb-8">
+<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-i18n="cases.title">Case Studies</h2>
+<p class="text-lg text-gray-600 max-w-3xl mx-auto" data-i18n="cases.subtitle">Explore how we've helped organizations solve complex challenges and achieve remarkable results.</p>
+</div>
+<div class="mb-8">
+<div class="flex flex-wrap justify-center gap-2 bg-gray-100 p-2 rounded-2xl">
+<button class="case-filter-btn active px-4 py-2 rounded-full bg-primary text-white whitespace-nowrap" data-filter="all" data-i18n="cases.filters.all">All Projects</button>
+<button class="case-filter-btn px-4 py-2 rounded-full text-gray-700 whitespace-nowrap" data-filter="ai" data-i18n="cases.filters.ai">AI Solutions</button>
+<button class="case-filter-btn px-4 py-2 rounded-full text-gray-700 whitespace-nowrap" data-filter="analytics" data-i18n="cases.filters.analytics">Analytics</button>
+<button class="case-filter-btn px-4 py-2 rounded-full text-gray-700 whitespace-nowrap" data-filter="modernization" data-i18n="cases.filters.modernization">Modernization</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Case Study 1 -->
+<div class="case-study bg-white rounded-lg shadow-md overflow-hidden" data-category="ai">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Three%20researchers%20in%20a%20modern%20laboratory%20collaborating%2C%20one%20holding%20a%20glass%20beaker%20containing%20a%20vibrant%20purple%20luminescent%20solution.%20Three%20wall-mounted%20monitors%20display%20blue%20and%20green%20molecular%20structures%20and%20AI%20analysis%20visualizations.%20The%20lab%20features%20pristine%20stainless%20steel%20surfaces%20and%20modern%20equipment.%20The%20researchers%20are%20dressed%20in%20white%20lab%20coats%2C%20engaged%20in%20discussion.%20Clean%2C%20bright%20professional%20lighting%20creates%20a%20sophisticated%20atmosphere.%20The%20scene%20emphasizes%20scientific%20innovation%20without%20any%20text%20overlays.&width=400&height=300&seq=case1&orientation=landscape" alt="AI Research Lab" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.material.title">AI-Powered Material Development</h3>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.material.short">Accelerating research processes through advanced AI algorithms for a leading materials science laboratory.</p>
+<button class="case-toggle text-primary font-medium flex items-center gap-1 hover:underline">
+<span class="case-toggle-label" data-i18n="cases.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
+</button>
+<div class="case-details mt-4">
+<div class="border-t pt-4">
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.challenge">Challenge</h4>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.material.challenge">The client needed to significantly reduce the time required to test and validate new material compositions, facing intense competitive pressure in their industry.</p>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.solution">Solution</h4>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.material.solution">We developed a machine learning system that could predict material properties based on composition data, reducing the need for physical testing and accelerating the research cycle.</p>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.results">Results</h4>
+<ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="cases.items.material.results">
+<li>Reduced research cycle time by 68%</li>
+<li>Increased successful material discoveries by 42%</li>
+<li>Saved approximately $1.2M in annual testing costs</li>
+</ul>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Technologies Used</h4>
+<div class="flex flex-wrap gap-2 mt-2">
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">TensorFlow</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">AWS SageMaker</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Python</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Data Visualization</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Case Study 2 -->
+<div class="case-study bg-white rounded-lg shadow-md overflow-hidden" data-category="ai">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=A%20professional%20customer%20service%20supervisor%20working%20at%20a%20sleek%20modern%20desk%20with%20a%20single%20elegant%20monitor%20displaying%20an%20advanced%20AI%20chatbot%20interface.%20The%20screen%20shows%20a%20sophisticated%20conversation%20flow%20with%20clean%2C%20minimalist%20design.%20Soft%20ambient%20lighting%20creates%20a%20calm%2C%20high-tech%20atmosphere.%20The%20focus%20is%20on%20the%20human-AI%20collaboration%2C%20with%20the%20supervisor%20thoughtfully%20monitoring%20the%20automated%20customer%20support%20system.%20The%20workspace%20is%20clean%20and%20uncluttered%20with%20subtle%20blue%20accent%20lighting.&width=400&height=300&seq=case2&orientation=landscape" alt="AI Chatbot" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.chatbot.title">Generative AI Customer Support</h3>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.chatbot.short">Implementing advanced chatbots and AI systems to automate and enhance customer service operations.</p>
+<button class="case-toggle text-primary font-medium flex items-center gap-1 hover:underline">
+<span class="case-toggle-label" data-i18n="cases.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
+</button>
+<div class="case-details mt-4">
+<div class="border-t pt-4">
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.challenge">Challenge</h4>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.chatbot.challenge">A global e-commerce company was struggling with increasing customer support volumes and rising costs while maintaining service quality.</p>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.solution">Solution</h4>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.chatbot.solution">We developed a multi-channel AI support system using generative AI to handle routine inquiries, with seamless handoff to human agents for complex issues.</p>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.results">Results</h4>
+<ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="cases.items.chatbot.results">
+<li>Automated resolution of 78% of customer inquiries</li>
+<li>Reduced response time from 4 hours to 3 minutes</li>
+<li>Improved customer satisfaction scores by 22%</li>
+<li>30% reduction in support operating costs</li>
+</ul>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Technologies Used</h4>
+<div class="flex flex-wrap gap-2 mt-2">
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">GPT-4</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Azure AI</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Node.js</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">React</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Case Study 3 -->
+<div class="case-study bg-white rounded-lg shadow-md overflow-hidden" data-category="ai analytics">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=A%20manufacturing%20facility%20with%20advanced%20monitoring%20systems%20and%20predictive%20maintenance%20displays.%20Industrial%20equipment%20is%20visible%20with%20sensors%20attached%2C%20and%20screens%20show%20real-time%20analytics%20and%20maintenance%20predictions.%20The%20environment%20combines%20industrial%20elements%20with%20high-tech%20monitoring%20interfaces%2C%20conveying%20technological%20innovation%20in%20manufacturing.&width=400&height=300&seq=case3&orientation=landscape" alt="Predictive Maintenance" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.predictive.title">Predictive Maintenance AI System</h3>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.predictive.short">Reducing downtime and maintenance costs through AI-powered predictive analytics for manufacturing equipment.</p>
+<button class="case-toggle text-primary font-medium flex items-center gap-1 hover:underline">
+<span class="case-toggle-label" data-i18n="cases.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
+</button>
+<div class="case-details mt-4">
+<div class="border-t pt-4">
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.challenge">Challenge</h4>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.predictive.challenge">A manufacturing company was experiencing significant production losses due to unexpected equipment failures and inefficient maintenance scheduling.</p>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.solution">Solution</h4>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.predictive.solution">We implemented an IoT sensor network connected to an AI system that analyzes equipment performance data to predict failures before they occur.</p>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.results">Results</h4>
+<ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="cases.items.predictive.results">
+<li>Reduced unplanned downtime by 83%</li>
+<li>Decreased maintenance costs by 47%</li>
+<li>Extended equipment lifespan by an average of 35%</li>
+<li>ROI achieved within 9 months of implementation</li>
+</ul>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Technologies Used</h4>
+<div class="flex flex-wrap gap-2 mt-2">
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">IoT Sensors</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Azure IoT Hub</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Machine Learning</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Power BI</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Case Study 4 -->
+<div class="case-study bg-white rounded-lg shadow-md overflow-hidden" data-category="analytics">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=An%20executive%20boardroom%20with%20large%20displays%20showing%20business%20intelligence%20dashboards%20and%20data%20visualizations.%20The%20environment%20is%20professional%20and%20sophisticated%2C%20with%20clean%20design%20elements.%20Multiple%20screens%20display%20charts%2C%20KPIs%2C%20and%20business%20metrics%20in%20an%20organized%2C%20visually%20appealing%20way.%20The%20atmosphere%20conveys%20data-driven%20decision%20making%20and%20executive-level%20analytics.&width=400&height=300&seq=case4&orientation=landscape" alt="Executive Dashboard" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.dashboard.title">Executive Management Dashboard</h3>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.dashboard.short">Creating comprehensive data visualization tools to support strategic decision-making for executive leadership.</p>
+<button class="case-toggle text-primary font-medium flex items-center gap-1 hover:underline">
+<span class="case-toggle-label" data-i18n="cases.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
+</button>
+<div class="case-details mt-4">
+<div class="border-t pt-4">
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.challenge">Challenge</h4>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.dashboard.challenge">A multinational corporation's leadership team was struggling to access and interpret critical business data from disparate systems for timely decision-making.</p>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.solution">Solution</h4>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.dashboard.solution">We developed a centralized executive dashboard that integrates data from multiple sources and presents key metrics and insights through intuitive visualizations.</p>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.results">Results</h4>
+<ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="cases.items.dashboard.results">
+<li>Reduced reporting time from 2 weeks to real-time</li>
+<li>Improved data accuracy by eliminating manual reporting</li>
+<li>Enabled data-driven decision making across 12 departments</li>
+<li>Identified $3.4M in cost-saving opportunities</li>
+</ul>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Technologies Used</h4>
+<div class="flex flex-wrap gap-2 mt-2">
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Power BI</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">SQL Server</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Azure Data Factory</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">DAX</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Case Study 5 -->
+<div class="case-study bg-white rounded-lg shadow-md overflow-hidden" data-category="ai">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Futuristic%20digital%20wayfinding%20kiosk%20in%20a%20modern%20shopping%20mall.%20The%20sleek%20monitor%20displays%20an%20advanced%203D%20holographic%20mall%20map%20with%20glowing%20navigation%20paths%20and%20interactive%20elements.%20High-tech%20minimalist%20interface%20with%20neon%20blue%20accents.%20Clean%2C%20sophisticated%20retail%20environment%20with%20glass%20and%20chrome%20finishes.%20The%20display%20shows%20an%20innovative%20wayfinding%20system%20with%20floating%20directional%20indicators%20and%20dynamic%20store%20locations.%20No%20text%20overlays%20or%20labels%20visible.&width=400&height=300&seq=case5&orientation=landscape" alt="Voice Navigation" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.voice.title">Voice-Guided Store Navigation</h3>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.voice.short">Implementing Alexa-powered voice navigation to enhance customer experience in large retail environments.</p>
+<button class="case-toggle text-primary font-medium flex items-center gap-1 hover:underline">
+<span class="case-toggle-label" data-i18n="cases.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
+</button>
+<div class="case-details mt-4">
+<div class="border-t pt-4">
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.challenge">Challenge</h4>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.voice.challenge">A major retailer wanted to improve customer experience and reduce frustration in their large-format stores where finding products was difficult.</p>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.solution">Solution</h4>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.voice.solution">We developed a voice-activated navigation system using Amazon Alexa, integrated with the store's inventory management system and indoor positioning technology.</p>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.results">Results</h4>
+<ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="cases.items.voice.results">
+<li>Reduced customer time spent searching by 64%</li>
+<li>Increased customer satisfaction scores by 28%</li>
+<li>Boosted sales of previously hard-to-find items by 31%</li>
+<li>Successfully deployed across 87 locations</li>
+</ul>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Technologies Used</h4>
+<div class="flex flex-wrap gap-2 mt-2">
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Amazon Alexa</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Bluetooth Beacons</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">AWS Lambda</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Node.js</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Case Study 6 -->
+<div class="case-study bg-white rounded-lg shadow-md overflow-hidden" data-category="modernization">
+<div class="h-48 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=A%20professional%20software%20developer%20in%20a%20modern%20office%20workspace%2C%20viewed%20from%20a%20side%20angle%2C%20working%20on%20system%20modernization.%20The%20developers%20monitor%20displays%20detailed%20system%20architecture%20diagrams%20and%20modern%20development%20interfaces%20with%20blue%20and%20white%20color%20schemes.%20Through%20a%20glass%20partition%20in%20the%20background%2C%20three%20to%20four%20server%20racks%20with%20blinking%20lights%20are%20clearly%20visible%20in%20an%20adjacent%20server%20room.%20The%20lighting%20is%20bright%20and%20professional%20in%20the%20workspace%2C%20while%20the%20server%20room%20has%20ambient%20blue%20lighting.%20The%20scene%20emphasizes%20the%20contrast%20between%20modern%20development%20and%20legacy%20infrastructure%2C%20with%20clean%20lines%20and%20a%20sophisticated%20technical%20atmosphere.&width=400&height=300&seq=case6&orientation=landscape" alt="System Modernization" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.legacy.title">Legacy System Modernization</h3>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.legacy.short">Transforming outdated infrastructure into modern, cloud-native services for enhanced performance and scalability.</p>
+<button class="case-toggle text-primary font-medium flex items-center gap-1 hover:underline">
+<span class="case-toggle-label" data-i18n="cases.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
+</button>
+<div class="case-details mt-4">
+<div class="border-t pt-4">
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.challenge">Challenge</h4>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.legacy.challenge">A financial services company was struggling with an aging monolithic system that was expensive to maintain, difficult to update, and couldn't scale to meet growing business demands.</p>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.solution">Solution</h4>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.legacy.solution">We designed and implemented a phased migration to a microservices architecture on AWS, breaking down the monolith into scalable, independently deployable services.</p>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.results">Results</h4>
+<ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="cases.items.legacy.results">
+<li>Reduced infrastructure costs by 62%</li>
+<li>Decreased deployment time from weeks to minutes</li>
+<li>Improved system uptime from 98.2% to 99.99%</li>
+<li>Enabled rapid feature development with 3x faster releases</li>
+</ul>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Technologies Used</h4>
+<div class="flex flex-wrap gap-2 mt-2">
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">AWS</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Docker</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Kubernetes</span>
+<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Terraform</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section id="contact" class="py-12 bg-white section-fade">
+<div class="container mx-auto px-6">
+<div class="text-center mb-8">
+<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-i18n="contact.title">Contact Us</h2>
+<p class="text-lg text-gray-600 max-w-3xl mx-auto"><span data-i18n="contact.subtitleLine1">Ready to transform your business with advanced technology solutions?</span><br><span data-i18n="contact.subtitleLine2">Get in touch with our team.</span></p>
+</div>
+<div class="flex flex-col lg:flex-row gap-10">
+<div class="lg:w-1/2">
+<form id="contactForm" class="bg-white rounded-lg shadow-md p-8">
+<div class="mb-6">
+<label for="name" class="block text-gray-700 font-medium mb-2" data-i18n="contact.form.name">Full Name</label>
+<input type="text" id="name" name="name" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter your name" data-i18n-attr-placeholder="contact.form.namePlaceholder" required>
+</div>
+<div class="mb-6">
+<label for="email" class="block text-gray-700 font-medium mb-2" data-i18n="contact.form.email">Email Address</label>
+<input type="email" id="email" name="email" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter your email" data-i18n-attr-placeholder="contact.form.emailPlaceholder" required>
+</div>
+<div class="mb-6">
+<label for="company" class="block text-gray-700 font-medium mb-2" data-i18n="contact.form.company">Company Name</label>
+<input type="text" id="company" name="company" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter your company name" data-i18n-attr-placeholder="contact.form.companyPlaceholder">
+</div>
+<div class="mb-6">
+<label for="budget" class="block text-gray-700 font-medium mb-2" data-i18n="contact.form.budget">Budget Range</label>
+<div class="relative">
+<select id="budget" name="budget" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent appearance-none pr-8">
+<option value="" disabled selected data-i18n="contact.form.budgetPlaceholder">Select your budget range</option>
+<option value="under50k" data-i18n="contact.form.budgetOptions.under50k">Under $50,000</option>
+<option value="50k-100k" data-i18n="contact.form.budgetOptions.50k-100k">$50,000 - $100,000</option>
+<option value="100k-250k" data-i18n="contact.form.budgetOptions.100k-250k">$100,000 - $250,000</option>
+<option value="250k-500k" data-i18n="contact.form.budgetOptions.250k-500k">$250,000 - $500,000</option>
+<option value="over500k" data-i18n="contact.form.budgetOptions.over500k">Over $500,000</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</div>
+</div>
+<div class="mb-6">
+<label for="message" class="block text-gray-700 font-medium mb-2" data-i18n="contact.form.message">Project Description</label>
+<textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Tell us about your project or requirements" data-i18n-attr-placeholder="contact.form.messagePlaceholder" required></textarea>
+</div>
+<div class="mb-6">
+<label class="flex items-center">
+<input type="checkbox" id="agreeCheckbox" class="custom-checkbox mr-2">
+<span class="text-gray-700" data-i18n="contact.form.agree">I agree to receive communications from Quests Ltd.</span>
+</label>
+</div>
+<button type="submit" id="submitButton" class="w-full bg-primary text-white py-3 px-6 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors opacity-50 cursor-not-allowed" disabled data-i18n="contact.form.submit">Submit Request</button>
+</form>
+</div>
+<div class="lg:w-1/2">
+<div class="bg-white rounded-lg shadow-md p-8 h-full">
+<div class="text-center">
+<div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-6">
+<i class="ri-customer-service-2-line ri-2x text-primary"></i>
+</div>
+<h3 class="text-2xl font-semibold text-gray-900 mb-4" data-i18n="contact.side.title">We're Here to Help</h3>
+<p class="text-gray-700 mb-6" data-i18n="contact.side.description">Our team will get back to you within 24 hours during business days.</p>
+<div class="flex flex-col gap-4">
+<div class="p-4 bg-gray-50 rounded-lg">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mx-auto mb-2">
+<i class="ri-time-line text-primary"></i>
+</div>
+<p class="text-gray-700" data-i18n="contact.side.fastResponse">Fast Response Time</p>
+</div>
+<div class="p-4 bg-gray-50 rounded-lg">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mx-auto mb-2">
+<i class="ri-shield-check-line text-primary"></i>
+</div>
+<p class="text-gray-700" data-i18n="contact.side.secureCommunication">Secure Communication</p>
+</div>
+<div class="p-4 bg-gray-50 rounded-lg">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mx-auto mb-2">
+<i class="ri-global-line text-primary"></i>
+</div>
+<p class="text-gray-700" data-i18n="contact.side.globalSupport">Global Support</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Location Section -->
+<!-- <section id="location" class="py-12 bg-gray-50/50 section-fade">
+<div class="container mx-auto px-6">
+<div class="flex flex-col lg:flex-row gap-10">
+<div class="lg:w-1/2">
+<div class="bg-white rounded-lg shadow-md p-8">
+<h2 class="text-3xl font-bold text-gray-900 mb-6">Our Location</h2>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mt-1">
+<i class="ri-map-pin-2-line text-primary"></i>
+</div>
+<div class="max-w-sm">
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Headquarters</h3>
+<p class="text-gray-700">Trust Company Complex, Ajeltake Road, Ajeltake Island, Majuro, Republic of the Marshall Islands, MH 96960</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mt-1">
+<i class="ri-map-pin-2-line text-primary"></i>
+</div>
+<div class="max-w-sm">
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Branch Office</h3>
+<p class="text-gray-700">Sample Sdn. Bhd., Unit 01-01, Level 1, Menara Labuan, Jalan Merdeka, 87000 Labuan FT, MALAYSIA</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mt-1">
+<i class="ri-time-line text-primary"></i>
+</div>
+<div>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Business Hours</h3>
+<p class="text-gray-700">Monday - Friday: 9:00 AM - 6:00 PM (SGT)<br>Saturday - Sunday: Closed</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mt-1">
+<i class="ri-phone-line text-primary"></i>
+</div>
+<div>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Phone</h3>
+<p class="text-gray-700">+1 (415) 555-0123</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mt-1">
+<i class="ri-mail-line text-primary"></i>
+</div>
+<div>
+<h3 class="text-lg font-semibold text-gray-900 mb-2">Email</h3>
+<p class="text-gray-700">contact@questsltd.com</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:w-1/2">
+<div class="bg-white rounded-lg shadow-md overflow-hidden h-full">
+<div class="h-full w-full" style="min-height: 400px; background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png'); background-size: cover; background-position: center;"></div>
+</div>
+</div>
+</div>
+</div>
+</section> -->
+<!-- Privacy Policy Section -->
+<section id="privacy-policy" class="py-12 bg-white section-fade">
+<div class="container mx-auto px-6">
+<h2 class="text-3xl font-bold text-gray-900 mb-8" data-i18n="privacy.title">Privacy Policy</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-gray-50 p-6 rounded-lg">
+<h3 class="text-xl font-semibold text-gray-900 mb-4" data-i18n="privacy.cards.collect.title">1. Information We Collect</h3>
+<ul class="text-gray-700 space-y-2" data-i18n-list="privacy.cards.collect.items">
+<li>Name and contact information</li>
+<li>Company details</li>
+<li>Project requirements</li>
+<li>Technical usage information</li>
+</ul>
+</div>
+<div class="bg-gray-50 p-6 rounded-lg">
+<h3 class="text-xl font-semibold text-gray-900 mb-4" data-i18n="privacy.cards.use.title">2. How We Use Information</h3>
+<ul class="text-gray-700 space-y-2" data-i18n-list="privacy.cards.use.items">
+<li>Provide and improve services</li>
+<li>Communicate with you</li>
+<li>Respond to inquiries</li>
+<li>Comply with obligations</li>
+</ul>
+</div>
+<div class="bg-gray-50 p-6 rounded-lg">
+<h3 class="text-xl font-semibold text-gray-900 mb-4" data-i18n="privacy.cards.sharing.title">3. Information Sharing</h3>
+<ul class="text-gray-700 space-y-2" data-i18n-list="privacy.cards.sharing.items">
+<li>Service providers</li>
+<li>Professional advisors</li>
+<li>Law enforcement</li>
+<li>With your consent</li>
+</ul>
+</div>
+<div class="bg-gray-50 p-6 rounded-lg">
+<h3 class="text-xl font-semibold text-gray-900 mb-4" data-i18n="privacy.cards.rights.title">4. Your Rights</h3>
+<ul class="text-gray-700 space-y-2" data-i18n-list="privacy.cards.rights.items">
+<li>Access your data</li>
+<li>Correct information</li>
+<li>Request deletion</li>
+<li>Opt-out of marketing</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Terms of Service Section -->
+<section id="terms-of-service" class="py-12 bg-gray-50/50 section-fade">
+<div class="container mx-auto px-6">
+<h2 class="text-3xl font-bold text-gray-900 mb-8" data-i18n="terms.title">Terms of Service</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-white p-6 rounded-lg shadow-md">
+<h3 class="text-xl font-semibold text-gray-900 mb-4" data-i18n="terms.cards.acceptance.title">1. Acceptance of Terms</h3>
+<p class="text-gray-700" data-i18n="terms.cards.acceptance.text">By accessing or using our services, you agree to be bound by these Terms of Service and all applicable laws and regulations.</p>
+</div>
+<div class="bg-white p-6 rounded-lg shadow-md">
+<h3 class="text-xl font-semibold text-gray-900 mb-4" data-i18n="terms.cards.services.title">2. Services</h3>
+<p class="text-gray-700" data-i18n="terms.cards.services.text">Quests Ltd. provides IT consulting, system development, and related services. We reserve the right to modify or discontinue any service at any time.</p>
+</div>
+<div class="bg-white p-6 rounded-lg shadow-md">
+<h3 class="text-xl font-semibold text-gray-900 mb-4" data-i18n="terms.cards.liability.title">3. Limitation of Liability</h3>
+<p class="text-gray-700" data-i18n="terms.cards.liability.text">Quests Ltd. shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use or inability to use our services.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-[#232F3E] text-white py-12">
+<div class="container mx-auto px-6">
+<div class="flex flex-col md:flex-row gap-10">
+<div class="md:w-1/2">
+<a href="#hero" class="text-3xl font-['Inter'] font-bold text-white mb-4 inline-block">Quests Ltd.</a>
+<p class="text-gray-400 mb-6"><span data-i18n="footer.taglineLine1">Transforming businesses through advanced technology solutions.</span><br><span data-i18n="footer.taglineLine2">We deliver expertise that drives growth and innovation.</span></p>
+<div class="flex space-x-4">
+<!-- <a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-linkedin-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-twitter-x-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-facebook-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-instagram-fill ri-lg"></i>
+</div>
+</a> -->
+</div>
+</div>
+<div class="md:w-1/2 flex gap-10">
+<div class="flex-1">
+<h3 class="text-lg font-semibold mb-4" data-i18n="footer.quickLinks">Quick Links</h3>
+<ul class="space-y-3">
+<li><a href="#about" class="text-gray-400 hover:text-white transition-colors" data-i18n="nav.about">About Us</a></li>
+<li><a href="#services" class="text-gray-400 hover:text-white transition-colors" data-i18n="nav.services">Services</a></li>
+<li><a href="#cases" class="text-gray-400 hover:text-white transition-colors" data-i18n="nav.cases">Case Studies</a></li>
+<li><a href="#contact" class="text-gray-400 hover:text-white transition-colors" data-i18n="nav.contact">Contact Us</a></li>
+</ul>
+</div>
+<div class="flex-1">
+<h3 class="text-lg font-semibold mb-4" data-i18n="footer.legal">Legal</h3>
+<ul class="space-y-3">
+<li><a href="#privacy-policy" class="text-gray-400 hover:text-white transition-colors" data-i18n="footer.privacyPolicy">Privacy Policy</a></li>
+<li><a href="#terms-of-service" class="text-gray-400 hover:text-white transition-colors" data-i18n="footer.termsOfService">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="mt-10">
+<p class="text-gray-500">© <span id="copyrightYear">2025</span> <span data-i18n="footer.copyrightSuffix">Quests Ltd. All rights reserved.</span></p>
+<script>document.getElementById('copyrightYear').textContent = new Date().getFullYear();</script>
+</div>
+</div>
+</footer>
+<script id="mobileMenuScript">
+document.addEventListener('DOMContentLoaded', function() {
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+mobileMenuBtn.addEventListener('click', function() {
+mobileMenu.classList.toggle('hidden');
+});
+// Close mobile menu when clicking on a link
+const mobileLinks = mobileMenu.querySelectorAll('a');
+mobileLinks.forEach(link => {
+link.addEventListener('click', function() {
+mobileMenu.classList.add('hidden');
+});
+});
+});
+</script>
+<script id="serviceToggleScript">
+document.addEventListener('DOMContentLoaded', function() {
+const serviceToggles = document.querySelectorAll('.service-toggle');
+serviceToggles.forEach(toggle => {
+toggle.addEventListener('click', function() {
+const card = this.closest('.service-card');
+card.classList.toggle('expanded');
+const details = this.previousElementSibling;
+details.classList.toggle('hidden');
+const label = this.querySelector('.service-toggle-label');
+const icon = this.querySelector('i');
+const expanded = card.classList.contains('expanded');
+if (label) {
+label.textContent = (window.i18n && window.i18n.t(expanded ? 'services.hideDetails' : 'services.viewDetails')) || (expanded ? 'Hide details' : 'View details');
+}
+if (icon) {
+icon.className = expanded ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line';
+}
+});
+});
+});
+</script>
+<script id="caseStudyScript">
+document.addEventListener('DOMContentLoaded', function() {
+const caseToggles = document.querySelectorAll('.case-toggle');
+caseToggles.forEach(toggle => {
+toggle.addEventListener('click', function() {
+const caseStudy = this.closest('.case-study');
+caseStudy.classList.toggle('expanded');
+const label = this.querySelector('.case-toggle-label');
+const icon = this.querySelector('i');
+const expanded = caseStudy.classList.contains('expanded');
+if (label) {
+label.textContent = (window.i18n && window.i18n.t(expanded ? 'cases.hideDetails' : 'cases.viewDetails')) || (expanded ? 'Hide details' : 'View details');
+}
+if (icon) {
+icon.className = expanded ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line';
+}
+});
+});
+// Case study filtering
+const filterBtns = document.querySelectorAll('.case-filter-btn');
+const caseStudies = document.querySelectorAll('.case-study');
+filterBtns.forEach(btn => {
+btn.addEventListener('click', function() {
+// Remove active class from all buttons
+filterBtns.forEach(b => b.classList.remove('active', 'bg-primary', 'text-white'));
+filterBtns.forEach(b => b.classList.add('text-gray-700'));
+// Add active class to clicked button
+this.classList.add('active', 'bg-primary', 'text-white');
+this.classList.remove('text-gray-700');
+const filter = this.getAttribute('data-filter');
+caseStudies.forEach(study => {
+if (filter === 'all') {
+study.style.display = 'block';
+} else {
+const category = study.getAttribute('data-category');
+if (category.includes(filter)) {
+study.style.display = 'block';
+} else {
+study.style.display = 'none';
+}
+}
+});
+});
+});
+});
+</script>
+<script id="analyticsChartScript">
+document.addEventListener('DOMContentLoaded', function() {
+if (document.getElementById('analyticsChart')) {
+const chartElement = document.getElementById('analyticsChart');
+const chart = echarts.init(chartElement);
+const option = {
+animation: false,
+tooltip: {
+trigger: 'axis',
+backgroundColor: 'rgba(255, 255, 255, 0.8)',
+borderColor: '#eee',
+borderWidth: 1,
+textStyle: {
+color: '#1f2937'
+}
+},
+legend: {
+data: ['Efficiency', 'Cost Savings', 'Revenue Growth'],
+textStyle: {
+color: '#1f2937'
+}
+},
+grid: {
+left: '3%',
+right: '4%',
+bottom: '3%',
+containLabel: true
+},
+xAxis: {
+type: 'category',
+boundaryGap: false,
+data: ['Q1', 'Q2', 'Q3', 'Q4', 'Q1', 'Q2'],
+axisLine: {
+lineStyle: {
+color: '#ddd'
+}
+},
+axisLabel: {
+color: '#1f2937'
+}
+},
+yAxis: {
+type: 'value',
+axisLine: {
+lineStyle: {
+color: '#ddd'
+}
+},
+axisLabel: {
+color: '#1f2937'
+},
+splitLine: {
+lineStyle: {
+color: '#eee'
+}
+}
+},
+series: [
+{
+name: 'Efficiency',
+type: 'line',
+smooth: true,
+lineStyle: {
+width: 3,
+color: 'rgba(87, 181, 231, 1)'
+},
+areaStyle: {
+color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+{
+offset: 0,
+color: 'rgba(87, 181, 231, 0.3)'
+},
+{
+offset: 1,
+color: 'rgba(87, 181, 231, 0.1)'
+}
+])
+},
+symbol: 'none',
+data: [30, 42, 51, 64, 78, 86]
+},
+{
+name: 'Cost Savings',
+type: 'line',
+smooth: true,
+lineStyle: {
+width: 3,
+color: 'rgba(141, 211, 199, 1)'
+},
+areaStyle: {
+color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+{
+offset: 0,
+color: 'rgba(141, 211, 199, 0.3)'
+},
+{
+offset: 1,
+color: 'rgba(141, 211, 199, 0.1)'
+}
+])
+},
+symbol: 'none',
+data: [15, 23, 35, 48, 59, 68]
+},
+{
+name: 'Revenue Growth',
+type: 'line',
+smooth: true,
+lineStyle: {
+width: 3,
+color: 'rgba(251, 191, 114, 1)'
+},
+areaStyle: {
+color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+{
+offset: 0,
+color: 'rgba(251, 191, 114, 0.3)'
+},
+{
+offset: 1,
+color: 'rgba(251, 191, 114, 0.1)'
+}
+])
+},
+symbol: 'none',
+data: [10, 18, 28, 40, 55, 72]
+}
+]
+};
+chart.setOption(option);
+window.addEventListener('resize', function() {
+if (chart) {
+chart.resize();
+}
+});
+}
+});
+</script>
+<script id="counterAnimationScript">
+document.addEventListener('DOMContentLoaded', function() {
+const counters = document.querySelectorAll('.counter-value');
+const animateCounter = (counter, target) => {
+let count = 0;
+const duration = 2000; // 2 seconds
+const frameDuration = 1000 / 60; // 60fps
+const totalFrames = Math.round(duration / frameDuration);
+const increment = target / totalFrames;
+const animate = () => {
+count += increment;
+counter.innerText = Math.floor(count);
+if (count < target) {
+requestAnimationFrame(animate);
+} else {
+counter.innerText = target;
+}
+};
+animate();
+};
+const handleScroll = () => {
+const triggerBottom = window.innerHeight * 0.8;
+counters.forEach(counter => {
+const counterTop = counter.getBoundingClientRect().top;
+if (counterTop < triggerBottom) {
+const target = parseInt(counter.getAttribute('data-target'));
+counter.innerText = '0';
+animateCounter(counter, target);
+// Remove this counter from future scroll checks
+counter.removeAttribute('data-target');
+}
+});
+// If all counters have been animated, remove the scroll listener
+if (!document.querySelector('.counter-value[data-target]')) {
+window.removeEventListener('scroll', handleScroll);
+}
+};
+window.addEventListener('scroll', handleScroll);
+handleScroll(); // Check on initial load
+});
+</script>
+<script id="scrollAnimationScript">
+document.addEventListener('DOMContentLoaded', function() {
+const sections = document.querySelectorAll('.section-fade');
+const handleScroll = () => {
+const triggerBottom = window.innerHeight * 0.8;
+sections.forEach(section => {
+const sectionTop = section.getBoundingClientRect().top;
+if (sectionTop < triggerBottom) {
+section.classList.add('visible');
+}
+});
+};
+window.addEventListener('scroll', handleScroll);
+handleScroll(); // Check on initial load
+});
+</script>
+<script id="contactFormScript">
+document.addEventListener('DOMContentLoaded', function() {
+const contactForm = document.getElementById('contactForm');
+const agreeCheckbox = document.getElementById('agreeCheckbox');
+const submitButton = document.getElementById('submitButton');
+agreeCheckbox.addEventListener('change', function() {
+if (this.checked) {
+submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
+submitButton.removeAttribute('disabled');
+} else {
+submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+submitButton.setAttribute('disabled', '');
+}
+});
+contactForm.addEventListener('submit', async function(e) {
+e.preventDefault();
+const tr = (key, fallback) => (window.i18n && window.i18n.t(key)) || fallback;
+// Get form values
+const name = document.getElementById('name').value;
+const email = document.getElementById('email').value;
+const company = document.getElementById('company').value;
+const budget = document.getElementById('budget').value;
+const message = document.getElementById('message').value;
+// Basic validation
+if (!name || !email || !message) {
+alert(tr('contact.form.validationError', 'Please fill in all required fields.'));
+return;
+}
+// Disable submit button and show loading state
+submitButton.disabled = true;
+submitButton.textContent = tr('contact.form.sending', 'Sending...');
+try {
+const response = await fetch('https://formspree.io/f/mojnbgvo', {
+method: 'POST',
+headers: {
+'Content-Type': 'application/json',
+'Accept': 'application/json'
+},
+body: JSON.stringify({ name, email, company, budget, message })
+});
+if (response.ok) {
+// Success
+const successTitle = tr('contact.form.successTitle', 'Thank You!');
+const successMessage = tr('contact.form.successMessage', "Your message has been sent successfully. We'll get back to you shortly.");
+contactForm.innerHTML = `
+<div class="text-center py-8">
+<div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-check-line ri-2x text-green-600"></i>
+</div>
+<h3 class="text-2xl font-semibold text-gray-900 mb-2">${successTitle}</h3>
+<p class="text-gray-700">${successMessage}</p>
+</div>
+`;
+} else {
+throw new Error('Failed to send message');
+}
+} catch (error) {
+// Error handling
+submitButton.disabled = false;
+submitButton.textContent = tr('contact.form.submit', 'Submit Request');
+alert(tr('contact.form.submitError', 'Failed to send message. Please try again later.'));
+}
+});
+});
+</script>
+<script id="smoothScrollScript">
+document.addEventListener('DOMContentLoaded', function() {
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+if (targetId === '#') return;
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+window.scrollTo({
+top: targetElement.offsetTop - 80, // Adjust for header height
+behavior: 'smooth'
+});
+}
+});
+});
+});
+</script>
+<script id="headerScrollScript">
+(function(){
+const header = document.querySelector('.site-header');
+if (!header) return;
+let ticking = false;
+const update = () => {
+header.classList.toggle('is-scrolled', window.scrollY > 24);
+ticking = false;
+};
+window.addEventListener('scroll', () => {
+if (!ticking) { requestAnimationFrame(update); ticking = true; }
+}, { passive: true });
+update();
+})();
+</script>
+</body>
+</html>
