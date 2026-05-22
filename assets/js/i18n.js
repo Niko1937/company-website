@@ -171,6 +171,15 @@
     setLanguage(lang, { updateUrl: !detectLangFromPath() });
 
     document.addEventListener('click', e => {
+      const toggle = e.target.closest('[data-lang-toggle]');
+      if (toggle) {
+        e.preventDefault();
+        const current = window.__currentLang || DEFAULT_LANG;
+        const idx = SUPPORTED.indexOf(current);
+        const next = SUPPORTED[(idx + 1) % SUPPORTED.length];
+        setLanguage(next);
+        return;
+      }
       const trigger = e.target.closest('[data-lang-switch]');
       if (!trigger) return;
       e.preventDefault();

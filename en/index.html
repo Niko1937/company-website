@@ -16,7 +16,7 @@
 <script src="https://cdn.tailwindcss.com/3.4.16"></script>
 <script>tailwind.config={theme:{extend:{colors:{primary:'#0047AB',secondary:'#00264d'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
-<script src="/assets/js/i18n.js" defer></script>
+<script src="/assets/js/i18n.js?v=2" defer></script>
 <style>
 :where([class^="ri-"])::before { content: "\f3c2"; }
 body {
@@ -148,9 +148,13 @@ transform: translateY(0);
 }
 .site-header .brand,
 .site-header .nav-link { color: #fff; transition: color .25s ease; }
+.site-header .nav-link { white-space: nowrap; }
+.site-header .brand { white-space: nowrap; }
 .site-header .nav-link:hover { color: #93c5fd; }
 .site-header .lang-switcher button,
 .site-header .lang-switcher i { color: rgba(255,255,255,.85); }
+.site-header .lang-toggle-btn { color: rgba(255,255,255,.85); background: none; border: none; cursor: pointer; padding: 0; transition: color .25s ease; display: inline-flex; align-items: center; justify-content: center; }
+.site-header .lang-toggle-btn:hover { color: #93c5fd; }
 .site-header .lang-switcher .lang-divider { color: rgba(255,255,255,.35); }
 .site-header .lang-switcher button:hover,
 .site-header .lang-switcher button.lang-active { color: #93c5fd; }
@@ -166,8 +170,8 @@ transform: translateY(0);
 <!-- Header/Navigation -->
 <header class="site-header fixed top-0 left-0 right-0 z-50">
 <div class="container mx-auto px-6 py-2 flex justify-between items-center">
-<a href="#hero" class="brand text-3xl font-['Inter'] font-bold">Quests Ltd.</a>
-<nav class="hidden md:flex items-center space-x-8">
+<a href="#hero" class="brand text-2xl lg:text-3xl font-['Inter'] font-bold">Quests Ltd.</a>
+<nav class="hidden lg:flex items-center space-x-8">
 <a href="#about" class="nav-link transition-colors" data-i18n="nav.about">About Us</a>
 <a href="#services" class="nav-link transition-colors" data-i18n="nav.services">Services</a>
 <a href="#cases" class="nav-link transition-colors" data-i18n="nav.cases">Case Studies</a>
@@ -179,20 +183,17 @@ transform: translateY(0);
 <button type="button" data-lang-switch="ja">日本語</button>
 </div>
 </nav>
-<div class="md:hidden flex items-center gap-4">
-<div class="lang-switcher">
-<i class="ri-global-line text-base"></i>
-<button type="button" data-lang-switch="en">English</button>
-<span class="lang-divider">|</span>
-<button type="button" data-lang-switch="ja">日本語</button>
-</div>
+<div class="lg:hidden flex items-center gap-4">
+<button type="button" data-lang-toggle aria-label="Switch language" class="lang-toggle-btn w-8 h-8">
+<i class="ri-global-line ri-lg"></i>
+</button>
 <div class="w-8 h-8 flex items-center justify-center cursor-pointer" id="mobileMenuBtn">
 <i class="ri-menu-line ri-lg"></i>
 </div>
 </div>
 </div>
 <!-- Mobile Menu -->
-<div id="mobileMenu" class="hidden md:hidden shadow-lg absolute w-full">
+<div id="mobileMenu" class="hidden lg:hidden shadow-lg absolute w-full">
 <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
 <a href="#about" class="text-gray-700 hover:text-primary transition-colors py-2" data-i18n="nav.about">About Us</a>
 <a href="#services" class="text-gray-700 hover:text-primary transition-colors py-2" data-i18n="nav.services">Services</a>
