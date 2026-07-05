@@ -60,18 +60,12 @@
 
   function applyTranslations(translations) {
     const lang = (translations.meta && translations.meta.htmlLang) || '';
-    const WJ = '⁠';
-    const protectPunctuation = (str) => {
-      if (typeof str !== 'string') return str;
-      if (lang !== 'ja') return str;
-      return str.replace(/、/g, WJ + '、' + WJ);
-    };
 
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       const value = getByPath(translations, key);
       if (typeof value === 'string') {
-        el.textContent = protectPunctuation(value);
+        el.textContent = value;
       }
     });
 
@@ -79,7 +73,7 @@
       const key = el.getAttribute('data-i18n-html');
       const value = getByPath(translations, key);
       if (typeof value === 'string') {
-        el.innerHTML = protectPunctuation(value);
+        el.innerHTML = value;
       }
     });
 
@@ -88,7 +82,7 @@
       const arr = getByPath(translations, key);
       if (Array.isArray(arr)) {
         const tag = el.getAttribute('data-i18n-list-tag') || 'li';
-        el.innerHTML = arr.map(item => `<${tag}>${escapeHtml(protectPunctuation(item))}</${tag}>`).join('');
+        el.innerHTML = arr.map(item => `<${tag}>${escapeHtml(item)}</${tag}>`).join('');
       }
     });
 
