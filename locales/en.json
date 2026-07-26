@@ -1,7 +1,7 @@
 {
   "meta": {
     "htmlLang": "en",
-    "title": "Quests Ltd. - Pioneering the Future with Intelligent Technology"
+    "title": "Quests - Pioneering the Future with Intelligent Technology"
   },
   "nav": {
     "about": "About Us",
@@ -17,10 +17,10 @@
     "scroll": "Scroll to explore"
   },
   "about": {
-    "title": "About Quests Ltd.",
+    "title": "About Quests",
     "subtitle": "We're a team of technology experts with experience from leading global tech companies, dedicated to delivering exceptional IT solutions.",
     "missionTitle": "Our Mission",
-    "missionText": "We founded Quests Ltd. to move beyond the usual limits—where support is only available for large contracts or development is restricted by strict agreements. Our mission is to provide flexible and fast support to help your business transform and grow.",
+    "missionText": "We founded Quests to move beyond the usual limits—where support is only available for large contracts or development is restricted by strict agreements. Our mission is to provide flexible and fast support to help your business transform and grow.",
     "expertiseTitle": "Our Expertise",
     "expertiseText": "With strong technical skills and broad consulting experience from companies like AWS, Google, and Microsoft, we deliver solutions tailored to your unique needs."
   },
@@ -193,7 +193,12 @@
       },
       "message": "Project Description",
       "messagePlaceholder": "Tell us about your project or requirements",
-      "agree": "I agree to receive communications from Quests Ltd.",
+      "agree": "I agree to receive communications from Quests.",
+      "mailSubject": "Contact Inquiry",
+      "mailerTitle": "Choose your email app",
+      "mailerDescription": "Select your email service. A compose window will open with your details pre-filled.",
+      "mailerDefault": "Open in mail app (Outlook, etc.)",
+      "mailerOutlookWeb": "Outlook (Web)",
       "submit": "Submit Request",
       "sending": "Sending...",
       "validationError": "Please fill in all required fields.",
@@ -259,11 +264,11 @@
       },
       "services": {
         "title": "2. Services",
-        "text": "Quests Ltd. provides IT consulting, system development, and related services. We reserve the right to modify or discontinue any service at any time."
+        "text": "Quests provides IT consulting, system development, and related services. We reserve the right to modify or discontinue any service at any time."
       },
       "liability": {
         "title": "3. Limitation of Liability",
-        "text": "Quests Ltd. shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use or inability to use our services."
+        "text": "Quests shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use or inability to use our services."
       }
     }
   },
@@ -274,6 +279,6 @@
     "legal": "Legal",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
-    "copyrightSuffix": "Quests Ltd. All rights reserved."
+    "copyrightSuffix": "Quests All rights reserved."
   }
 }

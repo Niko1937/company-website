@@ -1,7 +1,7 @@
 {
   "meta": {
     "htmlLang": "ja",
-    "title": "Quests Ltd. — テクノロジーで、ビジネスの未来をひらく"
+    "title": "Quests — テクノロジーで、ビジネスの未来をひらく"
   },
   "nav": {
     "about": "会社情報",
@@ -17,7 +17,7 @@
     "scroll": "スクロールして詳細を見る"
   },
   "about": {
-    "title": "Quests Ltd.について",
+    "title": "Questsについて",
     "subtitle": "世界をリードするテック企業で腕を磨いたプロフェッショナルが、確かな技術と知見でお客様のビジネスをご支援します。",
     "missionTitle": "私たちが目指すもの",
     "missionText": "「大型案件しか受けない」「契約に縛られ、柔軟に動けない」——高い技術力を持つIT企業には、そんな一面がつきものでした。私たちは、その常識に挑みます。世界最先端の技術力を備えながら、フットワークは軽やかに。お客様のビジネスの変革と成長に寄り添い続ける——それが、私たちのミッションです。",
@@ -193,7 +193,12 @@
       },
       "message": "ご相談内容",
       "messagePlaceholder": "プロジェクトの概要やお困りごとをご記入ください",
-      "agree": "Quests Ltd.からのご連絡を受け取ることに同意します",
+      "agree": "Questsからのご連絡を受け取ることに同意します",
+      "mailSubject": "お問い合わせ",
+      "mailerTitle": "メールソフトを選択",
+      "mailerDescription": "ご利用のメールサービスを選んでください。入力内容が反映された作成画面が開きます。",
+      "mailerDefault": "メールアプリで開く（Outlookなど）",
+      "mailerOutlookWeb": "Outlook（Web版）",
       "submit": "送信する",
       "sending": "送信中...",
       "validationError": "必須項目をご入力ください。",
@@ -259,7 +264,7 @@
       },
       "services": {
         "title": "2. サービス内容",
-        "text": "Quests Ltd.は、ITコンサルティング、システム開発、関連サービスを提供します。当社は、サービス内容を変更・終了する権利を有します。"
+        "text": "Questsは、ITコンサルティング、システム開発、関連サービスを提供します。当社は、サービス内容を変更・終了する権利を有します。"
       },
       "liability": {
         "title": "3. 責任の制限",
@@ -274,6 +279,6 @@
     "legal": "規約",
     "privacyPolicy": "プライバシーポリシー",
     "termsOfService": "利用規約",
-    "copyrightSuffix": "Quests Ltd. All rights reserved."
+    "copyrightSuffix": "Quests All rights reserved."
   }
 }
