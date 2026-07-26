@@ -176,6 +176,7 @@
     "subtitleLine1": "Ready to transform your business with advanced technology solutions?",
     "subtitleLine2": "Get in touch with our team.",
     "form": {
+      "heading": "Mail",
       "name": "Full Name",
       "namePlaceholder": "Enter your name",
       "email": "Email Address",
@@ -207,11 +208,13 @@
       "successMessage": "Your message has been sent successfully. We'll get back to you shortly."
     },
     "side": {
-      "title": "We're Here to Help",
-      "description": "Our team will respond within 3 business days.",
-      "fastResponse": "Fast Response Time",
-      "secureCommunication": "Secure Communication",
-      "globalSupport": "Global Support"
+      "title": "Offices",
+      "office1Name": "Quests Bay Pte. Ltd.",
+      "office1Country": "Singapore",
+      "office1Address": "68 Circular Road, #02-01, Singapore 049422",
+      "office2Name": "Quests Ltd.",
+      "office2Country": "Marshall",
+      "office2Address": "Trust Company Complex, Ajeltake Road, Ajeltake Island, Majuro, RMI, MH 96960"
     }
   },
   "privacy": {

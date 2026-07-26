@@ -176,6 +176,7 @@
     "subtitleLine1": "テクノロジーで、ビジネスを次のステージへ",
     "subtitleLine2": "まずはお気軽にお問い合わせください",
     "form": {
+      "heading": "メール",
       "name": "お名前",
       "namePlaceholder": "例:山田 太郎",
       "email": "メールアドレス",
@@ -207,11 +208,13 @@
       "successMessage": "ご相談を受け付けました。担当者より追ってご連絡いたします。"
     },
     "side": {
-      "title": "私たちにお任せください",
-      "description": "3営業日以内に担当者よりご返信いたします",
-      "fastResponse": "迅速な対応",
-      "secureCommunication": "安全な通信",
-      "globalSupport": "グローバル対応"
+      "title": "オフィス",
+      "office1Name": "Quests Bay Pte. Ltd.",
+      "office1Country": "Singapore",
+      "office1Address": "68 Circular Road, #02-01, Singapore 049422",
+      "office2Name": "Quests Ltd.",
+      "office2Country": "Marshall",
+      "office2Address": "Trust Company Complex, Ajeltake Road, Ajeltake Island, Majuro, RMI, MH 96960"
     }
   },
   "privacy": {
