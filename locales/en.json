@@ -4,7 +4,7 @@
     "title": "Quests - Pioneering the Future with Intelligent Technology"
   },
   "nav": {
-    "about": "About Us",
+    "about": "About",
     "services": "Services",
     "cases": "Case Studies",
     "contact": "Contact Us"
@@ -12,81 +12,81 @@
   "hero": {
     "titleLine1": "Pioneering the Future",
     "titleLine2Prefix": "with ",
-    "titleHighlight": "Intelligent Technology",
-    "subtitle": "Empowering your business success through cutting-edge AI and transformative technology. We'll turn your vision into reality.",
-    "scroll": "Scroll to explore"
+    "titleHighlight": "Big-Tech Expertise <span class=\"text-white\">at</span> Startup Speed",
+    "subtitle": "AI, data, and cloud solutions—delivered end to end by engineers with experience at Big-Tech like AWS, Google, and Microsoft. Flexible terms. Fast results.",
+    "scroll": "Explore"
   },
   "about": {
     "title": "About Quests",
-    "subtitle": "We're a team of technology experts with experience from leading global tech companies, dedicated to delivering exceptional IT solutions.",
-    "missionTitle": "Our Mission",
-    "missionText": "We founded Quests to move beyond the usual limits—where support is only available for large contracts or development is restricted by strict agreements. Our mission is to provide flexible and fast support to help your business transform and grow.",
-    "expertiseTitle": "Our Expertise",
-    "expertiseText": "With strong technical skills and broad consulting experience from companies like AWS, Google, and Microsoft, we deliver solutions tailored to your unique needs."
+    "subtitle": "A senior team from global tech leaders, focused on results—not overhead.",
+    "missionTitle": "Why Quests",
+    "missionText": "Top tech firms often take only large projects and lock clients into rigid contracts. We started Quests to change that. You get the same caliber of expertise, with flexible terms and fast turnaround.",
+    "expertiseTitle": "What We Bring",
+    "expertiseText": "Engineers from AWS, Google, Microsoft, and other tech leaders work alongside consultants from the Big Four and other top firms. One team takes you from strategy to implementation, fast. Because engineering is our foundation, we don't stop at recommendations. We stay with you until your business has truly changed."
   },
   "services": {
     "title": "Our Services",
-    "subtitle": "We support your entire IT journey—from business transformation consulting and system development to operations and in-house training.",
+    "subtitle": "One partner for your entire IT journey: plan, build, run, and grow your team.",
     "viewDetails": "View details",
     "hideDetails": "Hide details",
     "items": {
       "consulting": {
-        "title": "IT Consulting for Business Transformation",
-        "short": "Strategic guidance to align your technology with business goals and drive digital transformation.",
-        "details": "Our consulting services help you navigate complex technology decisions with confidence. We analyze your current systems, identify opportunities for improvement, and create roadmaps for successful digital transformation.",
+        "title": "Strategy & Consulting",
+        "short": "Align technology with your business goals—and get a clear roadmap to get there.",
+        "details": "We assess your current systems, pinpoint what to fix first, and build a practical roadmap you can act on.",
         "bullets": [
-          "Digital strategy development",
-          "IT architecture assessment",
-          "Technology selection guidance",
+          "Digital strategy",
           "Process optimization",
-          "Change management support"
+          "Change management",
+          "Technology selection",
+          "IT architecture review"
         ]
       },
       "system": {
-        "title": "System Development using Cloud and AI",
-        "short": "Custom software solutions leveraging cutting-edge cloud technologies and artificial intelligence.",
-        "details": "We design and build scalable, secure, and innovative systems that solve your unique business challenges. Our development approach combines technical excellence with business understanding.",
+        "title": "Cloud & AI Development",
+        "short": "Custom systems built on modern cloud and AI. Secure, scalable, and ready to grow.",
+        "details": "We design and build software that solves your specific challenges, combining deep engineering with a clear grasp of your business.",
         "bullets": [
-          "Custom application development",
+          "Custom applications",
           "Cloud-native architecture",
-          "AI and machine learning integration",
-          "Legacy system modernization",
-          "API development and integration"
+          "AI & ML integration",
+          "Legacy modernization",
+          "APIs & integrations"
         ]
       },
       "operations": {
-        "title": "IT Infrastructure Operations Support",
-        "short": "Reliable management and optimization of your technology infrastructure for maximum performance.",
-        "details": "Keep your systems running smoothly with our comprehensive operations support. We handle the technical complexities so you can focus on your core business activities.",
+        "title": "Infrastructure Operations",
+        "short": "Keep your systems fast, secure, and always on—so you can focus on your business.",
+        "details": "We monitor, secure, and optimize your infrastructure around the clock—and plan for recovery before you need it.",
         "bullets": [
-          "Cloud infrastructure management",
-          "24/7 monitoring and support",
-          "Security management",
-          "Performance optimization",
-          "Disaster recovery planning"
+          "Cloud infrastructure",
+          "24/7 monitoring & support",
+          "Security operations",
+          "Performance tuning",
+          "Disaster recovery"
         ]
       },
       "training": {
-        "title": "Training and Support for In-house IT Teams",
-        "short": "Empower your internal teams with the knowledge and skills needed to excel in technology management.",
-        "details": "Build capability within your organization through our specialized training programs. We help your teams develop the expertise needed to maintain and enhance your technology systems.",
+        "title": "Team Enablement",
+        "short": "Build a team that can run and evolve your systems on its own.",
+        "details": "Hands-on training and mentoring that transfers real skills, so your team owns its technology long after we leave.",
         "bullets": [
-          "Technical skills development",
-          "Knowledge transfer programs",
-          "Customized training workshops",
-          "Mentoring and coaching",
-          "Documentation and best practices"
+          "Technical training",
+          "Knowledge transfer",
+          "Custom workshops",
+          "Mentoring & coaching",
+          "Documentation & standards"
         ]
       }
     }
   },
   "cases": {
     "title": "Case Studies",
-    "subtitle": "Explore how we've helped organizations solve complex challenges and achieve remarkable results.",
+    "subtitle": "Real challenges. Measurable results.",
     "viewDetails": "View details",
     "hideDetails": "Hide details",
     "filters": {
-      "all": "All Projects",
+      "all": "All",
       "ai": "AI Solutions",
       "analytics": "Analytics",
       "modernization": "Modernization"
@@ -95,96 +95,96 @@
       "challenge": "Challenge",
       "solution": "Solution",
       "results": "Results",
-      "technologies": "Technologies Used"
+      "technologies": "Tech Stack"
     },
     "items": {
       "material": {
-        "title": "AI-Powered Material Development",
-        "short": "Accelerating research processes through advanced AI algorithms for a leading materials science laboratory.",
-        "challenge": "The client needed to significantly reduce the time required to test and validate new material compositions, facing intense competitive pressure in their industry.",
-        "solution": "We developed a machine learning system that could predict material properties based on composition data, reducing the need for physical testing and accelerating the research cycle.",
+        "title": "AI-Accelerated Materials Research",
+        "short": "68% shorter research cycles for a leading materials lab, powered by machine learning.",
+        "challenge": "The client had to test and validate new materials much faster to stay competitive.",
+        "solution": "We built a machine learning model that predicts material properties from composition data, reducing the need for physical tests.",
         "results": [
-          "Reduced research cycle time by 68%",
-          "Increased successful material discoveries by 42%",
-          "Saved approximately $1.2M in annual testing costs"
+          "68% shorter research cycles",
+          "42% more successful material discoveries",
+          "About $1.2M saved in annual testing costs"
         ]
       },
       "chatbot": {
         "title": "Generative AI Customer Support",
-        "short": "Implementing advanced chatbots and AI systems to automate and enhance customer service operations.",
-        "challenge": "A global e-commerce company was struggling with increasing customer support volumes and rising costs while maintaining service quality.",
-        "solution": "We developed a multi-channel AI support system using generative AI to handle routine inquiries, with seamless handoff to human agents for complex issues.",
+        "short": "78% of inquiries resolved automatically for a global e-commerce company.",
+        "challenge": "Support volume and costs were climbing fast, putting service quality at risk.",
+        "solution": "We built a multi-channel generative AI assistant that handles routine questions and hands complex cases to human agents.",
         "results": [
-          "Automated resolution of 78% of customer inquiries",
-          "Reduced response time from 4 hours to 3 minutes",
-          "Improved customer satisfaction scores by 22%",
-          "30% reduction in support operating costs"
+          "78% of inquiries resolved automatically",
+          "Response time: 4 hours → 3 minutes",
+          "22% higher customer satisfaction",
+          "30% lower support costs"
         ]
       },
       "predictive": {
-        "title": "Predictive Maintenance AI System",
-        "short": "Reducing downtime and maintenance costs through AI-powered predictive analytics for manufacturing equipment.",
-        "challenge": "A manufacturing company was experiencing significant production losses due to unexpected equipment failures and inefficient maintenance scheduling.",
-        "solution": "We implemented an IoT sensor network connected to an AI system that analyzes equipment performance data to predict failures before they occur.",
+        "title": "Predictive Maintenance with AI",
+        "short": "83% less unplanned downtime for a manufacturer, with ROI in 9 months.",
+        "challenge": "Unexpected equipment failures and inefficient maintenance were causing major production losses.",
+        "solution": "We connected IoT sensors to an AI model that detects warning signs and predicts failures before they happen.",
         "results": [
-          "Reduced unplanned downtime by 83%",
-          "Decreased maintenance costs by 47%",
-          "Extended equipment lifespan by an average of 35%",
-          "ROI achieved within 9 months of implementation"
+          "83% less unplanned downtime",
+          "47% lower maintenance costs",
+          "35% longer equipment life on average",
+          "ROI within 9 months"
         ]
       },
       "dashboard": {
-        "title": "Executive Management Dashboard",
-        "short": "Creating comprehensive data visualization tools to support strategic decision-making for executive leadership.",
-        "challenge": "A multinational corporation's leadership team was struggling to access and interpret critical business data from disparate systems for timely decision-making.",
-        "solution": "We developed a centralized executive dashboard that integrates data from multiple sources and presents key metrics and insights through intuitive visualizations.",
+        "title": "Executive Decision Dashboard",
+        "short": "From two-week reports to real-time insight for a multinational's leadership.",
+        "challenge": "Leaders at a multinational couldn't get timely, reliable data. It was scattered across disconnected systems.",
+        "solution": "We unified data from multiple sources into one dashboard that shows key metrics at a glance.",
         "results": [
-          "Reduced reporting time from 2 weeks to real-time",
-          "Improved data accuracy by eliminating manual reporting",
-          "Enabled data-driven decision making across 12 departments",
-          "Identified $3.4M in cost-saving opportunities"
+          "Reporting: 2 weeks → real time",
+          "Higher data accuracy with no manual reporting",
+          "Data-driven decisions across 12 departments",
+          "$3.4M in cost savings identified"
         ]
       },
       "voice": {
-        "title": "Voice-Guided Store Navigation",
-        "short": "Implementing Alexa-powered voice navigation to enhance customer experience in large retail environments.",
-        "challenge": "A major retailer wanted to improve customer experience and reduce frustration in their large-format stores where finding products was difficult.",
-        "solution": "We developed a voice-activated navigation system using Amazon Alexa, integrated with the store's inventory management system and indoor positioning technology.",
+        "title": "Voice-Guided In-Store Navigation",
+        "short": "64% faster product search with Alexa, rolled out to 87 stores.",
+        "challenge": "In a major retailer's large stores, customers struggled to find what they came for.",
+        "solution": "We built voice navigation on Amazon Alexa, connected to store inventory and indoor positioning.",
         "results": [
-          "Reduced customer time spent searching by 64%",
-          "Increased customer satisfaction scores by 28%",
-          "Boosted sales of previously hard-to-find items by 31%",
-          "Successfully deployed across 87 locations"
+          "64% less time spent searching",
+          "28% higher customer satisfaction",
+          "31% more sales of hard-to-find items",
+          "Rolled out to 87 stores"
         ]
       },
       "legacy": {
         "title": "Legacy System Modernization",
-        "short": "Transforming outdated infrastructure into modern, cloud-native services for enhanced performance and scalability.",
-        "challenge": "A financial services company was struggling with an aging monolithic system that was expensive to maintain, difficult to update, and couldn't scale to meet growing business demands.",
-        "solution": "We designed and implemented a phased migration to a microservices architecture on AWS, breaking down the monolith into scalable, independently deployable services.",
+        "short": "62% lower infrastructure costs by moving a financial firm's monolith to cloud microservices.",
+        "challenge": "A financial services company's aging monolith was costly to maintain, hard to change, and couldn't keep up with growth.",
+        "solution": "We migrated it step by step to microservices on AWS, so each service can scale and deploy independently.",
         "results": [
-          "Reduced infrastructure costs by 62%",
-          "Decreased deployment time from weeks to minutes",
-          "Improved system uptime from 98.2% to 99.99%",
-          "Enabled rapid feature development with 3x faster releases"
+          "62% lower infrastructure costs",
+          "Deployments: weeks → minutes",
+          "Uptime: 98.2% → 99.99%",
+          "3x faster releases"
         ]
       }
     }
   },
   "contact": {
-    "title": "Contact Us",
-    "subtitleLine1": "Ready to transform your business with advanced technology solutions?",
-    "subtitleLine2": "Get in touch with our team.",
+    "title": "Let's Talk",
+    "subtitleLine1": "Have a project in mind?",
+    "subtitleLine2": "Tell us about it—we'll get back to you quickly.",
     "form": {
-      "heading": "Mail",
-      "name": "Full Name",
-      "namePlaceholder": "Enter your name",
-      "email": "Email Address",
-      "emailPlaceholder": "Enter your email",
-      "company": "Company Name",
-      "companyPlaceholder": "Enter your company name",
-      "budget": "Budget Range",
-      "budgetPlaceholder": "Select your budget range",
+      "heading": "Send Us a Message",
+      "name": "Name",
+      "namePlaceholder": "Jane Smith",
+      "email": "Email",
+      "emailPlaceholder": "jane@company.com",
+      "company": "Company",
+      "companyPlaceholder": "Acme Inc.",
+      "budget": "Budget",
+      "budgetPlaceholder": "Select a budget range",
       "budgetOptions": {
         "under50k": "Under $50,000",
         "50k-100k": "$50,000 - $100,000",
@@ -192,15 +192,15 @@
         "250k-500k": "$250,000 - $500,000",
         "over500k": "Over $500,000"
       },
-      "message": "Project Description",
-      "messagePlaceholder": "Tell us about your project or requirements",
-      "agree": "I agree to receive communications from Quests.",
+      "message": "Project Details",
+      "messagePlaceholder": "What would you like to build or improve?",
+      "agree": "I agree to receive emails from Quests.",
       "mailSubject": "Contact Inquiry",
       "mailerTitle": "Choose your email app",
       "mailerDescription": "Select your email service. A compose window will open with your details pre-filled.",
       "mailerDefault": "Open in mail app (Outlook, etc.)",
       "mailerOutlookWeb": "Outlook (Web)",
-      "submit": "Submit Request",
+      "submit": "Continue to Email",
       "sending": "Sending...",
       "validationError": "Please fill in all required fields.",
       "submitError": "Failed to send message. Please try again later.",
@@ -254,7 +254,7 @@
           "Access your data",
           "Correct information",
           "Request deletion",
-          "Opt-out of marketing"
+          "Opt out of marketing"
         ]
       }
     }
@@ -277,12 +277,12 @@
     }
   },
   "footer": {
-    "taglineLine1": "Transforming businesses through advanced technology solutions.",
-    "taglineLine2": "We deliver expertise that drives growth and innovation.",
+    "taglineLine1": "AI, data, and cloud—delivered end to end.",
+    "taglineLine2": "Big-tech expertise, without the big-firm overhead.",
     "quickLinks": "Quick Links",
     "legal": "Legal",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
-    "copyrightSuffix": "Quests All rights reserved."
+    "copyrightSuffix": "Quests. All rights reserved."
   }
 }

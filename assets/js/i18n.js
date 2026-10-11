@@ -4,6 +4,7 @@
   const SUPPORTED = ['en', 'ja'];
   const DEFAULT_LANG = 'en';
   const STORAGE_KEY = 'preferredLang';
+  const PHRASE_SCOPE = 'h1, h2, h3, h4, [data-phrase]';
 
   function detectLangFromPath() {
     const path = window.location.pathname;
@@ -113,8 +114,11 @@
         if (el.firstElementChild && el.firstElementChild.tagName === 'BUDOUX-JA') return;
         el.innerHTML = '<budoux-ja>' + el.innerHTML + '</budoux-ja>';
       };
-      document.querySelectorAll('[data-i18n], [data-i18n-html]').forEach(wrapWithBudoux);
-      document.querySelectorAll('[data-i18n-list] li').forEach(wrapWithBudoux);
+      // Phrase-based line breaking suits headings and short leads; body text and lists
+      // keep regular Japanese line breaking so their right edge stays even.
+      document.querySelectorAll('[data-i18n], [data-i18n-html]').forEach(el => {
+        if (el.closest(PHRASE_SCOPE)) wrapWithBudoux(el);
+      });
     }
   }
 

@@ -17,7 +17,9 @@
 <script>tailwind.config={theme:{extend:{colors:{primary:'#0047AB',secondary:'#00264d'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/budoux@0.8.4/bundle/budoux-ja.min.js" defer></script>
-<script src="/assets/js/i18n.js?v=6" defer></script>
+<script src="/assets/js/site-config.js?v=1"></script>
+<script src="/assets/js/config.js?v=1"></script>
+<script src="/assets/js/i18n.js?v=7" defer></script>
 <style>
 :where([class^="ri-"])::before { content: "\f3c2"; }
 body {
@@ -156,9 +158,22 @@ transform: translateY(0);
 .site-header .lang-switcher i { color: rgba(255,255,255,.85); }
 .site-header .lang-toggle-btn { color: rgba(255,255,255,.85); background: none; border: none; cursor: pointer; padding: 0; transition: color .25s ease; display: inline-flex; align-items: center; justify-content: center; }
 .site-header .lang-toggle-btn:hover { color: #93c5fd; }
-html[lang="ja"] { word-break: keep-all; line-break: strict; overflow-wrap: break-word; -webkit-font-feature-settings: "palt"; font-feature-settings: "palt"; letter-spacing: .02em; }
+html[lang="ja"] { line-break: strict; overflow-wrap: break-word; -webkit-font-feature-settings: "palt"; font-feature-settings: "palt"; letter-spacing: .02em; }
+html[lang="ja"] :is(h1, h2, h3, h4, [data-phrase]) { word-break: keep-all; }
 html[lang="ja"] p { line-height: 1.85; text-wrap: pretty; }
 html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 { text-wrap: balance; }
+.hero-line2 { text-wrap: balance; }
+@media (min-width: 1024px) {
+  html .hero-copy { width: 100%; }
+  html .hero-line2 { white-space: nowrap; }
+  html .hero-copy p { max-width: 56rem; text-wrap: balance; }
+  html[lang="en"] .hero-copy h1 { font-size: 2.75rem; }
+  html[lang="ja"] .hero-copy h1 { font-size: 2.5rem; }
+}
+@media (min-width: 1280px) {
+  html[lang="en"] .hero-copy h1 { font-size: 3.5rem; }
+  html[lang="ja"] .hero-copy h1 { font-size: 3.25rem; }
+}
 .site-header .lang-switcher .lang-divider { color: rgba(255,255,255,.35); }
 .site-header .lang-switcher button:hover,
 .site-header .lang-switcher button.lang-active { color: #93c5fd; }
@@ -176,9 +191,9 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <div class="container mx-auto px-6 py-2 flex justify-between items-center">
 <a href="#hero" class="brand text-2xl lg:text-3xl font-['Inter'] font-bold">Quests</a>
 <nav class="hidden lg:flex items-center space-x-8">
-<a href="#about" class="nav-link transition-colors" data-i18n="nav.about">About Us</a>
 <a href="#services" class="nav-link transition-colors" data-i18n="nav.services">Services</a>
 <a href="#cases" class="nav-link transition-colors" data-i18n="nav.cases">Case Studies</a>
+<a href="#about" class="nav-link transition-colors" data-i18n="nav.about">About</a>
 <a href="#contact" class="nav-link transition-colors" data-i18n="nav.contact">Contact Us</a>
 <div class="lang-switcher pl-5 ml-1">
 <i class="ri-global-line text-base"></i>
@@ -199,9 +214,9 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <!-- Mobile Menu -->
 <div id="mobileMenu" class="hidden lg:hidden shadow-lg absolute w-full">
 <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
-<a href="#about" class="text-gray-700 hover:text-primary transition-colors py-2" data-i18n="nav.about">About Us</a>
 <a href="#services" class="text-gray-700 hover:text-primary transition-colors py-2" data-i18n="nav.services">Services</a>
 <a href="#cases" class="text-gray-700 hover:text-primary transition-colors py-2" data-i18n="nav.cases">Case Studies</a>
+<a href="#about" class="text-gray-700 hover:text-primary transition-colors py-2" data-i18n="nav.about">About</a>
 <a href="#contact" class="text-gray-700 hover:text-primary transition-colors py-2" data-i18n="nav.contact">Contact Us</a>
 </div>
 </div>
@@ -210,16 +225,16 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <section id="hero" class="pt-16 min-h-[600px] lg:h-[50vh] relative overflow-hidden bg-[#1F1F1F]" style="background-image: url('https://readdy.ai/api/search-image?query=Abstract%20futuristic%20technology%20background%20with%20glowing%20geometric%20patterns%20and%20neural%20network%20connections.%20Dark%20sophisticated%20atmosphere%20with%20deep%20blue%20and%20purple%20accents.%20Flowing%20digital%20particles%20and%20energy%20streams%20create%20a%20sense%20of%20advanced%20AI%20and%20technological%20innovation.%20No%20screens%20or%20monitors%20visible.&width=1920&height=1080&seq=hero126&orientation=landscape'); background-size: cover; background-position: right center;">
 <div class="absolute inset-0 bg-gradient-to-r from-[#1F1F1F] from-40% via-[#1F1F1F]/80 via-60% to-transparent"></div>
 <div class="container mx-auto px-6 h-full flex items-center relative py-12 lg:py-0">
-<div class="w-full lg:w-3/5">
-<h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+<div class="hero-copy w-full lg:w-3/5">
+<h1 class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold text-white mb-6 leading-tight">
 <div class="break-words sm:whitespace-nowrap" data-i18n="hero.titleLine1">Pioneering the Future</div>
-<div class="break-words sm:whitespace-nowrap"><span data-i18n="hero.titleLine2Prefix">with </span><br class="sm:hidden"><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400" data-i18n="hero.titleHighlight">Intelligent Technology</span></div>
+<div class="hero-line2 break-words"><span data-i18n="hero.titleLine2Prefix">with </span><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400" data-i18n-html="hero.titleHighlight">Big-Tech Expertise <span class="text-white">at</span> Startup Speed</span></div>
 </h1>
-<p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl" data-i18n-html="hero.subtitle">Empowering your business success through cutting-edge AI and transformative technology. We'll turn your vision into reality.</p>
+<p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl" data-phrase data-i18n-html="hero.subtitle">AI, data, and cloud solutions—delivered end to end by engineers with experience at Big-Tech like AWS, Google, and Microsoft. Flexible terms. Fast results.</p>
 </div>
 </div>
 <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-<span class="text-gray-400 mb-2" data-i18n="hero.scroll">Scroll to explore</span>
+<span class="text-gray-400 mb-2" data-i18n="hero.scroll">Explore</span>
 <div class="w-8 h-8 flex items-center justify-center animate-bounce text-gray-400">
 <i class="ri-arrow-down-line ri-lg"></i>
 </div>
@@ -230,17 +245,17 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <div class="container mx-auto px-6">
 <div class="text-center mb-8">
 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-i18n="about.title">About Quests</h2>
-<p class="text-lg text-gray-600 max-w-3xl mx-auto" data-i18n-html="about.subtitle">We're a team of technology experts with experience from leading global tech companies, dedicated to delivering exceptional IT solutions.</p>
+<p class="text-lg text-gray-600 max-w-3xl mx-auto" data-phrase data-i18n-html="about.subtitle">A senior team from global tech leaders, focused on results—not overhead.</p>
 </div>
 <div class="flex flex-col md:flex-row items-center gap-10">
 <div class="md:w-1/2">
 <img src="https://readdy.ai/api/search-image?query=A%20small%20group%20of%204%20diverse%20IT%20professionals%20collaborating%20in%20a%20bright%2C%20modern%20office%20space.%20They%20are%20standing%20together%2C%20looking%20at%20the%20camera%20with%20warm%2C%20approachable%20smiles.%20Their%20body%20language%20shows%20confidence%20and%20teamwork.%20They%20are%20wearing%20business%20casual%20attire.%20The%20lighting%20is%20soft%20and%20natural%2C%20creating%20a%20welcoming%20atmosphere.%20The%20background%20features%20clean%2C%20minimal%20office%20design%20with%20subtle%20tech%20elements.&width=600&height=400&seq=team124&orientation=landscape" alt="Quests Team" class="rounded-lg shadow-lg w-full object-cover object-top">
 </div>
 <div class="md:w-1/2">
-<h3 class="text-2xl font-semibold text-gray-900 mb-4" data-i18n="about.missionTitle">Our Mission</h3>
-<p class="text-gray-700 mb-6" data-i18n-html="about.missionText">We founded Quests to move beyond the usual limits—where support is only available for large contracts or development is restricted by strict agreements. Our mission is to provide flexible and fast support to help your business transform and grow.</p>
-<h3 class="text-2xl font-semibold text-gray-900 mb-4" data-i18n="about.expertiseTitle">Our Expertise</h3>
-<p class="text-gray-700 mb-6" data-i18n-html="about.expertiseText">With strong technical skills and broad consulting experience from companies like AWS, Google, and Microsoft, we deliver solutions tailored to your unique needs.</p>
+<h3 class="text-2xl font-semibold text-gray-900 mb-4" data-i18n="about.missionTitle">Why Quests</h3>
+<p class="text-gray-700 mb-6" data-i18n-html="about.missionText">Top tech firms often take only large projects and lock clients into rigid contracts. We started Quests to change that. You get the same caliber of expertise, with flexible terms and fast turnaround.</p>
+<h3 class="text-2xl font-semibold text-gray-900 mb-4" data-i18n="about.expertiseTitle">What We Bring</h3>
+<p class="text-gray-700 mb-6" data-i18n-html="about.expertiseText">Engineers from AWS, Google, Microsoft, and other tech leaders work alongside consultants from the Big Four and other top firms. One team takes you from strategy to implementation, fast. Because engineering is our foundation, we don't stop at recommendations. We stay with you until your business has truly changed.</p>
 <div class="flex flex-wrap gap-8 mt-8">
 <div class="flex items-center gap-3">
 <div class="w-8 h-8 flex items-center justify-center">
@@ -270,25 +285,25 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <div class="container mx-auto px-6">
 <div class="text-center mb-8">
 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-i18n="services.title">Our Services</h2>
-<p class="text-lg text-gray-600 max-w-3xl mx-auto" data-i18n-html="services.subtitle">We support your entire IT journey—from business transformation consulting and system development to operations and in-house training.</p>
+<p class="text-lg text-gray-600 max-w-3xl mx-auto" data-phrase data-i18n-html="services.subtitle">One partner for your entire IT journey: plan, build, run, and grow your team.</p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
 <!-- Service 1 -->
 <div class="service-card bg-white rounded-lg shadow-md overflow-hidden">
 <div class="h-36 overflow-hidden">
 <img src="https://readdy.ai/api/search-image?query=Business%20professionals%20in%20a%20modern%20meeting%20room%20discussing%20digital%20transformation%20strategies.%20They%20are%20analyzing%20data%20visualizations%20and%20charts%20on%20screens.%20The%20atmosphere%20is%20collaborative%20and%20forward-thinking%2C%20with%20a%20clean%2C%20professional%20aesthetic.%20The%20image%20conveys%20strategic%20planning%20and%20business%20consulting.&width=400&height=300&seq=service1&orientation=landscape" alt="IT Consulting" class="w-full h-full object-cover object-top">
 </div>
 <div class="p-6">
-<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="services.items.consulting.title">IT Consulting for Business Transformation</h3>
-<p class="text-gray-700 mb-4" data-i18n="services.items.consulting.short">Strategic guidance to align your technology with business goals and drive digital transformation.</p>
+<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="services.items.consulting.title">Strategy &amp; Consulting</h3>
+<p class="text-gray-700 mb-4" data-i18n="services.items.consulting.short">Align technology with your business goals—and get a clear roadmap to get there.</p>
 <div class="service-details hidden">
-<p class="text-gray-700 mb-4" data-i18n="services.items.consulting.details">Our consulting services help you navigate complex technology decisions with confidence. We analyze your current systems, identify opportunities for improvement, and create roadmaps for successful digital transformation.</p>
+<p class="text-gray-700 mb-4" data-i18n="services.items.consulting.details">We assess your current systems, pinpoint what to fix first, and build a practical roadmap you can act on.</p>
 <ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="services.items.consulting.bullets">
-<li>Digital strategy development</li>
-<li>IT architecture assessment</li>
-<li>Technology selection guidance</li>
+<li>Digital strategy</li>
 <li>Process optimization</li>
-<li>Change management support</li>
+<li>Change management</li>
+<li>Technology selection</li>
+<li>IT architecture review</li>
 </ul>
 </div>
 <button class="service-toggle text-primary font-medium flex items-center gap-1 hover:underline">
@@ -302,16 +317,16 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <img src="https://readdy.ai/api/search-image?query=Modern%20IT%20system%20development%20visualization%20with%20advanced%20AI%20algorithms%20and%20neural%20networks.%20Abstract%203D%20representations%20of%20data%20processing%20and%20machine%20learning%20models.%20Holographic%20displays%20showing%20system%20architecture%20and%20data%20flows.%20Clean%2C%20professional%20environment%20with%20blue%20and%20white%20technological%20aesthetics.%20Ambient%20lighting%20creating%20depth.%20Focus%20on%20AI%20system%20design%20and%20development.%20No%20cloud%20illustrations%20or%20physical%20hardware%20visible.&width=400&height=300&seq=service2&orientation=landscape" alt="System Development" class="w-full h-full object-cover object-top">
 </div>
 <div class="p-6">
-<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="services.items.system.title">System Development using Cloud and AI</h3>
-<p class="text-gray-700 mb-4" data-i18n="services.items.system.short">Custom software solutions leveraging cutting-edge cloud technologies and artificial intelligence.</p>
+<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="services.items.system.title">Cloud &amp; AI Development</h3>
+<p class="text-gray-700 mb-4" data-i18n="services.items.system.short">Custom systems built on modern cloud and AI. Secure, scalable, and ready to grow.</p>
 <div class="service-details hidden">
-<p class="text-gray-700 mb-4" data-i18n="services.items.system.details">We design and build scalable, secure, and innovative systems that solve your unique business challenges. Our development approach combines technical excellence with business understanding.</p>
+<p class="text-gray-700 mb-4" data-i18n="services.items.system.details">We design and build software that solves your specific challenges, combining deep engineering with a clear grasp of your business.</p>
 <ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="services.items.system.bullets">
-<li>Custom application development</li>
+<li>Custom applications</li>
 <li>Cloud-native architecture</li>
-<li>AI and machine learning integration</li>
-<li>Legacy system modernization</li>
-<li>API development and integration</li>
+<li>AI &amp; ML integration</li>
+<li>Legacy modernization</li>
+<li>APIs &amp; integrations</li>
 </ul>
 </div>
 <button class="service-toggle text-primary font-medium flex items-center gap-1 hover:underline">
@@ -325,16 +340,16 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <img src="https://readdy.ai/api/search-image?query=IT%20operations%20center%20with%20multiple%20monitors%20displaying%20infrastructure%20metrics%2C%20network%20diagrams%2C%20and%20system%20health%20dashboards.%20The%20environment%20is%20organized%20and%20professional%2C%20with%20IT%20specialists%20monitoring%20systems.%20The%20lighting%20is%20balanced%20with%20blue%20technical%20elements%2C%20conveying%20reliability%20and%20operational%20excellence.&width=400&height=300&seq=service3&orientation=landscape" alt="IT Operations" class="w-full h-full object-cover object-top">
 </div>
 <div class="p-6">
-<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="services.items.operations.title">IT Infrastructure Operations Support</h3>
-<p class="text-gray-700 mb-4" data-i18n="services.items.operations.short">Reliable management and optimization of your technology infrastructure for maximum performance.</p>
+<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="services.items.operations.title">Infrastructure Operations</h3>
+<p class="text-gray-700 mb-4" data-i18n="services.items.operations.short">Keep your systems fast, secure, and always on—so you can focus on your business.</p>
 <div class="service-details hidden">
-<p class="text-gray-700 mb-4" data-i18n="services.items.operations.details">Keep your systems running smoothly with our comprehensive operations support. We handle the technical complexities so you can focus on your core business activities.</p>
+<p class="text-gray-700 mb-4" data-i18n="services.items.operations.details">We monitor, secure, and optimize your infrastructure around the clock—and plan for recovery before you need it.</p>
 <ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="services.items.operations.bullets">
-<li>Cloud infrastructure management</li>
-<li>24/7 monitoring and support</li>
-<li>Security management</li>
-<li>Performance optimization</li>
-<li>Disaster recovery planning</li>
+<li>Cloud infrastructure</li>
+<li>24/7 monitoring &amp; support</li>
+<li>Security operations</li>
+<li>Performance tuning</li>
+<li>Disaster recovery</li>
 </ul>
 </div>
 <button class="service-toggle text-primary font-medium flex items-center gap-1 hover:underline">
@@ -348,16 +363,16 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <img src="https://readdy.ai/api/search-image?query=A%20professional%20training%20environment%20where%20IT%20experts%20are%20teaching%20a%20diverse%20group%20of%20business%20professionals.%20They%20are%20engaged%20in%20hands-on%20learning%20with%20computers%20and%20digital%20tools.%20The%20setting%20is%20bright%20and%20collaborative%2C%20with%20visual%20aids%20and%20technology%20demonstrations.%20The%20image%20conveys%20knowledge%20transfer%20and%20skill%20development.&width=400&height=300&seq=service4&orientation=landscape" alt="IT Training" class="w-full h-full object-cover object-top">
 </div>
 <div class="p-6">
-<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="services.items.training.title">Training and Support for In-house IT Teams</h3>
-<p class="text-gray-700 mb-4" data-i18n="services.items.training.short">Empower your internal teams with the knowledge and skills needed to excel in technology management.</p>
+<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="services.items.training.title">Team Enablement</h3>
+<p class="text-gray-700 mb-4" data-i18n="services.items.training.short">Build a team that can run and evolve your systems on its own.</p>
 <div class="service-details hidden">
-<p class="text-gray-700 mb-4" data-i18n="services.items.training.details">Build capability within your organization through our specialized training programs. We help your teams develop the expertise needed to maintain and enhance your technology systems.</p>
+<p class="text-gray-700 mb-4" data-i18n="services.items.training.details">Hands-on training and mentoring that transfers real skills, so your team owns its technology long after we leave.</p>
 <ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="services.items.training.bullets">
-<li>Technical skills development</li>
-<li>Knowledge transfer programs</li>
-<li>Customized training workshops</li>
-<li>Mentoring and coaching</li>
-<li>Documentation and best practices</li>
+<li>Technical training</li>
+<li>Knowledge transfer</li>
+<li>Custom workshops</li>
+<li>Mentoring &amp; coaching</li>
+<li>Documentation &amp; standards</li>
 </ul>
 </div>
 <button class="service-toggle text-primary font-medium flex items-center gap-1 hover:underline">
@@ -373,11 +388,11 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <div class="container mx-auto px-6">
 <div class="text-center mb-8">
 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-i18n="cases.title">Case Studies</h2>
-<p class="text-lg text-gray-600 max-w-3xl mx-auto" data-i18n="cases.subtitle">Explore how we've helped organizations solve complex challenges and achieve remarkable results.</p>
+<p class="text-lg text-gray-600 max-w-3xl mx-auto" data-phrase data-i18n="cases.subtitle">Real challenges. Measurable results.</p>
 </div>
 <div class="mb-8">
 <div class="flex flex-wrap justify-center gap-2 bg-gray-100 p-2 rounded-2xl">
-<button class="case-filter-btn active px-4 py-2 rounded-full bg-primary text-white whitespace-nowrap" data-filter="all" data-i18n="cases.filters.all">All Projects</button>
+<button class="case-filter-btn active px-4 py-2 rounded-full bg-primary text-white whitespace-nowrap" data-filter="all" data-i18n="cases.filters.all">All</button>
 <button class="case-filter-btn px-4 py-2 rounded-full text-gray-700 whitespace-nowrap" data-filter="ai" data-i18n="cases.filters.ai">AI Solutions</button>
 <button class="case-filter-btn px-4 py-2 rounded-full text-gray-700 whitespace-nowrap" data-filter="analytics" data-i18n="cases.filters.analytics">Analytics</button>
 <button class="case-filter-btn px-4 py-2 rounded-full text-gray-700 whitespace-nowrap" data-filter="modernization" data-i18n="cases.filters.modernization">Modernization</button>
@@ -390,24 +405,24 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <img src="https://readdy.ai/api/search-image?query=Three%20researchers%20in%20a%20modern%20laboratory%20collaborating%2C%20one%20holding%20a%20glass%20beaker%20containing%20a%20vibrant%20purple%20luminescent%20solution.%20Three%20wall-mounted%20monitors%20display%20blue%20and%20green%20molecular%20structures%20and%20AI%20analysis%20visualizations.%20The%20lab%20features%20pristine%20stainless%20steel%20surfaces%20and%20modern%20equipment.%20The%20researchers%20are%20dressed%20in%20white%20lab%20coats%2C%20engaged%20in%20discussion.%20Clean%2C%20bright%20professional%20lighting%20creates%20a%20sophisticated%20atmosphere.%20The%20scene%20emphasizes%20scientific%20innovation%20without%20any%20text%20overlays.&width=400&height=300&seq=case1&orientation=landscape" alt="AI Research Lab" class="w-full h-full object-cover object-top">
 </div>
 <div class="p-6">
-<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.material.title">AI-Powered Material Development</h3>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.material.short">Accelerating research processes through advanced AI algorithms for a leading materials science laboratory.</p>
+<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.material.title">AI-Accelerated Materials Research</h3>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.material.short">68% shorter research cycles for a leading materials lab, powered by machine learning.</p>
 <button class="case-toggle text-primary font-medium flex items-center gap-1 hover:underline">
 <span class="case-toggle-label" data-i18n="cases.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
 </button>
 <div class="case-details mt-4">
 <div class="border-t pt-4">
 <h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.challenge">Challenge</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.material.challenge">The client needed to significantly reduce the time required to test and validate new material compositions, facing intense competitive pressure in their industry.</p>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.material.challenge">The client had to test and validate new materials much faster to stay competitive.</p>
 <h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.solution">Solution</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.material.solution">We developed a machine learning system that could predict material properties based on composition data, reducing the need for physical testing and accelerating the research cycle.</p>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.material.solution">We built a machine learning model that predicts material properties from composition data, reducing the need for physical tests.</p>
 <h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.results">Results</h4>
 <ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="cases.items.material.results">
-<li>Reduced research cycle time by 68%</li>
-<li>Increased successful material discoveries by 42%</li>
-<li>Saved approximately $1.2M in annual testing costs</li>
+<li>68% shorter research cycles</li>
+<li>42% more successful material discoveries</li>
+<li>About $1.2M saved in annual testing costs</li>
 </ul>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Technologies Used</h4>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Tech Stack</h4>
 <div class="flex flex-wrap gap-2 mt-2">
 <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">TensorFlow</span>
 <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">AWS SageMaker</span>
@@ -425,24 +440,24 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 </div>
 <div class="p-6">
 <h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.chatbot.title">Generative AI Customer Support</h3>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.chatbot.short">Implementing advanced chatbots and AI systems to automate and enhance customer service operations.</p>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.chatbot.short">78% of inquiries resolved automatically for a global e-commerce company.</p>
 <button class="case-toggle text-primary font-medium flex items-center gap-1 hover:underline">
 <span class="case-toggle-label" data-i18n="cases.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
 </button>
 <div class="case-details mt-4">
 <div class="border-t pt-4">
 <h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.challenge">Challenge</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.chatbot.challenge">A global e-commerce company was struggling with increasing customer support volumes and rising costs while maintaining service quality.</p>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.chatbot.challenge">Support volume and costs were climbing fast, putting service quality at risk.</p>
 <h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.solution">Solution</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.chatbot.solution">We developed a multi-channel AI support system using generative AI to handle routine inquiries, with seamless handoff to human agents for complex issues.</p>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.chatbot.solution">We built a multi-channel generative AI assistant that handles routine questions and hands complex cases to human agents.</p>
 <h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.results">Results</h4>
 <ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="cases.items.chatbot.results">
-<li>Automated resolution of 78% of customer inquiries</li>
-<li>Reduced response time from 4 hours to 3 minutes</li>
-<li>Improved customer satisfaction scores by 22%</li>
-<li>30% reduction in support operating costs</li>
+<li>78% of inquiries resolved automatically</li>
+<li>Response time: 4 hours → 3 minutes</li>
+<li>22% higher customer satisfaction</li>
+<li>30% lower support costs</li>
 </ul>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Technologies Used</h4>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Tech Stack</h4>
 <div class="flex flex-wrap gap-2 mt-2">
 <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">GPT-4</span>
 <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Azure AI</span>
@@ -459,25 +474,25 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <img src="https://readdy.ai/api/search-image?query=A%20manufacturing%20facility%20with%20advanced%20monitoring%20systems%20and%20predictive%20maintenance%20displays.%20Industrial%20equipment%20is%20visible%20with%20sensors%20attached%2C%20and%20screens%20show%20real-time%20analytics%20and%20maintenance%20predictions.%20The%20environment%20combines%20industrial%20elements%20with%20high-tech%20monitoring%20interfaces%2C%20conveying%20technological%20innovation%20in%20manufacturing.&width=400&height=300&seq=case3&orientation=landscape" alt="Predictive Maintenance" class="w-full h-full object-cover object-top">
 </div>
 <div class="p-6">
-<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.predictive.title">Predictive Maintenance AI System</h3>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.predictive.short">Reducing downtime and maintenance costs through AI-powered predictive analytics for manufacturing equipment.</p>
+<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.predictive.title">Predictive Maintenance with AI</h3>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.predictive.short">83% less unplanned downtime for a manufacturer, with ROI in 9 months.</p>
 <button class="case-toggle text-primary font-medium flex items-center gap-1 hover:underline">
 <span class="case-toggle-label" data-i18n="cases.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
 </button>
 <div class="case-details mt-4">
 <div class="border-t pt-4">
 <h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.challenge">Challenge</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.predictive.challenge">A manufacturing company was experiencing significant production losses due to unexpected equipment failures and inefficient maintenance scheduling.</p>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.predictive.challenge">Unexpected equipment failures and inefficient maintenance were causing major production losses.</p>
 <h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.solution">Solution</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.predictive.solution">We implemented an IoT sensor network connected to an AI system that analyzes equipment performance data to predict failures before they occur.</p>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.predictive.solution">We connected IoT sensors to an AI model that detects warning signs and predicts failures before they happen.</p>
 <h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.results">Results</h4>
 <ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="cases.items.predictive.results">
-<li>Reduced unplanned downtime by 83%</li>
-<li>Decreased maintenance costs by 47%</li>
-<li>Extended equipment lifespan by an average of 35%</li>
-<li>ROI achieved within 9 months of implementation</li>
+<li>83% less unplanned downtime</li>
+<li>47% lower maintenance costs</li>
+<li>35% longer equipment life on average</li>
+<li>ROI within 9 months</li>
 </ul>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Technologies Used</h4>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Tech Stack</h4>
 <div class="flex flex-wrap gap-2 mt-2">
 <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">IoT Sensors</span>
 <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Azure IoT Hub</span>
@@ -494,25 +509,25 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <img src="https://readdy.ai/api/search-image?query=An%20executive%20boardroom%20with%20large%20displays%20showing%20business%20intelligence%20dashboards%20and%20data%20visualizations.%20The%20environment%20is%20professional%20and%20sophisticated%2C%20with%20clean%20design%20elements.%20Multiple%20screens%20display%20charts%2C%20KPIs%2C%20and%20business%20metrics%20in%20an%20organized%2C%20visually%20appealing%20way.%20The%20atmosphere%20conveys%20data-driven%20decision%20making%20and%20executive-level%20analytics.&width=400&height=300&seq=case4&orientation=landscape" alt="Executive Dashboard" class="w-full h-full object-cover object-top">
 </div>
 <div class="p-6">
-<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.dashboard.title">Executive Management Dashboard</h3>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.dashboard.short">Creating comprehensive data visualization tools to support strategic decision-making for executive leadership.</p>
+<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.dashboard.title">Executive Decision Dashboard</h3>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.dashboard.short">From two-week reports to real-time insight for a multinational's leadership.</p>
 <button class="case-toggle text-primary font-medium flex items-center gap-1 hover:underline">
 <span class="case-toggle-label" data-i18n="cases.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
 </button>
 <div class="case-details mt-4">
 <div class="border-t pt-4">
 <h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.challenge">Challenge</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.dashboard.challenge">A multinational corporation's leadership team was struggling to access and interpret critical business data from disparate systems for timely decision-making.</p>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.dashboard.challenge">Leaders at a multinational couldn't get timely, reliable data. It was scattered across disconnected systems.</p>
 <h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.solution">Solution</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.dashboard.solution">We developed a centralized executive dashboard that integrates data from multiple sources and presents key metrics and insights through intuitive visualizations.</p>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.dashboard.solution">We unified data from multiple sources into one dashboard that shows key metrics at a glance.</p>
 <h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.results">Results</h4>
 <ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="cases.items.dashboard.results">
-<li>Reduced reporting time from 2 weeks to real-time</li>
-<li>Improved data accuracy by eliminating manual reporting</li>
-<li>Enabled data-driven decision making across 12 departments</li>
-<li>Identified $3.4M in cost-saving opportunities</li>
+<li>Reporting: 2 weeks → real time</li>
+<li>Higher data accuracy with no manual reporting</li>
+<li>Data-driven decisions across 12 departments</li>
+<li>$3.4M in cost savings identified</li>
 </ul>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Technologies Used</h4>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Tech Stack</h4>
 <div class="flex flex-wrap gap-2 mt-2">
 <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Power BI</span>
 <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">SQL Server</span>
@@ -529,25 +544,25 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <img src="https://readdy.ai/api/search-image?query=Futuristic%20digital%20wayfinding%20kiosk%20in%20a%20modern%20shopping%20mall.%20The%20sleek%20monitor%20displays%20an%20advanced%203D%20holographic%20mall%20map%20with%20glowing%20navigation%20paths%20and%20interactive%20elements.%20High-tech%20minimalist%20interface%20with%20neon%20blue%20accents.%20Clean%2C%20sophisticated%20retail%20environment%20with%20glass%20and%20chrome%20finishes.%20The%20display%20shows%20an%20innovative%20wayfinding%20system%20with%20floating%20directional%20indicators%20and%20dynamic%20store%20locations.%20No%20text%20overlays%20or%20labels%20visible.&width=400&height=300&seq=case5&orientation=landscape" alt="Voice Navigation" class="w-full h-full object-cover object-top">
 </div>
 <div class="p-6">
-<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.voice.title">Voice-Guided Store Navigation</h3>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.voice.short">Implementing Alexa-powered voice navigation to enhance customer experience in large retail environments.</p>
+<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.voice.title">Voice-Guided In-Store Navigation</h3>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.voice.short">64% faster product search with Alexa, rolled out to 87 stores.</p>
 <button class="case-toggle text-primary font-medium flex items-center gap-1 hover:underline">
 <span class="case-toggle-label" data-i18n="cases.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
 </button>
 <div class="case-details mt-4">
 <div class="border-t pt-4">
 <h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.challenge">Challenge</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.voice.challenge">A major retailer wanted to improve customer experience and reduce frustration in their large-format stores where finding products was difficult.</p>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.voice.challenge">In a major retailer's large stores, customers struggled to find what they came for.</p>
 <h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.solution">Solution</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.voice.solution">We developed a voice-activated navigation system using Amazon Alexa, integrated with the store's inventory management system and indoor positioning technology.</p>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.voice.solution">We built voice navigation on Amazon Alexa, connected to store inventory and indoor positioning.</p>
 <h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.results">Results</h4>
 <ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="cases.items.voice.results">
-<li>Reduced customer time spent searching by 64%</li>
-<li>Increased customer satisfaction scores by 28%</li>
-<li>Boosted sales of previously hard-to-find items by 31%</li>
-<li>Successfully deployed across 87 locations</li>
+<li>64% less time spent searching</li>
+<li>28% higher customer satisfaction</li>
+<li>31% more sales of hard-to-find items</li>
+<li>Rolled out to 87 stores</li>
 </ul>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Technologies Used</h4>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Tech Stack</h4>
 <div class="flex flex-wrap gap-2 mt-2">
 <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Amazon Alexa</span>
 <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Bluetooth Beacons</span>
@@ -565,24 +580,24 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 </div>
 <div class="p-6">
 <h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.legacy.title">Legacy System Modernization</h3>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.legacy.short">Transforming outdated infrastructure into modern, cloud-native services for enhanced performance and scalability.</p>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.legacy.short">62% lower infrastructure costs by moving a financial firm's monolith to cloud microservices.</p>
 <button class="case-toggle text-primary font-medium flex items-center gap-1 hover:underline">
 <span class="case-toggle-label" data-i18n="cases.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
 </button>
 <div class="case-details mt-4">
 <div class="border-t pt-4">
 <h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.challenge">Challenge</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.legacy.challenge">A financial services company was struggling with an aging monolithic system that was expensive to maintain, difficult to update, and couldn't scale to meet growing business demands.</p>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.legacy.challenge">A financial services company's aging monolith was costly to maintain, hard to change, and couldn't keep up with growth.</p>
 <h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.solution">Solution</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.legacy.solution">We designed and implemented a phased migration to a microservices architecture on AWS, breaking down the monolith into scalable, independently deployable services.</p>
+<p class="text-gray-700 mb-4" data-i18n="cases.items.legacy.solution">We migrated it step by step to microservices on AWS, so each service can scale and deploy independently.</p>
 <h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.results">Results</h4>
 <ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="cases.items.legacy.results">
-<li>Reduced infrastructure costs by 62%</li>
-<li>Decreased deployment time from weeks to minutes</li>
-<li>Improved system uptime from 98.2% to 99.99%</li>
-<li>Enabled rapid feature development with 3x faster releases</li>
+<li>62% lower infrastructure costs</li>
+<li>Deployments: weeks → minutes</li>
+<li>Uptime: 98.2% → 99.99%</li>
+<li>3x faster releases</li>
 </ul>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Technologies Used</h4>
+<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Tech Stack</h4>
 <div class="flex flex-wrap gap-2 mt-2">
 <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">AWS</span>
 <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Docker</span>
@@ -600,30 +615,30 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <section id="contact" class="py-12 bg-gray-50 section-fade">
 <div class="container mx-auto px-6">
 <div class="text-center mb-8">
-<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-i18n="contact.title">Contact Us</h2>
-<p class="text-lg text-gray-600 max-w-3xl mx-auto"><span data-i18n="contact.subtitleLine1">Ready to transform your business with advanced technology solutions?</span><br><span data-i18n="contact.subtitleLine2">Get in touch with our team.</span></p>
+<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-i18n="contact.title">Let's Talk</h2>
+<p class="text-lg text-gray-600 max-w-3xl mx-auto" data-phrase><span data-i18n="contact.subtitleLine1">Have a project in mind?</span><br><span data-i18n="contact.subtitleLine2">Tell us about it—we'll get back to you quickly.</span></p>
 </div>
 <div class="flex flex-col lg:flex-row gap-10">
 <div class="lg:w-1/2">
 <form id="contactForm" class="bg-white border border-gray-100 rounded-2xl shadow-sm p-8">
-<h3 class="text-2xl font-semibold text-gray-900 mb-6" data-i18n="contact.form.heading">Mail</h3>
+<h3 class="text-2xl font-semibold text-gray-900 mb-6" data-i18n="contact.form.heading">Send Us a Message</h3>
 <div class="mb-6">
-<label for="name" class="block text-gray-700 font-medium mb-2" data-i18n="contact.form.name">Full Name</label>
-<input type="text" id="name" name="name" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter your name" data-i18n-attr-placeholder="contact.form.namePlaceholder" required>
+<label for="name" class="block text-gray-700 font-medium mb-2" data-i18n="contact.form.name">Name</label>
+<input type="text" id="name" name="name" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Jane Smith" data-i18n-attr-placeholder="contact.form.namePlaceholder" required>
 </div>
 <div class="mb-6">
-<label for="email" class="block text-gray-700 font-medium mb-2" data-i18n="contact.form.email">Email Address</label>
-<input type="email" id="email" name="email" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter your email" data-i18n-attr-placeholder="contact.form.emailPlaceholder" required>
+<label for="email" class="block text-gray-700 font-medium mb-2" data-i18n="contact.form.email">Email</label>
+<input type="email" id="email" name="email" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="jane@company.com" data-i18n-attr-placeholder="contact.form.emailPlaceholder" required>
 </div>
 <div class="mb-6">
-<label for="company" class="block text-gray-700 font-medium mb-2" data-i18n="contact.form.company">Company Name</label>
-<input type="text" id="company" name="company" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter your company name" data-i18n-attr-placeholder="contact.form.companyPlaceholder">
+<label for="company" class="block text-gray-700 font-medium mb-2" data-i18n="contact.form.company">Company</label>
+<input type="text" id="company" name="company" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Acme Inc." data-i18n-attr-placeholder="contact.form.companyPlaceholder">
 </div>
 <div class="mb-6">
-<label for="budget" class="block text-gray-700 font-medium mb-2" data-i18n="contact.form.budget">Budget Range</label>
+<label for="budget" class="block text-gray-700 font-medium mb-2" data-i18n="contact.form.budget">Budget</label>
 <div class="relative">
 <select id="budget" name="budget" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent appearance-none pr-8">
-<option value="" disabled selected data-i18n="contact.form.budgetPlaceholder">Select your budget range</option>
+<option value="" disabled selected data-i18n="contact.form.budgetPlaceholder">Select a budget range</option>
 <option value="under50k" data-i18n="contact.form.budgetOptions.under50k">Under $50,000</option>
 <option value="50k-100k" data-i18n="contact.form.budgetOptions.50k-100k">$50,000 - $100,000</option>
 <option value="100k-250k" data-i18n="contact.form.budgetOptions.100k-250k">$100,000 - $250,000</option>
@@ -636,16 +651,16 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 </div>
 </div>
 <div class="mb-6">
-<label for="message" class="block text-gray-700 font-medium mb-2" data-i18n="contact.form.message">Project Description</label>
-<textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Tell us about your project or requirements" data-i18n-attr-placeholder="contact.form.messagePlaceholder" required></textarea>
+<label for="message" class="block text-gray-700 font-medium mb-2" data-i18n="contact.form.message">Project Details</label>
+<textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="What would you like to build or improve?" data-i18n-attr-placeholder="contact.form.messagePlaceholder" required></textarea>
 </div>
 <div class="mb-6">
 <label class="flex items-center">
 <input type="checkbox" id="agreeCheckbox" class="custom-checkbox mr-2">
-<span class="text-gray-700" data-i18n="contact.form.agree">I agree to receive communications from Quests.</span>
+<span class="text-gray-700" data-i18n="contact.form.agree">I agree to receive emails from Quests.</span>
 </label>
 </div>
-<button type="submit" id="submitButton" class="w-full bg-primary text-white py-3 px-6 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors opacity-50 cursor-not-allowed" disabled data-i18n="contact.form.submit">Submit Request</button>
+<button type="submit" id="submitButton" class="w-full bg-primary text-white py-3 px-6 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors opacity-50 cursor-not-allowed" disabled data-i18n="contact.form.submit">Continue to Email</button>
 </form>
 </div>
 <div class="lg:w-1/2">
@@ -661,7 +676,7 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <p class="text-gray-700" data-i18n="contact.side.office1Address">68 Circular Road, #02-01, Singapore 049422</p>
 </div>
 </div>
-<div class="flex items-start gap-4">
+<div class="flex items-start gap-4" data-show-if="showMarshallOffice">
 <div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mt-1 shrink-0">
 <i class="ri-map-pin-2-line text-primary"></i>
 </div>
@@ -717,7 +732,7 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <li>Access your data</li>
 <li>Correct information</li>
 <li>Request deletion</li>
-<li>Opt-out of marketing</li>
+<li>Opt out of marketing</li>
 </ul>
 </div>
 </div>
@@ -749,7 +764,7 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <div class="flex flex-col md:flex-row gap-10">
 <div class="md:w-1/2">
 <a href="#hero" class="text-3xl font-['Inter'] font-bold text-white mb-4 inline-block">Quests</a>
-<p class="text-gray-400 mb-6"><span data-i18n="footer.taglineLine1">Transforming businesses through advanced technology solutions.</span><br><span data-i18n-html="footer.taglineLine2">We deliver expertise that drives growth and innovation.</span></p>
+<p class="text-gray-400 mb-6" data-phrase><span data-i18n="footer.taglineLine1">AI, data, and cloud—delivered end to end.</span><br><span data-i18n-html="footer.taglineLine2">Big-tech expertise, without the big-firm overhead.</span></p>
 <div class="flex space-x-4">
 <!-- <a href="#" class="text-gray-400 hover:text-white transition-colors">
 <div class="w-8 h-8 flex items-center justify-center">
@@ -777,9 +792,9 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <div class="flex-1">
 <h3 class="text-lg font-semibold mb-4" data-i18n="footer.quickLinks">Quick Links</h3>
 <ul class="space-y-3">
-<li><a href="#about" class="text-gray-400 hover:text-white transition-colors" data-i18n="nav.about">About Us</a></li>
 <li><a href="#services" class="text-gray-400 hover:text-white transition-colors" data-i18n="nav.services">Services</a></li>
 <li><a href="#cases" class="text-gray-400 hover:text-white transition-colors" data-i18n="nav.cases">Case Studies</a></li>
+<li><a href="#about" class="text-gray-400 hover:text-white transition-colors" data-i18n="nav.about">About</a></li>
 <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors" data-i18n="nav.contact">Contact Us</a></li>
 </ul>
 </div>
@@ -793,7 +808,7 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 </div>
 </div>
 <div class="mt-10">
-<p class="text-gray-500">© <span id="copyrightYear">2025</span> <span data-i18n="footer.copyrightSuffix">Quests All rights reserved.</span></p>
+<p class="text-gray-500">© <span id="copyrightYear">2025</span> <span data-i18n="footer.copyrightSuffix">Quests. All rights reserved.</span></p>
 <script>document.getElementById('copyrightYear').textContent = new Date().getFullYear();</script>
 </div>
 </div>

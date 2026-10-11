@@ -35,7 +35,9 @@ SPA構成で、軽量かつ多言語（英語・日本語）に対応してい�
 │   └── ja.json             日本語の全テキスト
 ├── assets/
 │   └── js/
-│       └── i18n.js         言語切替ロジック（依存ライブラリなし）
+│       ├── i18n.js         言語切替ロジック（依存ライブラリなし）
+│       ├── site-config.js  表示設定の値（後述「表示設定」）
+│       └── config.js       表示設定を画面に反映するロジック
 ├── images/                 静的画像（ロゴ等）
 ├── CNAME                   GitHub Pagesのカスタムドメイン設定
 ├── README.md               このファイル
@@ -84,6 +86,30 @@ SPA構成で、軽量かつ多言語（英語・日本語）に対応してい�
 ```
 
 `<html lang>` 属性も i18n.js が言語に合わせて動的に更新する。
+
+### 表示設定（site-config.js）
+
+ページの一部を表示するかどうかを、`/assets/js/site-config.js` の値で切り替えられる。値を変更して `main` に push すれば反映される（ビルド不要）。
+
+```js
+window.SITE_CONFIG = {
+  showMarshallOffice: true,
+};
+```
+
+| キー | 内容 | 既定値 |
+|------|------|--------|
+| `showMarshallOffice` | Contact の Offices に Quests Ltd.（Marshall）を表示するか。`false` にすると非表示になり、PCの2列表示では空いた分だけ地図が縦に広がる | `true` |
+
+#### 仕組みと項目の追加方法
+
+- `/assets/js/config.js` が `<head>` 内で同期実行され、条件に合わない要素を `display:none` にするスタイルを描画前に差し込む（ちらつきなし）。
+- HTML側は対象要素に属性を付けるだけでよい（`/en/` と `/ja/` の両方に付けること）。
+  - `data-show-if="key"`: 値が `true` のときだけ表示（`false` や未定義、設定ファイルの読み込み失敗時は非表示）
+  - `data-hide-if="key"`: 値が `true` のときは非表示
+- 項目を追加するときは、`site-config.js` にキーを足し、上の表にも追記する。
+- JSから値を読む場合は `window.siteConfig.get('key')` を使う。
+- **注意:** 非表示はCSSで隠すだけなので、要素はHTMLソースに残る（開発者ツール等で見える）。また `site-config.js` 自体も公開ファイルなので、秘密情報は書かないこと。
 
 ### コンテンツ更新時の注意
 
