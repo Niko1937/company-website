@@ -38,7 +38,15 @@ SPA構成で、軽量かつ多言語（英語・日本語）に対応してい�
 │       ├── i18n.js         言語切替ロジック（依存ライブラリなし）
 │       ├── site-config.js  表示設定の値（後述「表示設定」）
 │       └── config.js       表示設定を画面に反映するロジック
-├── images/                 静的画像（ロゴ等）
+├── images/                 静的画像（後述「画像の管理」）
+│   ├── brand/              ロゴ（logo.svg はファビコンにも使用）
+│   ├── hero/               Hero 背景
+│   ├── about/              About の写真
+│   ├── services/           サービスカードの写真（ファイル名 = services.items のキー）
+│   └── cases/              導入事例カードの写真（ファイル名 = cases.items のキー）
+├── _sources/photos/        写真の元画像（生成時の解像度・高画質JPEG）と生成プロンプト。`_` 始まりのため GitHub Pages では非公開
+├── scripts/
+│   └── optimize_images.py  写真を Web 用（JPEG/WebP・2サイズ）に変換するスクリプト
 ├── CNAME                   GitHub Pagesのカスタムドメイン設定
 ├── README.md               このファイル
 └── services/               別サービスの情報置き場（後述、LP関連の情報を入れないこと）
@@ -110,6 +118,26 @@ window.SITE_CONFIG = {
 - 項目を追加するときは、`site-config.js` にキーを足し、上の表にも追記する。
 - JSから値を読む場合は `window.siteConfig.get('key')` を使う。
 - **注意:** 非表示はCSSで隠すだけなので、要素はHTMLソースに残る（開発者ツール等で見える）。また `site-config.js` 自体も公開ファイルなので、秘密情報は書かないこと。
+
+### 画像の管理
+
+**配置ルール**
+
+- ディレクトリ名は HTML のセクションID（`hero` / `about` / `services` / `cases`）、ロゴは `brand/`。
+- サービス・事例の写真のファイル名は、翻訳JSONのキーと同じにする（例: `cases.items.voice` → `images/cases/voice.*`）。項目を追加・削除するときは、画像も同じ名前で追加・削除する。
+- 各写真は4ファイル1組: `<名前>.jpg` / `<名前>.webp`（幅1200px）と `<名前>-600.jpg` / `<名前>-600.webp`（幅600px）。Hero 背景は `background.jpg` / `background.webp`（幅1536px）のみ。
+
+**写真を追加・差し替える手順**
+
+1. 元画像（3:2 推奨、幅1200px以上）を `_sources/photos/` に同じ名前で保存し、そこから Web 用ファイルを作る（Pillow が必要: `pip install pillow`）:
+
+   ```bash
+   python3 scripts/optimize_images.py _sources/photos/cases/<キー>.jpg images/cases/<キー>
+   # Hero 背景のみ: python3 scripts/optimize_images.py _sources/photos/hero/background.jpg images/hero/background --widths 1536
+   ```
+
+2. HTML（`/en/` と `/ja/` の両方）に、既存のカードと同じ形の `<picture>` を書く。WebP 対応ブラウザには WebP、それ以外には JPEG が、画面幅と解像度に合わせて 600px / 1200px から自動で選ばれる。
+3. 代替テキストは `data-i18n-attr-alt` で翻訳JSONの `imageAlt` キーを参照する（`/locales/en.json` と `/locales/ja.json` の両方に追加）。
 
 ### コンテンツ更新時の注意
 

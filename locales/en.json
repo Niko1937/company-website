@@ -22,7 +22,8 @@
     "missionTitle": "Why Quests",
     "missionText": "Top tech firms often take only large projects and lock clients into rigid contracts. We started Quests to change that. You get the same caliber of expertise, with flexible terms and fast turnaround.",
     "expertiseTitle": "What We Bring",
-    "expertiseText": "Engineers from AWS, Google, Microsoft, and other tech leaders work alongside consultants from the Big Four and other top firms. One team takes you from strategy to implementation, fast. Because engineering is our foundation, we don't stop at recommendations. We stay with you until your business has truly changed."
+    "expertiseText": "Engineers from AWS, Google, Microsoft, and other tech leaders work alongside consultants from the Big Four and other top firms. One team takes you from strategy to implementation, fast. Because engineering is our foundation, we don't stop at recommendations. We stay with you until your business has truly changed.",
+    "imageAlt": "The Quests team in our Singapore office"
   },
   "services": {
     "title": "Our Services",
@@ -40,7 +41,8 @@
           "Change management",
           "Technology selection",
           "IT architecture review"
-        ]
+        ],
+        "imageAlt": "A consultant presenting a business dashboard in a meeting"
       },
       "system": {
         "title": "Cloud & AI Development",
@@ -52,7 +54,8 @@
           "AI & ML integration",
           "Legacy modernization",
           "APIs & integrations"
-        ]
+        ],
+        "imageAlt": "Illustration of cloud and AI system architecture"
       },
       "operations": {
         "title": "Infrastructure Operations",
@@ -64,7 +67,8 @@
           "Security operations",
           "Performance tuning",
           "Disaster recovery"
-        ]
+        ],
+        "imageAlt": "Engineers monitoring systems in an operations room"
       },
       "training": {
         "title": "Team Enablement",
@@ -76,7 +80,8 @@
           "Custom workshops",
           "Mentoring & coaching",
           "Documentation & standards"
-        ]
+        ],
+        "imageAlt": "A senior engineer mentoring a colleague at a desk"
       }
     }
   },
@@ -107,7 +112,8 @@
           "68% shorter research cycles",
           "42% more successful material discoveries",
           "About $1.2M saved in annual testing costs"
-        ]
+        ],
+        "imageAlt": "Researchers reviewing a molecular model on a monitor"
       },
       "chatbot": {
         "title": "Generative AI Customer Support",
@@ -119,7 +125,8 @@
           "Response time: 4 hours → 3 minutes",
           "22% higher customer satisfaction",
           "30% lower support costs"
-        ]
+        ],
+        "imageAlt": "A support team lead reviewing an AI assistant dashboard"
       },
       "predictive": {
         "title": "Predictive Maintenance with AI",
@@ -131,7 +138,8 @@
           "47% lower maintenance costs",
           "35% longer equipment life on average",
           "ROI within 9 months"
-        ]
+        ],
+        "imageAlt": "An engineer explaining equipment health data on a factory floor"
       },
       "dashboard": {
         "title": "Executive Decision Dashboard",
@@ -143,7 +151,8 @@
           "Higher data accuracy with no manual reporting",
           "Data-driven decisions across 12 departments",
           "$3.4M in cost savings identified"
-        ]
+        ],
+        "imageAlt": "Executives reviewing dashboards in a boardroom"
       },
       "voice": {
         "title": "Voice-Guided In-Store Navigation",
@@ -155,7 +164,8 @@
           "28% higher customer satisfaction",
           "31% more sales of hard-to-find items",
           "Rolled out to 87 stores"
-        ]
+        ],
+        "imageAlt": "A shopper getting voice directions from her phone in a store"
       },
       "legacy": {
         "title": "Legacy System Modernization",
@@ -167,7 +177,8 @@
           "Deployments: weeks → minutes",
           "Uptime: 98.2% → 99.99%",
           "3x faster releases"
-        ]
+        ],
+        "imageAlt": "Engineers working on a system migration in a server room"
       }
     }
   },

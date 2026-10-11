@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quests - Pioneering the Future with Intelligent Technology</title>
-<link rel="icon" type="image/svg+xml" sizes="any" href="/images/corporate-logo.svg"/>
+<link rel="icon" type="image/svg+xml" sizes="any" href="/images/brand/logo.svg"/>
 <link rel="canonical" href="/ja/">
 <link rel="alternate" hreflang="en" href="/en/">
 <link rel="alternate" hreflang="ja" href="/ja/">
@@ -26,6 +26,9 @@ body {
 font-family: 'Inter', 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
 scroll-behavior: smooth;
 }
+.hero-bg { background-color: #1F1F1F; background-size: cover; background-position: right center;
+  background-image: url('/images/hero/background.jpg');
+  background-image: image-set(url('/images/hero/background.webp') type('image/webp'), url('/images/hero/background.jpg') type('image/jpeg')); }
 .hero-gradient {
 background: linear-gradient(90deg, rgba(17,24,39,1) 0%, rgba(17,24,39,0.9) 50%, rgba(17,24,39,0) 100%);
 }
@@ -222,7 +225,7 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 </div>
 </header>
 <!-- Hero Section -->
-<section id="hero" class="pt-16 min-h-[600px] lg:h-[50vh] relative overflow-hidden bg-[#1F1F1F]" style="background-image: url('https://readdy.ai/api/search-image?query=Abstract%20futuristic%20technology%20background%20with%20glowing%20geometric%20patterns%20and%20neural%20network%20connections.%20Dark%20sophisticated%20atmosphere%20with%20deep%20blue%20and%20purple%20accents.%20Flowing%20digital%20particles%20and%20energy%20streams%20create%20a%20sense%20of%20advanced%20AI%20and%20technological%20innovation.%20No%20screens%20or%20monitors%20visible.&width=1920&height=1080&seq=hero126&orientation=landscape'); background-size: cover; background-position: right center;">
+<section id="hero" class="pt-16 min-h-[600px] lg:h-[50vh] relative overflow-hidden hero-bg">
 <div class="absolute inset-0 bg-gradient-to-r from-[#1F1F1F] from-40% via-[#1F1F1F]/80 via-60% to-transparent"></div>
 <div class="container mx-auto px-6 h-full flex items-center relative py-12 lg:py-0">
 <div class="hero-copy w-full lg:w-3/5">
@@ -249,7 +252,7 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 </div>
 <div class="flex flex-col md:flex-row items-center gap-10">
 <div class="md:w-1/2">
-<img src="https://readdy.ai/api/search-image?query=A%20small%20group%20of%204%20diverse%20IT%20professionals%20collaborating%20in%20a%20bright%2C%20modern%20office%20space.%20They%20are%20standing%20together%2C%20looking%20at%20the%20camera%20with%20warm%2C%20approachable%20smiles.%20Their%20body%20language%20shows%20confidence%20and%20teamwork.%20They%20are%20wearing%20business%20casual%20attire.%20The%20lighting%20is%20soft%20and%20natural%2C%20creating%20a%20welcoming%20atmosphere.%20The%20background%20features%20clean%2C%20minimal%20office%20design%20with%20subtle%20tech%20elements.&width=600&height=400&seq=team124&orientation=landscape" alt="Quests Team" class="rounded-lg shadow-lg w-full object-cover object-top">
+<picture class="block"><source type="image/webp" srcset="/images/about/team-600.webp 600w, /images/about/team.webp 1200w" sizes="(min-width: 768px) 50vw, 100vw"><img src="/images/about/team.jpg" srcset="/images/about/team-600.jpg 600w, /images/about/team.jpg 1200w" sizes="(min-width: 768px) 50vw, 100vw" width="1200" height="800" decoding="async" alt="The Quests team in our Singapore office" data-i18n-attr-alt="about.imageAlt" class="rounded-lg shadow-lg w-full object-cover object-top"></picture>
 </div>
 <div class="md:w-1/2">
 <h3 class="text-2xl font-semibold text-gray-900 mb-4" data-i18n="about.missionTitle">Why Quests</h3>
@@ -291,7 +294,7 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <!-- Service 1 -->
 <div class="service-card bg-white rounded-lg shadow-md overflow-hidden">
 <div class="h-36 overflow-hidden">
-<img src="https://readdy.ai/api/search-image?query=Business%20professionals%20in%20a%20modern%20meeting%20room%20discussing%20digital%20transformation%20strategies.%20They%20are%20analyzing%20data%20visualizations%20and%20charts%20on%20screens.%20The%20atmosphere%20is%20collaborative%20and%20forward-thinking%2C%20with%20a%20clean%2C%20professional%20aesthetic.%20The%20image%20conveys%20strategic%20planning%20and%20business%20consulting.&width=400&height=300&seq=service1&orientation=landscape" alt="IT Consulting" class="w-full h-full object-cover object-top">
+<picture class="block w-full h-full"><source type="image/webp" srcset="/images/services/consulting-600.webp 600w, /images/services/consulting.webp 1200w" sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"><img src="/images/services/consulting.jpg" srcset="/images/services/consulting-600.jpg 600w, /images/services/consulting.jpg 1200w" sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="A consultant presenting a business dashboard in a meeting" data-i18n-attr-alt="services.items.consulting.imageAlt" class="w-full h-full object-cover object-top"></picture>
 </div>
 <div class="p-6">
 <h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="services.items.consulting.title">Strategy &amp; Consulting</h3>
@@ -314,7 +317,7 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <!-- Service 2 -->
 <div class="service-card bg-white rounded-lg shadow-md overflow-hidden">
 <div class="h-36 overflow-hidden">
-<img src="https://readdy.ai/api/search-image?query=Modern%20IT%20system%20development%20visualization%20with%20advanced%20AI%20algorithms%20and%20neural%20networks.%20Abstract%203D%20representations%20of%20data%20processing%20and%20machine%20learning%20models.%20Holographic%20displays%20showing%20system%20architecture%20and%20data%20flows.%20Clean%2C%20professional%20environment%20with%20blue%20and%20white%20technological%20aesthetics.%20Ambient%20lighting%20creating%20depth.%20Focus%20on%20AI%20system%20design%20and%20development.%20No%20cloud%20illustrations%20or%20physical%20hardware%20visible.&width=400&height=300&seq=service2&orientation=landscape" alt="System Development" class="w-full h-full object-cover object-top">
+<picture class="block w-full h-full"><source type="image/webp" srcset="/images/services/system-600.webp 600w, /images/services/system.webp 1200w" sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"><img src="/images/services/system.jpg" srcset="/images/services/system-600.jpg 600w, /images/services/system.jpg 1200w" sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="Illustration of cloud and AI system architecture" data-i18n-attr-alt="services.items.system.imageAlt" class="w-full h-full object-cover object-top"></picture>
 </div>
 <div class="p-6">
 <h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="services.items.system.title">Cloud &amp; AI Development</h3>
@@ -337,7 +340,7 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <!-- Service 3 -->
 <div class="service-card bg-white rounded-lg shadow-md overflow-hidden">
 <div class="h-36 overflow-hidden">
-<img src="https://readdy.ai/api/search-image?query=IT%20operations%20center%20with%20multiple%20monitors%20displaying%20infrastructure%20metrics%2C%20network%20diagrams%2C%20and%20system%20health%20dashboards.%20The%20environment%20is%20organized%20and%20professional%2C%20with%20IT%20specialists%20monitoring%20systems.%20The%20lighting%20is%20balanced%20with%20blue%20technical%20elements%2C%20conveying%20reliability%20and%20operational%20excellence.&width=400&height=300&seq=service3&orientation=landscape" alt="IT Operations" class="w-full h-full object-cover object-top">
+<picture class="block w-full h-full"><source type="image/webp" srcset="/images/services/operations-600.webp 600w, /images/services/operations.webp 1200w" sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"><img src="/images/services/operations.jpg" srcset="/images/services/operations-600.jpg 600w, /images/services/operations.jpg 1200w" sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="Engineers monitoring systems in an operations room" data-i18n-attr-alt="services.items.operations.imageAlt" class="w-full h-full object-cover object-top"></picture>
 </div>
 <div class="p-6">
 <h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="services.items.operations.title">Infrastructure Operations</h3>
@@ -360,7 +363,7 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <!-- Service 4 -->
 <div class="service-card bg-white rounded-lg shadow-md overflow-hidden">
 <div class="h-36 overflow-hidden">
-<img src="https://readdy.ai/api/search-image?query=A%20professional%20training%20environment%20where%20IT%20experts%20are%20teaching%20a%20diverse%20group%20of%20business%20professionals.%20They%20are%20engaged%20in%20hands-on%20learning%20with%20computers%20and%20digital%20tools.%20The%20setting%20is%20bright%20and%20collaborative%2C%20with%20visual%20aids%20and%20technology%20demonstrations.%20The%20image%20conveys%20knowledge%20transfer%20and%20skill%20development.&width=400&height=300&seq=service4&orientation=landscape" alt="IT Training" class="w-full h-full object-cover object-top">
+<picture class="block w-full h-full"><source type="image/webp" srcset="/images/services/training-600.webp 600w, /images/services/training.webp 1200w" sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"><img src="/images/services/training.jpg" srcset="/images/services/training-600.jpg 600w, /images/services/training.jpg 1200w" sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="A senior engineer mentoring a colleague at a desk" data-i18n-attr-alt="services.items.training.imageAlt" class="w-full h-full object-cover object-top"></picture>
 </div>
 <div class="p-6">
 <h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="services.items.training.title">Team Enablement</h3>
@@ -402,7 +405,7 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <!-- Case Study 1 -->
 <div class="case-study bg-white rounded-lg shadow-md overflow-hidden" data-category="ai">
 <div class="h-48 overflow-hidden">
-<img src="https://readdy.ai/api/search-image?query=Three%20researchers%20in%20a%20modern%20laboratory%20collaborating%2C%20one%20holding%20a%20glass%20beaker%20containing%20a%20vibrant%20purple%20luminescent%20solution.%20Three%20wall-mounted%20monitors%20display%20blue%20and%20green%20molecular%20structures%20and%20AI%20analysis%20visualizations.%20The%20lab%20features%20pristine%20stainless%20steel%20surfaces%20and%20modern%20equipment.%20The%20researchers%20are%20dressed%20in%20white%20lab%20coats%2C%20engaged%20in%20discussion.%20Clean%2C%20bright%20professional%20lighting%20creates%20a%20sophisticated%20atmosphere.%20The%20scene%20emphasizes%20scientific%20innovation%20without%20any%20text%20overlays.&width=400&height=300&seq=case1&orientation=landscape" alt="AI Research Lab" class="w-full h-full object-cover object-top">
+<picture class="block w-full h-full"><source type="image/webp" srcset="/images/cases/material-600.webp 600w, /images/cases/material.webp 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"><img src="/images/cases/material.jpg" srcset="/images/cases/material-600.jpg 600w, /images/cases/material.jpg 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="Researchers reviewing a molecular model on a monitor" data-i18n-attr-alt="cases.items.material.imageAlt" class="w-full h-full object-cover object-top"></picture>
 </div>
 <div class="p-6">
 <h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.material.title">AI-Accelerated Materials Research</h3>
@@ -436,7 +439,7 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <!-- Case Study 2 -->
 <div class="case-study bg-white rounded-lg shadow-md overflow-hidden" data-category="ai">
 <div class="h-48 overflow-hidden">
-<img src="https://readdy.ai/api/search-image?query=A%20professional%20customer%20service%20supervisor%20working%20at%20a%20sleek%20modern%20desk%20with%20a%20single%20elegant%20monitor%20displaying%20an%20advanced%20AI%20chatbot%20interface.%20The%20screen%20shows%20a%20sophisticated%20conversation%20flow%20with%20clean%2C%20minimalist%20design.%20Soft%20ambient%20lighting%20creates%20a%20calm%2C%20high-tech%20atmosphere.%20The%20focus%20is%20on%20the%20human-AI%20collaboration%2C%20with%20the%20supervisor%20thoughtfully%20monitoring%20the%20automated%20customer%20support%20system.%20The%20workspace%20is%20clean%20and%20uncluttered%20with%20subtle%20blue%20accent%20lighting.&width=400&height=300&seq=case2&orientation=landscape" alt="AI Chatbot" class="w-full h-full object-cover object-top">
+<picture class="block w-full h-full"><source type="image/webp" srcset="/images/cases/chatbot-600.webp 600w, /images/cases/chatbot.webp 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"><img src="/images/cases/chatbot.jpg" srcset="/images/cases/chatbot-600.jpg 600w, /images/cases/chatbot.jpg 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="A support team lead reviewing an AI assistant dashboard" data-i18n-attr-alt="cases.items.chatbot.imageAlt" class="w-full h-full object-cover object-top"></picture>
 </div>
 <div class="p-6">
 <h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.chatbot.title">Generative AI Customer Support</h3>
@@ -471,7 +474,7 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <!-- Case Study 3 -->
 <div class="case-study bg-white rounded-lg shadow-md overflow-hidden" data-category="ai analytics">
 <div class="h-48 overflow-hidden">
-<img src="https://readdy.ai/api/search-image?query=A%20manufacturing%20facility%20with%20advanced%20monitoring%20systems%20and%20predictive%20maintenance%20displays.%20Industrial%20equipment%20is%20visible%20with%20sensors%20attached%2C%20and%20screens%20show%20real-time%20analytics%20and%20maintenance%20predictions.%20The%20environment%20combines%20industrial%20elements%20with%20high-tech%20monitoring%20interfaces%2C%20conveying%20technological%20innovation%20in%20manufacturing.&width=400&height=300&seq=case3&orientation=landscape" alt="Predictive Maintenance" class="w-full h-full object-cover object-top">
+<picture class="block w-full h-full"><source type="image/webp" srcset="/images/cases/predictive-600.webp 600w, /images/cases/predictive.webp 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"><img src="/images/cases/predictive.jpg" srcset="/images/cases/predictive-600.jpg 600w, /images/cases/predictive.jpg 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="An engineer explaining equipment health data on a factory floor" data-i18n-attr-alt="cases.items.predictive.imageAlt" class="w-full h-full object-cover object-top"></picture>
 </div>
 <div class="p-6">
 <h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.predictive.title">Predictive Maintenance with AI</h3>
@@ -506,7 +509,7 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <!-- Case Study 4 -->
 <div class="case-study bg-white rounded-lg shadow-md overflow-hidden" data-category="analytics">
 <div class="h-48 overflow-hidden">
-<img src="https://readdy.ai/api/search-image?query=An%20executive%20boardroom%20with%20large%20displays%20showing%20business%20intelligence%20dashboards%20and%20data%20visualizations.%20The%20environment%20is%20professional%20and%20sophisticated%2C%20with%20clean%20design%20elements.%20Multiple%20screens%20display%20charts%2C%20KPIs%2C%20and%20business%20metrics%20in%20an%20organized%2C%20visually%20appealing%20way.%20The%20atmosphere%20conveys%20data-driven%20decision%20making%20and%20executive-level%20analytics.&width=400&height=300&seq=case4&orientation=landscape" alt="Executive Dashboard" class="w-full h-full object-cover object-top">
+<picture class="block w-full h-full"><source type="image/webp" srcset="/images/cases/dashboard-600.webp 600w, /images/cases/dashboard.webp 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"><img src="/images/cases/dashboard.jpg" srcset="/images/cases/dashboard-600.jpg 600w, /images/cases/dashboard.jpg 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="Executives reviewing dashboards in a boardroom" data-i18n-attr-alt="cases.items.dashboard.imageAlt" class="w-full h-full object-cover object-top"></picture>
 </div>
 <div class="p-6">
 <h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.dashboard.title">Executive Decision Dashboard</h3>
@@ -541,7 +544,7 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <!-- Case Study 5 -->
 <div class="case-study bg-white rounded-lg shadow-md overflow-hidden" data-category="ai">
 <div class="h-48 overflow-hidden">
-<img src="https://readdy.ai/api/search-image?query=Futuristic%20digital%20wayfinding%20kiosk%20in%20a%20modern%20shopping%20mall.%20The%20sleek%20monitor%20displays%20an%20advanced%203D%20holographic%20mall%20map%20with%20glowing%20navigation%20paths%20and%20interactive%20elements.%20High-tech%20minimalist%20interface%20with%20neon%20blue%20accents.%20Clean%2C%20sophisticated%20retail%20environment%20with%20glass%20and%20chrome%20finishes.%20The%20display%20shows%20an%20innovative%20wayfinding%20system%20with%20floating%20directional%20indicators%20and%20dynamic%20store%20locations.%20No%20text%20overlays%20or%20labels%20visible.&width=400&height=300&seq=case5&orientation=landscape" alt="Voice Navigation" class="w-full h-full object-cover object-top">
+<picture class="block w-full h-full"><source type="image/webp" srcset="/images/cases/voice-600.webp 600w, /images/cases/voice.webp 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"><img src="/images/cases/voice.jpg" srcset="/images/cases/voice-600.jpg 600w, /images/cases/voice.jpg 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="A shopper getting voice directions from her phone in a store" data-i18n-attr-alt="cases.items.voice.imageAlt" class="w-full h-full object-cover object-top"></picture>
 </div>
 <div class="p-6">
 <h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.voice.title">Voice-Guided In-Store Navigation</h3>
@@ -576,7 +579,7 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <!-- Case Study 6 -->
 <div class="case-study bg-white rounded-lg shadow-md overflow-hidden" data-category="modernization">
 <div class="h-48 overflow-hidden">
-<img src="https://readdy.ai/api/search-image?query=A%20professional%20software%20developer%20in%20a%20modern%20office%20workspace%2C%20viewed%20from%20a%20side%20angle%2C%20working%20on%20system%20modernization.%20The%20developers%20monitor%20displays%20detailed%20system%20architecture%20diagrams%20and%20modern%20development%20interfaces%20with%20blue%20and%20white%20color%20schemes.%20Through%20a%20glass%20partition%20in%20the%20background%2C%20three%20to%20four%20server%20racks%20with%20blinking%20lights%20are%20clearly%20visible%20in%20an%20adjacent%20server%20room.%20The%20lighting%20is%20bright%20and%20professional%20in%20the%20workspace%2C%20while%20the%20server%20room%20has%20ambient%20blue%20lighting.%20The%20scene%20emphasizes%20the%20contrast%20between%20modern%20development%20and%20legacy%20infrastructure%2C%20with%20clean%20lines%20and%20a%20sophisticated%20technical%20atmosphere.&width=400&height=300&seq=case6&orientation=landscape" alt="System Modernization" class="w-full h-full object-cover object-top">
+<picture class="block w-full h-full"><source type="image/webp" srcset="/images/cases/legacy-600.webp 600w, /images/cases/legacy.webp 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"><img src="/images/cases/legacy.jpg" srcset="/images/cases/legacy-600.jpg 600w, /images/cases/legacy.jpg 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="Engineers working on a system migration in a server room" data-i18n-attr-alt="cases.items.legacy.imageAlt" class="w-full h-full object-cover object-top"></picture>
 </div>
 <div class="p-6">
 <h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.legacy.title">Legacy System Modernization</h3>

@@ -115,3 +115,28 @@
 - 検証: ja/en × 390〜1536px の7つの幅で、箇条書きがすべて1行・横はみ出しなし・JSエラーなし。About と Services を PC 幅で描画確認
 - [x] ja「私たちの強み」から「主要クラウドの認定資格や特許を持つエンジニアも所属しています。」を削除（ユーザー指示）
 - [x] en "What We Bring" から "Our team includes cloud-certified engineers and patent holders." を削除（JSON と HTML のフォールバック）
+
+## LP写真の再生成と差し替え
+- [x] 生成スクリプト・候補画像はリポジトリ外（scratchpad）に置く。キーは `../Questia/.env` から実行時にメモリへ読み込むだけで、表示・保存しない
+- [x] `.gitignore` に `.env` / `.env.*` を追加
+- [x] 12枠 × 4パターン（方向性A×2 + B×2）を gpt-image-1.5（high, 1536x1024）で生成
+- [x] 比較ギャラリーでユーザーが選択
+- [x] 採用画像を JPEG 化して `images/photos/` に配置、en/ja の img src と Hero 背景を差し替え、README 更新
+- [x] 検証: 全画像の読み込み、readdy.ai 参照0件、キー文字列がステージ内容に含まれないこと
+
+## レビュー（LP写真）
+- 画像生成 API（共有ゲートウェイ）は `/images/edits` を許可していなかったため、修正はすべて構図を細かく指定した新規生成で対応。6回のやり取りで計112枚を生成し、ユーザーが12枚を選定。
+- 採用: hero-R3 / about-V3 / consulting-R4 / system-A2 / operations-S2 / training-R1 / material-B2 / chatbot-B2 / predictive-S2 / dashboard-A1 / voice-U1 / legacy-S4。
+- `images/photos/<枠名>.jpg` に配置（カード・About は 1200×800、Hero は 1536×1024、JPEG 品質78、合計約2.4MB）。en/ja の HTML の readdy.ai の URL 12か所を置き換え（外部参照0件）。
+- 検証（headless Chrome）: ja/en × 1440px・en × 390px で全11枚の img と Hero 背景が読み込まれ、readdy.ai への通信は0件、JSエラーなし。カードでの切り抜き（上寄せ）で、人物の顔や店内ナビのスマホが切れていないことを確認。
+- 秘密情報: 生成スクリプト・候補画像はリポジトリ外。キー文字列はリポジトリ・一時フォルダとも0件。
+
+## 追加対応: 画像の配置整理と配信の最適化
+- [x] `images/` をセクション別に整理（brand / hero / about / services / cases）。ファイル名は翻訳JSONのキーと一致。ロゴは `brand/logo.svg`（ファビコンのパスを3ファイルで更新）
+- [x] `scripts/optimize_images.py`（Pillow）で JPEG + WebP、600px / 1200px を生成。元の PNG から直接変換
+- [x] `<picture>` + `srcset` / `sizes`、`width` / `height`、`loading="lazy"`（About 以外）、`decoding="async"`
+- [x] Hero 背景を CSS の `image-set()`（WebP 優先、JPEG フォールバック）に変更し、インラインスタイルを撤去
+- [x] 代替テキストを `imageAlt` キーで多言語化（`data-i18n-attr-alt`）
+- [x] README に「画像の管理」節を追加
+- 検証（headless Chrome）: ja 1440px（1x）/ en 1440px（2x）/ en 390px（3x）で全11枚が表示、等倍ではサービスに 600px の WebP、Retina では 1200px が選ばれる。Hero は WebP を読み込み。alt が言語に追従、ファビコン 200、旧 `images/photos/` への参照0件、JSエラーなし、レイアウトは変更前と同じ
+- [x] 元画像を `_sources/photos/`（`_` 始まりで Pages 非公開）に、生成時の解像度 1536×1024 のまま品質95の JPEG で保存（12枚・約5.8MB）。生成プロンプトを `prompts.md` に記録（秘密情報なし）。README の手順も元画像起点に更新
