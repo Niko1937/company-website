@@ -91,7 +91,7 @@
         if (attr.name.startsWith('data-i18n-attr-')) {
           const targetAttr = attr.name.replace('data-i18n-attr-', '');
           const value = getByPath(translations, attr.value);
-          if (typeof value === 'string') {
+          if (typeof value === 'string' && el.getAttribute(targetAttr) !== value) {
             el.setAttribute(targetAttr, value);
           }
         }
