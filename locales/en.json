@@ -1,11 +1,11 @@
 {
   "meta": {
     "htmlLang": "en",
-    "title": "{company} - Pioneering the Future with Intelligent Technology",
-    "requiresI18n": 2
+    "title": "Quests - Pioneering the Future with Intelligent Technology",
+    "legacy": "Frozen copy for pages that still run an older cached i18n.js. Do not edit; edit locales/v2/ instead."
   },
   "brand": {
-    "name": "{company}"
+    "name": "Quests"
   },
   "nav": {
     "about": "About",
@@ -21,13 +21,13 @@
     "scroll": "Explore"
   },
   "about": {
-    "title": "About {company}",
+    "title": "About Quests",
     "subtitle": "A senior team from global tech leaders, built to deliver results.",
-    "missionTitle": "Why {company}",
-    "missionText": "Top tech firms often take only large projects and lock clients into rigid contracts. We started {company} to change that. You get the same caliber of expertise, with flexible terms and fast turnaround.",
+    "missionTitle": "Why Quests",
+    "missionText": "Top tech firms often take only large projects and lock clients into rigid contracts. We started Quests to change that. You get the same caliber of expertise, with flexible terms and fast turnaround.",
     "expertiseTitle": "What We Bring",
     "expertiseText": "Engineers from AWS, Google, Microsoft, and other tech leaders work alongside consultants from the Big Four and other top firms. One team takes you from strategy to implementation, fast. Because engineering is our foundation, we go beyond recommendations and see the change through.",
-    "imageAlt": "The {company} team in our Singapore office"
+    "imageAlt": "The Quests team in our Singapore office"
   },
   "services": {
     "title": "Our Services",
@@ -197,7 +197,7 @@
       "email": "Email",
       "emailPlaceholder": "you@example.com",
       "company": "Company",
-      "companyPlaceholder": "{company} Ltd.",
+      "companyPlaceholder": "Quests Ltd.",
       "budget": "Budget",
       "budgetPlaceholder": "Select a budget range",
       "budgetOptions": {
@@ -209,7 +209,7 @@
       },
       "message": "Project Details",
       "messagePlaceholder": "What would you like to build or improve?",
-      "agree": "I agree to receive emails from {company}.",
+      "agree": "I agree to receive emails from Quests.",
       "mailSubject": "Contact Inquiry",
       "mailerTitle": "Choose your email app",
       "mailerDescription": "Select your email service. A compose window will open with your details pre-filled.",
@@ -283,11 +283,11 @@
       },
       "services": {
         "title": "2. Services",
-        "text": "{company} provides IT consulting, system development, and related services. We reserve the right to modify or discontinue any service at any time."
+        "text": "Quests provides IT consulting, system development, and related services. We reserve the right to modify or discontinue any service at any time."
       },
       "liability": {
         "title": "3. Limitation of Liability",
-        "text": "{company} shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use or inability to use our services."
+        "text": "Quests shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use or inability to use our services."
       }
     }
   },
@@ -298,6 +298,6 @@
     "legal": "Legal",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
-    "copyrightSuffix": "{company}. All rights reserved."
+    "copyrightSuffix": "Quests. All rights reserved."
   }
 }

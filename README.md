@@ -31,8 +31,11 @@ SPA構成で、軽量かつ多言語（英語・日本語）に対応してい�
 ├── en/index.html           英語版エントリポイント（canonical）
 ├── ja/index.html           日本語版エントリポイント（canonical）
 ├── locales/
-│   ├── en.json             英語の全テキスト（翻訳のソース・オブ・トゥルース）
-│   └── ja.json             日本語の全テキスト
+│   ├── v2/
+│   │   ├── en.json         英語の全テキスト（翻訳のソース・オブ・トゥルース。編集するのはこちら）
+│   │   └── ja.json         日本語の全テキスト
+│   ├── en.json             固定の旧版（キャッシュに残った古いページ用。編集しない。後述）
+│   └── ja.json             同上
 ├── assets/
 │   └── js/
 │       ├── i18n.js         言語切替ロジック（依存ライブラリなし）
@@ -64,26 +67,31 @@ SPA構成で、軽量かつ多言語（英語・日本語）に対応してい�
 
 - **`/en/`** が英語、**`/ja/`** が日本語の正規URL（canonical）。
 - HTML テンプレートは `/en/index.html` と `/ja/index.html` で共通（同一構造）。
-- 翻訳テキストは `/locales/en.json` と `/locales/ja.json` に集約。
+- 翻訳テキストは `/locales/v2/en.json` と `/locales/v2/ja.json` に集約。
 - `/assets/js/i18n.js` がページ読み込み時に該当JSONを fetch し、`data-i18n` 属性が付いたDOM要素を書き換える。
 
 #### 翻訳キーの追加方法
 
-1. `/locales/en.json` と `/locales/ja.json` の両方に、同じキー構造で値を追加する。
+1. `/locales/v2/en.json` と `/locales/v2/ja.json` の両方に、同じキー構造で値を追加する。
 2. HTML側で対象要素に `data-i18n="path.to.key"` を付与する。
    - 単一テキスト: `data-i18n="hero.title"`
    - リスト（`<li>` の自動生成）: `data-i18n-list="services.items.consulting.bullets"`
    - 属性値（例: placeholder）: `data-i18n-attr-placeholder="contact.form.namePlaceholder"`
 3. JSコードから動的に翻訳文字列を取得したい場合は `window.i18n.t('path.to.key')` を使用する。
 
-#### デプロイ直後のキャッシュ対策
+#### デプロイ直後のキャッシュ対策（翻訳JSONのバージョン管理）
 
-GitHub Pages は HTML に最大10分のキャッシュを付けるため、デプロイ直後は「古い HTML・`i18n.js`」と「新しい翻訳JSON」が組み合わさることがある。翻訳JSONで新しい書き方（`{company}` のような置き換え用の記号など）を使い始めるときは、次の2つを必ずそろえて更新する。
+GitHub Pages は HTML に最大10分のキャッシュを付けるため、利用者のブラウザでは「古い HTML・`i18n.js`」がしばらく動き続けることがある。古い `i18n.js` が新しい書き方の翻訳JSON（`{company}` のような置き換え用の記号など）を読むと、記号がそのまま表示されてしまう。これを防ぐため、翻訳JSONは `i18n.js` のバージョンごとのフォルダに置いている。
 
-1. `/assets/js/i18n.js` の `I18N_VERSION` を1つ上げ、`/locales/en.json` と `/locales/ja.json` の `meta.requiresI18n` を同じ番号にする。
-2. `/en/index.html` と `/ja/index.html` の `i18n.js?v=` を上げる。
+- `i18n.js` は `/locales/v<I18N_VERSION>/<言語>.json` を読む（現在は `v2`）。**文言の編集は常に最新のフォルダで行う。**
+- 古いフォルダと `/locales/en.json`・`ja.json`（v1 以前の `i18n.js` が読む場所）は**固定の旧版**として残し、編集しない。置き換え用の記号を含まない内容なので、古いページは更新前の文言（例: 会社名「Quests」）で表示され、`{…}` は表示されない。
+- 翻訳JSONで、古い `i18n.js` では表示できない新しい書き方を使い始めるときは、次をそろえて行う。
+  1. `/assets/js/i18n.js` の `I18N_VERSION` を1つ上げる。
+  2. 翻訳JSONを新しいフォルダ（例: `/locales/v3/`）にコピーして、そちらを編集する。`meta.requiresI18n` を同じ番号にする。
+  3. 直前のフォルダ（例: `v2`）は、新しい書き方を含まない状態で固定する。
+  4. `/en/index.html` と `/ja/index.html` の `i18n.js?v=` を上げる。
 
-古い `i18n.js` が自分より新しい翻訳JSONを読んだ場合は、ページを1回だけ自動で再読み込みして新しい HTML・JS に入れ替える。それでも置き換えられない `{…}` が残る文言は画面に入れず、更新前の表示のまま残す（`{…}` が表示されることはない）。
+念のための二重の対策として、`i18n.js` は自分より新しい翻訳JSONを読んだ場合にページを1回だけ自動で再読み込みし、置き換えられない `{…}` が残る文言は画面に入れない。
 
 #### ルート（`/`）アクセス時の言語振り分けロジック
 
@@ -155,7 +163,7 @@ window.SITE_CONFIG = {
    ```
 
 2. HTML（`/en/` と `/ja/` の両方）に、既存のカードと同じ形の `<picture>` を書く。WebP 対応ブラウザには WebP、それ以外には JPEG が、画面幅と解像度に合わせて 600px / 1200px から自動で選ばれる。
-3. 代替テキストは `data-i18n-attr-alt` で翻訳JSONの `imageAlt` キーを参照する（`/locales/en.json` と `/locales/ja.json` の両方に追加）。
+3. 代替テキストは `data-i18n-attr-alt` で翻訳JSONの `imageAlt` キーを参照する（`/locales/v2/en.json` と `/locales/v2/ja.json` の両方に追加）。
 
 ### ロゴとアイコン
 
@@ -177,7 +185,7 @@ window.SITE_CONFIG = {
 ### コンテンツ更新時の注意
 
 - **HTML構造（タグの追加・削除等）を変更する場合**: `/en/index.html` と `/ja/index.html` の両方を更新する必要がある（同一構造を保つため）。
-- **テキストのみの更新**: `/locales/en.json` と `/locales/ja.json` を編集するだけで反映される。
+- **テキストのみの更新**: `/locales/v2/en.json` と `/locales/v2/ja.json` を編集するだけで反映される。
 - 一方の言語にだけキーを追加すると、もう一方の言語ではフォールバックとしてHTML側のデフォルト値（英語）が表示される。両方のJSONに必ず追加すること。
 
 ---

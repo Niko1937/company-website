@@ -6,8 +6,10 @@
   const STORAGE_KEY = 'preferredLang';
   const PHRASE_SCOPE = 'h1, h2, h3, h4, [data-phrase]';
   const DEFAULT_COMPANY = 'Quests';
-  // Bump when locales/*.json start using something older copies of this script cannot render, and set
-  // meta.requiresI18n in both locale files to the same number (see README).
+  // Locale files live in /locales/v<I18N_VERSION>/. When they start using something older copies of this
+  // script cannot render, bump this number, move the files to the new folder, and set meta.requiresI18n to
+  // the same number. Older folders (and /locales/*.json) stay frozen for pages still running a cached older
+  // script, so those pages show older text instead of raw {placeholders} (see README).
   const I18N_VERSION = 2;
   const RELOAD_KEY = 'i18nReloadedFor';
   const PLACEHOLDER = /\{[A-Za-z]+\}/;
@@ -56,7 +58,7 @@
   }
 
   function localesUrl(lang) {
-    return `/locales/${lang}.json`;
+    return `/locales/v${I18N_VERSION}/${lang}.json`;
   }
 
   async function fetchTranslations(lang) {
