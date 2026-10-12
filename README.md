@@ -76,6 +76,15 @@ SPA構成で、軽量かつ多言語（英語・日本語）に対応してい�
    - 属性値（例: placeholder）: `data-i18n-attr-placeholder="contact.form.namePlaceholder"`
 3. JSコードから動的に翻訳文字列を取得したい場合は `window.i18n.t('path.to.key')` を使用する。
 
+#### デプロイ直後のキャッシュ対策
+
+GitHub Pages は HTML に最大10分のキャッシュを付けるため、デプロイ直後は「古い HTML・`i18n.js`」と「新しい翻訳JSON」が組み合わさることがある。翻訳JSONで新しい書き方（`{company}` のような置き換え用の記号など）を使い始めるときは、次の2つを必ずそろえて更新する。
+
+1. `/assets/js/i18n.js` の `I18N_VERSION` を1つ上げ、`/locales/en.json` と `/locales/ja.json` の `meta.requiresI18n` を同じ番号にする。
+2. `/en/index.html` と `/ja/index.html` の `i18n.js?v=` を上げる。
+
+古い `i18n.js` が自分より新しい翻訳JSONを読んだ場合は、ページを1回だけ自動で再読み込みして新しい HTML・JS に入れ替える。それでも置き換えられない `{…}` が残る文言は画面に入れず、更新前の表示のまま残す（`{…}` が表示されることはない）。
+
 #### ルート（`/`）アクセス時の言語振り分けロジック
 
 `/index.html` のスクリプトが以下の優先順で判定し、`/en/` または `/ja/` にリダイレクトする。

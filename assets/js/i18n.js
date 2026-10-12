@@ -6,6 +6,11 @@
   const STORAGE_KEY = 'preferredLang';
   const PHRASE_SCOPE = 'h1, h2, h3, h4, [data-phrase]';
   const DEFAULT_COMPANY = 'Quests';
+  // Bump when locales/*.json start using something older copies of this script cannot render, and set
+  // meta.requiresI18n in both locale files to the same number (see README).
+  const I18N_VERSION = 2;
+  const RELOAD_KEY = 'i18nReloadedFor';
+  const PLACEHOLDER = /\{[A-Za-z]+\}/;
 
   function detectLangFromPath() {
     const path = window.location.pathname;
@@ -76,7 +81,7 @@
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       const value = getByPath(translations, key);
-      if (typeof value === 'string') {
+      if (isRenderable(value)) {
         el.textContent = value;
       }
     });
@@ -84,7 +89,7 @@
     document.querySelectorAll('[data-i18n-html]').forEach(el => {
       const key = el.getAttribute('data-i18n-html');
       const value = getByPath(translations, key);
-      if (typeof value === 'string') {
+      if (isRenderable(value)) {
         el.innerHTML = value;
       }
     });
@@ -92,7 +97,7 @@
     document.querySelectorAll('[data-i18n-list]').forEach(el => {
       const key = el.getAttribute('data-i18n-list');
       const arr = getByPath(translations, key);
-      if (Array.isArray(arr)) {
+      if (Array.isArray(arr) && arr.every(isRenderable)) {
         const tag = el.getAttribute('data-i18n-list-tag') || 'li';
         el.innerHTML = arr.map(item => `<${tag}>${escapeHtml(item)}</${tag}>`).join('');
       }
@@ -103,7 +108,7 @@
         if (attr.name.startsWith('data-i18n-attr-')) {
           const targetAttr = attr.name.replace('data-i18n-attr-', '');
           const value = getByPath(translations, attr.value);
-          if (typeof value === 'string' && el.getAttribute(targetAttr) !== value) {
+          if (isRenderable(value) && el.getAttribute(targetAttr) !== value) {
             el.setAttribute(targetAttr, value);
           }
         }
@@ -114,7 +119,7 @@
       if (translations.meta.htmlLang) {
         document.documentElement.lang = translations.meta.htmlLang;
       }
-      if (translations.meta.title) {
+      if (isRenderable(translations.meta.title)) {
         document.title = translations.meta.title;
       }
     }
@@ -131,6 +136,25 @@
         if (el.closest(PHRASE_SCOPE)) wrapWithBudoux(el);
       });
     }
+  }
+
+  function isRenderable(value) {
+    return typeof value === 'string' && !PLACEHOLDER.test(value);
+  }
+
+  // After a deploy, the browser may still hold a cached older copy of this script while the locale files are
+  // already new. In that case reload once so the page picks up the matching HTML and scripts.
+  function reloadForNewerScript(translations) {
+    const required = (translations.meta && translations.meta.requiresI18n) || 0;
+    if (required <= I18N_VERSION) return false;
+    try {
+      if (sessionStorage.getItem(RELOAD_KEY) === String(required)) return false;
+      sessionStorage.setItem(RELOAD_KEY, String(required));
+    } catch (_) {
+      return false;
+    }
+    location.reload();
+    return true;
   }
 
   function escapeHtml(str) {
@@ -172,6 +196,7 @@
     if (!SUPPORTED.includes(lang)) lang = DEFAULT_LANG;
     try {
       const translations = await fetchTranslations(lang);
+      if (reloadForNewerScript(translations)) return;
       window.__translations = translations;
       window.__currentLang = lang;
       applyTranslations(translations);
@@ -190,7 +215,7 @@
     const translations = window.__translations;
     if (!translations) return '';
     const value = getByPath(translations, key);
-    return typeof value === 'string' ? value : '';
+    return isRenderable(value) ? value : '';
   }
 
   function init() {

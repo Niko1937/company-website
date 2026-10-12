@@ -1,7 +1,8 @@
 {
   "meta": {
     "htmlLang": "en",
-    "title": "{company} - Pioneering the Future with Intelligent Technology"
+    "title": "{company} - Pioneering the Future with Intelligent Technology",
+    "requiresI18n": 2
   },
   "brand": {
     "name": "{company}"

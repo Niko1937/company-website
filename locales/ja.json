@@ -1,7 +1,8 @@
 {
   "meta": {
     "htmlLang": "ja",
-    "title": "{company} - テクノロジーで、ビジネスの未来をひらく"
+    "title": "{company} - テクノロジーで、ビジネスの未来をひらく",
+    "requiresI18n": 2
   },
   "brand": {
     "name": "{company}"
