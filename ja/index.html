@@ -20,9 +20,9 @@
 <script>tailwind.config={theme:{extend:{colors:{primary:'#0047AB',secondary:'#00264d'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/budoux@0.8.4/bundle/budoux-ja.min.js" defer></script>
-<script src="/assets/js/site-config.js?v=1"></script>
+<script src="/assets/js/site-config.js?v=2"></script>
 <script src="/assets/js/config.js?v=1"></script>
-<script src="/assets/js/i18n.js?v=7" defer></script>
+<script src="/assets/js/i18n.js?v=8" defer></script>
 <style>
 :where([class^="ri-"])::before { content: "\f3c2"; }
 body {
@@ -195,7 +195,7 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <!-- Header/Navigation -->
 <header class="site-header fixed top-0 left-0 right-0 z-50">
 <div class="container mx-auto px-6 py-2 flex justify-between items-center">
-<a href="#hero" class="brand text-2xl lg:text-3xl font-['Inter'] font-bold">Quests</a>
+<a href="#hero" class="brand text-2xl lg:text-3xl font-['Inter'] font-bold" data-i18n="brand.name">Quests</a>
 <nav class="hidden lg:flex items-center space-x-8">
 <a href="#services" class="nav-link transition-colors" data-i18n="nav.services">Services</a>
 <a href="#cases" class="nav-link transition-colors" data-i18n="nav.cases">Case Studies</a>
@@ -769,7 +769,7 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <div class="container mx-auto px-6">
 <div class="flex flex-col md:flex-row gap-10">
 <div class="md:w-1/2">
-<a href="#hero" class="text-3xl font-['Inter'] font-bold text-white mb-4 inline-block">Quests</a>
+<a href="#hero" class="text-3xl font-['Inter'] font-bold text-white mb-4 inline-block" data-i18n="brand.name">Quests</a>
 <p class="text-gray-400 mb-6" data-phrase><span data-i18n="footer.taglineLine1">AI, data, and cloud, delivered end to end.</span><br><span data-i18n-html="footer.taglineLine2">Big Tech expertise, without the big-firm overhead.</span></p>
 <div class="flex space-x-4">
 <!-- <a href="#" class="text-gray-400 hover:text-white transition-colors">

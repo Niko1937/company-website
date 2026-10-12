@@ -102,17 +102,19 @@ SPA構成で、軽量かつ多言語（英語・日本語）に対応してい�
 
 ### 表示設定（site-config.js）
 
-ページの一部を表示するかどうかを、`/assets/js/site-config.js` の値で切り替えられる。値を変更して `main` に push すれば反映される（ビルド不要）。
+ページの表示内容の一部を、`/assets/js/site-config.js` の値で切り替えられる。値を変更して `main` に push すれば反映される（ビルド不要）。
 
 ```js
 window.SITE_CONFIG = {
   showMarshallOffice: true,
+  companyName: "Quests",
 };
 ```
 
 | キー | 内容 | 既定値 |
 |------|------|--------|
 | `showMarshallOffice` | Contact の Offices に Quests Ltd.（Marshall）を表示するか。`false` にすると非表示になり、PCの2列表示では空いた分だけ地図が縦に広がる | `true` |
+| `companyName` | LP に表示する法人名。`"Quests"` または `"Quests Bay"`。英語版・日本語版のすべてのセクション（ページタイトル、ヘッダー、About、フォーム、利用規約、フッター等）に反映される。**Offices の正式名称（Quests Bay Pte. Ltd. / Quests Ltd.）は変わらない** | `"Quests"` |
 
 #### 仕組みと項目の追加方法
 
@@ -122,6 +124,7 @@ window.SITE_CONFIG = {
   - `data-hide-if="key"`: 値が `true` のときは非表示
 - 項目を追加するときは、`site-config.js` にキーを足し、上の表にも追記する。
 - JSから値を読む場合は `window.siteConfig.get('key')` を使う。
+- 法人名を文言に入れるときは、翻訳JSONに法人名を直接書かず `{company}` と書く（例: `"About {company}"`）。`/assets/js/i18n.js` が読み込み時に `companyName` の値へ置き換える。Offices の正式名称のように、設定に関係なく固定したい名前は直接書く。
 - **注意:** 非表示はCSSで隠すだけなので、要素はHTMLソースに残る（開発者ツール等で見える）。また `site-config.js` 自体も公開ファイルなので、秘密情報は書かないこと。
 
 ### 画像の管理

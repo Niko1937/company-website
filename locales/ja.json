@@ -1,7 +1,10 @@
 {
   "meta": {
     "htmlLang": "ja",
-    "title": "Quests - テクノロジーで、ビジネスの未来をひらく"
+    "title": "{company} - テクノロジーで、ビジネスの未来をひらく"
+  },
+  "brand": {
+    "name": "{company}"
   },
   "nav": {
     "about": "会社情報",
@@ -17,13 +20,13 @@
     "scroll": "スクロール"
   },
   "about": {
-    "title": "Questsについて",
+    "title": "{company}について",
     "subtitle": "世界的なテック企業で経験を積んだシニアメンバーがプロジェクトに参画し、成果にこだわって支援します。",
-    "missionTitle": "Questsを選ぶ理由",
-    "missionText": "技術力の高いIT企業ほど、大型案件しか受けなかったり、厳しい契約で柔軟に動けないことが多いです。この常識を変えるために我々はQuestsを設立しました。トップレベルの技術力を、柔軟な契約とスピード感のある対応でお届けします。",
+    "missionTitle": "{company}を選ぶ理由",
+    "missionText": "技術力の高いIT企業ほど、大型案件しか受けなかったり、厳しい契約で柔軟に動けないことが多いです。この常識を変えるために我々は{company}を設立しました。トップレベルの技術力を、柔軟な契約とスピード感のある対応でお届けします。",
     "expertiseTitle": "私たちの強み",
     "expertiseText": "AWS、Google、Microsoftなどで実務を積んだエンジニアと、BIG4をはじめとする大手コンサルティングファーム出身のメンバーが在籍しています。戦略づくりからシステムの実装まで、ひとつのチームでスピーディーに進めます。技術力が強みなので、提案だけで終わらせず、ビジネスの変革が実現するまで一緒に取り組みます。",
-    "imageAlt": "シンガポールのオフィスに集まったQuestsのメンバー"
+    "imageAlt": "シンガポールのオフィスに集まった{company}のメンバー"
   },
   "services": {
     "title": "サービス",
@@ -193,7 +196,7 @@
       "email": "メールアドレス",
       "emailPlaceholder": "例：you@example.com",
       "company": "会社名",
-      "companyPlaceholder": "例：株式会社Quests",
+      "companyPlaceholder": "例：株式会社{company}",
       "budget": "ご予算",
       "budgetPlaceholder": "ご予算の目安をお選びください",
       "budgetOptions": {
@@ -205,7 +208,7 @@
       },
       "message": "ご相談内容",
       "messagePlaceholder": "プロジェクトの概要やお困りごとをご記入ください",
-      "agree": "Questsからのメールの受信に同意します",
+      "agree": "{company}からのメールの受信に同意します",
       "mailSubject": "お問い合わせ",
       "mailerTitle": "メールソフトを選択",
       "mailerDescription": "ご利用のメールサービスを選んでください。入力内容が反映された作成画面が開きます。",
@@ -279,7 +282,7 @@
       },
       "services": {
         "title": "2. サービス内容",
-        "text": "Questsは、ITコンサルティング、システム開発、関連サービスを提供します。当社は、サービス内容を変更・終了する権利を有します。"
+        "text": "{company}は、ITコンサルティング、システム開発、関連サービスを提供します。当社は、サービス内容を変更・終了する権利を有します。"
       },
       "liability": {
         "title": "3. 責任の制限",
@@ -294,6 +297,6 @@
     "legal": "規約",
     "privacyPolicy": "プライバシーポリシー",
     "termsOfService": "利用規約",
-    "copyrightSuffix": "Quests. All rights reserved."
+    "copyrightSuffix": "{company}. All rights reserved."
   }
 }

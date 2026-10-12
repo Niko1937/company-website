@@ -5,6 +5,7 @@
   const DEFAULT_LANG = 'en';
   const STORAGE_KEY = 'preferredLang';
   const PHRASE_SCOPE = 'h1, h2, h3, h4, [data-phrase]';
+  const DEFAULT_COMPANY = 'Quests';
 
   function detectLangFromPath() {
     const path = window.location.pathname;
@@ -56,7 +57,17 @@
   async function fetchTranslations(lang) {
     const res = await fetch(localesUrl(lang), { cache: 'no-cache' });
     if (!res.ok) throw new Error(`Failed to load ${lang}.json: ${res.status}`);
-    return res.json();
+    return fillCompanyName(await res.json());
+  }
+
+  // Replaces {company} in every translation string with the company name from site-config.js.
+  function fillCompanyName(node) {
+    const name = (window.siteConfig && window.siteConfig.get('companyName')) || DEFAULT_COMPANY;
+    const fill = v => typeof v === 'string' ? v.split('{company}').join(name)
+      : Array.isArray(v) ? v.map(fill)
+      : v && typeof v === 'object' ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, fill(x)]))
+      : v;
+    return fill(node);
   }
 
   function applyTranslations(translations) {

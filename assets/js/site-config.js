@@ -3,4 +3,6 @@
 window.SITE_CONFIG = {
   // Offices に Quests Ltd.（Marshall）を表示するか
   showMarshallOffice: true,
+  // LP に表示する法人名（"Quests" または "Quests Bay"）。Offices の正式名称は変わりません
+  companyName: "Quests",
 };

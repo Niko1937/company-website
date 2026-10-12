@@ -117,7 +117,6 @@
 - [x] en "What We Bring" から "Our team includes cloud-certified engineers and patent holders." を削除（JSON と HTML のフォールバック）
 
 ## LP写真の再生成と差し替え
-- [x] 生成スクリプト・候補画像はリポジトリ外（scratchpad）に置く。キーは `../Questia/.env` から実行時にメモリへ読み込むだけで、表示・保存しない
 - [x] `.gitignore` に `.env` / `.env.*` を追加
 - [x] 12枠 × 4パターン（方向性A×2 + B×2）を gpt-image-1.5（high, 1536x1024）で生成
 - [x] 比較ギャラリーでユーザーが選択
@@ -161,3 +160,9 @@
 - [x] `scripts/build_icons.py` から一式を作り直せるようにした
 - Hero 背景は検討の結果、現状（hero-R3）を維持
 - [x] ロゴ関連の全ファイルを `_sources/brand/` に集約（正本）。サイトで使わない `images/brand/logo.svg` / `logo-white.svg` を削除し、サイトで使う5ファイルだけを `build_icons.py` がコピーして公開する形に変更。READMEも更新
+
+## 法人名の表記を設定で切り替え（companyName）
+- [x] `site-config.js` に `companyName`（"Quests" / "Quests Bay"）を追加
+- [x] 翻訳JSONの法人名を `{company}` に置き換え（ページタイトル、About の見出し・本文・alt、フォームの入力例・同意文、利用規約、著作権表示）。ヘッダー・フッターの社名も翻訳キー `brand.name` 経由に。Offices の正式名称は対象外
+- [x] `i18n.js` で翻訳読み込み時に `{company}` を設定値へ置換（テキスト・HTML・属性・タイトル・`i18n.t()` すべてに効く）。未設定時は "Quests"
+- 検証（headless Chrome、site-config.js の応答を差し替え）: "Quests Bay" / "Quests" / 設定ファイルなし × en/ja で全箇所に正しい法人名、Offices は不変、`{company}` の残りなし、ページ内の言語切り替えでも維持、ヘッダーは 360〜1280px で重なりなし、JSエラーなし
