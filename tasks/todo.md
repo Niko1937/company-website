@@ -140,3 +140,23 @@
 - [x] README に「画像の管理」節を追加
 - 検証（headless Chrome）: ja 1440px（1x）/ en 1440px（2x）/ en 390px（3x）で全11枚が表示、等倍ではサービスに 600px の WebP、Retina では 1200px が選ばれる。Hero は WebP を読み込み。alt が言語に追従、ファビコン 200、旧 `images/photos/` への参照0件、JSエラーなし、レイアウトは変更前と同じ
 - [x] 元画像を `_sources/photos/`（`_` 始まりで Pages 非公開）に、生成時の解像度 1536×1024 のまま品質95の JPEG で保存（12枚・約5.8MB）。生成プロンプトを `prompts.md` に記録（秘密情報なし）。README の手順も元画像起点に更新
+
+## ロゴの刷新（C5 Drop）
+- [x] 6案 → B/C のバリエーション → B1/C5 のバリエーションを提示し、ユーザーが C5（外径の半径40・角10・穴20 = 4:2:1）を選定。黄金比版（穴15.3/24.7・角9.4）とも比較し、C5 を維持
+- [x] `images/brand/logo.svg` / `logo-white.svg` を新ロゴに置き換え（viewBox を 10..90 に切り詰め）、ダークモード対応の `favicon.svg` を追加
+- [x] `scripts/build_icons.py`（Pillow で描画）で `favicon.ico`（16/32/48）・`apple-touch-icon.png`（180）・`icon-192/512.png` を生成。`site.webmanifest` を追加し、3つの HTML の head を更新
+- 検証: 全アイコンが 200 で配信、マニフェストは JSON として正しい。プレビューで 16px・32px の輪郭、iOS の角丸・Android の円形マスク内に収まること、ダークモードのタブでの白版を確認
+- [x] ヘッダー・フッターにマークを付けたが、マークと「Quests」の Q が似ていて社名が読みづらいため、ユーザーの判断で取り下げ（元の文字だけの表示に戻した）。ロゴはファビコン・アプリアイコンでのみ使用
+
+## 文章から「AIっぽさ」を除く
+- [x] エムダッシュを全廃（英語の文章7か所、日本語タイトル、地図の title 属性）
+- [x] en: About サブ、強みの最終文（truly / don't stop at）、サービスのリード（journey＋コロン）、開発の短い説明・詳細、事例のリード、Hero サブの断片、"Big-Tech" → "Big Tech" に統一
+- [x] ja: 事例のリード（「〜へ。」の重複）、運用の短い説明（3語の並び）、強みの最終文（からこそ／伴走）、開発の詳細と Questsの設立の一文（ユーザー指定の文言）、著作権表示のピリオド
+- 検証: HTML の英語フォールバックと en.json の不一致0件。Hero の見出し・サブは en/ja とも 1024px 以上で2行、はみ出しなし
+- [x] en のフォームの入力例を日本語版に合わせた（John Doe / you@example.com / Quests Ltd.）
+
+## ブランド素材一式
+- [x] `_sources/brand/` に、ロゴ SVG（紺・白）、背景透明の 2048px PNG（紺・白）、LinkedIn 用ロゴ 400×400、LinkedIn カバー 1128×191（Hero 背景の中央の帯）を配置
+- [x] ロゴの意味・ファイル一覧・仕様（寸法・色）・使い方のルール（余白、最小サイズ、社名の横に並べない）を `_sources/brand/README.md` に記載
+- [x] `scripts/build_icons.py` から一式を作り直せるようにした
+- Hero 背景は検討の結果、現状（hero-R3）を維持

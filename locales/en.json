@@ -12,28 +12,28 @@
   "hero": {
     "titleLine1": "Pioneering the Future",
     "titleLine2Prefix": "with ",
-    "titleHighlight": "Big-Tech Expertise <span class=\"text-white\">at</span> Startup Speed",
-    "subtitle": "AI, data, and cloud solutions—delivered end to end by engineers with experience at Big-Tech like AWS, Google, and Microsoft. Flexible terms. Fast results.",
+    "titleHighlight": "Big Tech Expertise <span class=\"text-white\">at</span> Startup Speed",
+    "subtitle": "AI, data, and cloud solutions, delivered end to end by engineers with experience at Big Tech companies like AWS, Google, and Microsoft, with flexible terms and fast results.",
     "scroll": "Explore"
   },
   "about": {
     "title": "About Quests",
-    "subtitle": "A senior team from global tech leaders, focused on results—not overhead.",
+    "subtitle": "A senior team from global tech leaders, built to deliver results.",
     "missionTitle": "Why Quests",
     "missionText": "Top tech firms often take only large projects and lock clients into rigid contracts. We started Quests to change that. You get the same caliber of expertise, with flexible terms and fast turnaround.",
     "expertiseTitle": "What We Bring",
-    "expertiseText": "Engineers from AWS, Google, Microsoft, and other tech leaders work alongside consultants from the Big Four and other top firms. One team takes you from strategy to implementation, fast. Because engineering is our foundation, we don't stop at recommendations. We stay with you until your business has truly changed.",
+    "expertiseText": "Engineers from AWS, Google, Microsoft, and other tech leaders work alongside consultants from the Big Four and other top firms. One team takes you from strategy to implementation, fast. Because engineering is our foundation, we go beyond recommendations and see the change through.",
     "imageAlt": "The Quests team in our Singapore office"
   },
   "services": {
     "title": "Our Services",
-    "subtitle": "One partner for your entire IT journey: plan, build, run, and grow your team.",
+    "subtitle": "One partner to plan, build, and run your IT, and to grow your own team.",
     "viewDetails": "View details",
     "hideDetails": "Hide details",
     "items": {
       "consulting": {
         "title": "Strategy & Consulting",
-        "short": "Align technology with your business goals—and get a clear roadmap to get there.",
+        "short": "Align technology with your business goals and get a clear roadmap to reach them.",
         "details": "We assess your current systems, pinpoint what to fix first, and build a practical roadmap you can act on.",
         "bullets": [
           "Digital strategy",
@@ -46,8 +46,8 @@
       },
       "system": {
         "title": "Cloud & AI Development",
-        "short": "Custom systems built on modern cloud and AI. Secure, scalable, and ready to grow.",
-        "details": "We design and build software that solves your specific challenges, combining deep engineering with a clear grasp of your business.",
+        "short": "Custom systems on modern cloud and AI, built to scale as you grow.",
+        "details": "We look at your challenges from both the technology and the business side, then build the right software and infrastructure.",
         "bullets": [
           "Custom applications",
           "Cloud-native architecture",
@@ -59,8 +59,8 @@
       },
       "operations": {
         "title": "Infrastructure Operations",
-        "short": "Keep your systems fast, secure, and always on—so you can focus on your business.",
-        "details": "We monitor, secure, and optimize your infrastructure around the clock—and plan for recovery before you need it.",
+        "short": "Keep your systems fast, secure, and always on, so you can focus on your business.",
+        "details": "We monitor, secure, and optimize your infrastructure around the clock. We also plan for recovery before you need it.",
         "bullets": [
           "Cloud infrastructure",
           "24/7 monitoring & support",
@@ -87,7 +87,7 @@
   },
   "cases": {
     "title": "Case Studies",
-    "subtitle": "Real challenges. Measurable results.",
+    "subtitle": "How we've helped clients cut costs and move faster.",
     "viewDetails": "View details",
     "hideDetails": "Hide details",
     "filters": {
@@ -185,15 +185,15 @@
   "contact": {
     "title": "Let's Talk",
     "subtitleLine1": "Have a project in mind?",
-    "subtitleLine2": "Tell us about it—we'll get back to you quickly.",
+    "subtitleLine2": "Tell us about it. We'll get back to you quickly.",
     "form": {
       "heading": "Send Us a Message",
       "name": "Name",
-      "namePlaceholder": "Jane Smith",
+      "namePlaceholder": "John Doe",
       "email": "Email",
-      "emailPlaceholder": "jane@company.com",
+      "emailPlaceholder": "you@example.com",
       "company": "Company",
-      "companyPlaceholder": "Acme Inc.",
+      "companyPlaceholder": "Quests Ltd.",
       "budget": "Budget",
       "budgetPlaceholder": "Select a budget range",
       "budgetOptions": {
@@ -288,8 +288,8 @@
     }
   },
   "footer": {
-    "taglineLine1": "AI, data, and cloud—delivered end to end.",
-    "taglineLine2": "Big-tech expertise, without the big-firm overhead.",
+    "taglineLine1": "AI, data, and cloud, delivered end to end.",
+    "taglineLine2": "Big Tech expertise, without the big-firm overhead.",
     "quickLinks": "Quick Links",
     "legal": "Legal",
     "privacyPolicy": "Privacy Policy",
