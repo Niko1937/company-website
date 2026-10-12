@@ -39,16 +39,16 @@ SPA構成で、軽量かつ多言語（英語・日本語）に対応してい�
 │       ├── site-config.js  表示設定の値（後述「表示設定」）
 │       └── config.js       表示設定を画面に反映するロジック
 ├── images/                 静的画像（後述「画像の管理」）
-│   ├── brand/              ロゴ・ファビコン・アプリアイコン（後述「ロゴとアイコン」）
+│   ├── brand/              サイトで使うファビコン・アプリアイコン（正本は _sources/brand/ からのコピー）
 │   ├── hero/               Hero 背景
 │   ├── about/              About の写真
 │   ├── services/           サービスカードの写真（ファイル名 = services.items のキー）
 │   └── cases/              導入事例カードの写真（ファイル名 = cases.items のキー）
 ├── _sources/photos/        写真の元画像（生成時の解像度・高画質JPEG）と生成プロンプト。`_` 始まりのため GitHub Pages では非公開
-├── _sources/brand/         ロゴの資料・SNS 用ファイル一式とロゴの意味（同フォルダの README.md 参照）。GitHub Pages では非公開
+├── _sources/brand/         ロゴに関する全ファイルの正本（資料・SNS 用、サイト用）とロゴの意味（同フォルダの README.md）。GitHub Pages では非公開
 ├── scripts/
 │   ├── optimize_images.py  写真を Web 用（JPEG/WebP・2サイズ）に変換するスクリプト
-│   └── build_icons.py      ロゴから favicon.ico・アプリアイコンを作るスクリプト
+│   └── build_icons.py      ロゴの PNG / ICO を作り、サイト用のファイルを公開場所へコピーするスクリプト
 ├── favicon.ico             旧ブラウザ用ファビコン（16/32/48px）
 ├── apple-touch-icon.png    iPhone のホーム画面用アイコン（180px）
 ├── site.webmanifest        Android のホーム画面用の設定
@@ -148,17 +148,18 @@ window.SITE_CONFIG = {
 
 ロゴマークは「円 + 右下の角 + 中心の穴」でできた Q の形。100単位の格子で、外側の円の半径 40・角の丸み 10・穴の半径 20（4 : 2 : 1）。16px・32px でも各寸法が整数ピクセルになるため、小さいサイズでも輪郭がくっきり出る。
 
-| ファイル | 用途 |
+ロゴに関するファイルは、**すべて `_sources/brand/` にある**（正本）。サイトの公開場所には、サイトで実際に使う次の5ファイルだけをコピーして置く。
+
+| サイトでの配置 | 用途 |
 |---------|------|
-| `images/brand/logo.svg` / `logo-white.svg` | ロゴマーク（紺 #232F3E / 白）。ロゴの正本 |
-| `images/brand/favicon.svg` | ファビコン（ブラウザのダークモードでは白に切り替わる） |
+| `/images/brand/favicon.svg` | ファビコン（ブラウザのダークモードでは白に切り替わる） |
 | `/favicon.ico` | SVG ファビコン非対応のブラウザ用（16/32/48px） |
 | `/apple-touch-icon.png` | iPhone のホーム画面用（紺の背景に白のマーク） |
-| `images/brand/icon-192.png` / `icon-512.png` | Android のホーム画面用（`site.webmanifest` から参照） |
+| `/images/brand/icon-192.png` / `icon-512.png` | Android のホーム画面用（`site.webmanifest` から参照） |
 
-資料・LinkedIn などで使うロゴ一式と、ロゴの意味・使い方のルールは `_sources/brand/`（README.md）にまとめている。
+資料・LinkedIn などで使うロゴ一式と、ロゴの意味・使い方のルールは `_sources/brand/README.md` を参照。
 
-ロゴを変更したら、SVG を更新したうえで `python3 scripts/build_icons.py`（Pillow が必要）を実行し、PNG / ICO（`_sources/brand/` の一式を含む）を作り直す。スクリプト内の寸法（`GEOMETRY`）も SVG と合わせること。
+ロゴを変更したら、`_sources/brand/` の SVG を更新したうえで `python3 scripts/build_icons.py`（Pillow が必要）を実行する。PNG / ICO が作り直され、サイト用のファイルが公開場所へコピーされる。スクリプト内の寸法（`GEOMETRY`）も SVG と合わせること。サイト側のコピーは直接編集しない。
 
 ### コンテンツ更新時の注意
 

@@ -1,6 +1,7 @@
 # Quests ブランド素材
 
-Quests のロゴマークと、資料・SNS で使うためのファイル一式です。
+Quests のロゴに関するファイルは、**すべてこのフォルダにあります**（ここが正本です）。
+サイトで使うファイルだけ、`scripts/build_icons.py` がこのフォルダから公開場所へコピーします（下の表の「サイトでの配置」）。
 このフォルダは `_` で始まるため、GitHub Pages のサイトでは公開されません（リポジトリ上では閲覧できます）。
 
 ---
@@ -30,6 +31,8 @@ Quests のロゴマークは、頭文字「Q」をもとにした、円とひと
 
 ## ファイル一覧
 
+**資料・SNS 用**
+
 | ファイル | 内容 | 主な用途 |
 |---|---|---|
 | `logo.svg` | 紺のマーク・背景透明（ベクター） | PowerPoint（Microsoft 365）、Keynote、Figma、印刷物。**最優先で使うファイル** |
@@ -39,7 +42,24 @@ Quests のロゴマークは、頭文字「Q」をもとにした、円とひと
 | `linkedin-logo-400.png` | 紺の背景に白のマーク・400×400px | **LinkedIn の会社ロゴ**（推奨サイズちょうど）。その他 SNS のアイコン |
 | `linkedin-cover-1128x191.png` | サイトの Hero 背景から作ったカバー画像・1128×191px | LinkedIn の会社ページのカバー画像 |
 
-サイトで使っているファイル（ファビコン・ホーム画面用アイコン）は、`/images/brand/`、`/favicon.ico`、`/apple-touch-icon.png` にあります。
+**サイト用**（このフォルダが正本。サイトにはコピーを配置）
+
+| ファイル | 内容 | サイトでの配置 |
+|---|---|---|
+| `favicon.svg` | ファビコン（ブラウザのダークモードでは白に切り替わる） | `/images/brand/favicon.svg` |
+| `favicon.ico` | 旧ブラウザ用ファビコン（16/32/48px） | `/favicon.ico` |
+| `apple-touch-icon.png` | iPhone のホーム画面用・180×180px | `/apple-touch-icon.png` |
+| `icon-192.png` / `icon-512.png` | Android のホーム画面用（`/site.webmanifest` から参照） | `/images/brand/` |
+
+`/favicon.ico` と `/apple-touch-icon.png` は、ブラウザがサイトのルートを直接探しに来るため、ルートに置いています。
+
+---|---|---|
+| `logo.svg` | 紺のマーク・背景透明（ベクター） | PowerPoint（Microsoft 365）、Keynote、Figma、印刷物。**最優先で使うファイル** |
+| `logo-white.svg` | 白のマーク・背景透明（ベクター） | 暗い背景のスライド・資料 |
+| `logo-navy-2048.png` | 紺のマーク・背景透明・2048×2048px | SVG を扱えないソフト（古い PowerPoint、Word、メールの署名など） |
+| `logo-white-2048.png` | 白のマーク・背景透明・2048×2048px | 同上（暗い背景用） |
+| `linkedin-logo-400.png` | 紺の背景に白のマーク・400×400px | **LinkedIn の会社ロゴ**（推奨サイズちょうど）。その他 SNS のアイコン |
+| `linkedin-cover-1128x191.png` | サイトの Hero 背景から作ったカバー画像・1128×191px | LinkedIn の会社ページのカバー画像 |
 
 ---
 
@@ -72,10 +92,11 @@ Quests のロゴマークは、頭文字「Q」をもとにした、円とひと
 
 ## ファイルの作り直し
 
-ロゴの形を変える場合は、`/images/brand/logo.svg` と `logo-white.svg` を更新し、リポジトリのルートで次を実行します（Pillow が必要: `pip install pillow`）。
+ロゴの形を変える場合は、このフォルダの `logo.svg`・`logo-white.svg`・`favicon.svg` を更新し、リポジトリのルートで次を実行します（Pillow が必要: `pip install pillow`）。
 
 ```bash
 python3 scripts/build_icons.py
 ```
 
-このフォルダのファイルと、サイトのファビコン・アプリアイコンがすべて作り直されます。スクリプト内の寸法（`GEOMETRY`）も SVG と合わせてください。
+このフォルダの PNG / ICO がすべて作り直され、サイト用のファイルが公開場所へコピーされます。スクリプト内の寸法（`GEOMETRY`）も SVG と合わせてください。
+**サイト側のコピーを直接編集しないこと**（次回の実行で上書きされます）。

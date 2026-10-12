@@ -160,3 +160,4 @@
 - [x] ロゴの意味・ファイル一覧・仕様（寸法・色）・使い方のルール（余白、最小サイズ、社名の横に並べない）を `_sources/brand/README.md` に記載
 - [x] `scripts/build_icons.py` から一式を作り直せるようにした
 - Hero 背景は検討の結果、現状（hero-R3）を維持
+- [x] ロゴ関連の全ファイルを `_sources/brand/` に集約（正本）。サイトで使わない `images/brand/logo.svg` / `logo-white.svg` を削除し、サイトで使う5ファイルだけを `build_icons.py` がコピーして公開する形に変更。READMEも更新
