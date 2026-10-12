@@ -53,6 +53,7 @@ SPA構成で、軽量かつ多言語（英語・日本語）に対応してい�
 ├── apple-touch-icon.png    iPhone のホーム画面用アイコン（180px）
 ├── site.webmanifest        Android のホーム画面用の設定
 ├── CNAME                   GitHub Pagesのカスタムドメイン設定
+├── _config.yml             GitHub Pages で公開しないファイルの設定（CLAUDE.md・README.md・scripts/・tasks/）
 ├── README.md               このファイル
 └── services/               別サービスの情報置き場（後述、LP関連の情報を入れないこと）
 ```
