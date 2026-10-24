@@ -10,6 +10,7 @@
   "nav": {
     "about": "About",
     "services": "Services",
+    "solutions": "Solutions",
     "cases": "Case Studies",
     "contact": "Contact Us"
   },
@@ -88,6 +89,16 @@
         "imageAlt": "A senior engineer mentoring a colleague at a desk"
       }
     }
+  },
+  "solutions": {
+    "title": "Our Solutions",
+    "subtitle": "Products we build and run ourselves. Watch them in action.",
+    "business": "For Business",
+    "consumer": "For Consumers",
+    "watchDemo": "Watch demo",
+    "prev": "Previous",
+    "next": "Next",
+    "close": "Close"
   },
   "cases": {
     "title": "Case Studies",

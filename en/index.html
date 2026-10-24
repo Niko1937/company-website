@@ -20,9 +20,11 @@
 <script>tailwind.config={theme:{extend:{colors:{primary:'#0047AB',secondary:'#00264d'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/budoux@0.8.4/bundle/budoux-ja.min.js" defer></script>
-<script src="/assets/js/site-config.js?v=2"></script>
+<script src="/assets/js/site-config.js?v=3"></script>
 <script src="/assets/js/config.js?v=1"></script>
+<script src="/assets/js/solutions.js?v=1"></script>
 <script src="/assets/js/i18n.js?v=10" defer></script>
+<script src="/assets/js/section-links.js?v=1" defer></script>
 <style>
 :where([class^="ri-"])::before { content: "\f3c2"; }
 body {
@@ -189,6 +191,36 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }
+section[id] { scroll-margin-top: 80px; }
+#hero { scroll-margin-top: 0; }
+html.solutions-open { overflow: hidden; }
+.solutions-layers { display: flex; flex-direction: column; gap: 3rem; }
+#solutions { --solutions-gutter: 1rem; padding: var(--solutions-gutter); background: #fff; scroll-margin-top: 52px; }
+@media (min-width: 1024px) { #solutions { --solutions-gutter: 1.5rem; } }
+.solutions-panel { background: #1F1F1F; border-radius: 24px; padding: 4rem 0; overflow-x: clip; }
+@media (min-width: 1024px) { .solutions-panel { border-radius: 32px; padding: 5rem 0 4rem; } }
+.solutions-arrows { display: flex; justify-content: flex-end; gap: .75rem; margin-top: 1rem; }
+.solutions-arrows[hidden] { display: none; }
+.solutions-arrow { width: 2.75rem; height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; border-radius: 9999px; background: rgba(255,255,255,.12); color: #fff; font-size: 1.25rem; transition: background-color .2s, opacity .2s; }
+.solutions-arrow:hover:not(:disabled) { background: rgba(255,255,255,.22); }
+.solutions-arrow:disabled { opacity: .35; cursor: default; }
+.solutions-track { display: flex; gap: 1.5rem; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; padding: .5rem 1.5rem .5rem 0; margin-right: calc((100% - 100vw) / 2 + var(--solutions-gutter)); scrollbar-width: none; }
+.solutions-track::-webkit-scrollbar { display: none; }
+.solution-card { flex: 0 0 min(72vw, 520px); scroll-snap-align: start; display: flex; flex-direction: column; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 16px; overflow: hidden; transition: transform .3s ease, border-color .3s ease, background-color .3s ease; }
+.solution-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.07); }
+@media (min-width: 768px) { .solution-card { flex-basis: min(42vw, 520px); } }
+@media (min-width: 1024px) { .solution-card { flex-basis: min(38vw, 520px); } }
+.solution-thumb { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; overflow: hidden; cursor: pointer; }
+.solution-image, .solution-preview { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.solution-preview { opacity: 0; transition: opacity .4s ease; }
+.solution-preview.is-playing { opacity: 1; }
+.solution-play { position: absolute; left: 50%; top: 50%; width: 4rem; height: 4rem; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; border-radius: 9999px; background: rgba(255,255,255,.92); color: #0047AB; font-size: 2rem; box-shadow: 0 8px 24px rgba(0,0,0,.35); transition: transform .3s ease; }
+.solution-thumb:hover .solution-play, .solution-thumb:focus-visible .solution-play { transform: translate(-50%, -50%) scale(1.08); }
+.solution-body { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
+.solution-title { font-size: 1.25rem; font-weight: 600; color: #fff; margin-bottom: .5rem; }
+.solution-desc { color: #d1d5db; white-space: pre-line; margin-bottom: 1rem; }
+.solution-watch { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: .375rem; color: #93c5fd; font-weight: 500; }
+.solution-watch:hover { text-decoration: underline; }
 </style>
 </head>
 <body class="bg-white">
@@ -197,9 +229,10 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <div class="container mx-auto px-6 py-2 flex justify-between items-center">
 <a href="#hero" class="brand text-2xl lg:text-3xl font-['Inter'] font-bold" data-i18n="brand.name">Quests</a>
 <nav class="hidden lg:flex items-center space-x-8">
-<a href="#services" class="nav-link transition-colors" data-i18n="nav.services">Services</a>
-<a href="#cases" class="nav-link transition-colors" data-i18n="nav.cases">Case Studies</a>
 <a href="#about" class="nav-link transition-colors" data-i18n="nav.about">About</a>
+<a href="#services" class="nav-link transition-colors" data-i18n="nav.services">Services</a>
+<a href="#solutions" class="nav-link transition-colors" data-solutions data-i18n="nav.solutions">Solutions</a>
+<a href="#cases" class="nav-link transition-colors" data-i18n="nav.cases">Case Studies</a>
 <a href="#contact" class="nav-link transition-colors" data-i18n="nav.contact">Contact Us</a>
 <div class="lang-switcher pl-5 ml-1">
 <i class="ri-global-line text-base"></i>
@@ -220,9 +253,10 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <!-- Mobile Menu -->
 <div id="mobileMenu" class="hidden lg:hidden shadow-lg absolute w-full">
 <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
-<a href="#services" class="text-gray-700 hover:text-primary transition-colors py-2" data-i18n="nav.services">Services</a>
-<a href="#cases" class="text-gray-700 hover:text-primary transition-colors py-2" data-i18n="nav.cases">Case Studies</a>
 <a href="#about" class="text-gray-700 hover:text-primary transition-colors py-2" data-i18n="nav.about">About</a>
+<a href="#services" class="text-gray-700 hover:text-primary transition-colors py-2" data-i18n="nav.services">Services</a>
+<a href="#solutions" class="text-gray-700 hover:text-primary transition-colors py-2" data-solutions data-i18n="nav.solutions">Solutions</a>
+<a href="#cases" class="text-gray-700 hover:text-primary transition-colors py-2" data-i18n="nav.cases">Case Studies</a>
 <a href="#contact" class="text-gray-700 hover:text-primary transition-colors py-2" data-i18n="nav.contact">Contact Us</a>
 </div>
 </div>
@@ -384,6 +418,35 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <button class="service-toggle text-primary font-medium flex items-center gap-1 hover:underline">
 <span class="service-toggle-label" data-i18n="services.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
 </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Solutions Section -->
+<section id="solutions" data-solutions class="section-fade">
+<div class="solutions-panel">
+<div class="container mx-auto px-6">
+<div class="text-center mb-10">
+<h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-i18n="solutions.title">Our Solutions</h2>
+<p class="text-lg text-gray-300 max-w-3xl mx-auto" data-phrase data-i18n="solutions.subtitle">Products we build and run ourselves. Watch them in action.</p>
+</div>
+<div class="solutions-layers">
+<div data-solutions-layer="business">
+<h3 class="mb-4 text-xl md:text-2xl font-semibold text-white" data-i18n="solutions.business">For Business</h3>
+<div class="solutions-track" data-solutions-track="business"></div>
+<div class="solutions-arrows" data-solutions-arrows hidden>
+<button type="button" class="solutions-arrow" data-solutions-prev aria-label="Previous" data-i18n-attr-aria-label="solutions.prev"><i class="ri-arrow-left-line" aria-hidden="true"></i></button>
+<button type="button" class="solutions-arrow" data-solutions-next aria-label="Next" data-i18n-attr-aria-label="solutions.next"><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
+</div>
+</div>
+<div data-solutions-layer="consumer">
+<h3 class="mb-4 text-xl md:text-2xl font-semibold text-white" data-i18n="solutions.consumer">For Consumers</h3>
+<div class="solutions-track" data-solutions-track="consumer"></div>
+<div class="solutions-arrows" data-solutions-arrows hidden>
+<button type="button" class="solutions-arrow" data-solutions-prev aria-label="Previous" data-i18n-attr-aria-label="solutions.prev"><i class="ri-arrow-left-line" aria-hidden="true"></i></button>
+<button type="button" class="solutions-arrow" data-solutions-next aria-label="Next" data-i18n-attr-aria-label="solutions.next"><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
+</div>
 </div>
 </div>
 </div>
@@ -798,9 +861,10 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 <div class="flex-1">
 <h3 class="text-lg font-semibold mb-4" data-i18n="footer.quickLinks">Quick Links</h3>
 <ul class="space-y-3">
-<li><a href="#services" class="text-gray-400 hover:text-white transition-colors" data-i18n="nav.services">Services</a></li>
-<li><a href="#cases" class="text-gray-400 hover:text-white transition-colors" data-i18n="nav.cases">Case Studies</a></li>
 <li><a href="#about" class="text-gray-400 hover:text-white transition-colors" data-i18n="nav.about">About</a></li>
+<li><a href="#services" class="text-gray-400 hover:text-white transition-colors" data-i18n="nav.services">Services</a></li>
+<li data-solutions><a href="#solutions" class="text-gray-400 hover:text-white transition-colors" data-i18n="nav.solutions">Solutions</a></li>
+<li><a href="#cases" class="text-gray-400 hover:text-white transition-colors" data-i18n="nav.cases">Case Studies</a></li>
 <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors" data-i18n="nav.contact">Contact Us</a></li>
 </ul>
 </div>
@@ -1185,24 +1249,6 @@ lines.push(message);
 // Present the mail-service picker with the answers pre-filled
 const subject = tr('contact.form.mailSubject', 'Contact Inquiry');
 openMailerPicker(subject, lines.join('\n'));
-});
-});
-</script>
-<script id="smoothScrollScript">
-document.addEventListener('DOMContentLoaded', function() {
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-anchor.addEventListener('click', function (e) {
-e.preventDefault();
-const targetId = this.getAttribute('href');
-if (targetId === '#') return;
-const targetElement = document.querySelector(targetId);
-if (targetElement) {
-window.scrollTo({
-top: targetElement.offsetTop - 80, // Adjust for header height
-behavior: 'smooth'
-});
-}
-});
 });
 });
 </script>

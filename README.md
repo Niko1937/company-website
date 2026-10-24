@@ -40,7 +40,10 @@ SPA構成で、軽量かつ多言語（英語・日本語）に対応してい�
 │   └── js/
 │       ├── i18n.js         言語切替ロジック（依存ライブラリなし）
 │       ├── site-config.js  表示設定の値（後述「表示設定」）
-│       └── config.js       表示設定を画面に反映するロジック
+│       ├── config.js       表示設定を画面に反映するロジック
+│       ├── solutions.js    Solutions のデモ動画の表示・再生（後述「Solutions のデモ動画」）
+│       └── section-links.js  ページ内リンク（#services など）の移動と URL の更新（後述「セクションへのリンク」）
+├── videos/solutions/       （任意）Solutions のカードで流す短いループ映像。使うときに作成する
 ├── images/                 静的画像（後述「画像の管理」）
 │   ├── brand/              サイトで使うファビコン・アプリアイコン（正本は _sources/brand/ からのコピー）
 │   ├── hero/               Hero 背景
@@ -126,6 +129,7 @@ GitHub Pages は HTML に最大10分のキャッシュを付けるため、利�
 window.SITE_CONFIG = {
   showMarshallOffice: true,
   companyName: "Quests",
+  solutions: [ /* 後述「Solutions のデモ動画」 */ ],
 };
 ```
 
@@ -133,6 +137,7 @@ window.SITE_CONFIG = {
 |------|------|--------|
 | `showMarshallOffice` | Contact の Offices に Quests Ltd.（Marshall）を表示するか。`false` にすると非表示になり、PCの2列表示では空いた分だけ地図が縦に広がる | `true` |
 | `companyName` | LP に表示する法人名。`"Quests"` または `"Quests Bay"`。英語版・日本語版のすべてのセクション（ページタイトル、ヘッダー、About、フォーム、利用規約、フッター等）に反映される。**Offices の正式名称（Quests Bay Pte. Ltd. / Quests Ltd.）は変わらない** | `"Quests"` |
+| `solutions` | Solutions セクションに載せるデモ動画の一覧（後述「Solutions のデモ動画」）。表示する動画が 0 本ならセクションごと表示されない | `[]` |
 
 #### 仕組みと項目の追加方法
 
@@ -144,6 +149,60 @@ window.SITE_CONFIG = {
 - JSから値を読む場合は `window.siteConfig.get('key')` を使う。
 - 法人名を文言に入れるときは、翻訳JSONに法人名を直接書かず `{company}` と書く（例: `"About {company}"`）。`/assets/js/i18n.js` が読み込み時に `companyName` の値へ置き換える。Offices の正式名称のように、設定に関係なく固定したい名前は直接書く。
 - **注意:** 非表示はCSSで隠すだけなので、要素はHTMLソースに残る（開発者ツール等で見える）。また `site-config.js` 自体も公開ファイルなので、秘密情報は書かないこと。
+
+### Solutions のデモ動画
+
+Solutions セクション（Services と Cases の間。ページの中に浮かぶ、角の丸い暗いパネル）に、自社ソリューションのデモ動画を「法人向け」「個人向け」の2段で並べる。動画は `site-config.js` の `solutions` に書くだけで追加・変更・非表示にできる（HTML や翻訳JSONの編集は不要）。
+
+```js
+solutions: [
+  {
+    id: "ai-chatbot",            // 動画ごとのリンク名（#solutions-ai-chatbot）。英小文字・数字・ハイフン。重複不可
+    category: "business",        // "business"（法人向け）または "consumer"（個人向け）
+    show: true,                  // false にすると表示しない
+    video: { en: "AbCdEfGhIjK", ja: "LmNoPqRsTuV" },  // YouTube の動画 ID（11文字）
+    title: { en: "AI Chatbot", ja: "AIチャットボット" },
+    description: { en: "Answers customer questions 24/7.", ja: "お客様の質問に24時間回答します。" },  // 任意。\n で改行
+    preview: "/videos/solutions/ai-chatbot.mp4",      // 任意
+  },
+],
+```
+
+| 項目 | 内容 |
+|------|------|
+| `video` / `title` / `description` | 英語・日本語で別の値を設定できる。**片方の言語が空なら、もう片方の言語の値を表示する**（例: 日本語版の動画しかなければ、英語ページでも日本語版を流す）。両言語で同じなら `title: "Quests AI"` のように文字列1つでもよい |
+| YouTube の動画 ID | 動画の URL の `v=` の後ろ、または `youtu.be/` の後ろの11文字（`https://www.youtube.com/watch?v=AbCdEfGhIjK` なら `AbCdEfGhIjK`）。限定公開の動画も使える |
+| `preview` | カードで流す数秒の無音ループ映像。`/videos/solutions/` に置いた MP4（または WebM）を指定する。数MB以内にすること（GitHub Pages は1ファイル100MBまで）。画面に入ったときだけ再生し、「視差効果を減らす」設定の利用者には再生しない。未指定ならサムネイルのみ |
+
+**表示のルール**
+
+- 動画が 0 本の段（法人向け・個人向け）は見出しごと隠れる。両方 0 本ならセクションと、ヘッダー・スマホメニュー・フッターの「Solutions」も隠れる。
+- 1段のカードが画面に収まらないとき（PC では3本以上、スマホでは2本以上）は、次のカードの一部が右端からのぞき、列の下の ← → ボタンとスワイプで送れる。収まるときは矢印を出さない。
+- カードには YouTube のサムネイルを表示する（`i.ytimg.com` から読み込み）。プレーヤーはクリックされてから読み込むため、ページは重くならない。再生は `youtube-nocookie.com` の埋め込みで、画面に重なるウィンドウ（Esc・背景クリックで閉じる）で行う。
+- 書き方に誤りがある項目（ID の形式、カテゴリ、動画 ID、タイトルなし、重複など）は表示されず、ブラウザのコンソールに `[solutions] Skipped solutions[番号]: check ...` と理由が出る。追加後に表示されないときはコンソールを確認する。
+- タイトル・説明は文字としてそのまま表示される（HTML は使えない）。
+- 段見出し・セクション見出し・ボタン名は翻訳JSONの `solutions.*` で管理する。
+
+**注意**
+
+- `site-config.js` は公開ファイルなので、`show: false` の動画も ID は誰でも見られる。**公開前の動画は書かないこと。** また、限定公開の動画も URL を知っていれば誰でも見られるため、社外秘の画面は映さない。
+- YouTube は、収益化していない動画にも広告を表示することがある。広告を確実に避けたい場合は、Vimeo などへの移行を検討する（`solutions.js` の埋め込み URL の変更が必要）。
+- 変更は push 後、利用者のブラウザでは最大約10分古いまま見えることがある（GitHub Pages のキャッシュ）。
+
+### セクションへのリンク
+
+各セクションには ID があり、URL で直接開ける。メニューを押したときも、アドレスバーの URL がこの形になる（ブラウザの履歴は増やさないので、「戻る」1回で前のサイトに戻る）。
+
+| URL の例 | 開いたときの表示 |
+|------|------|
+| `https://quests.it.com/ja/#services` | Services（同様に `#about` `#solutions` `#cases` `#contact` `#privacy-policy` `#terms-of-service`） |
+| `https://quests.it.com/ja/#solutions-<id>` | Solutions を表示し、`id` の動画の再生ウィンドウを開いた状態にする。その動画が非表示・削除済みなら Solutions を表示 |
+| `https://quests.it.com/#solutions` | ブラウザの言語に合わせて `/en/` または `/ja/` に移り、`#solutions` は引き継ぐ |
+
+- 外部から開いたときは、スクロールの動きなしに最初からそのセクションを表示する。翻訳の反映や画像の読み込みで位置がずれた場合も、利用者がまだ操作していなければ位置を合わせ直す。
+- 動画ごとのリンクを外部から開いた場合、ブラウザの方針で自動再生が止められ、再生ボタンを押す状態で表示されることがある。
+- 固定ヘッダーに見出しが隠れないよう、移動位置は CSS の `scroll-margin-top` で調整している（Solutions は角の丸い暗いパネルの上の余白がヘッダーのすぐ下に来る位置）。
+- 言語を切り替えても `#...` は保たれる。
 
 ### 画像の管理
 

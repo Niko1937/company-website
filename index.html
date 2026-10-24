@@ -25,9 +25,9 @@
       var lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
       if (lang.indexOf('ja') === 0) target = 'ja';
     }
-    location.replace('/' + target + '/');
+    location.replace('/' + target + '/' + location.hash);
   } catch (e) {
-    location.replace('/en/');
+    location.replace('/en/' + location.hash);
   }
 })();
 </script>

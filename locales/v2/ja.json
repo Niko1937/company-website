@@ -10,6 +10,7 @@
   "nav": {
     "about": "会社情報",
     "services": "サービス",
+    "solutions": "ソリューション",
     "cases": "導入事例",
     "contact": "お問い合わせ"
   },
@@ -88,6 +89,16 @@
         "imageAlt": "デスクで若手エンジニアを指導するベテランエンジニア"
       }
     }
+  },
+  "solutions": {
+    "title": "ソリューション",
+    "subtitle": "自社で開発・提供するソリューションを、デモ動画でご覧ください。",
+    "business": "法人向け",
+    "consumer": "個人向け",
+    "watchDemo": "デモを見る",
+    "prev": "前へ",
+    "next": "次へ",
+    "close": "閉じる"
   },
   "cases": {
     "title": "導入事例",
