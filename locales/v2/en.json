@@ -109,7 +109,8 @@
       "all": "All",
       "ai": "AI Solutions",
       "analytics": "Analytics",
-      "modernization": "Modernization"
+      "modernization": "Modernization",
+      "label": "Filter case studies"
     },
     "labels": {
       "challenge": "Challenge",
@@ -195,7 +196,11 @@
         ],
         "imageAlt": "Engineers working on a system migration in a server room"
       }
-    }
+    },
+    "prev": "Previous",
+    "next": "Next",
+    "close": "Close",
+    "cta": "Discuss a similar project"
   },
   "contact": {
     "title": "Let's Talk",

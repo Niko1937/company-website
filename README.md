@@ -42,7 +42,8 @@ SPA構成で、軽量かつ多言語（英語・日本語）に対応してい�
 │       ├── site-config.js  表示設定の値（後述「表示設定」）
 │       ├── config.js       表示設定を画面に反映するロジック
 │       ├── solutions.js    Solutions のデモ動画の表示・再生（後述「Solutions のデモ動画」）
-│       └── section-links.js  ページ内リンク（#services など）の移動と URL の更新（後述「セクションへのリンク」）
+│       ├── section-links.js  ページ内リンク（#services など）の移動と URL の更新（後述「セクションへのリンク」）
+│       └── cases.js        Case Studies の絞り込みと、詳細の重ね表示（`#cases-<id>`）
 ├── videos/solutions/       （任意）Solutions のカードで流す短いループ映像。使うときに作成する
 ├── images/                 静的画像（後述「画像の管理」）
 │   ├── brand/              サイトで使うファビコン・アプリアイコン（正本は _sources/brand/ からのコピー）
@@ -197,6 +198,7 @@ solutions: [
 |------|------|
 | `https://quests.it.com/ja/#services` | Services（同様に `#about` `#solutions` `#cases` `#contact` `#privacy-policy` `#terms-of-service`） |
 | `https://quests.it.com/ja/#solutions-<id>` | Solutions を表示し、`id` の動画の再生ウィンドウを開いた状態にする。その動画が非表示・削除済みなら Solutions を表示 |
+| `https://quests.it.com/ja/#cases-<id>` | Case Studies を表示し、その事例の詳細を開いた状態にする。`id` は事例カードの `data-case`（例: `material` `chatbot` `predictive` `dashboard` `voice` `legacy`）。存在しない ID なら Case Studies を表示 |
 | `https://quests.it.com/#solutions` | ブラウザの言語に合わせて `/en/` または `/ja/` に移り、`#solutions` は引き継ぐ |
 
 - 外部から開いたときは、スクロールの動きなしに最初からそのセクションを表示する。翻訳の反映や画像の読み込みで位置がずれた場合も、利用者がまだ操作していなければ位置を合わせ直す。

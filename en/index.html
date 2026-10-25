@@ -24,7 +24,8 @@
 <script src="/assets/js/config.js?v=1"></script>
 <script src="/assets/js/solutions.js?v=1"></script>
 <script src="/assets/js/i18n.js?v=10" defer></script>
-<script src="/assets/js/section-links.js?v=1" defer></script>
+<script src="/assets/js/section-links.js?v=2" defer></script>
+<script src="/assets/js/cases.js?v=1" defer></script>
 <style>
 :where([class^="ri-"])::before { content: "\f3c2"; }
 body {
@@ -115,17 +116,6 @@ transition: max-height 0.5s ease;
 }
 .service-card.expanded .service-details {
 max-height: 1000px;
-}
-.case-study {
-transition: all 0.3s ease;
-}
-.case-study.expanded .case-details {
-max-height: 1000px;
-}
-.case-details {
-max-height: 0;
-overflow: hidden;
-transition: max-height 0.5s ease;
 }
 .counter-value {
 transition: all 0.5s ease;
@@ -221,6 +211,74 @@ html.solutions-open { overflow: hidden; }
 .solution-desc { color: #d1d5db; white-space: pre-line; margin-bottom: 1rem; }
 .solution-watch { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: .375rem; color: #93c5fd; font-weight: 500; }
 .solution-watch:hover { text-decoration: underline; }
+.case-filters { position: relative; display: inline-flex; flex-wrap: wrap; justify-content: center; gap: .25rem; padding: .25rem; background: #f3f4f6; border-radius: 1.375rem; }
+.case-filter-indicator { position: absolute; top: 0; left: 0; width: 0; height: 0; background: #fff; border-radius: 9999px; box-shadow: 0 1px 3px rgba(16,24,40,.12), 0 1px 2px rgba(16,24,40,.06); transition: transform .3s ease, width .3s ease, height .3s ease; }
+.case-filter-btn { position: relative; display: inline-flex; align-items: center; gap: .375rem; padding: .5rem 1rem; border-radius: 9999px; color: #4b5563; font-weight: 500; white-space: nowrap; transition: color .2s; }
+.case-filter-btn:hover, .case-filter-btn[aria-pressed="true"] { color: #111827; }
+.case-filter-count { font-size: .75rem; font-weight: 600; color: #9ca3af; font-variant-numeric: tabular-nums; }
+.case-filter-btn[aria-pressed="true"] .case-filter-count { color: #0047AB; }
+.case-study { position: relative; display: flex; flex-direction: column; background: #fff; border: 1px solid #eef0f3; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,.08), 0 2px 4px -2px rgba(0,0,0,.06); transition: transform .3s ease, box-shadow .3s ease; }
+.case-study:hover { transform: translateY(-4px); box-shadow: 0 16px 32px -8px rgba(16,24,40,.16); }
+.case-study[hidden] { display: none; }
+.case-study.is-entering { animation: case-in .4s ease both; }
+@keyframes case-in { from { opacity: 0; transform: translateY(8px); } }
+.case-study:has(.case-open:focus-visible) { outline: 2px solid #0047AB; outline-offset: 3px; }
+.case-thumb { height: 12rem; overflow: hidden; }
+.case-thumb img { transition: transform .5s ease; }
+.case-study:hover .case-thumb img { transform: scale(1.04); }
+.case-body { flex: 1; display: flex; flex-direction: column; padding: 1.5rem; }
+.case-title { font-size: 1.25rem; line-height: 1.75rem; font-weight: 600; color: #111827; margin-bottom: .75rem; }
+.case-short { color: #374151; margin-bottom: 1.25rem; }
+.case-open { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: .375rem; color: #0047AB; font-weight: 500; outline: none; }
+.case-open::after { content: ""; position: absolute; inset: 0; }
+.case-open i { transition: transform .2s ease; }
+.case-study:hover .case-open i { transform: translateX(3px); }
+html.case-dialog-open { overflow: hidden; }
+.case-dialog { width: min(60rem, calc(100% - 2rem)); max-width: none; max-height: calc(100dvh - 3rem); padding: 0; border: 0; border-radius: 20px; background: #fff; color: #111827; box-shadow: 0 24px 64px rgba(0,0,0,.3); overflow: hidden; }
+.case-dialog[open] { display: flex; flex-direction: column; animation: case-dialog-in .25s ease; }
+.case-dialog::backdrop { background: rgba(17,24,39,.55); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+@keyframes case-dialog-in { from { opacity: 0; transform: translateY(12px) scale(.98); } }
+.case-dialog-scroll { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+.case-dialog-media { height: clamp(10rem, 30vh, 16rem); overflow: hidden; background: #f3f4f6; }
+.case-dialog-media picture, .case-dialog-media img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.case-dialog-head { padding: 1.75rem 2rem 0; }
+.case-dialog-tag { font-size: .8125rem; font-weight: 600; color: #0047AB; margin-bottom: .375rem; }
+.case-dialog-title { font-size: 1.5rem; line-height: 1.35; font-weight: 700; }
+.case-dialog .case-details { display: grid; gap: 1.5rem; padding: 1.5rem 2rem 2rem; }
+@media (min-width: 768px) {
+  .case-dialog-title { font-size: 1.75rem; }
+  .case-dialog .case-details { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 2rem; }
+}
+.case-label { font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #6b7280; margin-bottom: .5rem; }
+.case-text { color: #374151; line-height: 1.75; margin-bottom: 1.5rem; text-wrap: pretty; }
+.case-text:last-child { margin-bottom: 0; }
+.case-col-side { align-self: start; padding: 1.25rem 1.5rem; background: #f8fafc; border: 1px solid #eef2f7; border-radius: 16px; }
+.case-results { display: grid; gap: .625rem; margin-bottom: 1.5rem; }
+.case-results li { position: relative; padding-left: 1.75rem; font-weight: 500; line-height: 1.5; text-wrap: pretty; word-break: auto-phrase; }
+.case-results li::before { content: ""; position: absolute; left: 0; top: .2em; width: 1.125rem; height: 1.125rem; border-radius: 9999px; background: linear-gradient(135deg, #60a5fa, #c084fc); }
+.case-results li::after { content: ""; position: absolute; left: .41rem; top: calc(.2em + .22rem); width: .3rem; height: .55rem; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.case-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+.case-tag { padding: .25rem .75rem; background: #fff; border: 1px solid #e5e7eb; border-radius: 9999px; color: #374151; font-size: .875rem; }
+.case-dialog-foot { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .875rem 1.25rem; border-top: 1px solid #f1f5f9; background: #fff; }
+.case-dialog-step { display: inline-flex; align-items: center; gap: .375rem; padding: .5rem .75rem; border-radius: 9999px; color: #374151; font-weight: 500; white-space: nowrap; transition: background-color .2s, opacity .2s; }
+.case-dialog-step:hover:not(:disabled) { background: #f3f4f6; }
+.case-dialog-step:disabled { opacity: .35; cursor: default; }
+.case-dialog-cta { display: inline-flex; align-items: center; justify-content: center; padding: .625rem 1.25rem; border-radius: 9999px; background: #0047AB; color: #fff; font-weight: 600; text-align: center; transition: background-color .2s; }
+.case-dialog-cta:hover { background: #003a8c; }
+.case-dialog-close { position: absolute; top: 1rem; right: 1rem; width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; border-radius: 9999px; background: rgba(255,255,255,.92); color: #111827; font-size: 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,.15); transition: background-color .2s; }
+.case-dialog-close:hover { background: #fff; }
+@media (max-width: 639px) {
+  .case-dialog { width: 100%; height: 100dvh; max-height: 100dvh; border-radius: 0; }
+  .case-dialog-head { padding: 1.25rem 1.25rem 0; }
+  .case-dialog .case-details { padding: 1.25rem; }
+  .case-dialog-foot { padding: .75rem 1rem calc(.75rem + env(safe-area-inset-bottom)); }
+  .case-dialog-step { padding: .5rem; }
+  .case-dialog-step span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .case-study, .case-thumb img, .case-filter-indicator { transition: none; }
+  .case-study.is-entering, .case-dialog[open] { animation: none; }
+}
 </style>
 </head>
 <body class="bg-white">
@@ -459,219 +517,220 @@ html.solutions-open { overflow: hidden; }
 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-i18n="cases.title">Case Studies</h2>
 <p class="text-lg text-gray-600 max-w-3xl mx-auto" data-phrase data-i18n="cases.subtitle">How we've helped clients cut costs and move faster.</p>
 </div>
-<div class="mb-8">
-<div class="flex flex-wrap justify-center gap-2 bg-gray-100 p-2 rounded-2xl">
-<button class="case-filter-btn active px-4 py-2 rounded-full bg-primary text-white whitespace-nowrap" data-filter="all" data-i18n="cases.filters.all">All</button>
-<button class="case-filter-btn px-4 py-2 rounded-full text-gray-700 whitespace-nowrap" data-filter="ai" data-i18n="cases.filters.ai">AI Solutions</button>
-<button class="case-filter-btn px-4 py-2 rounded-full text-gray-700 whitespace-nowrap" data-filter="analytics" data-i18n="cases.filters.analytics">Analytics</button>
-<button class="case-filter-btn px-4 py-2 rounded-full text-gray-700 whitespace-nowrap" data-filter="modernization" data-i18n="cases.filters.modernization">Modernization</button>
+<div class="mb-10 flex justify-center">
+<div class="case-filters" role="group" aria-label="Filter case studies" data-i18n-attr-aria-label="cases.filters.label">
+<span class="case-filter-indicator" aria-hidden="true"></span>
+<button type="button" class="case-filter-btn" data-filter="all" aria-pressed="true"><span data-i18n="cases.filters.all">All</span><span class="case-filter-count"></span></button>
+<button type="button" class="case-filter-btn" data-filter="ai" aria-pressed="false"><span data-i18n="cases.filters.ai">AI Solutions</span><span class="case-filter-count"></span></button>
+<button type="button" class="case-filter-btn" data-filter="analytics" aria-pressed="false"><span data-i18n="cases.filters.analytics">Analytics</span><span class="case-filter-count"></span></button>
+<button type="button" class="case-filter-btn" data-filter="modernization" aria-pressed="false"><span data-i18n="cases.filters.modernization">Modernization</span><span class="case-filter-count"></span></button>
 </div>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="case-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 <!-- Case Study 1 -->
-<div class="case-study bg-white rounded-lg shadow-md overflow-hidden" data-category="ai">
-<div class="h-48 overflow-hidden">
+<div class="case-study" data-case="material" data-category="ai">
+<div class="case-thumb">
 <picture class="block w-full h-full"><source type="image/webp" srcset="/images/cases/material-600.webp 600w, /images/cases/material.webp 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"><img src="/images/cases/material.jpg" srcset="/images/cases/material-600.jpg 600w, /images/cases/material.jpg 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="Researchers reviewing a molecular model on a monitor" data-i18n-attr-alt="cases.items.material.imageAlt" class="w-full h-full object-cover object-top"></picture>
 </div>
-<div class="p-6">
-<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.material.title">AI-Accelerated Materials Research</h3>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.material.short">68% shorter research cycles for a leading materials lab, powered by machine learning.</p>
-<button class="case-toggle text-primary font-medium flex items-center gap-1 hover:underline">
-<span class="case-toggle-label" data-i18n="cases.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
-</button>
-<div class="case-details mt-4">
-<div class="border-t pt-4">
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.challenge">Challenge</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.material.challenge">The client had to test and validate new materials much faster to stay competitive.</p>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.solution">Solution</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.material.solution">We built a machine learning model that predicts material properties from composition data, reducing the need for physical tests.</p>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.results">Results</h4>
-<ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="cases.items.material.results">
+<div class="case-body">
+<h3 class="case-title" data-i18n="cases.items.material.title">AI-Accelerated Materials Research</h3>
+<p class="case-short" data-i18n="cases.items.material.short">68% shorter research cycles for a leading materials lab, powered by machine learning.</p>
+<button type="button" class="case-open" data-case-open><span data-i18n="cases.viewDetails">View details</span><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
+<div class="case-details" hidden>
+<div class="case-col">
+<h4 class="case-label" data-i18n="cases.labels.challenge">Challenge</h4>
+<p class="case-text" data-i18n="cases.items.material.challenge">The client had to test and validate new materials much faster to stay competitive.</p>
+<h4 class="case-label" data-i18n="cases.labels.solution">Solution</h4>
+<p class="case-text" data-i18n="cases.items.material.solution">We built a machine learning model that predicts material properties from composition data, reducing the need for physical tests.</p>
+</div>
+<div class="case-col case-col-side">
+<h4 class="case-label" data-i18n="cases.labels.results">Results</h4>
+<ul class="case-results" data-i18n-list="cases.items.material.results">
 <li>68% shorter research cycles</li>
 <li>42% more successful material discoveries</li>
 <li>About $1.2M saved in annual testing costs</li>
 </ul>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Tech Stack</h4>
-<div class="flex flex-wrap gap-2 mt-2">
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">TensorFlow</span>
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">AWS SageMaker</span>
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Python</span>
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Data Visualization</span>
+<h4 class="case-label" data-i18n="cases.labels.technologies">Tech Stack</h4>
+<div class="case-tags">
+<span class="case-tag">TensorFlow</span>
+<span class="case-tag">AWS SageMaker</span>
+<span class="case-tag">Python</span>
+<span class="case-tag">Data Visualization</span>
 </div>
 </div>
 </div>
 </div>
 </div>
 <!-- Case Study 2 -->
-<div class="case-study bg-white rounded-lg shadow-md overflow-hidden" data-category="ai">
-<div class="h-48 overflow-hidden">
+<div class="case-study" data-case="chatbot" data-category="ai">
+<div class="case-thumb">
 <picture class="block w-full h-full"><source type="image/webp" srcset="/images/cases/chatbot-600.webp 600w, /images/cases/chatbot.webp 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"><img src="/images/cases/chatbot.jpg" srcset="/images/cases/chatbot-600.jpg 600w, /images/cases/chatbot.jpg 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="A support team lead reviewing an AI assistant dashboard" data-i18n-attr-alt="cases.items.chatbot.imageAlt" class="w-full h-full object-cover object-top"></picture>
 </div>
-<div class="p-6">
-<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.chatbot.title">Generative AI Customer Support</h3>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.chatbot.short">78% of inquiries resolved automatically for a global e-commerce company.</p>
-<button class="case-toggle text-primary font-medium flex items-center gap-1 hover:underline">
-<span class="case-toggle-label" data-i18n="cases.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
-</button>
-<div class="case-details mt-4">
-<div class="border-t pt-4">
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.challenge">Challenge</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.chatbot.challenge">Support volume and costs were climbing fast, putting service quality at risk.</p>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.solution">Solution</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.chatbot.solution">We built a multi-channel generative AI assistant that handles routine questions and hands complex cases to human agents.</p>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.results">Results</h4>
-<ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="cases.items.chatbot.results">
+<div class="case-body">
+<h3 class="case-title" data-i18n="cases.items.chatbot.title">Generative AI Customer Support</h3>
+<p class="case-short" data-i18n="cases.items.chatbot.short">78% of inquiries resolved automatically for a global e-commerce company.</p>
+<button type="button" class="case-open" data-case-open><span data-i18n="cases.viewDetails">View details</span><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
+<div class="case-details" hidden>
+<div class="case-col">
+<h4 class="case-label" data-i18n="cases.labels.challenge">Challenge</h4>
+<p class="case-text" data-i18n="cases.items.chatbot.challenge">Support volume and costs were climbing fast, putting service quality at risk.</p>
+<h4 class="case-label" data-i18n="cases.labels.solution">Solution</h4>
+<p class="case-text" data-i18n="cases.items.chatbot.solution">We built a multi-channel generative AI assistant that handles routine questions and hands complex cases to human agents.</p>
+</div>
+<div class="case-col case-col-side">
+<h4 class="case-label" data-i18n="cases.labels.results">Results</h4>
+<ul class="case-results" data-i18n-list="cases.items.chatbot.results">
 <li>78% of inquiries resolved automatically</li>
 <li>Response time: 4 hours → 3 minutes</li>
 <li>22% higher customer satisfaction</li>
 <li>30% lower support costs</li>
 </ul>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Tech Stack</h4>
-<div class="flex flex-wrap gap-2 mt-2">
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">GPT-4</span>
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Azure AI</span>
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Node.js</span>
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">React</span>
+<h4 class="case-label" data-i18n="cases.labels.technologies">Tech Stack</h4>
+<div class="case-tags">
+<span class="case-tag">GPT-4</span>
+<span class="case-tag">Azure AI</span>
+<span class="case-tag">Node.js</span>
+<span class="case-tag">React</span>
 </div>
 </div>
 </div>
 </div>
 </div>
 <!-- Case Study 3 -->
-<div class="case-study bg-white rounded-lg shadow-md overflow-hidden" data-category="ai analytics">
-<div class="h-48 overflow-hidden">
+<div class="case-study" data-case="predictive" data-category="ai analytics">
+<div class="case-thumb">
 <picture class="block w-full h-full"><source type="image/webp" srcset="/images/cases/predictive-600.webp 600w, /images/cases/predictive.webp 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"><img src="/images/cases/predictive.jpg" srcset="/images/cases/predictive-600.jpg 600w, /images/cases/predictive.jpg 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="An engineer explaining equipment health data on a factory floor" data-i18n-attr-alt="cases.items.predictive.imageAlt" class="w-full h-full object-cover object-top"></picture>
 </div>
-<div class="p-6">
-<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.predictive.title">Predictive Maintenance with AI</h3>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.predictive.short">83% less unplanned downtime for a manufacturer, with ROI in 9 months.</p>
-<button class="case-toggle text-primary font-medium flex items-center gap-1 hover:underline">
-<span class="case-toggle-label" data-i18n="cases.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
-</button>
-<div class="case-details mt-4">
-<div class="border-t pt-4">
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.challenge">Challenge</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.predictive.challenge">Unexpected equipment failures and inefficient maintenance were causing major production losses.</p>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.solution">Solution</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.predictive.solution">We connected IoT sensors to an AI model that detects warning signs and predicts failures before they happen.</p>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.results">Results</h4>
-<ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="cases.items.predictive.results">
+<div class="case-body">
+<h3 class="case-title" data-i18n="cases.items.predictive.title">Predictive Maintenance with AI</h3>
+<p class="case-short" data-i18n="cases.items.predictive.short">83% less unplanned downtime for a manufacturer, with ROI in 9 months.</p>
+<button type="button" class="case-open" data-case-open><span data-i18n="cases.viewDetails">View details</span><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
+<div class="case-details" hidden>
+<div class="case-col">
+<h4 class="case-label" data-i18n="cases.labels.challenge">Challenge</h4>
+<p class="case-text" data-i18n="cases.items.predictive.challenge">Unexpected equipment failures and inefficient maintenance were causing major production losses.</p>
+<h4 class="case-label" data-i18n="cases.labels.solution">Solution</h4>
+<p class="case-text" data-i18n="cases.items.predictive.solution">We connected IoT sensors to an AI model that detects warning signs and predicts failures before they happen.</p>
+</div>
+<div class="case-col case-col-side">
+<h4 class="case-label" data-i18n="cases.labels.results">Results</h4>
+<ul class="case-results" data-i18n-list="cases.items.predictive.results">
 <li>83% less unplanned downtime</li>
 <li>47% lower maintenance costs</li>
 <li>35% longer equipment life on average</li>
 <li>ROI within 9 months</li>
 </ul>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Tech Stack</h4>
-<div class="flex flex-wrap gap-2 mt-2">
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">IoT Sensors</span>
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Azure IoT Hub</span>
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Machine Learning</span>
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Power BI</span>
+<h4 class="case-label" data-i18n="cases.labels.technologies">Tech Stack</h4>
+<div class="case-tags">
+<span class="case-tag">IoT Sensors</span>
+<span class="case-tag">Azure IoT Hub</span>
+<span class="case-tag">Machine Learning</span>
+<span class="case-tag">Power BI</span>
 </div>
 </div>
 </div>
 </div>
 </div>
 <!-- Case Study 4 -->
-<div class="case-study bg-white rounded-lg shadow-md overflow-hidden" data-category="analytics">
-<div class="h-48 overflow-hidden">
+<div class="case-study" data-case="dashboard" data-category="analytics">
+<div class="case-thumb">
 <picture class="block w-full h-full"><source type="image/webp" srcset="/images/cases/dashboard-600.webp 600w, /images/cases/dashboard.webp 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"><img src="/images/cases/dashboard.jpg" srcset="/images/cases/dashboard-600.jpg 600w, /images/cases/dashboard.jpg 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="Executives reviewing dashboards in a boardroom" data-i18n-attr-alt="cases.items.dashboard.imageAlt" class="w-full h-full object-cover object-top"></picture>
 </div>
-<div class="p-6">
-<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.dashboard.title">Executive Decision Dashboard</h3>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.dashboard.short">From two-week reports to real-time insight for a multinational's leadership.</p>
-<button class="case-toggle text-primary font-medium flex items-center gap-1 hover:underline">
-<span class="case-toggle-label" data-i18n="cases.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
-</button>
-<div class="case-details mt-4">
-<div class="border-t pt-4">
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.challenge">Challenge</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.dashboard.challenge">Leaders at a multinational couldn't get timely, reliable data. It was scattered across disconnected systems.</p>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.solution">Solution</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.dashboard.solution">We unified data from multiple sources into one dashboard that shows key metrics at a glance.</p>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.results">Results</h4>
-<ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="cases.items.dashboard.results">
+<div class="case-body">
+<h3 class="case-title" data-i18n="cases.items.dashboard.title">Executive Decision Dashboard</h3>
+<p class="case-short" data-i18n="cases.items.dashboard.short">From two-week reports to real-time insight for a multinational's leadership.</p>
+<button type="button" class="case-open" data-case-open><span data-i18n="cases.viewDetails">View details</span><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
+<div class="case-details" hidden>
+<div class="case-col">
+<h4 class="case-label" data-i18n="cases.labels.challenge">Challenge</h4>
+<p class="case-text" data-i18n="cases.items.dashboard.challenge">Leaders at a multinational couldn't get timely, reliable data. It was scattered across disconnected systems.</p>
+<h4 class="case-label" data-i18n="cases.labels.solution">Solution</h4>
+<p class="case-text" data-i18n="cases.items.dashboard.solution">We unified data from multiple sources into one dashboard that shows key metrics at a glance.</p>
+</div>
+<div class="case-col case-col-side">
+<h4 class="case-label" data-i18n="cases.labels.results">Results</h4>
+<ul class="case-results" data-i18n-list="cases.items.dashboard.results">
 <li>Reporting: 2 weeks → real time</li>
 <li>Higher data accuracy with no manual reporting</li>
 <li>Data-driven decisions across 12 departments</li>
 <li>$3.4M in cost savings identified</li>
 </ul>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Tech Stack</h4>
-<div class="flex flex-wrap gap-2 mt-2">
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Power BI</span>
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">SQL Server</span>
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Azure Data Factory</span>
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">DAX</span>
+<h4 class="case-label" data-i18n="cases.labels.technologies">Tech Stack</h4>
+<div class="case-tags">
+<span class="case-tag">Power BI</span>
+<span class="case-tag">SQL Server</span>
+<span class="case-tag">Azure Data Factory</span>
+<span class="case-tag">DAX</span>
 </div>
 </div>
 </div>
 </div>
 </div>
 <!-- Case Study 5 -->
-<div class="case-study bg-white rounded-lg shadow-md overflow-hidden" data-category="ai">
-<div class="h-48 overflow-hidden">
+<div class="case-study" data-case="voice" data-category="ai">
+<div class="case-thumb">
 <picture class="block w-full h-full"><source type="image/webp" srcset="/images/cases/voice-600.webp 600w, /images/cases/voice.webp 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"><img src="/images/cases/voice.jpg" srcset="/images/cases/voice-600.jpg 600w, /images/cases/voice.jpg 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="A shopper getting voice directions from her phone in a store" data-i18n-attr-alt="cases.items.voice.imageAlt" class="w-full h-full object-cover object-top"></picture>
 </div>
-<div class="p-6">
-<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.voice.title">Voice-Guided In-Store Navigation</h3>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.voice.short">64% faster product search with Alexa, rolled out to 87 stores.</p>
-<button class="case-toggle text-primary font-medium flex items-center gap-1 hover:underline">
-<span class="case-toggle-label" data-i18n="cases.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
-</button>
-<div class="case-details mt-4">
-<div class="border-t pt-4">
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.challenge">Challenge</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.voice.challenge">In a major retailer's large stores, customers struggled to find what they came for.</p>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.solution">Solution</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.voice.solution">We built voice navigation on Amazon Alexa, connected to store inventory and indoor positioning.</p>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.results">Results</h4>
-<ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="cases.items.voice.results">
+<div class="case-body">
+<h3 class="case-title" data-i18n="cases.items.voice.title">Voice-Guided In-Store Navigation</h3>
+<p class="case-short" data-i18n="cases.items.voice.short">64% faster product search with Alexa, rolled out to 87 stores.</p>
+<button type="button" class="case-open" data-case-open><span data-i18n="cases.viewDetails">View details</span><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
+<div class="case-details" hidden>
+<div class="case-col">
+<h4 class="case-label" data-i18n="cases.labels.challenge">Challenge</h4>
+<p class="case-text" data-i18n="cases.items.voice.challenge">In a major retailer's large stores, customers struggled to find what they came for.</p>
+<h4 class="case-label" data-i18n="cases.labels.solution">Solution</h4>
+<p class="case-text" data-i18n="cases.items.voice.solution">We built voice navigation on Amazon Alexa, connected to store inventory and indoor positioning.</p>
+</div>
+<div class="case-col case-col-side">
+<h4 class="case-label" data-i18n="cases.labels.results">Results</h4>
+<ul class="case-results" data-i18n-list="cases.items.voice.results">
 <li>64% less time spent searching</li>
 <li>28% higher customer satisfaction</li>
 <li>31% more sales of hard-to-find items</li>
 <li>Rolled out to 87 stores</li>
 </ul>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Tech Stack</h4>
-<div class="flex flex-wrap gap-2 mt-2">
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Amazon Alexa</span>
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Bluetooth Beacons</span>
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">AWS Lambda</span>
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Node.js</span>
+<h4 class="case-label" data-i18n="cases.labels.technologies">Tech Stack</h4>
+<div class="case-tags">
+<span class="case-tag">Amazon Alexa</span>
+<span class="case-tag">Bluetooth Beacons</span>
+<span class="case-tag">AWS Lambda</span>
+<span class="case-tag">Node.js</span>
 </div>
 </div>
 </div>
 </div>
 </div>
 <!-- Case Study 6 -->
-<div class="case-study bg-white rounded-lg shadow-md overflow-hidden" data-category="modernization">
-<div class="h-48 overflow-hidden">
+<div class="case-study" data-case="legacy" data-category="modernization">
+<div class="case-thumb">
 <picture class="block w-full h-full"><source type="image/webp" srcset="/images/cases/legacy-600.webp 600w, /images/cases/legacy.webp 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"><img src="/images/cases/legacy.jpg" srcset="/images/cases/legacy-600.jpg 600w, /images/cases/legacy.jpg 1200w" sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="Engineers working on a system migration in a server room" data-i18n-attr-alt="cases.items.legacy.imageAlt" class="w-full h-full object-cover object-top"></picture>
 </div>
-<div class="p-6">
-<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="cases.items.legacy.title">Legacy System Modernization</h3>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.legacy.short">62% lower infrastructure costs by moving a financial firm's monolith to cloud microservices.</p>
-<button class="case-toggle text-primary font-medium flex items-center gap-1 hover:underline">
-<span class="case-toggle-label" data-i18n="cases.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
-</button>
-<div class="case-details mt-4">
-<div class="border-t pt-4">
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.challenge">Challenge</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.legacy.challenge">A financial services company's aging monolith was costly to maintain, hard to change, and couldn't keep up with growth.</p>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.solution">Solution</h4>
-<p class="text-gray-700 mb-4" data-i18n="cases.items.legacy.solution">We migrated it step by step to microservices on AWS, so each service can scale and deploy independently.</p>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.results">Results</h4>
-<ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="cases.items.legacy.results">
+<div class="case-body">
+<h3 class="case-title" data-i18n="cases.items.legacy.title">Legacy System Modernization</h3>
+<p class="case-short" data-i18n="cases.items.legacy.short">62% lower infrastructure costs by moving a financial firm's monolith to cloud microservices.</p>
+<button type="button" class="case-open" data-case-open><span data-i18n="cases.viewDetails">View details</span><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
+<div class="case-details" hidden>
+<div class="case-col">
+<h4 class="case-label" data-i18n="cases.labels.challenge">Challenge</h4>
+<p class="case-text" data-i18n="cases.items.legacy.challenge">A financial services company's aging monolith was costly to maintain, hard to change, and couldn't keep up with growth.</p>
+<h4 class="case-label" data-i18n="cases.labels.solution">Solution</h4>
+<p class="case-text" data-i18n="cases.items.legacy.solution">We migrated it step by step to microservices on AWS, so each service can scale and deploy independently.</p>
+</div>
+<div class="case-col case-col-side">
+<h4 class="case-label" data-i18n="cases.labels.results">Results</h4>
+<ul class="case-results" data-i18n-list="cases.items.legacy.results">
 <li>62% lower infrastructure costs</li>
 <li>Deployments: weeks → minutes</li>
 <li>Uptime: 98.2% → 99.99%</li>
 <li>3x faster releases</li>
 </ul>
-<h4 class="font-medium text-gray-900 mb-2" data-i18n="cases.labels.technologies">Tech Stack</h4>
-<div class="flex flex-wrap gap-2 mt-2">
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">AWS</span>
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Docker</span>
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Kubernetes</span>
-<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Terraform</span>
+<h4 class="case-label" data-i18n="cases.labels.technologies">Tech Stack</h4>
+<div class="case-tags">
+<span class="case-tag">AWS</span>
+<span class="case-tag">Docker</span>
+<span class="case-tag">Kubernetes</span>
+<span class="case-tag">Terraform</span>
 </div>
 </div>
 </div>
@@ -680,6 +739,22 @@ html.solutions-open { overflow: hidden; }
 </div>
 </div>
 </section>
+<dialog class="case-dialog" data-case-dialog aria-labelledby="case-dialog-title">
+<div class="case-dialog-scroll">
+<div class="case-dialog-media" data-case-dialog-media></div>
+<div class="case-dialog-head">
+<p class="case-dialog-tag" data-case-dialog-tag></p>
+<h3 id="case-dialog-title" class="case-dialog-title" data-case-dialog-title></h3>
+</div>
+<div data-case-dialog-body></div>
+</div>
+<div class="case-dialog-foot">
+<button type="button" class="case-dialog-step" data-case-step="-1"><i class="ri-arrow-left-line" aria-hidden="true"></i><span data-i18n="cases.prev">Previous</span></button>
+<a href="#contact" class="case-dialog-cta" data-case-cta><span data-i18n="cases.cta">Discuss a similar project</span></a>
+<button type="button" class="case-dialog-step" data-case-step="1"><span data-i18n="cases.next">Next</span><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
+</div>
+<button type="button" class="case-dialog-close" data-case-close aria-label="Close" data-i18n-attr-aria-label="cases.close"><i class="ri-close-line" aria-hidden="true"></i></button>
+</dialog>
 <!-- Contact Section -->
 <section id="contact" class="py-12 bg-gray-50 section-fade">
 <div class="container mx-auto px-6">
@@ -917,52 +992,6 @@ label.textContent = (window.i18n && window.i18n.t(expanded ? 'services.hideDetai
 if (icon) {
 icon.className = expanded ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line';
 }
-});
-});
-});
-</script>
-<script id="caseStudyScript">
-document.addEventListener('DOMContentLoaded', function() {
-const caseToggles = document.querySelectorAll('.case-toggle');
-caseToggles.forEach(toggle => {
-toggle.addEventListener('click', function() {
-const caseStudy = this.closest('.case-study');
-caseStudy.classList.toggle('expanded');
-const label = this.querySelector('.case-toggle-label');
-const icon = this.querySelector('i');
-const expanded = caseStudy.classList.contains('expanded');
-if (label) {
-label.textContent = (window.i18n && window.i18n.t(expanded ? 'cases.hideDetails' : 'cases.viewDetails')) || (expanded ? 'Hide details' : 'View details');
-}
-if (icon) {
-icon.className = expanded ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line';
-}
-});
-});
-// Case study filtering
-const filterBtns = document.querySelectorAll('.case-filter-btn');
-const caseStudies = document.querySelectorAll('.case-study');
-filterBtns.forEach(btn => {
-btn.addEventListener('click', function() {
-// Remove active class from all buttons
-filterBtns.forEach(b => b.classList.remove('active', 'bg-primary', 'text-white'));
-filterBtns.forEach(b => b.classList.add('text-gray-700'));
-// Add active class to clicked button
-this.classList.add('active', 'bg-primary', 'text-white');
-this.classList.remove('text-gray-700');
-const filter = this.getAttribute('data-filter');
-caseStudies.forEach(study => {
-if (filter === 'all') {
-study.style.display = 'block';
-} else {
-const category = study.getAttribute('data-category');
-if (category.includes(filter)) {
-study.style.display = 'block';
-} else {
-study.style.display = 'none';
-}
-}
-});
 });
 });
 });

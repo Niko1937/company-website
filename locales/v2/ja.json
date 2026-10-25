@@ -109,7 +109,8 @@
       "all": "すべて",
       "ai": "AI活用",
       "analytics": "データ分析",
-      "modernization": "システム刷新"
+      "modernization": "システム刷新",
+      "label": "事例の絞り込み"
     },
     "labels": {
       "challenge": "課題",
@@ -195,7 +196,11 @@
         ],
         "imageAlt": "サーバールームでシステム移行に取り組むエンジニア"
       }
-    }
+    },
+    "prev": "前の事例",
+    "next": "次の事例",
+    "close": "閉じる",
+    "cta": "この事例について相談する"
   },
   "contact": {
     "title": "お問い合わせ",

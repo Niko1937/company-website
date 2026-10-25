@@ -2,9 +2,10 @@
   'use strict';
 
   // In-page links (#services, #solutions, ...): the URL shows the section without adding history entries, and a
-  // link opened from outside shows its section right away. #solutions-<id> also opens that demo (solutions.js).
+  // link opened from outside shows its section right away. #solutions-<id> also opens that demo (solutions.js),
+  // and #cases-<id> the details of that case (cases.js).
   // The header offset comes from scroll-margin-top in the page CSS.
-  const DEMO = /^#solutions-([a-z0-9-]+)$/;
+  const ITEM = /^#(solutions|cases)-([a-z0-9-]+)$/;
 
   function reduceMotion() {
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -16,8 +17,8 @@
 
   // Returns the element a hash points to, or null when it is missing or hidden.
   function targetOf(hash) {
-    const demo = hash.match(DEMO);
-    let id = demo ? 'solutions' : hash.slice(1);
+    const item = hash.match(ITEM);
+    let id = item ? item[1] : hash.slice(1);
     try { id = decodeURIComponent(id); } catch (_) { return null; }
     const el = id && document.getElementById(id);
     return el && el.getClientRects().length ? el : null;
@@ -25,14 +26,15 @@
 
   // Shows the section for a hash. Returns false when there is nothing to show.
   // Uses the layout position (offsetTop), not scrollIntoView, so the .section-fade slide-in transform cannot shift it.
-  function go(hash, behavior, openDemo) {
+  function go(hash, behavior, openItem) {
     const target = targetOf(hash);
     if (!target) return false;
     let top = 0;
     for (let el = target; el; el = el.offsetParent) top += el.offsetTop;
     window.scrollTo({ top: top - (parseFloat(getComputedStyle(target).scrollMarginTop) || 0), behavior });
-    const demo = hash.match(DEMO);
-    if (demo && openDemo && !(window.solutions && window.solutions.open(demo[1]))) setHash('#solutions');
+    const item = hash.match(ITEM);
+    const section = item && window[item[1]];
+    if (item && openItem && !(section && section.open(item[2]))) setHash('#' + item[1]);
     return true;
   }
 
