@@ -66,11 +66,35 @@
   const title = dialog.querySelector('[data-case-dialog-title]');
   const body = dialog.querySelector('[data-case-dialog-body]');
   const steps = Array.from(dialog.querySelectorAll('[data-case-step]'));
+  const count = dialog.querySelector('[data-case-count]');
   let current = null;
   let opener = null;
 
   function visibleCards() {
     return cards.filter(c => !c.hidden);
+  }
+
+  function tr(key, fallback) {
+    return (window.i18n && window.i18n.t(key)) || fallback;
+  }
+
+  // "2 / 6" within the current filter, and arrow labels that name the case they lead to.
+  function updatePager() {
+    if (!current) return;
+    const list = visibleCards();
+    const index = list.indexOf(current);
+    count.textContent = `${index + 1} / ${list.length}`;
+    steps.forEach(step => {
+      const dir = Number(step.getAttribute('data-case-step'));
+      const target = list[index + dir];
+      const label = dir < 0 ? tr('cases.prev', 'Previous case') : tr('cases.next', 'Next case');
+      // Titles may contain zero-width spaces for Japanese line breaks; they do not belong in a tooltip.
+      const name = target && target.querySelector('.case-title').textContent.replace(/\u200b/g, '');
+      const text = target ? label + (window.__currentLang === 'ja' ? '：' : ': ') + name : label;
+      step.disabled = !target;
+      step.setAttribute('aria-label', text);
+      step.title = text;
+    });
   }
 
   // Copies the card's title and categories into the dialog header (again after a language switch).
@@ -109,11 +133,7 @@
     details.hidden = false;
     body.appendChild(details);
     fillHeader();
-    const list = visibleCards();
-    const index = list.indexOf(card);
-    steps.forEach(step => {
-      step.disabled = !list[index + Number(step.getAttribute('data-case-step'))];
-    });
+    updatePager();
     dialog.querySelector('.case-dialog-scroll').scrollTop = 0;
     setHash(`#cases-${card.getAttribute('data-case')}`);
   }
@@ -148,14 +168,39 @@
     if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dialog.close();
   });
   dialog.querySelector('[data-case-close]').addEventListener('click', () => dialog.close());
-  steps.forEach(step => step.addEventListener('click', () => {
+  function step(dir) {
     const list = visibleCards();
-    const next = list[list.indexOf(current) + Number(step.getAttribute('data-case-step'))];
-    if (next) {
-      opener = next.querySelector('[data-case-open]');
-      show(next);
+    const next = list[list.indexOf(current) + dir];
+    if (!next) return;
+    opener = next.querySelector('[data-case-open]');
+    show(next);
+    // An arrow that just became disabled loses focus: keep it on the pager.
+    if (document.activeElement && document.activeElement.disabled) {
+      (steps.find(b => !b.disabled) || dialog.querySelector('[data-case-close]')).focus();
     }
-  }));
+  }
+
+  steps.forEach(b => b.addEventListener('click', () => step(Number(b.getAttribute('data-case-step')))));
+  dialog.addEventListener('keydown', e => {
+    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+      e.preventDefault();
+      step(e.key === 'ArrowLeft' ? -1 : 1);
+    }
+  });
+  // Swipe sideways on touch screens. Mostly-vertical moves are scrolling and are ignored.
+  let touch = null;
+  const scroller = dialog.querySelector('.case-dialog-scroll');
+  scroller.addEventListener('touchstart', e => {
+    touch = e.touches.length === 1 ? { x: e.touches[0].clientX, y: e.touches[0].clientY } : null;
+  }, { passive: true });
+  scroller.addEventListener('touchend', e => {
+    if (!touch) return;
+    const dx = e.changedTouches[0].clientX - touch.x;
+    const dy = e.changedTouches[0].clientY - touch.y;
+    touch = null;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) step(dx < 0 ? 1 : -1);
+  }, { passive: true });
   // The contact link closes the dialog; section-links.js then scrolls to the form and sets #contact.
   // The page must be scrollable again before that, and the close event only fires later.
   dialog.querySelector('[data-case-cta]').addEventListener('click', () => {
@@ -170,6 +215,7 @@
 
   document.addEventListener('i18n:changed', () => {
     fillHeader();
+    updatePager();
     placeIndicator();
   });
 

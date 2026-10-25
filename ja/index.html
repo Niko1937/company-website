@@ -25,7 +25,7 @@
 <script src="/assets/js/solutions.js?v=1"></script>
 <script src="/assets/js/i18n.js?v=10" defer></script>
 <script src="/assets/js/section-links.js?v=2" defer></script>
-<script src="/assets/js/cases.js?v=1" defer></script>
+<script src="/assets/js/cases.js?v=2" defer></script>
 <style>
 :where([class^="ri-"])::before { content: "\f3c2"; }
 body {
@@ -259,10 +259,12 @@ html.case-dialog-open { overflow: hidden; }
 .case-results li::after { content: ""; position: absolute; left: .41rem; top: calc(.2em + .22rem); width: .3rem; height: .55rem; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
 .case-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
 .case-tag { padding: .25rem .75rem; background: #fff; border: 1px solid #e5e7eb; border-radius: 9999px; color: #374151; font-size: .875rem; }
-.case-dialog-foot { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .875rem 1.25rem; border-top: 1px solid #f1f5f9; background: #fff; }
-.case-dialog-step { display: inline-flex; align-items: center; gap: .375rem; padding: .5rem .75rem; border-radius: 9999px; color: #374151; font-weight: 500; white-space: nowrap; transition: background-color .2s, opacity .2s; }
-.case-dialog-step:hover:not(:disabled) { background: #f3f4f6; }
-.case-dialog-step:disabled { opacity: .35; cursor: default; }
+.case-dialog-foot { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .875rem 1.25rem .875rem 2rem; border-top: 1px solid #f1f5f9; background: #fff; }
+.case-dialog-pager { display: flex; align-items: center; gap: .5rem; }
+.case-dialog-count { min-width: 3.25rem; margin-right: .25rem; text-align: right; color: #6b7280; font-size: .875rem; font-variant-numeric: tabular-nums; }
+.case-dialog-arrow { width: 2.75rem; height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; border-radius: 9999px; background: #f3f4f6; color: #111827; font-size: 1.25rem; transition: background-color .2s, opacity .2s; }
+.case-dialog-arrow:hover:not(:disabled) { background: #e5e7eb; }
+.case-dialog-arrow:disabled { opacity: .35; cursor: default; }
 .case-dialog-cta { display: inline-flex; align-items: center; justify-content: center; padding: .625rem 1.25rem; border-radius: 9999px; background: #0047AB; color: #fff; font-weight: 600; text-align: center; transition: background-color .2s; }
 .case-dialog-cta:hover { background: #003a8c; }
 .case-dialog-close { position: absolute; top: 1rem; right: 1rem; width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; border-radius: 9999px; background: rgba(255,255,255,.92); color: #111827; font-size: 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,.15); transition: background-color .2s; }
@@ -272,8 +274,10 @@ html.case-dialog-open { overflow: hidden; }
   .case-dialog-head { padding: 1.25rem 1.25rem 0; }
   .case-dialog .case-details { padding: 1.25rem; }
   .case-dialog-foot { padding: .75rem 1rem calc(.75rem + env(safe-area-inset-bottom)); }
-  .case-dialog-step { padding: .5rem; }
-  .case-dialog-step span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .case-dialog-cta { padding: .625rem .875rem; font-size: .875rem; white-space: nowrap; }
+  .case-dialog-pager { gap: .375rem; }
+  .case-dialog-count { min-width: 0; margin-right: .125rem; font-size: .8125rem; }
+  .case-dialog-arrow { width: 2.5rem; height: 2.5rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .case-study, .case-thumb img, .case-filter-indicator { transition: none; }
@@ -749,11 +753,14 @@ html.case-dialog-open { overflow: hidden; }
 <div data-case-dialog-body></div>
 </div>
 <div class="case-dialog-foot">
-<button type="button" class="case-dialog-step" data-case-step="-1"><i class="ri-arrow-left-line" aria-hidden="true"></i><span data-i18n="cases.prev">Previous</span></button>
 <a href="#contact" class="case-dialog-cta" data-case-cta><span data-i18n="cases.cta">Discuss a similar project</span></a>
-<button type="button" class="case-dialog-step" data-case-step="1"><span data-i18n="cases.next">Next</span><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
+<div class="case-dialog-pager">
+<span class="case-dialog-count" data-case-count></span>
+<button type="button" class="case-dialog-arrow" data-case-step="-1" aria-label="Previous case"><i class="ri-arrow-left-line" aria-hidden="true"></i></button>
+<button type="button" class="case-dialog-arrow" data-case-step="1" aria-label="Next case"><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
 </div>
-<button type="button" class="case-dialog-close" data-case-close aria-label="Close" data-i18n-attr-aria-label="cases.close"><i class="ri-close-line" aria-hidden="true"></i></button>
+</div>
+<button type="button" class="case-dialog-close" data-case-close autofocus aria-label="Close" data-i18n-attr-aria-label="cases.close"><i class="ri-close-line" aria-hidden="true"></i></button>
 </dialog>
 <!-- Contact Section -->
 <section id="contact" class="py-12 bg-gray-50 section-fade">
