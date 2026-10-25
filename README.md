@@ -17,9 +17,8 @@ SPA構成で、軽量かつ多言語（英語・日本語）に対応してい�
 | マークアップ | HTML5（静的、SPA） |
 | スタイル | Tailwind CSS（CDN経由、3.4.16） |
 | アイコン | Remixicon（CDN） |
-| グラフ | ECharts（CDN） |
 | フォント | Inter（Google Fonts） |
-| フォーム送信 | Formspree |
+| フォーム送信 | サーバー送信なし。入力内容を入れたメール作成画面（メールアプリ／Gmail／Outlook）を開く |
 | ホスティング | GitHub Pages |
 | ビルドステップ | なし（静的ファイル配信のみ） |
 
@@ -30,6 +29,8 @@ SPA構成で、軽量かつ多言語（英語・日本語）に対応してい�
 ├── index.html              ルート: ブラウザ言語に応じて /en/ または /ja/ へリダイレクト
 ├── en/index.html           英語版エントリポイント（canonical）
 ├── ja/index.html           日本語版エントリポイント（canonical）
+├── en/privacy/, ja/privacy/  プライバシーポリシー（独立した静的ページ。後述「プライバシーポリシー・利用規約」）
+├── en/terms/, ja/terms/      利用規約（同上）
 ├── locales/
 │   ├── v2/
 │   │   ├── en.json         英語の全テキスト（翻訳のソース・オブ・トゥルース。編集するのはこちら）
@@ -55,7 +56,9 @@ SPA構成で、軽量かつ多言語（英語・日本語）に対応してい�
 ├── _sources/brand/         ロゴに関する全ファイルの正本（資料・SNS 用、サイト用）とロゴの意味（同フォルダの README.md）。GitHub Pages では非公開
 ├── scripts/
 │   ├── optimize_images.py  写真を Web 用（JPEG/WebP・2サイズ）に変換するスクリプト
-│   └── build_icons.py      ロゴの PNG / ICO を作り、サイト用のファイルを公開場所へコピーするスクリプト
+│   ├── build_icons.py      ロゴの PNG / ICO を作り、サイト用のファイルを公開場所へコピーするスクリプト
+│   ├── legal_pages/        プライバシーポリシー・利用規約のページを作るスクリプトと文面（content_en.py / content_ja.py）
+│   └── check_lang_links.py すべてのサイト内リンクが表示言語を保つか（/ja/ のページから /en/ に飛ばないか）を確認する
 ├── favicon.ico             旧ブラウザ用ファビコン（16/32/48px）
 ├── apple-touch-icon.png    iPhone のホーム画面用アイコン（180px）
 ├── site.webmanifest        Android のホーム画面用の設定
@@ -193,13 +196,35 @@ solutions: [
 - YouTube は、収益化していない動画にも広告を表示することがある。広告を確実に避けたい場合は、Vimeo などへの移行を検討する（`solutions.js` の埋め込み URL の変更が必要）。
 - 変更は push 後、利用者のブラウザでは最大約10分古いまま見えることがある（GitHub Pages のキャッシュ）。
 
+### プライバシーポリシー・利用規約
+
+トップページを軽く保つため、法務の文書は独立したページにしている（`/en/privacy/` `/ja/privacy/` `/en/terms/` `/ja/terms/`）。フッターとお問い合わせフォームの下の一文からリンクしている。
+
+- 文面は `scripts/legal_pages/content_en.py`（英語）と `content_ja.py`（日本語）にある。直したら、リポジトリのルートで次を実行して4ページを作り直し、生成された HTML もコミットする。
+  ```bash
+  python3 scripts/legal_pages/build.py .
+  ```
+- 改定したときは、両方のファイルの `updated`（最終更新日）も更新する。
+- ヘッダーとフッターはトップページと同じ見た目・動き（大手 IT 企業の法務ページと同じ構成）。ただし Tailwind は使わず、同じ見た目を CSS で再現した軽いページ。メニューやフッターの文言は `locales/v2/*.json`、社名は `site-config.js` の `companyName` から作るため、これらを変えたときも上のコマンドで作り直す。
+- 迷惑メール対策のため、サイトにはメールアドレスを表示しない。法務ページの問い合わせ窓口は、トップページのお問い合わせフォーム（`/ja/#contact`）へのリンクにしている。
+- 文面は大手 IT・コンサル企業の構成を参考にした雛形。公開前に、代表者名・個人情報保護責任者（DPO）の任命状況・準拠法などを含め、専門家の確認を受けること。
+
+### 表示言語の維持
+
+ページを移動しても表示中の言語は変わらない。サイト内リンクは言語付きのパスか相対パスで書き、各ページは開いた言語をブラウザに保存する（`preferredLang`）。ページやリンクを追加・変更したら、次を実行して OK になることを確認する。
+
+```bash
+python3 scripts/check_lang_links.py
+```
+
 ### セクションへのリンク
 
 各セクションには ID があり、URL で直接開ける。メニューを押したときも、アドレスバーの URL がこの形になる（ブラウザの履歴は増やさないので、「戻る」1回で前のサイトに戻る）。
 
 | URL の例 | 開いたときの表示 |
 |------|------|
-| `https://quests.it.com/ja/#services` | Services（同様に `#about` `#solutions` `#cases` `#contact` `#privacy-policy` `#terms-of-service`） |
+| `https://quests.it.com/ja/#services` | Services（同様に `#about` `#solutions` `#cases` `#contact`） |
+| `https://quests.it.com/ja/#privacy-policy` | 以前のページ内リンク。`/ja/privacy/` へ自動で移動する（`#terms-of-service` は `/ja/terms/`） |
 | `https://quests.it.com/ja/#solutions-<id>` | Solutions を表示し、`id` の動画の再生ウィンドウを開いた状態にする。その動画が非表示・削除済みなら Solutions を表示 |
 | `https://quests.it.com/ja/#cases-<id>` | Case Studies を表示し、その事例の詳細を開いた状態にする。`id` は事例カードの `data-case`（例: `material` `chatbot` `predictive` `dashboard` `voice` `legacy`）。存在しない ID なら Case Studies を表示 |
 | `https://quests.it.com/#solutions` | ブラウザの言語に合わせて `/en/` または `/ja/` に移り、`#solutions` は引き継ぐ |

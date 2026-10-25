@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Use | Quests</title>
+<meta name="description" content="The terms that apply when you use the Quests website.">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/images/brand/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="/en/terms/">
+<link rel="alternate" hreflang="en" href="/en/terms/">
+<link rel="alternate" hreflang="ja" href="/ja/terms/">
+<link rel="alternate" hreflang="x-default" href="/en/terms/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<script src="/assets/js/site-config.js?v=3"></script>
+<script src="/assets/js/solutions.js?v=4"></script>
+<style>
+:root { --ink: #111827; --body: #374151; --muted: #6b7280; --line: #e5e7eb; --soft: #f8fafc; --primary: #0047AB; --dark: #1F1F1F; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: #fff; color: var(--body); font-family: 'Inter', 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif; line-height: 1.8; }
+/* Same text rendering as the home page (Tailwind's base styles): no font-smoothing override, which made the
+   text look thinner on macOS. */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html[lang="ja"] { line-break: strict; overflow-wrap: break-word; font-feature-settings: "palt"; letter-spacing: .02em; }
+a { color: var(--primary); text-underline-offset: 2px; }
+button { font: inherit; }
+/* Tailwind's .container, as on the home page */
+.container { width: 100%; margin: 0 auto; padding: 0 1.5rem; }
+@media (min-width: 640px) { .container { max-width: 640px; } }
+@media (min-width: 768px) { .container { max-width: 768px; } }
+@media (min-width: 1024px) { .container { max-width: 1024px; } }
+@media (min-width: 1280px) { .container { max-width: 1280px; } }
+@media (min-width: 1536px) { .container { max-width: 1536px; } }
+
+/* Page changes cross-fade with the header in place, as on the home page. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+}
+.site-header { view-transition-name: site-header; }
+/* Header: the home page's header in its scrolled state */
+.site-header, footer { line-height: 1.5; }
+.site-header { position: sticky; top: 0; z-index: 50; background: rgba(31,31,31,.94); -webkit-backdrop-filter: blur(15px); backdrop-filter: blur(15px); }
+.site-header .bar { display: flex; align-items: center; justify-content: space-between; padding-top: .5rem; padding-bottom: .5rem; }
+.brand { color: #fff; font-family: 'Inter'; font-size: 1.5rem; line-height: 2rem; font-weight: 700; text-decoration: none; white-space: nowrap; }
+.desktop-nav { display: none; align-items: center; gap: 2rem; }
+.desktop-nav a.nav-link { color: #fff; text-decoration: none; white-space: nowrap; transition: color .25s ease; }
+.desktop-nav a.nav-link:hover { color: #93c5fd; }
+.lang-switcher { display: inline-flex; align-items: center; gap: .5rem; padding-left: 1.25rem; font-size: .875rem; }
+.lang-switcher i { color: rgba(255,255,255,.85); font-size: 1rem; }
+.lang-switcher a { color: rgba(255,255,255,.85); text-decoration: none; transition: color .2s; }
+.lang-switcher a:hover, .lang-switcher a[aria-current] { color: #93c5fd; }
+.lang-switcher a[aria-current] { font-weight: 600; }
+.lang-divider { color: rgba(255,255,255,.35); }
+.mobile-actions { display: flex; align-items: center; gap: 1rem; }
+.icon-btn { width: 2rem; height: 2rem; display: inline-flex; align-items: center; justify-content: center; color: rgba(255,255,255,.85); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: none; transition: color .25s ease; }
+.icon-btn:hover { color: #93c5fd; }
+#mobileMenuBtn { color: #fff; }
+#mobileMenu { position: absolute; left: 0; right: 0; background: #fff; border-top: 1px solid #f1f5f9; box-shadow: 0 16px 32px -12px rgba(0,0,0,.25); }
+#mobileMenu[hidden] { display: none; }
+#mobileMenu nav { display: flex; flex-direction: column; padding-top: .5rem; padding-bottom: .5rem; }
+#mobileMenu a { display: block; padding: .875rem 0; color: #1f2937; font-size: 1.0625rem; font-weight: 500; text-decoration: none; border-bottom: 1px solid #f3f4f6; transition: color .2s; }
+#mobileMenu a:last-child { border-bottom: 0; }
+#mobileMenu a:hover { color: var(--primary); }
+@media (min-width: 1024px) {
+  .brand { font-size: 1.875rem; line-height: 2.25rem; }
+  .desktop-nav { display: flex; }
+  .mobile-actions, #mobileMenu { display: none !important; }
+}
+
+/* Document */
+main { max-width: 46rem; margin: 0 auto; padding: 4rem 1.5rem 5rem; }
+html[lang="ja"] main { max-width: 42rem; }
+.eyebrow { margin: 0 0 .5rem; color: var(--primary); font-size: .875rem; font-weight: 600; }
+h1 { margin: 0 0 .75rem; color: var(--ink); font-size: clamp(2rem, 4vw, 2.5rem); line-height: 1.25; letter-spacing: -.01em; }
+.updated { margin: 0 0 2rem; color: var(--muted); font-size: .9375rem; }
+.lead { margin: 0 0 2.5rem; font-size: 1.0625rem; }
+.toc { margin: 0 0 3rem; padding: 1.25rem 1.5rem; background: var(--soft); border: 1px solid #eef2f7; border-radius: 16px; }
+.toc p { margin: 0 0 .5rem; color: var(--ink); font-weight: 600; font-size: .9375rem; }
+/* The headings already carry their numbers. */
+.toc ol { margin: 0; padding: 0; list-style: none; columns: 2; column-gap: 2rem; font-size: .9375rem; line-height: 1.9; }
+.toc li { margin: 0; break-inside: avoid; text-wrap: pretty; }
+p, li { text-wrap: pretty; }
+.toc a { color: var(--body); text-decoration: none; }
+.toc a:hover { color: var(--primary); text-decoration: underline; }
+@media (max-width: 639px) { .toc ol { columns: 1; } main { padding-top: 2.5rem; } }
+section { scroll-margin-top: 5rem; padding-top: 2rem; margin-top: 2rem; border-top: 1px solid var(--line); }
+section:first-of-type { border-top: 0; margin-top: 0; padding-top: 0; }
+h2 { margin: 0 0 1rem; color: var(--ink); font-size: 1.375rem; line-height: 1.4; }
+h3 { margin: 1.5rem 0 .5rem; color: var(--ink); font-size: 1.0625rem; }
+p { margin: 0 0 1rem; }
+ul { margin: 0 0 1rem; padding-left: 1.25rem; }
+li { margin: .25rem 0; }
+.table-wrap { overflow-x: auto; margin: 0 0 1rem; }
+table { width: 100%; border-collapse: collapse; font-size: .9375rem; line-height: 1.6; }
+th, td { text-align: left; vertical-align: top; padding: .75rem .75rem .75rem 0; border-bottom: 1px solid var(--line); }
+th { color: var(--ink); font-weight: 600; white-space: nowrap; }
+.contact { padding: 1.25rem 1.5rem; background: var(--soft); border: 1px solid #eef2f7; border-radius: 16px; }
+.contact p { margin: 0; }
+
+/* Footer: same as the home page */
+footer { background: var(--dark); color: #fff; padding: 3rem 0; }
+html[lang="ja"] footer p { line-height: 1.85; }
+.footer-top { display: flex; flex-direction: column; gap: 2.5rem; }
+.footer-brand { display: inline-block; margin-bottom: 1rem; color: #fff; font-family: 'Inter'; font-size: 1.875rem; line-height: 2.25rem; font-weight: 700; text-decoration: none; }
+.tagline { margin: 0 0 1.5rem; color: #9ca3af; }
+.social { display: flex; gap: 1rem; }
+.social a { width: 2rem; height: 2rem; display: inline-flex; align-items: center; justify-content: center; color: #9ca3af; text-decoration: none; transition: color .2s; }
+.social a:hover { color: #fff; }
+.footer-cols { display: flex; gap: 2.5rem; }
+.footer-cols > div { flex: 1; }
+.footer-cols h3 { margin: 0 0 1rem; color: #fff; font-size: 1.125rem; line-height: 1.75rem; font-weight: 600; }
+.footer-cols ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
+.footer-cols li { margin: 0; }
+.footer-cols a { color: #9ca3af; text-decoration: none; transition: color .2s; }
+.footer-cols a:hover { color: #fff; }
+.copyright { margin: 2.5rem 0 0; color: #6b7280; }
+@media (min-width: 768px) {
+  .footer-top { flex-direction: row; }
+  .footer-top > div { width: 50%; }
+}
+</style>
+<!-- Start loading other pages of this site when the pointer rests on a link (Chrome, Edge). Links within this page are skipped. -->
+<script type="speculationrules">{"prefetch": [{"source": "document", "where": {"and": [{"href_matches": "/*"}, {"not": {"selector_matches": "a[href^='#']"}}]}, "eagerness": "moderate"}]}</script>
+</head>
+<body>
+<header class="site-header">
+<div class="container bar">
+<a class="brand" href="/en/">Quests</a>
+<nav class="desktop-nav" aria-label="Main">
+<a href="/en/#about" class="nav-link">About</a>
+<a href="/en/#services" class="nav-link">Services</a>
+<a href="/en/#solutions" class="nav-link" data-solutions>Solutions</a>
+<a href="/en/#cases" class="nav-link">Case Studies</a>
+<a href="/en/#contact" class="nav-link">Contact Us</a>
+<span class="lang-switcher">
+<i class="ri-global-line" aria-hidden="true"></i>
+<a href="/en/terms/" hreflang="en" lang="en" aria-current="page">English</a>
+<span class="lang-divider">|</span>
+<a href="/ja/terms/" hreflang="ja" lang="ja">日本語</a>
+</span>
+</nav>
+<div class="mobile-actions">
+<a class="icon-btn" href="/ja/terms/" hreflang="ja" aria-label="Switch language"><i class="ri-global-line ri-lg" aria-hidden="true"></i></a>
+<button type="button" id="mobileMenuBtn" class="icon-btn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu" data-open-label="Open menu" data-close-label="Close menu"><i class="ri-menu-line ri-lg" aria-hidden="true"></i></button>
+</div>
+</div>
+<div id="mobileMenu" hidden>
+<nav class="container">
+<a href="/en/#about">About</a>
+<a href="/en/#services">Services</a>
+<a href="/en/#solutions" data-solutions>Solutions</a>
+<a href="/en/#cases">Case Studies</a>
+<a href="/en/#contact">Contact Us</a>
+</nav>
+</div>
+</header>
+<main>
+<p class="eyebrow">Quests Bay Pte. Ltd.</p>
+<h1>Terms of Use</h1>
+<p class="updated">Last updated: October 26, 2026</p>
+<p class="lead">These Terms of Use apply to your use of this website, operated by Quests Bay Pte. Ltd. (“Quests”, “we”, “us”). By using the website, you agree to these terms. If you do not agree, please do not use it.</p>
+<nav class="toc" aria-label="Contents"><p>Contents</p><ol><li><a href="#about-site">1. About this website</a></li><li><a href="#intellectual-property">2. Intellectual property</a></li><li><a href="#acceptable-use">3. Acceptable use</a></li><li><a href="#information-you-send">4. Information you send us</a></li><li><a href="#third-party">5. Third-party links and services</a></li><li><a href="#disclaimer">6. Disclaimer</a></li><li><a href="#liability">7. Limitation of liability</a></li><li><a href="#changes">8. Changes</a></li><li><a href="#governing-law">9. Governing law and jurisdiction</a></li><li><a href="#general">10. General</a></li><li><a href="#contact">11. Contact us</a></li></ol></nav>
+<section id="about-site">
+<h2>1. About this website</h2>
+<p>This website provides general information about Quests and our services. It is not professional advice, and you should not rely on it as such. Any services we provide are governed by a separate written agreement between you and us.</p>
+<p>Case studies describe past projects in general terms. Results depend on each client’s circumstances and are not a guarantee of future results.</p>
+</section>
+<section id="intellectual-property">
+<h2>2. Intellectual property</h2>
+<p>The content of this website, including text, images, videos, graphics and logos, is owned by Quests or our licensors and is protected by copyright and other laws. You may view it and print or save individual pages for your own non-commercial use, provided you keep all copyright and other notices. Any other use requires our prior written permission.</p>
+<p>Other company names, product names and logos on this website are the trademarks of their respective owners. Their appearance does not imply any endorsement or partnership unless we say so.</p>
+</section>
+<section id="acceptable-use">
+<h2>3. Acceptable use</h2>
+<p>You agree not to:</p>
+<ul>
+<li>Use the website in any way that is unlawful or infringes the rights of others</li>
+<li>Try to gain unauthorised access to the website or the systems that support it, or interfere with how they work</li>
+<li>Introduce viruses or other harmful code</li>
+<li>Collect data from the website by automated means in a way that places an unreasonable load on it</li>
+<li>Send us false or misleading information, or impersonate anyone else</li>
+</ul>
+</section>
+<section id="information-you-send">
+<h2>4. Information you send us</h2>
+<p>Please do not send confidential or proprietary information through the contact form or by email before we have agreed in writing how it will be handled, such as through a non-disclosure agreement. Unless we have agreed otherwise, ideas or suggestions you send us are not treated as confidential, and we may use them without obligation to you.</p>
+<p>We handle personal data you send us in line with our <a href="../privacy/">Privacy Policy</a>.</p>
+</section>
+<section id="third-party">
+<h2>5. Third-party links and services</h2>
+<p>This website includes links to, and content from, third-party websites and services such as YouTube and Google Maps. We do not control them and are not responsible for their content, availability or practices. Your use of them is subject to their own terms.</p>
+</section>
+<section id="disclaimer">
+<h2>6. Disclaimer</h2>
+<p>We aim to keep the website accurate and available, but it is provided “as is” and “as available”. To the fullest extent permitted by law, we make no warranties of any kind, express or implied, including about its accuracy, completeness, reliability, fitness for a particular purpose or freedom from errors, viruses or interruptions.</p>
+</section>
+<section id="liability">
+<h2>7. Limitation of liability</h2>
+<p>To the fullest extent permitted by law, Quests will not be liable for any indirect, incidental, special, consequential or punitive damages, or for any loss of profits, data or business opportunity, arising from your use of, or inability to use, this website or its content. Nothing in these terms limits liability that cannot be limited under applicable law.</p>
+</section>
+<section id="changes">
+<h2>8. Changes</h2>
+<p>We may change the website or these terms at any time. The updated terms will be posted on this page with a new “Last updated” date, and they apply from the time they are posted.</p>
+</section>
+<section id="governing-law">
+<h2>9. Governing law and jurisdiction</h2>
+<p>These terms are governed by the laws of Singapore. The courts of Singapore have exclusive jurisdiction over any dispute arising from them or from your use of the website.</p>
+</section>
+<section id="general">
+<h2>10. General</h2>
+<p>If any part of these terms is found to be invalid or unenforceable, the rest remains in effect. Our failure to enforce any part of these terms is not a waiver of our right to do so later. If the English and Japanese versions of these terms differ, the English version prevails.</p>
+</section>
+<section id="contact">
+<h2>11. Contact us</h2>
+<div class="contact"><p><strong>Quests Bay Pte. Ltd.</strong><br>68 Circular Road, #02-01, Singapore 049422<br>Contact: <a href="/en/#contact">our contact form</a></p></div>
+</section>
+</main>
+<footer>
+<div class="container">
+<div class="footer-top">
+<div>
+<a class="footer-brand" href="/en/">Quests</a>
+<p class="tagline">AI, data, and cloud, delivered end to end.<br>Big Tech expertise, without the big-firm overhead.</p>
+<div class="social">
+<a href="https://www.linkedin.com/company/quests-group" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ri-linkedin-box-fill ri-lg" aria-hidden="true"></i></a>
+<a href="https://www.youtube.com/@QuestsBay" target="_blank" rel="noopener" aria-label="YouTube"><i class="ri-youtube-fill ri-lg" aria-hidden="true"></i></a>
+</div>
+</div>
+<div class="footer-cols">
+<div>
+<h3>Quick Links</h3>
+<ul>
+<li><a href="/en/#about">About</a></li><li><a href="/en/#services">Services</a></li><li data-solutions><a href="/en/#solutions">Solutions</a></li><li><a href="/en/#cases">Case Studies</a></li><li><a href="/en/#contact">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h3>Legal</h3>
+<ul>
+<li><a href="/en/privacy/">Privacy Policy</a></li>
+<li><a href="/en/terms/">Terms of Use</a></li>
+</ul>
+</div>
+</div>
+</div>
+<p class="copyright">© <span id="year">2026</span> Quests. All rights reserved.</p>
+</div>
+</footer>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+// Remember this page's language, as the home page does (assets/js/i18n.js, key "preferredLang"),
+// so every later page, including the root URL, opens in the same language.
+try { localStorage.setItem('preferredLang', 'en'); } catch (_) {}
+
+// Phone menu: same behaviour as the home page (Esc, a tap outside or choosing a link closes it).
+(function () {
+  var button = document.getElementById('mobileMenuBtn');
+  var menu = document.getElementById('mobileMenu');
+  var header = document.querySelector('.site-header');
+  var labels = { open: button.getAttribute('data-open-label'), close: button.getAttribute('data-close-label') };
+  function setOpen(open) {
+    menu.hidden = !open;
+    button.setAttribute('aria-expanded', String(open));
+    button.setAttribute('aria-label', open ? labels.close : labels.open);
+    button.querySelector('i').className = (open ? 'ri-close-line' : 'ri-menu-line') + ' ri-lg';
+  }
+  button.addEventListener('click', function () { setOpen(menu.hidden); });
+  menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) { setOpen(false); button.focus(); } });
+  document.addEventListener('click', function (e) { if (!menu.hidden && !header.contains(e.target)) setOpen(false); });
+})();
+</script>
+</body>
+</html>

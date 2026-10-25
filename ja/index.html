@@ -18,13 +18,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
 <script src="https://cdn.tailwindcss.com/3.4.16"></script>
 <script>tailwind.config={theme:{extend:{colors:{primary:'#0047AB',secondary:'#00264d'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/budoux@0.8.4/bundle/budoux-ja.min.js" defer></script>
+<script>document.documentElement.classList.add('js');</script>
 <script src="/assets/js/site-config.js?v=3"></script>
 <script src="/assets/js/config.js?v=1"></script>
 <script src="/assets/js/solutions.js?v=4"></script>
 <script src="/assets/js/i18n.js?v=10" defer></script>
-<script src="/assets/js/section-links.js?v=2" defer></script>
+<script src="/assets/js/section-links.js?v=3" defer></script>
 <script src="/assets/js/cases.js?v=2" defer></script>
 <style>
 :where([class^="ri-"])::before { content: "\f3c2"; }
@@ -43,80 +43,30 @@ input[type="number"]::-webkit-outer-spin-button {
 -webkit-appearance: none;
 margin: 0;
 }
-.custom-checkbox {
-appearance: none;
--webkit-appearance: none;
-width: 20px;
-height: 20px;
-border: 2px solid #0047AB;
-border-radius: 4px;
-position: relative;
-cursor: pointer;
+.form-required { margin-left: .5rem; padding: .0625rem .375rem; border-radius: 4px; background: #fef2f2; color: #b91c1c; font-size: .75rem; font-weight: 600; vertical-align: .0625rem; }
+.form-error { margin-top: .5rem; display: flex; align-items: flex-start; gap: .375rem; color: #b91c1c; font-size: .875rem; }
+.form-error[hidden] { display: none; }
+#contactForm [aria-invalid="true"] { border-color: #dc2626; }
+.form-note { color: #6b7280; font-size: .875rem; }
+.form-note a { color: #0047AB; text-decoration: underline; text-underline-offset: 2px; }
+.hero-cta { display: inline-flex; align-items: center; gap: .5rem; padding: .75rem 1.5rem; border-radius: 9999px; font-weight: 600; transition: background-color .2s, border-color .2s; }
+.hero-cta-primary { background: #0047AB; color: #fff; }
+.hero-cta-primary:hover { background: #003a8c; }
+.hero-cta-primary i { transition: transform .2s ease; }
+.hero-cta-primary:hover i { transform: translateX(3px); }
+.hero-cta-secondary { border: 1px solid rgba(255,255,255,.3); color: #fff; }
+.hero-cta-secondary:hover { border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.06); }
+/* Page changes (home <-> privacy/terms) cross-fade instead of flashing white, and the header stays in place.
+   Browsers without cross-document view transitions simply load the page as before. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
 }
-.custom-checkbox:checked {
-background-color: #0047AB;
-}
-.custom-checkbox:checked::after {
-content: "";
-position: absolute;
-width: 5px;
-height: 10px;
-border: solid white;
-border-width: 0 2px 2px 0;
-top: 2px;
-left: 6px;
-transform: rotate(45deg);
-}
-.custom-switch {
-position: relative;
-display: inline-block;
-width: 48px;
-height: 24px;
-}
-.custom-switch input {
-opacity: 0;
-width: 0;
-height: 0;
-}
-.slider {
-position: absolute;
-cursor: pointer;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background-color: #ccc;
-transition: .4s;
-border-radius: 24px;
-}
-.slider:before {
-position: absolute;
-content: "";
-height: 18px;
-width: 18px;
-left: 3px;
-bottom: 3px;
-background-color: white;
-transition: .4s;
-border-radius: 50%;
-}
-input:checked + .slider {
-background-color: #0047AB;
-}
-input:checked + .slider:before {
-transform: translateX(24px);
-}
-.counter-value {
-transition: all 0.5s ease;
-}
-.section-fade {
-opacity: 0;
-transform: translateY(20px);
-transition: opacity 0.8s ease, transform 0.8s ease;
-}
-.section-fade.visible {
-opacity: 1;
-transform: translateY(0);
+.site-header { view-transition-name: site-header; }
+/* Sections slide in only when JavaScript runs (html.js) and the visitor has not asked for less motion,
+   so the content is never left hidden. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js .section-fade { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  html.js .section-fade.visible { opacity: 1; transform: translateY(0); }
 }
 .lang-switcher { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; }
 .lang-switcher button { color: #6b7280; transition: color 0.2s; background: none; border: none; cursor: pointer; padding: 0; font-family: inherit; font-size: inherit; }
@@ -130,8 +80,10 @@ transform: translateY(0);
   border-bottom: 1px solid rgba(255,255,255,0);
   transition: background-color .25s ease, backdrop-filter .25s ease, -webkit-backdrop-filter .25s ease, border-color .25s ease, box-shadow .25s ease;
 }
-.site-header.is-scrolled {
-  background: rgba(31,31,31,.8);
+.site-header.is-scrolled,
+.site-header.menu-open {
+  /* Nearly opaque: at .8 the white sections showed through as a muddy grey. */
+  background: rgba(31,31,31,.94);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border-bottom: 1px solid rgba(255,255,255,0);
@@ -165,11 +117,11 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 {
 .site-header .lang-switcher button:hover,
 .site-header .lang-switcher button.lang-active { color: #93c5fd; }
 .site-header #mobileMenuBtn { color: #fff; }
-#mobileMenu {
-  background: rgba(255,255,255,.92);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-}
+/* Opaque: the header already has a backdrop-filter, and a nested one cannot blur the page behind it. */
+#mobileMenu { background: #fff; border-top: 1px solid #f1f5f9; box-shadow: 0 16px 32px -12px rgba(0,0,0,.25); }
+#mobileMenu a { display: block; padding: .875rem 0; color: #1f2937; font-size: 1.0625rem; font-weight: 500; border-bottom: 1px solid #f3f4f6; transition: color .2s; }
+#mobileMenu a:last-child { border-bottom: 0; }
+#mobileMenu a:hover { color: #0047AB; }
 section[id] { scroll-margin-top: 80px; }
 #hero { scroll-margin-top: 0; }
 html.solutions-open { overflow: hidden; }
@@ -320,6 +272,8 @@ html.case-dialog-open { overflow: hidden; }
 }
 @media (prefers-reduced-motion: reduce) { .solution-dialog[open] { animation: none; } }
 </style>
+<!-- Start loading the privacy policy / terms when the pointer rests on their links (Chrome, Edge). -->
+<script type="speculationrules">{"prefetch": [{"source": "document", "where": {"selector_matches": "a[href='privacy/'], a[href='terms/']"}, "eagerness": "moderate"}]}</script>
 </head>
 <body class="bg-white">
 <!-- Header/Navigation -->
@@ -343,43 +297,47 @@ html.case-dialog-open { overflow: hidden; }
 <button type="button" data-lang-toggle aria-label="Switch language" class="lang-toggle-btn w-8 h-8">
 <i class="ri-global-line ri-lg"></i>
 </button>
-<div class="w-8 h-8 flex items-center justify-center cursor-pointer" id="mobileMenuBtn">
-<i class="ri-menu-line ri-lg"></i>
-</div>
+<button type="button" id="mobileMenuBtn" class="w-8 h-8 flex items-center justify-center" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+<i class="ri-menu-line ri-lg" aria-hidden="true"></i>
+</button>
 </div>
 </div>
 <!-- Mobile Menu -->
 <div id="mobileMenu" class="hidden lg:hidden shadow-lg absolute w-full">
-<div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
-<a href="#about" class="text-gray-700 hover:text-primary transition-colors py-2" data-i18n="nav.about">About</a>
-<a href="#services" class="text-gray-700 hover:text-primary transition-colors py-2" data-i18n="nav.services">Services</a>
-<a href="#solutions" class="text-gray-700 hover:text-primary transition-colors py-2" data-solutions data-i18n="nav.solutions">Solutions</a>
-<a href="#cases" class="text-gray-700 hover:text-primary transition-colors py-2" data-i18n="nav.cases">Case Studies</a>
-<a href="#contact" class="text-gray-700 hover:text-primary transition-colors py-2" data-i18n="nav.contact">Contact Us</a>
-</div>
+<nav class="container mx-auto px-6 py-2 flex flex-col">
+<a href="#about" data-i18n="nav.about">About</a>
+<a href="#services" data-i18n="nav.services">Services</a>
+<a href="#solutions" data-solutions data-i18n="nav.solutions">Solutions</a>
+<a href="#cases" data-i18n="nav.cases">Case Studies</a>
+<a href="#contact" data-i18n="nav.contact">Contact Us</a>
+</nav>
 </div>
 </header>
 <!-- Hero Section -->
 <section id="hero" class="pt-16 min-h-[600px] lg:h-[50vh] relative overflow-hidden hero-bg">
 <div class="absolute inset-0 bg-gradient-to-r from-[#1F1F1F] from-40% via-[#1F1F1F]/80 via-60% to-transparent"></div>
-<div class="container mx-auto px-6 h-full flex items-center relative py-12 lg:py-0">
+<div class="container mx-auto px-6 h-full flex items-center relative pt-12 pb-32 lg:py-0">
 <div class="hero-copy w-full lg:w-3/5">
 <h1 class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold text-white mb-6 leading-tight">
 <div class="break-words sm:whitespace-nowrap" data-i18n="hero.titleLine1">Pioneering the Future</div>
 <div class="hero-line2 break-words"><span data-i18n="hero.titleLine2Prefix">with </span><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400" data-i18n-html="hero.titleHighlight">Big Tech Expertise <span class="text-white">at</span> Startup Speed</span></div>
 </h1>
-<p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl" data-phrase data-i18n-html="hero.subtitle">AI, data, and cloud solutions, delivered end to end by engineers with experience at Big Tech companies like AWS, Google, and Microsoft, with flexible terms and fast results.</p>
+<p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl" data-phrase data-i18n-html="hero.subtitle">Engineers with experience at AWS, Google, and Microsoft take your AI, data, and cloud initiatives from business strategy to development and operations. Flexible terms, fast results.</p>
+<div class="flex flex-wrap gap-3">
+<a href="#contact" class="hero-cta hero-cta-primary"><span data-i18n="hero.ctaPrimary">Talk to us</span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+<a href="#cases" class="hero-cta hero-cta-secondary" data-i18n="hero.ctaSecondary">See case studies</a>
+</div>
 </div>
 </div>
 <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
 <span class="text-gray-400 mb-2" data-i18n="hero.scroll">Explore</span>
-<div class="w-8 h-8 flex items-center justify-center animate-bounce text-gray-400">
+<div class="w-8 h-8 flex items-center justify-center motion-safe:animate-bounce text-gray-400">
 <i class="ri-arrow-down-line ri-lg"></i>
 </div>
 </div>
 </section>
 <!-- About Section -->
-<section id="about" class="py-12 bg-white section-fade">
+<section id="about" class="py-16 lg:py-24 bg-white section-fade">
 <div class="container mx-auto px-6">
 <div class="text-center mb-8">
 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-i18n="about.title">About Quests</h2>
@@ -419,7 +377,7 @@ html.case-dialog-open { overflow: hidden; }
 </div>
 </section>
 <!-- Services Section -->
-<section id="services" class="py-12 bg-gray-50 section-fade">
+<section id="services" class="py-16 lg:py-24 bg-gray-50 section-fade">
 <div class="container mx-auto px-6">
 <div class="text-center mb-8">
 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-i18n="services.title">Our Services</h2>
@@ -533,7 +491,7 @@ html.case-dialog-open { overflow: hidden; }
 </div>
 </section>
 <!-- Case Studies Section -->
-<section id="cases" class="py-12 bg-white section-fade">
+<section id="cases" class="py-16 lg:py-24 bg-white section-fade">
 <div class="container mx-auto px-6">
 <div class="text-center mb-8">
 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-i18n="cases.title">Case Studies</h2>
@@ -781,7 +739,7 @@ html.case-dialog-open { overflow: hidden; }
 <button type="button" class="dialog-close" data-case-close autofocus aria-label="Close" data-i18n-attr-aria-label="cases.close"><i class="ri-close-line" aria-hidden="true"></i></button>
 </dialog>
 <!-- Contact Section -->
-<section id="contact" class="py-12 bg-gray-50 section-fade">
+<section id="contact" class="py-16 lg:py-24 bg-gray-50 section-fade">
 <div class="container mx-auto px-6">
 <div class="text-center mb-8">
 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-i18n="contact.title">Let's Talk</h2>
@@ -789,15 +747,17 @@ html.case-dialog-open { overflow: hidden; }
 </div>
 <div class="flex flex-col lg:flex-row gap-10">
 <div class="lg:w-1/2">
-<form id="contactForm" class="bg-white border border-gray-100 rounded-2xl shadow-sm p-8">
+<form id="contactForm" novalidate class="bg-white border border-gray-100 rounded-2xl shadow-sm p-8">
 <h3 class="text-2xl font-semibold text-gray-900 mb-6" data-i18n="contact.form.heading">Send Us a Message</h3>
 <div class="mb-6">
-<label for="name" class="block text-gray-700 font-medium mb-2" data-i18n="contact.form.name">Name</label>
-<input type="text" id="name" name="name" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="John Doe" data-i18n-attr-placeholder="contact.form.namePlaceholder" required>
+<label for="name" class="block text-gray-700 font-medium mb-2"><span data-i18n="contact.form.name">Name</span><span class="form-required" data-i18n="contact.form.required">Required</span></label>
+<input type="text" id="name" aria-describedby="name-error" name="name" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="John Doe" data-i18n-attr-placeholder="contact.form.namePlaceholder" required>
+<p id="name-error" class="form-error" hidden></p>
 </div>
 <div class="mb-6">
-<label for="email" class="block text-gray-700 font-medium mb-2" data-i18n="contact.form.email">Email</label>
-<input type="email" id="email" name="email" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="you@example.com" data-i18n-attr-placeholder="contact.form.emailPlaceholder" required>
+<label for="email" class="block text-gray-700 font-medium mb-2"><span data-i18n="contact.form.email">Email</span><span class="form-required" data-i18n="contact.form.required">Required</span></label>
+<input type="email" id="email" aria-describedby="email-error" name="email" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="you@example.com" data-i18n-attr-placeholder="contact.form.emailPlaceholder" required>
+<p id="email-error" class="form-error" hidden></p>
 </div>
 <div class="mb-6">
 <label for="company" class="block text-gray-700 font-medium mb-2" data-i18n="contact.form.company">Company</label>
@@ -820,16 +780,12 @@ html.case-dialog-open { overflow: hidden; }
 </div>
 </div>
 <div class="mb-6">
-<label for="message" class="block text-gray-700 font-medium mb-2" data-i18n="contact.form.message">Project Details</label>
-<textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="What would you like to build or improve?" data-i18n-attr-placeholder="contact.form.messagePlaceholder" required></textarea>
+<label for="message" class="block text-gray-700 font-medium mb-2"><span data-i18n="contact.form.message">Project Details</span><span class="form-required" data-i18n="contact.form.required">Required</span></label>
+<textarea id="message" aria-describedby="message-error" name="message" rows="5" class="w-full px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="What would you like to build or improve?" data-i18n-attr-placeholder="contact.form.messagePlaceholder" required></textarea>
+<p id="message-error" class="form-error" hidden></p>
 </div>
-<div class="mb-6">
-<label class="flex items-center">
-<input type="checkbox" id="agreeCheckbox" class="custom-checkbox mr-2">
-<span class="text-gray-700" data-i18n="contact.form.agree">I agree to receive emails from Quests.</span>
-</label>
-</div>
-<button type="submit" id="submitButton" class="w-full bg-primary text-white py-3 px-6 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors opacity-50 cursor-not-allowed" disabled data-i18n="contact.form.submit">Continue to Email</button>
+<p class="form-note mb-6" data-i18n-html="contact.form.privacyNote">Your details are handled under our <a href="privacy/">Privacy Policy</a>.</p>
+<button type="submit" id="submitButton" class="w-full bg-primary text-white py-3 px-6 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors" data-i18n="contact.form.submit">Continue to Email</button>
 </form>
 </div>
 <div class="lg:w-1/2">
@@ -855,74 +811,10 @@ html.case-dialog-open { overflow: hidden; }
 </div>
 </div>
 </div>
-<div class="rounded-lg overflow-hidden border border-gray-100 flex-1 min-h-[360px]">
+<div class="rounded-lg overflow-hidden border border-gray-100 bg-gray-100 flex-1 min-h-[240px]">
 <iframe title="Google Maps: Quests Bay Pte. Ltd." src="https://www.google.com/maps?q=68%20CIRCULAR%20ROAD%2C%20%2302-01%2C%20SINGAPORE%20049422&hl=ja&output=embed" data-i18n-attr-src="contact.side.mapSrc" width="100%" height="100%" style="border:0; display:block; width:100%; height:100%; min-height:360px;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
 </div>
 </div>
-</div>
-</div>
-</div>
-</section>
-<!-- Privacy Policy Section -->
-<section id="privacy-policy" class="py-12 bg-white section-fade">
-<div class="container mx-auto px-6">
-<h2 class="text-3xl font-bold text-gray-900 mb-8" data-i18n="privacy.title">Privacy Policy</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-<div class="bg-gray-50 p-6 rounded-lg">
-<h3 class="text-xl font-semibold text-gray-900 mb-4" data-i18n="privacy.cards.collect.title">1. Information We Collect</h3>
-<ul class="text-gray-700 space-y-2" data-i18n-list="privacy.cards.collect.items">
-<li>Name and contact information</li>
-<li>Company details</li>
-<li>Project requirements</li>
-<li>Technical usage information</li>
-</ul>
-</div>
-<div class="bg-gray-50 p-6 rounded-lg">
-<h3 class="text-xl font-semibold text-gray-900 mb-4" data-i18n="privacy.cards.use.title">2. How We Use Information</h3>
-<ul class="text-gray-700 space-y-2" data-i18n-list="privacy.cards.use.items">
-<li>Provide and improve services</li>
-<li>Communicate with you</li>
-<li>Respond to inquiries</li>
-<li>Comply with obligations</li>
-</ul>
-</div>
-<div class="bg-gray-50 p-6 rounded-lg">
-<h3 class="text-xl font-semibold text-gray-900 mb-4" data-i18n="privacy.cards.sharing.title">3. Information Sharing</h3>
-<ul class="text-gray-700 space-y-2" data-i18n-list="privacy.cards.sharing.items">
-<li>Service providers</li>
-<li>Professional advisors</li>
-<li>Law enforcement</li>
-<li>With your consent</li>
-</ul>
-</div>
-<div class="bg-gray-50 p-6 rounded-lg">
-<h3 class="text-xl font-semibold text-gray-900 mb-4" data-i18n="privacy.cards.rights.title">4. Your Rights</h3>
-<ul class="text-gray-700 space-y-2" data-i18n-list="privacy.cards.rights.items">
-<li>Access your data</li>
-<li>Correct information</li>
-<li>Request deletion</li>
-<li>Opt out of marketing</li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-<!-- Terms of Service Section -->
-<section id="terms-of-service" class="py-12 bg-gray-50 section-fade">
-<div class="container mx-auto px-6">
-<h2 class="text-3xl font-bold text-gray-900 mb-8" data-i18n="terms.title">Terms of Service</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<div class="bg-white p-6 rounded-lg shadow-md">
-<h3 class="text-xl font-semibold text-gray-900 mb-4" data-i18n="terms.cards.acceptance.title">1. Acceptance of Terms</h3>
-<p class="text-gray-700" data-i18n="terms.cards.acceptance.text">By accessing or using our services, you agree to be bound by these Terms of Service and all applicable laws and regulations.</p>
-</div>
-<div class="bg-white p-6 rounded-lg shadow-md">
-<h3 class="text-xl font-semibold text-gray-900 mb-4" data-i18n="terms.cards.services.title">2. Services</h3>
-<p class="text-gray-700" data-i18n="terms.cards.services.text">Quests provides IT consulting, system development, and related services. We reserve the right to modify or discontinue any service at any time.</p>
-</div>
-<div class="bg-white p-6 rounded-lg shadow-md">
-<h3 class="text-xl font-semibold text-gray-900 mb-4" data-i18n="terms.cards.liability.title">3. Limitation of Liability</h3>
-<p class="text-gray-700" data-i18n="terms.cards.liability.text">Quests shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use or inability to use our services.</p>
 </div>
 </div>
 </div>
@@ -935,26 +827,16 @@ html.case-dialog-open { overflow: hidden; }
 <a href="#hero" class="text-3xl font-['Inter'] font-bold text-white mb-4 inline-block" data-i18n="brand.name">Quests</a>
 <p class="text-gray-400 mb-6" data-phrase><span data-i18n="footer.taglineLine1">AI, data, and cloud, delivered end to end.</span><br><span data-i18n-html="footer.taglineLine2">Big Tech expertise, without the big-firm overhead.</span></p>
 <div class="flex space-x-4">
-<!-- <a href="#" class="text-gray-400 hover:text-white transition-colors">
+<a href="https://www.linkedin.com/company/quests-group" target="_blank" rel="noopener" aria-label="LinkedIn" class="text-gray-400 hover:text-white transition-colors">
 <div class="w-8 h-8 flex items-center justify-center">
-<i class="ri-linkedin-fill ri-lg"></i>
+<i class="ri-linkedin-box-fill ri-lg" aria-hidden="true"></i>
 </div>
 </a>
-<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<a href="https://www.youtube.com/@QuestsBay" target="_blank" rel="noopener" aria-label="YouTube" class="text-gray-400 hover:text-white transition-colors">
 <div class="w-8 h-8 flex items-center justify-center">
-<i class="ri-twitter-x-fill ri-lg"></i>
+<i class="ri-youtube-fill ri-lg" aria-hidden="true"></i>
 </div>
 </a>
-<a href="#" class="text-gray-400 hover:text-white transition-colors">
-<div class="w-8 h-8 flex items-center justify-center">
-<i class="ri-facebook-fill ri-lg"></i>
-</div>
-</a>
-<a href="#" class="text-gray-400 hover:text-white transition-colors">
-<div class="w-8 h-8 flex items-center justify-center">
-<i class="ri-instagram-fill ri-lg"></i>
-</div>
-</a> -->
 </div>
 </div>
 <div class="md:w-1/2 flex gap-10">
@@ -971,8 +853,8 @@ html.case-dialog-open { overflow: hidden; }
 <div class="flex-1">
 <h3 class="text-lg font-semibold mb-4" data-i18n="footer.legal">Legal</h3>
 <ul class="space-y-3">
-<li><a href="#privacy-policy" class="text-gray-400 hover:text-white transition-colors" data-i18n="footer.privacyPolicy">Privacy Policy</a></li>
-<li><a href="#terms-of-service" class="text-gray-400 hover:text-white transition-colors" data-i18n="footer.termsOfService">Terms of Service</a></li>
+<li><a href="privacy/" class="text-gray-400 hover:text-white transition-colors" data-i18n="footer.privacyPolicy">Privacy Policy</a></li>
+<li><a href="terms/" class="text-gray-400 hover:text-white transition-colors" data-i18n="footer.termsOfService">Terms of Use</a></li>
 </ul>
 </div>
 </div>
@@ -985,229 +867,76 @@ html.case-dialog-open { overflow: hidden; }
 </footer>
 <script id="mobileMenuScript">
 document.addEventListener('DOMContentLoaded', function() {
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const mobileMenu = document.getElementById('mobileMenu');
-mobileMenuBtn.addEventListener('click', function() {
-mobileMenu.classList.toggle('hidden');
-});
-// Close mobile menu when clicking on a link
-const mobileLinks = mobileMenu.querySelectorAll('a');
-mobileLinks.forEach(link => {
-link.addEventListener('click', function() {
-mobileMenu.classList.add('hidden');
-});
-});
-});
-</script>
-<script id="analyticsChartScript">
-document.addEventListener('DOMContentLoaded', function() {
-if (document.getElementById('analyticsChart')) {
-const chartElement = document.getElementById('analyticsChart');
-const chart = echarts.init(chartElement);
-const option = {
-animation: false,
-tooltip: {
-trigger: 'axis',
-backgroundColor: 'rgba(255, 255, 255, 0.8)',
-borderColor: '#eee',
-borderWidth: 1,
-textStyle: {
-color: '#1f2937'
+const button = document.getElementById('mobileMenuBtn');
+const menu = document.getElementById('mobileMenu');
+const header = document.querySelector('.site-header');
+const tr = (key, fallback) => (window.i18n && window.i18n.t(key)) || fallback;
+const isOpen = () => !menu.classList.contains('hidden');
+const label = () => button.setAttribute('aria-label', isOpen() ? tr('nav.closeMenu', 'Close menu') : tr('nav.openMenu', 'Open menu'));
+function setOpen(open) {
+menu.classList.toggle('hidden', !open);
+header.classList.toggle('menu-open', open);
+button.setAttribute('aria-expanded', String(open));
+button.querySelector('i').className = (open ? 'ri-close-line' : 'ri-menu-line') + ' ri-lg';
+label();
 }
-},
-legend: {
-data: ['Efficiency', 'Cost Savings', 'Revenue Growth'],
-textStyle: {
-color: '#1f2937'
-}
-},
-grid: {
-left: '3%',
-right: '4%',
-bottom: '3%',
-containLabel: true
-},
-xAxis: {
-type: 'category',
-boundaryGap: false,
-data: ['Q1', 'Q2', 'Q3', 'Q4', 'Q1', 'Q2'],
-axisLine: {
-lineStyle: {
-color: '#ddd'
-}
-},
-axisLabel: {
-color: '#1f2937'
-}
-},
-yAxis: {
-type: 'value',
-axisLine: {
-lineStyle: {
-color: '#ddd'
-}
-},
-axisLabel: {
-color: '#1f2937'
-},
-splitLine: {
-lineStyle: {
-color: '#eee'
-}
-}
-},
-series: [
-{
-name: 'Efficiency',
-type: 'line',
-smooth: true,
-lineStyle: {
-width: 3,
-color: 'rgba(87, 181, 231, 1)'
-},
-areaStyle: {
-color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-{
-offset: 0,
-color: 'rgba(87, 181, 231, 0.3)'
-},
-{
-offset: 1,
-color: 'rgba(87, 181, 231, 0.1)'
-}
-])
-},
-symbol: 'none',
-data: [30, 42, 51, 64, 78, 86]
-},
-{
-name: 'Cost Savings',
-type: 'line',
-smooth: true,
-lineStyle: {
-width: 3,
-color: 'rgba(141, 211, 199, 1)'
-},
-areaStyle: {
-color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-{
-offset: 0,
-color: 'rgba(141, 211, 199, 0.3)'
-},
-{
-offset: 1,
-color: 'rgba(141, 211, 199, 0.1)'
-}
-])
-},
-symbol: 'none',
-data: [15, 23, 35, 48, 59, 68]
-},
-{
-name: 'Revenue Growth',
-type: 'line',
-smooth: true,
-lineStyle: {
-width: 3,
-color: 'rgba(251, 191, 114, 1)'
-},
-areaStyle: {
-color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-{
-offset: 0,
-color: 'rgba(251, 191, 114, 0.3)'
-},
-{
-offset: 1,
-color: 'rgba(251, 191, 114, 0.1)'
-}
-])
-},
-symbol: 'none',
-data: [10, 18, 28, 40, 55, 72]
-}
-]
-};
-chart.setOption(option);
-window.addEventListener('resize', function() {
-if (chart) {
-chart.resize();
-}
-});
-}
-});
-</script>
-<script id="counterAnimationScript">
-document.addEventListener('DOMContentLoaded', function() {
-const counters = document.querySelectorAll('.counter-value');
-const animateCounter = (counter, target) => {
-let count = 0;
-const duration = 2000; // 2 seconds
-const frameDuration = 1000 / 60; // 60fps
-const totalFrames = Math.round(duration / frameDuration);
-const increment = target / totalFrames;
-const animate = () => {
-count += increment;
-counter.innerText = Math.floor(count);
-if (count < target) {
-requestAnimationFrame(animate);
-} else {
-counter.innerText = target;
-}
-};
-animate();
-};
-const handleScroll = () => {
-const triggerBottom = window.innerHeight * 0.8;
-counters.forEach(counter => {
-const counterTop = counter.getBoundingClientRect().top;
-if (counterTop < triggerBottom) {
-const target = parseInt(counter.getAttribute('data-target'));
-counter.innerText = '0';
-animateCounter(counter, target);
-// Remove this counter from future scroll checks
-counter.removeAttribute('data-target');
-}
-});
-// If all counters have been animated, remove the scroll listener
-if (!document.querySelector('.counter-value[data-target]')) {
-window.removeEventListener('scroll', handleScroll);
-}
-};
-window.addEventListener('scroll', handleScroll);
-handleScroll(); // Check on initial load
+button.addEventListener('click', () => setOpen(!isOpen()));
+// Close after choosing a link, with Esc, or when tapping outside the header.
+menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setOpen(false)));
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen()) { setOpen(false); button.focus(); } });
+document.addEventListener('click', e => { if (isOpen() && !header.contains(e.target)) setOpen(false); });
+document.addEventListener('i18n:changed', label);
 });
 </script>
 <script id="scrollAnimationScript">
+// Reveal each section once as it scrolls into view (see .section-fade in the CSS).
 document.addEventListener('DOMContentLoaded', function() {
 const sections = document.querySelectorAll('.section-fade');
-const handleScroll = () => {
-const triggerBottom = window.innerHeight * 0.8;
-sections.forEach(section => {
-const sectionTop = section.getBoundingClientRect().top;
-if (sectionTop < triggerBottom) {
-section.classList.add('visible');
-}
-});
-};
-window.addEventListener('scroll', handleScroll);
-handleScroll(); // Check on initial load
+if (!('IntersectionObserver' in window)) { sections.forEach(s => s.classList.add('visible')); return; }
+const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+if (!entry.isIntersecting) return;
+entry.target.classList.add('visible');
+observer.unobserve(entry.target);
+}), { rootMargin: '0px 0px -20% 0px' });
+sections.forEach(s => observer.observe(s));
 });
 </script>
 <script id="contactFormScript">
 document.addEventListener('DOMContentLoaded', function() {
 const contactForm = document.getElementById('contactForm');
-const agreeCheckbox = document.getElementById('agreeCheckbox');
-const submitButton = document.getElementById('submitButton');
 const tr = (key, fallback) => (window.i18n && window.i18n.t(key)) || fallback;
-agreeCheckbox.addEventListener('change', function() {
-if (this.checked) {
-submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
-submitButton.removeAttribute('disabled');
-} else {
-submitButton.classList.add('opacity-50', 'cursor-not-allowed');
-submitButton.setAttribute('disabled', '');
+// Required fields: errors appear under each field (not in an alert), after the visitor leaves a field or submits,
+// and clear as soon as the value is fixed.
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const rules = {
+name: v => v ? '' : 'contact.form.errors.name',
+email: v => !v ? 'contact.form.errors.email' : (EMAIL.test(v) ? '' : 'contact.form.errors.emailFormat'),
+message: v => v ? '' : 'contact.form.errors.message'
+};
+const fallbacks = {
+'contact.form.errors.name': 'Please enter your name.',
+'contact.form.errors.email': 'Please enter your email address.',
+'contact.form.errors.emailFormat': 'Please check the email address (e.g. name@example.com).',
+'contact.form.errors.message': 'Please tell us about your project.'
+};
+function showError(id) {
+const input = document.getElementById(id);
+const error = document.getElementById(id + '-error');
+const key = rules[id](input.value.trim());
+if (key) input.setAttribute('aria-invalid', 'true');
+else input.removeAttribute('aria-invalid');
+error.hidden = !key;
+error.dataset.key = key;
+error.textContent = key ? tr(key, fallbacks[key]) : '';
+return !key;
 }
+Object.keys(rules).forEach(id => {
+const input = document.getElementById(id);
+input.addEventListener('blur', () => { if (input.value.trim() || input.hasAttribute('aria-invalid')) showError(id); });
+input.addEventListener('input', () => { if (input.hasAttribute('aria-invalid')) showError(id); });
+});
+document.addEventListener('i18n:changed', () => {
+document.querySelectorAll('#contactForm .form-error:not([hidden])').forEach(e => { e.textContent = tr(e.dataset.key, fallbacks[e.dataset.key]); });
 });
 // Let the visitor choose which mail service to open, each pre-filled with the same subject/body.
 function openMailerPicker(subject, body) {
@@ -1259,9 +988,9 @@ const email = document.getElementById('email').value.trim();
 const company = document.getElementById('company').value.trim();
 const budgetSelect = document.getElementById('budget');
 const message = document.getElementById('message').value.trim();
-// Basic validation
-if (!name || !email || !message) {
-alert(tr('contact.form.validationError', 'Please fill in all required fields.'));
+const invalid = Object.keys(rules).filter(id => !showError(id));
+if (invalid.length) {
+document.getElementById(invalid[0]).focus();
 return;
 }
 // Format each answer per the current locale (ja: 【label】value, en: label: value)

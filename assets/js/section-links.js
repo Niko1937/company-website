@@ -6,6 +6,12 @@
   // and #cases-<id> the details of that case (cases.js).
   // The header offset comes from scroll-margin-top in the page CSS.
   const ITEM = /^#(solutions|cases)-([a-z0-9-]+)$/;
+  // The privacy policy and terms used to be sections of this page. Old links now open their own pages.
+  const MOVED = { '#privacy-policy': 'privacy/', '#terms-of-service': 'terms/' };
+  if (MOVED[location.hash]) {
+    location.replace(MOVED[location.hash]);
+    return;
+  }
 
   function reduceMotion() {
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches;

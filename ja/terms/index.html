@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>利用規約 | Quests</title>
+<meta name="description" content="Quests のウェブサイトをご利用いただく際の条件です。">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/images/brand/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="/ja/terms/">
+<link rel="alternate" hreflang="en" href="/en/terms/">
+<link rel="alternate" hreflang="ja" href="/ja/terms/">
+<link rel="alternate" hreflang="x-default" href="/en/terms/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<script src="/assets/js/site-config.js?v=3"></script>
+<script src="/assets/js/solutions.js?v=4"></script>
+<style>
+:root { --ink: #111827; --body: #374151; --muted: #6b7280; --line: #e5e7eb; --soft: #f8fafc; --primary: #0047AB; --dark: #1F1F1F; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: #fff; color: var(--body); font-family: 'Inter', 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif; line-height: 1.8; }
+/* Same text rendering as the home page (Tailwind's base styles): no font-smoothing override, which made the
+   text look thinner on macOS. */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html[lang="ja"] { line-break: strict; overflow-wrap: break-word; font-feature-settings: "palt"; letter-spacing: .02em; }
+a { color: var(--primary); text-underline-offset: 2px; }
+button { font: inherit; }
+/* Tailwind's .container, as on the home page */
+.container { width: 100%; margin: 0 auto; padding: 0 1.5rem; }
+@media (min-width: 640px) { .container { max-width: 640px; } }
+@media (min-width: 768px) { .container { max-width: 768px; } }
+@media (min-width: 1024px) { .container { max-width: 1024px; } }
+@media (min-width: 1280px) { .container { max-width: 1280px; } }
+@media (min-width: 1536px) { .container { max-width: 1536px; } }
+
+/* Page changes cross-fade with the header in place, as on the home page. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+}
+.site-header { view-transition-name: site-header; }
+/* Header: the home page's header in its scrolled state */
+.site-header, footer { line-height: 1.5; }
+.site-header { position: sticky; top: 0; z-index: 50; background: rgba(31,31,31,.94); -webkit-backdrop-filter: blur(15px); backdrop-filter: blur(15px); }
+.site-header .bar { display: flex; align-items: center; justify-content: space-between; padding-top: .5rem; padding-bottom: .5rem; }
+.brand { color: #fff; font-family: 'Inter'; font-size: 1.5rem; line-height: 2rem; font-weight: 700; text-decoration: none; white-space: nowrap; }
+.desktop-nav { display: none; align-items: center; gap: 2rem; }
+.desktop-nav a.nav-link { color: #fff; text-decoration: none; white-space: nowrap; transition: color .25s ease; }
+.desktop-nav a.nav-link:hover { color: #93c5fd; }
+.lang-switcher { display: inline-flex; align-items: center; gap: .5rem; padding-left: 1.25rem; font-size: .875rem; }
+.lang-switcher i { color: rgba(255,255,255,.85); font-size: 1rem; }
+.lang-switcher a { color: rgba(255,255,255,.85); text-decoration: none; transition: color .2s; }
+.lang-switcher a:hover, .lang-switcher a[aria-current] { color: #93c5fd; }
+.lang-switcher a[aria-current] { font-weight: 600; }
+.lang-divider { color: rgba(255,255,255,.35); }
+.mobile-actions { display: flex; align-items: center; gap: 1rem; }
+.icon-btn { width: 2rem; height: 2rem; display: inline-flex; align-items: center; justify-content: center; color: rgba(255,255,255,.85); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: none; transition: color .25s ease; }
+.icon-btn:hover { color: #93c5fd; }
+#mobileMenuBtn { color: #fff; }
+#mobileMenu { position: absolute; left: 0; right: 0; background: #fff; border-top: 1px solid #f1f5f9; box-shadow: 0 16px 32px -12px rgba(0,0,0,.25); }
+#mobileMenu[hidden] { display: none; }
+#mobileMenu nav { display: flex; flex-direction: column; padding-top: .5rem; padding-bottom: .5rem; }
+#mobileMenu a { display: block; padding: .875rem 0; color: #1f2937; font-size: 1.0625rem; font-weight: 500; text-decoration: none; border-bottom: 1px solid #f3f4f6; transition: color .2s; }
+#mobileMenu a:last-child { border-bottom: 0; }
+#mobileMenu a:hover { color: var(--primary); }
+@media (min-width: 1024px) {
+  .brand { font-size: 1.875rem; line-height: 2.25rem; }
+  .desktop-nav { display: flex; }
+  .mobile-actions, #mobileMenu { display: none !important; }
+}
+
+/* Document */
+main { max-width: 46rem; margin: 0 auto; padding: 4rem 1.5rem 5rem; }
+html[lang="ja"] main { max-width: 42rem; }
+.eyebrow { margin: 0 0 .5rem; color: var(--primary); font-size: .875rem; font-weight: 600; }
+h1 { margin: 0 0 .75rem; color: var(--ink); font-size: clamp(2rem, 4vw, 2.5rem); line-height: 1.25; letter-spacing: -.01em; }
+.updated { margin: 0 0 2rem; color: var(--muted); font-size: .9375rem; }
+.lead { margin: 0 0 2.5rem; font-size: 1.0625rem; }
+.toc { margin: 0 0 3rem; padding: 1.25rem 1.5rem; background: var(--soft); border: 1px solid #eef2f7; border-radius: 16px; }
+.toc p { margin: 0 0 .5rem; color: var(--ink); font-weight: 600; font-size: .9375rem; }
+/* The headings already carry their numbers. */
+.toc ol { margin: 0; padding: 0; list-style: none; columns: 2; column-gap: 2rem; font-size: .9375rem; line-height: 1.9; }
+.toc li { margin: 0; break-inside: avoid; text-wrap: pretty; }
+p, li { text-wrap: pretty; }
+.toc a { color: var(--body); text-decoration: none; }
+.toc a:hover { color: var(--primary); text-decoration: underline; }
+@media (max-width: 639px) { .toc ol { columns: 1; } main { padding-top: 2.5rem; } }
+section { scroll-margin-top: 5rem; padding-top: 2rem; margin-top: 2rem; border-top: 1px solid var(--line); }
+section:first-of-type { border-top: 0; margin-top: 0; padding-top: 0; }
+h2 { margin: 0 0 1rem; color: var(--ink); font-size: 1.375rem; line-height: 1.4; }
+h3 { margin: 1.5rem 0 .5rem; color: var(--ink); font-size: 1.0625rem; }
+p { margin: 0 0 1rem; }
+ul { margin: 0 0 1rem; padding-left: 1.25rem; }
+li { margin: .25rem 0; }
+.table-wrap { overflow-x: auto; margin: 0 0 1rem; }
+table { width: 100%; border-collapse: collapse; font-size: .9375rem; line-height: 1.6; }
+th, td { text-align: left; vertical-align: top; padding: .75rem .75rem .75rem 0; border-bottom: 1px solid var(--line); }
+th { color: var(--ink); font-weight: 600; white-space: nowrap; }
+.contact { padding: 1.25rem 1.5rem; background: var(--soft); border: 1px solid #eef2f7; border-radius: 16px; }
+.contact p { margin: 0; }
+
+/* Footer: same as the home page */
+footer { background: var(--dark); color: #fff; padding: 3rem 0; }
+html[lang="ja"] footer p { line-height: 1.85; }
+.footer-top { display: flex; flex-direction: column; gap: 2.5rem; }
+.footer-brand { display: inline-block; margin-bottom: 1rem; color: #fff; font-family: 'Inter'; font-size: 1.875rem; line-height: 2.25rem; font-weight: 700; text-decoration: none; }
+.tagline { margin: 0 0 1.5rem; color: #9ca3af; }
+.social { display: flex; gap: 1rem; }
+.social a { width: 2rem; height: 2rem; display: inline-flex; align-items: center; justify-content: center; color: #9ca3af; text-decoration: none; transition: color .2s; }
+.social a:hover { color: #fff; }
+.footer-cols { display: flex; gap: 2.5rem; }
+.footer-cols > div { flex: 1; }
+.footer-cols h3 { margin: 0 0 1rem; color: #fff; font-size: 1.125rem; line-height: 1.75rem; font-weight: 600; }
+.footer-cols ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
+.footer-cols li { margin: 0; }
+.footer-cols a { color: #9ca3af; text-decoration: none; transition: color .2s; }
+.footer-cols a:hover { color: #fff; }
+.copyright { margin: 2.5rem 0 0; color: #6b7280; }
+@media (min-width: 768px) {
+  .footer-top { flex-direction: row; }
+  .footer-top > div { width: 50%; }
+}
+</style>
+<!-- Start loading other pages of this site when the pointer rests on a link (Chrome, Edge). Links within this page are skipped. -->
+<script type="speculationrules">{"prefetch": [{"source": "document", "where": {"and": [{"href_matches": "/*"}, {"not": {"selector_matches": "a[href^='#']"}}]}, "eagerness": "moderate"}]}</script>
+</head>
+<body>
+<header class="site-header">
+<div class="container bar">
+<a class="brand" href="/ja/">Quests</a>
+<nav class="desktop-nav" aria-label="メイン">
+<a href="/ja/#about" class="nav-link">会社情報</a>
+<a href="/ja/#services" class="nav-link">サービス</a>
+<a href="/ja/#solutions" class="nav-link" data-solutions>ソリューション</a>
+<a href="/ja/#cases" class="nav-link">導入事例</a>
+<a href="/ja/#contact" class="nav-link">お問い合わせ</a>
+<span class="lang-switcher">
+<i class="ri-global-line" aria-hidden="true"></i>
+<a href="/en/terms/" hreflang="en" lang="en">English</a>
+<span class="lang-divider">|</span>
+<a href="/ja/terms/" hreflang="ja" lang="ja" aria-current="page">日本語</a>
+</span>
+</nav>
+<div class="mobile-actions">
+<a class="icon-btn" href="/en/terms/" hreflang="en" aria-label="言語を切り替える"><i class="ri-global-line ri-lg" aria-hidden="true"></i></a>
+<button type="button" id="mobileMenuBtn" class="icon-btn" aria-expanded="false" aria-controls="mobileMenu" aria-label="メニューを開く" data-open-label="メニューを開く" data-close-label="メニューを閉じる"><i class="ri-menu-line ri-lg" aria-hidden="true"></i></button>
+</div>
+</div>
+<div id="mobileMenu" hidden>
+<nav class="container">
+<a href="/ja/#about">会社情報</a>
+<a href="/ja/#services">サービス</a>
+<a href="/ja/#solutions" data-solutions>ソリューション</a>
+<a href="/ja/#cases">導入事例</a>
+<a href="/ja/#contact">お問い合わせ</a>
+</nav>
+</div>
+</header>
+<main>
+<p class="eyebrow">Quests Bay Pte. Ltd.</p>
+<h1>利用規約</h1>
+<p class="updated">最終更新日：2026年10月26日</p>
+<p class="lead">本利用規約は、Quests Bay Pte. Ltd.（以下「当社」）が運営する本ウェブサイトのご利用に適用されます。本ウェブサイトをご利用いただいた時点で、本規約に同意いただいたものとみなします。同意いただけない場合は、ご利用をお控えください。</p>
+<nav class="toc" aria-label="目次"><p>目次</p><ol><li><a href="#about-site">1. 本ウェブサイトについて</a></li><li><a href="#intellectual-property">2. 知的財産権</a></li><li><a href="#acceptable-use">3. 禁止事項</a></li><li><a href="#information-you-send">4. 当社に送信される情報</a></li><li><a href="#third-party">5. 外部サイトと外部サービス</a></li><li><a href="#disclaimer">6. 免責事項</a></li><li><a href="#liability">7. 責任の制限</a></li><li><a href="#changes">8. 変更</a></li><li><a href="#governing-law">9. 準拠法と管轄</a></li><li><a href="#general">10. 一般条項</a></li><li><a href="#contact">11. お問い合わせ</a></li></ol></nav>
+<section id="about-site">
+<h2>1. 本ウェブサイトについて</h2>
+<p>本ウェブサイトは、当社と当社のサービスに関する一般的な情報を提供するものであり、専門的な助言ではありません。当社が提供するサービスには、お客様と当社の間で別途締結する契約が適用されます。</p>
+<p>導入事例は、過去のプロジェクトの概要を紹介するものです。成果はお客様ごとの状況によって異なり、同じ成果を保証するものではありません。</p>
+</section>
+<section id="intellectual-property">
+<h2>2. 知的財産権</h2>
+<p>本ウェブサイトの文章、画像、動画、図表、ロゴなどのコンテンツに関する権利は、当社または正当な権利者に帰属し、著作権法などで保護されています。ご自身の非営利目的に限り、閲覧し、個々のページを印刷・保存できます。その際は、著作権表示などを削除しないでください。それ以外の利用には、当社の事前の書面による許可が必要です。</p>
+<p>本ウェブサイトに記載するその他の会社名、製品名、ロゴは、各社の商標です。当社が明示した場合を除き、記載は各社による推奨や提携を意味するものではありません。</p>
+</section>
+<section id="acceptable-use">
+<h2>3. 禁止事項</h2>
+<p>本ウェブサイトのご利用にあたり、次の行為を禁止します。</p>
+<ul>
+<li>法令に違反する行為、他者の権利を侵害する行為</li>
+<li>本ウェブサイトや関連するシステムへの不正なアクセス、運営の妨害</li>
+<li>コンピューターウイルスなどの有害なプログラムを送る行為</li>
+<li>自動化された手段により、過度な負荷をかけて情報を収集する行為</li>
+<li>虚偽の情報を送る行為、他者になりすます行為</li>
+</ul>
+</section>
+<section id="information-you-send">
+<h2>4. 当社に送信される情報</h2>
+<p>機密情報や営業秘密は、秘密保持契約などで取り扱いを書面で取り決めるまで、お問い合わせフォームやメールで送信しないでください。別段の合意がない限り、お寄せいただいたアイデアやご提案は秘密情報として扱われず、当社は義務を負うことなく利用できるものとします。</p>
+<p>お送りいただいた個人情報は、<a href="../privacy/">プライバシーポリシー</a>に従って取り扱います。</p>
+</section>
+<section id="third-party">
+<h2>5. 外部サイトと外部サービス</h2>
+<p>本ウェブサイトには、YouTube や Google マップなど、外部のウェブサイトやサービスへのリンクとコンテンツが含まれます。これらは当社の管理外にあり、その内容、提供状況、運営方針について当社は責任を負いません。ご利用には各サービスの規約が適用されます。</p>
+</section>
+<section id="disclaimer">
+<h2>6. 免責事項</h2>
+<p>当社は、本ウェブサイトの内容の正確さと継続的な提供に努めますが、本ウェブサイトは現状有姿で提供されます。法令で認められる最大限の範囲で、内容の正確性、完全性、信頼性、特定目的への適合性、エラー・ウイルス・中断がないことなどについて、明示・黙示を問わず一切保証しません。</p>
+</section>
+<section id="liability">
+<h2>7. 責任の制限</h2>
+<p>法令で認められる最大限の範囲で、当社は、本ウェブサイトやそのコンテンツの利用または利用できなかったことにより生じた間接損害、付随的損害、特別損害、結果的損害、懲罰的損害、逸失利益、データや事業機会の損失について責任を負いません。ただし、適用される法令により制限できない責任については、この限りではありません。</p>
+</section>
+<section id="changes">
+<h2>8. 変更</h2>
+<p>当社は、本ウェブサイトと本規約をいつでも変更できます。変更後の規約は、最終更新日を改めて本ページに掲載した時点から適用されます。</p>
+</section>
+<section id="governing-law">
+<h2>9. 準拠法と管轄</h2>
+<p>本規約はシンガポール法に準拠します。本規約または本ウェブサイトのご利用に関する紛争については、シンガポールの裁判所を専属的合意管轄裁判所とします。</p>
+</section>
+<section id="general">
+<h2>10. 一般条項</h2>
+<p>本規約の一部が無効または執行不能と判断された場合も、その他の部分は引き続き有効です。当社が本規約の権利を行使しない場合も、その権利を放棄したものとはみなされません。本規約の英語版と日本語版に相違がある場合は、英語版が優先します。</p>
+</section>
+<section id="contact">
+<h2>11. お問い合わせ</h2>
+<div class="contact"><p><strong>Quests Bay Pte. Ltd.</strong><br>68 Circular Road, #02-01, Singapore 049422（シンガポール）<br>お問い合わせ：<a href="/ja/#contact">お問い合わせフォーム</a></p></div>
+</section>
+</main>
+<footer>
+<div class="container">
+<div class="footer-top">
+<div>
+<a class="footer-brand" href="/ja/">Quests</a>
+<p class="tagline">AI・データ・クラウドを、ワンストップで。<br>大手の技術力を、大手のしがらみなしで。</p>
+<div class="social">
+<a href="https://www.linkedin.com/company/quests-group" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ri-linkedin-box-fill ri-lg" aria-hidden="true"></i></a>
+<a href="https://www.youtube.com/@QuestsBay" target="_blank" rel="noopener" aria-label="YouTube"><i class="ri-youtube-fill ri-lg" aria-hidden="true"></i></a>
+</div>
+</div>
+<div class="footer-cols">
+<div>
+<h3>メニュー</h3>
+<ul>
+<li><a href="/ja/#about">会社情報</a></li><li><a href="/ja/#services">サービス</a></li><li data-solutions><a href="/ja/#solutions">ソリューション</a></li><li><a href="/ja/#cases">導入事例</a></li><li><a href="/ja/#contact">お問い合わせ</a></li>
+</ul>
+</div>
+<div>
+<h3>規約</h3>
+<ul>
+<li><a href="/ja/privacy/">プライバシーポリシー</a></li>
+<li><a href="/ja/terms/">利用規約</a></li>
+</ul>
+</div>
+</div>
+</div>
+<p class="copyright">© <span id="year">2026</span> Quests. All rights reserved.</p>
+</div>
+</footer>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+// Remember this page's language, as the home page does (assets/js/i18n.js, key "preferredLang"),
+// so every later page, including the root URL, opens in the same language.
+try { localStorage.setItem('preferredLang', 'ja'); } catch (_) {}
+
+// Phone menu: same behaviour as the home page (Esc, a tap outside or choosing a link closes it).
+(function () {
+  var button = document.getElementById('mobileMenuBtn');
+  var menu = document.getElementById('mobileMenu');
+  var header = document.querySelector('.site-header');
+  var labels = { open: button.getAttribute('data-open-label'), close: button.getAttribute('data-close-label') };
+  function setOpen(open) {
+    menu.hidden = !open;
+    button.setAttribute('aria-expanded', String(open));
+    button.setAttribute('aria-label', open ? labels.close : labels.open);
+    button.querySelector('i').className = (open ? 'ri-close-line' : 'ri-menu-line') + ' ri-lg';
+  }
+  button.addEventListener('click', function () { setOpen(menu.hidden); });
+  menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) { setOpen(false); button.focus(); } });
+  document.addEventListener('click', function (e) { if (!menu.hidden && !header.contains(e.target)) setOpen(false); });
+})();
+</script>
+</body>
+</html>

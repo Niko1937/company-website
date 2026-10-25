@@ -12,14 +12,18 @@
     "services": "Services",
     "solutions": "Solutions",
     "cases": "Case Studies",
-    "contact": "Contact Us"
+    "contact": "Contact Us",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "hero": {
     "titleLine1": "Pioneering the Future",
     "titleLine2Prefix": "with ",
     "titleHighlight": "Big Tech Expertise <span class=\"text-white\">at</span> Startup Speed",
-    "subtitle": "AI, data, and cloud solutions, delivered end to end by engineers with experience at Big Tech companies like AWS, Google, and Microsoft, with flexible terms and fast results.",
-    "scroll": "Explore"
+    "subtitle": "Engineers with experience at AWS, Google, and Microsoft take your AI, data, and cloud initiatives from business strategy to development and operations. Flexible terms, fast results.",
+    "scroll": "Explore",
+    "ctaPrimary": "Talk to us",
+    "ctaSecondary": "See case studies"
   },
   "about": {
     "title": "About {company}",
@@ -238,7 +242,15 @@
       "validationError": "Please fill in all required fields.",
       "submitError": "Failed to send message. Please try again later.",
       "successTitle": "Thank You!",
-      "successMessage": "Your message has been sent successfully. We'll get back to you shortly."
+      "successMessage": "Your message has been sent successfully. We'll get back to you shortly.",
+      "required": "Required",
+      "privacyNote": "Your details are handled under our <a href=\"privacy/\">Privacy Policy</a>.",
+      "errors": {
+        "name": "Please enter your name.",
+        "email": "Please enter your email address.",
+        "emailFormat": "Please check the email address (e.g. name@example.com).",
+        "message": "Please tell us about your project."
+      }
     },
     "side": {
       "title": "Offices",
@@ -315,7 +327,7 @@
     "quickLinks": "Quick Links",
     "legal": "Legal",
     "privacyPolicy": "Privacy Policy",
-    "termsOfService": "Terms of Service",
+    "termsOfService": "Terms of Use",
     "copyrightSuffix": "{company}. All rights reserved."
   }
 }

@@ -12,14 +12,18 @@
     "services": "サービス",
     "solutions": "ソリューション",
     "cases": "導入事例",
-    "contact": "お問い合わせ"
+    "contact": "お問い合わせ",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる"
   },
   "hero": {
     "titleLine1": "未来を切りひらく",
     "titleLine2Prefix": "",
     "titleHighlight": "ビッグテックの技術力 <span class=\"text-white\">×</span> スタートアップの速さ",
-    "subtitle": "AWS、Google、Microsoftなどで経験を積んだエンジニアが、AI・データ・クラウドの課題を構想から運用まで一貫して手がけます。柔軟な契約で、すばやく成果へ。",
-    "scroll": "スクロール"
+    "subtitle": "AWS、Google、Microsoftなどで経験を積んだエンジニアが、<span class=\"whitespace-nowrap\">AI・データ・クラウド</span>のビジネスの構想策定から開発・運用まで一貫して手がけます。柔軟な契約で、すばやく成果へ。",
+    "scroll": "スクロール",
+    "ctaPrimary": "相談する",
+    "ctaSecondary": "導入事例を見る"
   },
   "about": {
     "title": "{company}について",
@@ -238,7 +242,15 @@
       "validationError": "必須項目をご入力ください。",
       "submitError": "送信に失敗しました。しばらくたってから再度お試しください。",
       "successTitle": "ありがとうございました",
-      "successMessage": "ご相談を受け付けました。担当者より追ってご連絡いたします。"
+      "successMessage": "ご相談を受け付けました。担当者より追ってご連絡いたします。",
+      "required": "必須",
+      "privacyNote": "ご入力いただいた情報は、<a href=\"privacy/\">プライバシーポリシー</a>に沿って取り扱います。",
+      "errors": {
+        "name": "お名前を入力してください。",
+        "email": "メールアドレスを入力してください。",
+        "emailFormat": "メールアドレスの形式をご確認ください（例：name@example.com）。",
+        "message": "ご相談内容を入力してください。"
+      }
     },
     "side": {
       "title": "オフィス",
