@@ -22,7 +22,7 @@
 <script src="https://cdn.jsdelivr.net/npm/budoux@0.8.4/bundle/budoux-ja.min.js" defer></script>
 <script src="/assets/js/site-config.js?v=3"></script>
 <script src="/assets/js/config.js?v=1"></script>
-<script src="/assets/js/solutions.js?v=1"></script>
+<script src="/assets/js/solutions.js?v=4"></script>
 <script src="/assets/js/i18n.js?v=10" defer></script>
 <script src="/assets/js/section-links.js?v=2" defer></script>
 <script src="/assets/js/cases.js?v=2" defer></script>
@@ -106,17 +106,6 @@ background-color: #0047AB;
 input:checked + .slider:before {
 transform: translateX(24px);
 }
-.service-card {
-transition: all 0.3s ease;
-}
-.service-card .service-details {
-max-height: 0;
-overflow: hidden;
-transition: max-height 0.5s ease;
-}
-.service-card.expanded .service-details {
-max-height: 1000px;
-}
 .counter-value {
 transition: all 0.5s ease;
 }
@@ -185,38 +174,59 @@ section[id] { scroll-margin-top: 80px; }
 #hero { scroll-margin-top: 0; }
 html.solutions-open { overflow: hidden; }
 .solutions-layers { display: flex; flex-direction: column; gap: 3rem; }
+.solutions-layer + .solutions-layer { padding-top: 3rem; border-top: 1px solid rgba(255,255,255,.1); }
+.solutions-layer-head { margin-bottom: 1.5rem; text-align: center; }
 #solutions { --solutions-gutter: 1rem; padding: var(--solutions-gutter); background: #fff; scroll-margin-top: 52px; }
 @media (min-width: 1024px) { #solutions { --solutions-gutter: 1.5rem; } }
 .solutions-panel { background: #1F1F1F; border-radius: 24px; padding: 4rem 0; overflow-x: clip; }
 @media (min-width: 1024px) { .solutions-panel { border-radius: 32px; padding: 5rem 0 4rem; } }
-.solutions-arrows { display: flex; justify-content: flex-end; gap: .75rem; margin-top: 1rem; }
+.pager { display: flex; align-items: center; gap: .5rem; }
+.pager-count { min-width: 3.25rem; margin-right: .25rem; text-align: right; color: #6b7280; font-size: .875rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pager-arrow { width: 2.75rem; height: 2.75rem; display: inline-flex; flex-shrink: 0; align-items: center; justify-content: center; border-radius: 9999px; background: #f3f4f6; color: #111827; font-size: 1.25rem; transition: background-color .2s, opacity .2s; }
+.pager-arrow:hover:not(:disabled) { background: #e5e7eb; }
+.pager-arrow:disabled { opacity: .35; cursor: default; }
+.pager-dark .pager-count { color: #9ca3af; }
+.pager-dark .pager-arrow { background: rgba(255,255,255,.12); color: #fff; }
+.pager-dark .pager-arrow:hover:not(:disabled) { background: rgba(255,255,255,.22); }
+@media (max-width: 639px) {
+  .pager { gap: .375rem; }
+  .pager-count { min-width: 0; margin-right: .125rem; font-size: .8125rem; }
+  .pager-arrow { width: 2.5rem; height: 2.5rem; }
+}
+.dialog-close { position: absolute; top: 1rem; right: 1rem; z-index: 1; width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; border-radius: 9999px; background: rgba(255,255,255,.92); color: #111827; font-size: 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,.15); transition: background-color .2s; }
+.dialog-close:hover { background: #fff; }
+.solutions-arrows { justify-content: flex-end; margin-top: 1rem; }
 .solutions-arrows[hidden] { display: none; }
-.solutions-arrow { width: 2.75rem; height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; border-radius: 9999px; background: rgba(255,255,255,.12); color: #fff; font-size: 1.25rem; transition: background-color .2s, opacity .2s; }
-.solutions-arrow:hover:not(:disabled) { background: rgba(255,255,255,.22); }
-.solutions-arrow:disabled { opacity: .35; cursor: default; }
 .solutions-track { display: flex; gap: 1.5rem; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; padding: .5rem 1.5rem .5rem 0; margin-right: calc((100% - 100vw) / 2 + var(--solutions-gutter)); scrollbar-width: none; }
 .solutions-track::-webkit-scrollbar { display: none; }
-.solution-card { flex: 0 0 min(72vw, 520px); scroll-snap-align: start; display: flex; flex-direction: column; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 16px; overflow: hidden; transition: transform .3s ease, border-color .3s ease, background-color .3s ease; }
+/* All cards fit: center them under the heading instead of scrolling to the screen edge. */
+.solutions-track.is-centered { justify-content: center; margin-right: 0; padding-right: 0; }
+.solution-card { position: relative; flex: 0 0 min(72vw, 520px); scroll-snap-align: start; display: flex; flex-direction: column; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 16px; overflow: hidden; transition: transform .3s ease, border-color .3s ease, background-color .3s ease; }
 .solution-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.07); }
 @media (min-width: 768px) { .solution-card { flex-basis: min(42vw, 520px); } }
 @media (min-width: 1024px) { .solution-card { flex-basis: min(38vw, 520px); } }
-.solution-thumb { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; overflow: hidden; cursor: pointer; }
+.solution-thumb { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; overflow: hidden; }
 .solution-image, .solution-preview { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .solution-preview { opacity: 0; transition: opacity .4s ease; }
 .solution-preview.is-playing { opacity: 1; }
 .solution-play { position: absolute; left: 50%; top: 50%; width: 4rem; height: 4rem; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; border-radius: 9999px; background: rgba(255,255,255,.92); color: #0047AB; font-size: 2rem; box-shadow: 0 8px 24px rgba(0,0,0,.35); transition: transform .3s ease; }
-.solution-thumb:hover .solution-play, .solution-thumb:focus-visible .solution-play { transform: translate(-50%, -50%) scale(1.08); }
+.solution-card:hover .solution-play, .solution-card:has(.solution-watch:focus-visible) .solution-play { transform: translate(-50%, -50%) scale(1.08); }
 .solution-body { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
 .solution-title { font-size: 1.25rem; font-weight: 600; color: #fff; margin-bottom: .5rem; }
 .solution-desc { color: #d1d5db; white-space: pre-line; margin-bottom: 1rem; }
 .solution-watch { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: .375rem; color: #93c5fd; font-weight: 500; }
-.solution-watch:hover { text-decoration: underline; }
+/* The whole card starts the demo, like the Case Studies cards. */
+.solution-watch { outline: none; }
+.solution-watch::after { content: ""; position: absolute; inset: 0; }
+.solution-card:hover .solution-watch span { text-decoration: underline; }
+.solution-card:has(.solution-watch:focus-visible) { outline: 2px solid #93c5fd; outline-offset: -2px; }
 .case-filters { position: relative; display: inline-flex; flex-wrap: wrap; justify-content: center; gap: .25rem; padding: .25rem; background: #f3f4f6; border-radius: 1.375rem; }
 .case-filter-indicator { position: absolute; top: 0; left: 0; width: 0; height: 0; background: #fff; border-radius: 9999px; box-shadow: 0 1px 3px rgba(16,24,40,.12), 0 1px 2px rgba(16,24,40,.06); transition: transform .3s ease, width .3s ease, height .3s ease; }
-.case-filter-btn { position: relative; display: inline-flex; align-items: center; gap: .375rem; padding: .5rem 1rem; border-radius: 9999px; color: #4b5563; font-weight: 500; white-space: nowrap; transition: color .2s; }
+.case-filter-btn { position: relative; display: inline-flex; align-items: center; gap: .5rem; padding: .5rem .875rem .5rem 1rem; border-radius: 9999px; color: #4b5563; font-weight: 500; white-space: nowrap; transition: color .2s; }
 .case-filter-btn:hover, .case-filter-btn[aria-pressed="true"] { color: #111827; }
-.case-filter-count { font-size: .75rem; font-weight: 600; color: #9ca3af; font-variant-numeric: tabular-nums; }
-.case-filter-btn[aria-pressed="true"] .case-filter-count { color: #0047AB; }
+/* Counts as quiet grey pills (as in GitHub's tabs), not coloured badges, which read as notifications. */
+.case-filter-count { min-width: 1.375rem; height: 1.25rem; padding: 0 .375rem; display: inline-flex; align-items: center; justify-content: center; border-radius: 9999px; background: rgba(17,24,39,.07); color: #4b5563; font-size: .75rem; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; transition: background-color .2s, color .2s; }
+.case-filter-btn[aria-pressed="true"] .case-filter-count { background: #f3f4f6; color: #374151; }
 .case-study { position: relative; display: flex; flex-direction: column; background: #fff; border: 1px solid #eef0f3; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,.08), 0 2px 4px -2px rgba(0,0,0,.06); transition: transform .3s ease, box-shadow .3s ease; }
 .case-study:hover { transform: translateY(-4px); box-shadow: 0 16px 32px -8px rgba(16,24,40,.16); }
 .case-study[hidden] { display: none; }
@@ -235,9 +245,9 @@ html.solutions-open { overflow: hidden; }
 .case-study:hover .case-open i { transform: translateX(3px); }
 html.case-dialog-open { overflow: hidden; }
 .case-dialog { width: min(60rem, calc(100% - 2rem)); max-width: none; max-height: calc(100dvh - 3rem); padding: 0; border: 0; border-radius: 20px; background: #fff; color: #111827; box-shadow: 0 24px 64px rgba(0,0,0,.3); overflow: hidden; }
-.case-dialog[open] { display: flex; flex-direction: column; animation: case-dialog-in .25s ease; }
+.case-dialog[open] { display: flex; flex-direction: column; animation: dialog-in .25s ease; }
 .case-dialog::backdrop { background: rgba(17,24,39,.55); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
-@keyframes case-dialog-in { from { opacity: 0; transform: translateY(12px) scale(.98); } }
+@keyframes dialog-in { from { opacity: 0; transform: translateY(12px) scale(.98); } }
 .case-dialog-scroll { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
 .case-dialog-media { height: clamp(10rem, 30vh, 16rem); overflow: hidden; background: #f3f4f6; }
 .case-dialog-media picture, .case-dialog-media img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
@@ -253,36 +263,62 @@ html.case-dialog-open { overflow: hidden; }
 .case-text { color: #374151; line-height: 1.75; margin-bottom: 1.5rem; text-wrap: pretty; }
 .case-text:last-child { margin-bottom: 0; }
 .case-col-side { align-self: start; padding: 1.25rem 1.5rem; background: #f8fafc; border: 1px solid #eef2f7; border-radius: 16px; }
-.case-results { display: grid; gap: .625rem; margin-bottom: 1.5rem; }
-.case-results li { position: relative; padding-left: 1.75rem; font-weight: 500; line-height: 1.5; text-wrap: pretty; word-break: auto-phrase; }
-.case-results li::before { content: ""; position: absolute; left: 0; top: .2em; width: 1.125rem; height: 1.125rem; border-radius: 9999px; background: linear-gradient(135deg, #60a5fa, #c084fc); }
-.case-results li::after { content: ""; position: absolute; left: .41rem; top: calc(.2em + .22rem); width: .3rem; height: .55rem; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.check-list { display: grid; gap: .625rem; }
+.check-list li { position: relative; padding-left: 1.75rem; line-height: 1.5; text-wrap: pretty; word-break: auto-phrase; }
+.check-list li::before { content: ""; position: absolute; left: 0; top: .2em; width: 1.125rem; height: 1.125rem; border-radius: 9999px; background: linear-gradient(135deg, #60a5fa, #c084fc); }
+.check-list li::after { content: ""; position: absolute; left: .41rem; top: calc(.2em + .22rem); width: .3rem; height: .55rem; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.case-results { margin-bottom: 1.5rem; }
+.case-results li { font-weight: 500; }
+/* Services: the points are shown on the card. Subgrid lines up the parts of the cards in a row, so the
+   divider above each list sits at the same height whatever the length of the title and text. */
+.service-card { display: flex; flex-direction: column; }
+@supports (grid-template-rows: subgrid) {
+  .service-card { display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0; }
+}
+.service-thumb { height: 9rem; overflow: hidden; }
+.service-body { padding: 1.5rem 1.5rem 1.25rem; }
+.service-title { margin-bottom: .75rem; font-size: 1.25rem; line-height: 1.75rem; font-weight: 600; color: #111827; }
+.service-short { color: #374151; }
+.service-points { margin: 0 1.5rem 1.5rem; padding-top: 1.25rem; border-top: 1px solid #eef0f3; gap: .5rem; color: #374151; font-size: .9375rem; }
+/* What a service covers, not a list of things done: a small dot in the primary blue instead of a check.
+   The gradient stays reserved for what should stand out, such as the Case Studies results. */
+.service-points li { padding-left: 1.25rem; }
+.service-points li::before { top: calc(.75em - .1875rem); width: .375rem; height: .375rem; border-radius: 9999px; background: #0047AB; }
+.service-points li::after { display: none; }
 .case-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
 .case-tag { padding: .25rem .75rem; background: #fff; border: 1px solid #e5e7eb; border-radius: 9999px; color: #374151; font-size: .875rem; }
 .case-dialog-foot { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .875rem 1.25rem .875rem 2rem; border-top: 1px solid #f1f5f9; background: #fff; }
-.case-dialog-pager { display: flex; align-items: center; gap: .5rem; }
-.case-dialog-count { min-width: 3.25rem; margin-right: .25rem; text-align: right; color: #6b7280; font-size: .875rem; font-variant-numeric: tabular-nums; }
-.case-dialog-arrow { width: 2.75rem; height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; border-radius: 9999px; background: #f3f4f6; color: #111827; font-size: 1.25rem; transition: background-color .2s, opacity .2s; }
-.case-dialog-arrow:hover:not(:disabled) { background: #e5e7eb; }
-.case-dialog-arrow:disabled { opacity: .35; cursor: default; }
 .case-dialog-cta { display: inline-flex; align-items: center; justify-content: center; padding: .625rem 1.25rem; border-radius: 9999px; background: #0047AB; color: #fff; font-weight: 600; text-align: center; transition: background-color .2s; }
 .case-dialog-cta:hover { background: #003a8c; }
-.case-dialog-close { position: absolute; top: 1rem; right: 1rem; width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; border-radius: 9999px; background: rgba(255,255,255,.92); color: #111827; font-size: 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,.15); transition: background-color .2s; }
-.case-dialog-close:hover { background: #fff; }
 @media (max-width: 639px) {
   .case-dialog { width: 100%; height: 100dvh; max-height: 100dvh; border-radius: 0; }
   .case-dialog-head { padding: 1.25rem 1.25rem 0; }
   .case-dialog .case-details { padding: 1.25rem; }
   .case-dialog-foot { padding: .75rem 1rem calc(.75rem + env(safe-area-inset-bottom)); }
   .case-dialog-cta { padding: .625rem .875rem; font-size: .875rem; white-space: nowrap; }
-  .case-dialog-pager { gap: .375rem; }
-  .case-dialog-count { min-width: 0; margin-right: .125rem; font-size: .8125rem; }
-  .case-dialog-arrow { width: 2.5rem; height: 2.5rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .case-study, .case-thumb img, .case-filter-indicator { transition: none; }
   .case-study.is-entering, .case-dialog[open] { animation: none; }
 }
+.solution-dialog { width: min(64rem, calc(100% - 2rem), calc((100dvh - 12rem) * 16 / 9)); min-width: min(20rem, calc(100% - 2rem)); max-width: none; max-height: calc(100dvh - 2rem); padding: 0; border: 0; border-radius: 20px; background: #1F1F1F; color: #fff; box-shadow: 0 24px 64px rgba(0,0,0,.5); overflow: hidden; }
+.solution-dialog[open] { display: flex; flex-direction: column; animation: dialog-in .25s ease; }
+.solution-dialog::backdrop { background: rgba(0,0,0,.8); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+.solution-dialog-head { min-height: 4.5rem; padding: 1rem 4.5rem 1rem 1.5rem; display: flex; flex-direction: column; justify-content: center; }
+.solution-dialog-tag { font-size: .8125rem; font-weight: 600; color: #93c5fd; margin-bottom: .125rem; }
+.solution-dialog-title { font-size: 1.125rem; line-height: 1.4; font-weight: 600; }
+.solution-dialog-frame { position: relative; aspect-ratio: 16 / 9; background: #000; }
+.solution-dialog-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.solution-dialog-foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .875rem 1.25rem .875rem 1.5rem; }
+.solution-dialog-desc { min-width: 0; color: #d1d5db; font-size: .9375rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; white-space: pre-line; }
+.solution-dialog-foot .pager { margin-left: auto; }
+@media (max-width: 639px) {
+  .solution-dialog { width: 100%; min-width: 0; height: 100dvh; max-height: 100dvh; border-radius: 0; }
+  .solution-dialog-frame { margin: auto 0; }
+  .solution-dialog-head { padding: 1rem 4rem 1rem 1rem; }
+  .solution-dialog-foot { padding: .75rem 1rem calc(.75rem + env(safe-area-inset-bottom)); }
+}
+@media (prefers-reduced-motion: reduce) { .solution-dialog[open] { animation: none; } }
 </style>
 </head>
 <body class="bg-white">
@@ -392,15 +428,14 @@ html.case-dialog-open { overflow: hidden; }
 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
 <!-- Service 1 -->
 <div class="service-card bg-white rounded-lg shadow-md overflow-hidden">
-<div class="h-36 overflow-hidden">
+<div class="service-thumb">
 <picture class="block w-full h-full"><source type="image/webp" srcset="/images/services/consulting-600.webp 600w, /images/services/consulting.webp 1200w" sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"><img src="/images/services/consulting.jpg" srcset="/images/services/consulting-600.jpg 600w, /images/services/consulting.jpg 1200w" sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="A consultant presenting a business dashboard in a meeting" data-i18n-attr-alt="services.items.consulting.imageAlt" class="w-full h-full object-cover object-top"></picture>
 </div>
-<div class="p-6">
-<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="services.items.consulting.title">Strategy &amp; Consulting</h3>
-<p class="text-gray-700 mb-4" data-i18n="services.items.consulting.short">Align technology with your business goals and get a clear roadmap to reach them.</p>
-<div class="service-details hidden">
-<p class="text-gray-700 mb-4" data-i18n="services.items.consulting.details">We assess your current systems, pinpoint what to fix first, and build a practical roadmap you can act on.</p>
-<ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="services.items.consulting.bullets">
+<div class="service-body">
+<h3 class="service-title" data-i18n="services.items.consulting.title">Strategy &amp; Consulting</h3>
+<p class="service-short" data-i18n="services.items.consulting.short">Align technology with your business goals and get a clear roadmap to reach them.</p>
+</div>
+<ul class="service-points check-list" data-i18n-list="services.items.consulting.bullets">
 <li>Digital strategy</li>
 <li>Process optimization</li>
 <li>Change management</li>
@@ -408,22 +443,16 @@ html.case-dialog-open { overflow: hidden; }
 <li>IT architecture review</li>
 </ul>
 </div>
-<button class="service-toggle text-primary font-medium flex items-center gap-1 hover:underline">
-<span class="service-toggle-label" data-i18n="services.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
-</button>
-</div>
-</div>
 <!-- Service 2 -->
 <div class="service-card bg-white rounded-lg shadow-md overflow-hidden">
-<div class="h-36 overflow-hidden">
+<div class="service-thumb">
 <picture class="block w-full h-full"><source type="image/webp" srcset="/images/services/system-600.webp 600w, /images/services/system.webp 1200w" sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"><img src="/images/services/system.jpg" srcset="/images/services/system-600.jpg 600w, /images/services/system.jpg 1200w" sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="Illustration of cloud and AI system architecture" data-i18n-attr-alt="services.items.system.imageAlt" class="w-full h-full object-cover object-top"></picture>
 </div>
-<div class="p-6">
-<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="services.items.system.title">Cloud &amp; AI Development</h3>
-<p class="text-gray-700 mb-4" data-i18n="services.items.system.short">Custom systems on modern cloud and AI, built to scale as you grow.</p>
-<div class="service-details hidden">
-<p class="text-gray-700 mb-4" data-i18n="services.items.system.details">We look at your challenges from both the technology and the business side, then build the right software and infrastructure.</p>
-<ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="services.items.system.bullets">
+<div class="service-body">
+<h3 class="service-title" data-i18n="services.items.system.title">Cloud &amp; AI Development</h3>
+<p class="service-short" data-i18n="services.items.system.short">Custom systems on modern cloud and AI, built to scale as you grow.</p>
+</div>
+<ul class="service-points check-list" data-i18n-list="services.items.system.bullets">
 <li>Custom applications</li>
 <li>Cloud-native architecture</li>
 <li>AI &amp; ML integration</li>
@@ -431,22 +460,16 @@ html.case-dialog-open { overflow: hidden; }
 <li>APIs &amp; integrations</li>
 </ul>
 </div>
-<button class="service-toggle text-primary font-medium flex items-center gap-1 hover:underline">
-<span class="service-toggle-label" data-i18n="services.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
-</button>
-</div>
-</div>
 <!-- Service 3 -->
 <div class="service-card bg-white rounded-lg shadow-md overflow-hidden">
-<div class="h-36 overflow-hidden">
+<div class="service-thumb">
 <picture class="block w-full h-full"><source type="image/webp" srcset="/images/services/operations-600.webp 600w, /images/services/operations.webp 1200w" sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"><img src="/images/services/operations.jpg" srcset="/images/services/operations-600.jpg 600w, /images/services/operations.jpg 1200w" sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="Engineers monitoring systems in an operations room" data-i18n-attr-alt="services.items.operations.imageAlt" class="w-full h-full object-cover object-top"></picture>
 </div>
-<div class="p-6">
-<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="services.items.operations.title">Infrastructure Operations</h3>
-<p class="text-gray-700 mb-4" data-i18n="services.items.operations.short">Keep your systems fast, secure, and always on, so you can focus on your business.</p>
-<div class="service-details hidden">
-<p class="text-gray-700 mb-4" data-i18n="services.items.operations.details">We monitor, secure, and optimize your infrastructure around the clock. We also plan for recovery before you need it.</p>
-<ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="services.items.operations.bullets">
+<div class="service-body">
+<h3 class="service-title" data-i18n="services.items.operations.title">Infrastructure Operations</h3>
+<p class="service-short" data-i18n="services.items.operations.short">Keep your systems fast, secure, and always on, so you can focus on your business.</p>
+</div>
+<ul class="service-points check-list" data-i18n-list="services.items.operations.bullets">
 <li>Cloud infrastructure</li>
 <li>24/7 monitoring &amp; support</li>
 <li>Security operations</li>
@@ -454,33 +477,22 @@ html.case-dialog-open { overflow: hidden; }
 <li>Disaster recovery</li>
 </ul>
 </div>
-<button class="service-toggle text-primary font-medium flex items-center gap-1 hover:underline">
-<span class="service-toggle-label" data-i18n="services.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
-</button>
-</div>
-</div>
 <!-- Service 4 -->
 <div class="service-card bg-white rounded-lg shadow-md overflow-hidden">
-<div class="h-36 overflow-hidden">
+<div class="service-thumb">
 <picture class="block w-full h-full"><source type="image/webp" srcset="/images/services/training-600.webp 600w, /images/services/training.webp 1200w" sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"><img src="/images/services/training.jpg" srcset="/images/services/training-600.jpg 600w, /images/services/training.jpg 1200w" sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="A senior engineer mentoring a colleague at a desk" data-i18n-attr-alt="services.items.training.imageAlt" class="w-full h-full object-cover object-top"></picture>
 </div>
-<div class="p-6">
-<h3 class="text-xl font-semibold text-gray-900 mb-3" data-i18n="services.items.training.title">Team Enablement</h3>
-<p class="text-gray-700 mb-4" data-i18n="services.items.training.short">Build a team that can run and evolve your systems on its own.</p>
-<div class="service-details hidden">
-<p class="text-gray-700 mb-4" data-i18n="services.items.training.details">Hands-on training and mentoring that transfers real skills, so your team owns its technology long after we leave.</p>
-<ul class="list-disc pl-5 mb-4 text-gray-700" data-i18n-list="services.items.training.bullets">
+<div class="service-body">
+<h3 class="service-title" data-i18n="services.items.training.title">Team Enablement</h3>
+<p class="service-short" data-i18n="services.items.training.short">Build a team that can run and evolve your systems on its own.</p>
+</div>
+<ul class="service-points check-list" data-i18n-list="services.items.training.bullets">
 <li>Technical training</li>
 <li>Knowledge transfer</li>
 <li>Custom workshops</li>
 <li>Mentoring &amp; coaching</li>
 <li>Documentation &amp; standards</li>
 </ul>
-</div>
-<button class="service-toggle text-primary font-medium flex items-center gap-1 hover:underline">
-<span class="service-toggle-label" data-i18n="services.viewDetails">View details</span> <i class="ri-arrow-down-s-line"></i>
-</button>
-</div>
 </div>
 </div>
 </div>
@@ -494,20 +506,26 @@ html.case-dialog-open { overflow: hidden; }
 <p class="text-lg text-gray-300 max-w-3xl mx-auto" data-phrase data-i18n="solutions.subtitle">Products we build and run ourselves. Watch them in action.</p>
 </div>
 <div class="solutions-layers">
-<div data-solutions-layer="business">
-<h3 class="mb-4 text-xl md:text-2xl font-semibold text-white" data-i18n="solutions.business">For Business</h3>
+<div class="solutions-layer" data-solutions-layer="business">
+<div class="solutions-layer-head">
+<h3 class="text-xl md:text-2xl font-semibold text-white" data-i18n="solutions.business">For Business</h3>
+</div>
 <div class="solutions-track" data-solutions-track="business"></div>
-<div class="solutions-arrows" data-solutions-arrows hidden>
-<button type="button" class="solutions-arrow" data-solutions-prev aria-label="Previous" data-i18n-attr-aria-label="solutions.prev"><i class="ri-arrow-left-line" aria-hidden="true"></i></button>
-<button type="button" class="solutions-arrow" data-solutions-next aria-label="Next" data-i18n-attr-aria-label="solutions.next"><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
+<div class="solutions-arrows pager pager-dark" data-solutions-arrows hidden>
+<span class="pager-count" data-solutions-count></span>
+<button type="button" class="pager-arrow" data-solutions-prev aria-label="Previous" data-i18n-attr-aria-label="solutions.prev"><i class="ri-arrow-left-line" aria-hidden="true"></i></button>
+<button type="button" class="pager-arrow" data-solutions-next aria-label="Next" data-i18n-attr-aria-label="solutions.next"><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
 </div>
 </div>
-<div data-solutions-layer="consumer">
-<h3 class="mb-4 text-xl md:text-2xl font-semibold text-white" data-i18n="solutions.consumer">For Consumers</h3>
+<div class="solutions-layer" data-solutions-layer="consumer">
+<div class="solutions-layer-head">
+<h3 class="text-xl md:text-2xl font-semibold text-white" data-i18n="solutions.consumer">For Consumers</h3>
+</div>
 <div class="solutions-track" data-solutions-track="consumer"></div>
-<div class="solutions-arrows" data-solutions-arrows hidden>
-<button type="button" class="solutions-arrow" data-solutions-prev aria-label="Previous" data-i18n-attr-aria-label="solutions.prev"><i class="ri-arrow-left-line" aria-hidden="true"></i></button>
-<button type="button" class="solutions-arrow" data-solutions-next aria-label="Next" data-i18n-attr-aria-label="solutions.next"><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
+<div class="solutions-arrows pager pager-dark" data-solutions-arrows hidden>
+<span class="pager-count" data-solutions-count></span>
+<button type="button" class="pager-arrow" data-solutions-prev aria-label="Previous" data-i18n-attr-aria-label="solutions.prev"><i class="ri-arrow-left-line" aria-hidden="true"></i></button>
+<button type="button" class="pager-arrow" data-solutions-next aria-label="Next" data-i18n-attr-aria-label="solutions.next"><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
 </div>
 </div>
 </div>
@@ -549,7 +567,7 @@ html.case-dialog-open { overflow: hidden; }
 </div>
 <div class="case-col case-col-side">
 <h4 class="case-label" data-i18n="cases.labels.results">Results</h4>
-<ul class="case-results" data-i18n-list="cases.items.material.results">
+<ul class="case-results check-list" data-i18n-list="cases.items.material.results">
 <li>68% shorter research cycles</li>
 <li>42% more successful material discoveries</li>
 <li>About $1.2M saved in annual testing costs</li>
@@ -583,7 +601,7 @@ html.case-dialog-open { overflow: hidden; }
 </div>
 <div class="case-col case-col-side">
 <h4 class="case-label" data-i18n="cases.labels.results">Results</h4>
-<ul class="case-results" data-i18n-list="cases.items.chatbot.results">
+<ul class="case-results check-list" data-i18n-list="cases.items.chatbot.results">
 <li>78% of inquiries resolved automatically</li>
 <li>Response time: 4 hours → 3 minutes</li>
 <li>22% higher customer satisfaction</li>
@@ -618,7 +636,7 @@ html.case-dialog-open { overflow: hidden; }
 </div>
 <div class="case-col case-col-side">
 <h4 class="case-label" data-i18n="cases.labels.results">Results</h4>
-<ul class="case-results" data-i18n-list="cases.items.predictive.results">
+<ul class="case-results check-list" data-i18n-list="cases.items.predictive.results">
 <li>83% less unplanned downtime</li>
 <li>47% lower maintenance costs</li>
 <li>35% longer equipment life on average</li>
@@ -653,7 +671,7 @@ html.case-dialog-open { overflow: hidden; }
 </div>
 <div class="case-col case-col-side">
 <h4 class="case-label" data-i18n="cases.labels.results">Results</h4>
-<ul class="case-results" data-i18n-list="cases.items.dashboard.results">
+<ul class="case-results check-list" data-i18n-list="cases.items.dashboard.results">
 <li>Reporting: 2 weeks → real time</li>
 <li>Higher data accuracy with no manual reporting</li>
 <li>Data-driven decisions across 12 departments</li>
@@ -688,7 +706,7 @@ html.case-dialog-open { overflow: hidden; }
 </div>
 <div class="case-col case-col-side">
 <h4 class="case-label" data-i18n="cases.labels.results">Results</h4>
-<ul class="case-results" data-i18n-list="cases.items.voice.results">
+<ul class="case-results check-list" data-i18n-list="cases.items.voice.results">
 <li>64% less time spent searching</li>
 <li>28% higher customer satisfaction</li>
 <li>31% more sales of hard-to-find items</li>
@@ -723,7 +741,7 @@ html.case-dialog-open { overflow: hidden; }
 </div>
 <div class="case-col case-col-side">
 <h4 class="case-label" data-i18n="cases.labels.results">Results</h4>
-<ul class="case-results" data-i18n-list="cases.items.legacy.results">
+<ul class="case-results check-list" data-i18n-list="cases.items.legacy.results">
 <li>62% lower infrastructure costs</li>
 <li>Deployments: weeks → minutes</li>
 <li>Uptime: 98.2% → 99.99%</li>
@@ -754,13 +772,13 @@ html.case-dialog-open { overflow: hidden; }
 </div>
 <div class="case-dialog-foot">
 <a href="#contact" class="case-dialog-cta" data-case-cta><span data-i18n="cases.cta">Discuss a similar project</span></a>
-<div class="case-dialog-pager">
-<span class="case-dialog-count" data-case-count></span>
-<button type="button" class="case-dialog-arrow" data-case-step="-1" aria-label="Previous case"><i class="ri-arrow-left-line" aria-hidden="true"></i></button>
-<button type="button" class="case-dialog-arrow" data-case-step="1" aria-label="Next case"><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
+<div class="pager">
+<span class="pager-count" data-case-count></span>
+<button type="button" class="pager-arrow" data-case-step="-1" aria-label="Previous case"><i class="ri-arrow-left-line" aria-hidden="true"></i></button>
+<button type="button" class="pager-arrow" data-case-step="1" aria-label="Next case"><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
 </div>
 </div>
-<button type="button" class="case-dialog-close" data-case-close autofocus aria-label="Close" data-i18n-attr-aria-label="cases.close"><i class="ri-close-line" aria-hidden="true"></i></button>
+<button type="button" class="dialog-close" data-case-close autofocus aria-label="Close" data-i18n-attr-aria-label="cases.close"><i class="ri-close-line" aria-hidden="true"></i></button>
 </dialog>
 <!-- Contact Section -->
 <section id="contact" class="py-12 bg-gray-50 section-fade">
@@ -977,28 +995,6 @@ const mobileLinks = mobileMenu.querySelectorAll('a');
 mobileLinks.forEach(link => {
 link.addEventListener('click', function() {
 mobileMenu.classList.add('hidden');
-});
-});
-});
-</script>
-<script id="serviceToggleScript">
-document.addEventListener('DOMContentLoaded', function() {
-const serviceToggles = document.querySelectorAll('.service-toggle');
-serviceToggles.forEach(toggle => {
-toggle.addEventListener('click', function() {
-const card = this.closest('.service-card');
-card.classList.toggle('expanded');
-const details = this.previousElementSibling;
-details.classList.toggle('hidden');
-const label = this.querySelector('.service-toggle-label');
-const icon = this.querySelector('i');
-const expanded = card.classList.contains('expanded');
-if (label) {
-label.textContent = (window.i18n && window.i18n.t(expanded ? 'services.hideDetails' : 'services.viewDetails')) || (expanded ? 'Hide details' : 'View details');
-}
-if (icon) {
-icon.className = expanded ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line';
-}
 });
 });
 });

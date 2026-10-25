@@ -98,7 +98,9 @@
     "watchDemo": "デモを見る",
     "prev": "前へ",
     "next": "次へ",
-    "close": "閉じる"
+    "close": "閉じる",
+    "prevDemo": "前の動画",
+    "nextDemo": "次の動画"
   },
   "cases": {
     "title": "導入事例",

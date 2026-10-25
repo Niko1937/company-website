@@ -98,7 +98,9 @@
     "watchDemo": "Watch demo",
     "prev": "Previous",
     "next": "Next",
-    "close": "Close"
+    "close": "Close",
+    "prevDemo": "Previous demo",
+    "nextDemo": "Next demo"
   },
   "cases": {
     "title": "Case Studies",

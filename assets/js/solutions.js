@@ -84,7 +84,8 @@
       : ['[data-solutions]'];
     if (!selectors.length) return;
     const style = document.createElement('style');
-    style.textContent = `${selectors.join(',')}{display:none!important}`;
+    // With one layer left there is nothing to divide it from.
+    style.textContent = `${selectors.join(',')}{display:none!important}.solutions-layer{padding-top:0!important;border-top:0!important}`;
     document.head.appendChild(style);
   }
 
@@ -133,7 +134,7 @@
     const watch = tr('solutions.watchDemo', 'Watch demo');
     const article = el('article', 'solution-card');
 
-    const thumb = el('button', 'solution-thumb', { type: 'button', 'data-solution-open': item.id, 'aria-label': `${watch}: ${title}` });
+    const thumb = el('div', 'solution-thumb');
     thumb.appendChild(thumbnail(item.video[lang]));
     if (item.preview) thumb.appendChild(previewVideo(item.preview));
     const play = el('span', 'solution-play', { 'aria-hidden': 'true' });
@@ -150,7 +151,8 @@
       desc.textContent = item.description[lang];
       body.appendChild(desc);
     }
-    const button = el('button', 'solution-watch', { type: 'button', 'data-solution-open': item.id });
+    // Its click area covers the whole card (CSS), so this is the card's only control.
+    const button = el('button', 'solution-watch', { type: 'button', 'data-solution-open': item.id, 'aria-label': `${watch}: ${title}` });
     button.appendChild(el('i', 'ri-play-circle-line', { 'aria-hidden': 'true' }));
     const label = el('span');
     label.textContent = watch;
@@ -198,10 +200,31 @@
     const layer = track.closest('[data-solutions-layer]');
     const arrows = layer && layer.querySelector('[data-solutions-arrows]');
     if (!arrows) return;
+    // Decide from the cards' own widths, not from the overflow: centering makes the track narrower, so measuring
+    // the overflow would flip between the two layouts.
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    const needed = Array.from(track.children).reduce((sum, card) => sum + card.offsetWidth, 0) + gap * Math.max(track.children.length - 1, 0);
+    track.classList.toggle('is-centered', needed <= layer.clientWidth);
     const max = track.scrollWidth - track.clientWidth;
-    arrows.hidden = max <= 1;
+    arrows.hidden = track.classList.contains('is-centered') || max <= 1;
     arrows.querySelector('[data-solutions-prev]').disabled = track.scrollLeft <= 1;
     arrows.querySelector('[data-solutions-next]').disabled = track.scrollLeft >= max - 1;
+    arrows.querySelector('[data-solutions-count]').textContent = visibleRange(track);
+  }
+
+  // "1–3 / 6": the cards that are (mostly) in view. A card peeking in at the edge does not count.
+  function visibleRange(track) {
+    const cards = Array.from(track.children);
+    const view = track.getBoundingClientRect();
+    const shown = [];
+    cards.forEach((card, i) => {
+      const r = card.getBoundingClientRect();
+      const visible = Math.min(r.right, view.right) - Math.max(r.left, view.left);
+      if (r.width && visible / r.width >= 0.75) shown.push(i + 1);
+    });
+    if (!shown.length) return '';
+    const first = shown[0], last = shown[shown.length - 1];
+    return `${first === last ? first : `${first}–${last}`} / ${cards.length}`;
   }
 
   function scrollTrack(track, direction) {
@@ -212,7 +235,7 @@
   }
 
   function setUpTracks() {
-    const resize = new ResizeObserver(entries => entries.forEach(e => updateArrows(e.target)));
+    const resize = new ResizeObserver(entries => entries.forEach(e => updateArrows(e.target.matches('[data-solutions-track]') ? e.target : e.target.querySelector('[data-solutions-track]'))));
     document.querySelectorAll('[data-solutions-track]').forEach(track => {
       let ticking = false;
       track.addEventListener('scroll', () => {
@@ -222,6 +245,7 @@
       }, { passive: true });
       resize.observe(track);
       const layer = track.closest('[data-solutions-layer]');
+      resize.observe(layer);
       layer.querySelector('[data-solutions-prev]').addEventListener('click', () => scrollTrack(track, -1));
       layer.querySelector('[data-solutions-next]').addEventListener('click', () => scrollTrack(track, 1));
     });
@@ -229,60 +253,134 @@
 
   // ---- Player -------------------------------------------------------------------------------------------------
 
-  let dialog = null;
+  // One shared <dialog>, built on first use. Same layout as the Case Studies dialog: content on the left of the
+  // footer, "2 / 6" and the arrows on the right. The close button sits above the video so it never covers
+  // YouTube's own controls.
+  let player = null;
+  let current = null;
 
-  // Opens the player for one demo. Returns false when no shown demo has that id.
-  function open(id, opener) {
-    const item = items.find(i => i.id === id);
-    if (!item) return false;
-    close({ keepHash: true });
+  function buildPlayer() {
+    const dialog = el('dialog', 'solution-dialog', { 'aria-labelledby': 'solution-dialog-title' });
+    const head = el('div', 'solution-dialog-head');
+    const tag = el('p', 'solution-dialog-tag');
+    const title = el('h3', 'solution-dialog-title', { id: 'solution-dialog-title' });
+    head.append(tag, title);
+    const frame = el('div', 'solution-dialog-frame');
+    const foot = el('div', 'solution-dialog-foot');
+    const desc = el('p', 'solution-dialog-desc');
+    const pager = el('div', 'pager pager-dark');
+    const count = el('span', 'pager-count');
+    const steps = [-1, 1].map(dir => {
+      const button = el('button', 'pager-arrow', { type: 'button', 'data-solution-step': dir });
+      button.appendChild(el('i', dir < 0 ? 'ri-arrow-left-line' : 'ri-arrow-right-line', { 'aria-hidden': 'true' }));
+      button.addEventListener('click', () => step(dir));
+      return button;
+    });
+    pager.append(count, ...steps);
+    foot.append(desc, pager);
+    const close = el('button', 'dialog-close', { type: 'button' });
+    close.appendChild(el('i', 'ri-close-line', { 'aria-hidden': 'true' }));
+    close.addEventListener('click', () => dialog.close());
+    dialog.append(head, frame, foot, close);
+
+    // A click outside the panel lands on the backdrop, which belongs to the <dialog> itself.
+    dialog.addEventListener('click', e => {
+      if (e.target !== dialog) return;
+      const r = dialog.getBoundingClientRect();
+      if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dialog.close();
+    });
+    // Arrow keys page through the demos. Once the video has focus, YouTube uses them to seek instead.
+    dialog.addEventListener('keydown', e => {
+      if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        step(e.key === 'ArrowLeft' ? -1 : 1);
+      }
+    });
+    dialog.addEventListener('close', onClose);
+    document.body.appendChild(dialog);
+    return { dialog, tag, title, frame, desc, count, steps, close };
+  }
+
+  function sameLayer(item) {
+    return items.filter(i => i.category === item.category);
+  }
+
+  // Header, description, "2 / 6" and arrow labels for the current demo, in the current language.
+  function fillPlayer() {
     const lang = currentLang();
+    const list = sameLayer(current);
+    const index = list.indexOf(current);
+    player.tag.textContent = tr(`solutions.${current.category}`, current.category === 'business' ? 'For Business' : 'For Consumers');
+    player.title.textContent = current.title[lang];
+    player.desc.textContent = current.description[lang];
+    player.count.textContent = `${index + 1} / ${list.length}`;
+    player.close.setAttribute('aria-label', tr('solutions.close', 'Close'));
+    player.steps.forEach(button => {
+      const dir = Number(button.getAttribute('data-solution-step'));
+      const target = list[index + dir];
+      const label = dir < 0 ? tr('solutions.prevDemo', 'Previous demo') : tr('solutions.nextDemo', 'Next demo');
+      const text = target ? label + (lang === 'ja' ? '：' : ': ') + target.title[lang] : label;
+      button.disabled = !target;
+      button.setAttribute('aria-label', text);
+      button.title = text;
+    });
+  }
 
-    const overlay = el('div', 'fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-8', {
-      role: 'dialog', 'aria-modal': 'true', 'aria-label': item.title[lang]
-    });
-    overlay.appendChild(el('div', 'absolute inset-0 bg-black/85', { 'data-close': '' }));
-    const panel = el('div', 'relative w-full max-w-5xl');
-    const closeButton = el('button', 'absolute -top-11 right-0 w-10 h-10 flex items-center justify-center text-white/80 hover:text-white transition-colors', {
-      type: 'button', 'data-close': '', 'aria-label': tr('solutions.close', 'Close')
-    });
-    closeButton.appendChild(el('i', 'ri-close-line ri-2x', { 'aria-hidden': 'true' }));
-    const frameBox = el('div', 'relative w-full aspect-video bg-black rounded-lg overflow-hidden shadow-2xl');
-    const frame = el('iframe', 'absolute inset-0 w-full h-full', {
+  // Loads a demo into the player. A new iframe replaces the old one, which stops its playback.
+  function show(item) {
+    current = item;
+    const lang = currentLang();
+    const frame = el('iframe', '', {
       title: item.title[lang],
       allow: 'autoplay; encrypted-media; picture-in-picture; fullscreen',
       allowfullscreen: '',
       referrerpolicy: 'strict-origin-when-cross-origin'
     });
     frame.src = `https://www.youtube-nocookie.com/embed/${item.video[lang]}?autoplay=1&rel=0&playsinline=1`;
-    frameBox.appendChild(frame);
-    const caption = el('p', 'mt-4 text-white text-lg font-semibold');
-    caption.textContent = item.title[lang];
-    panel.append(closeButton, frameBox, caption);
-    overlay.appendChild(panel);
-
-    const onKey = e => { if (e.key === 'Escape') close(); };
-    overlay.querySelectorAll('[data-close]').forEach(n => n.addEventListener('click', () => close()));
-    document.addEventListener('keydown', onKey);
-    document.body.appendChild(overlay);
-    document.documentElement.classList.add('solutions-open');
-    dialog = { overlay, onKey, opener };
+    player.frame.replaceChildren(frame);
+    fillPlayer();
     setHash(`#solutions-${item.id}`);
-    closeButton.focus();
+  }
+
+  function step(dir) {
+    const list = sameLayer(current);
+    const next = list[list.indexOf(current) + dir];
+    if (!next) return;
+    show(next);
+    // An arrow that just became disabled loses focus: keep it on the pager.
+    if (document.activeElement && document.activeElement.disabled) {
+      (player.steps.find(b => !b.disabled) || player.close).focus();
+    }
+  }
+
+  // Opens the player for one demo. Returns false when no shown demo has that id.
+  function open(id) {
+    const item = items.find(i => i.id === id);
+    if (!item) return false;
+    player = player || buildPlayer();
+    show(item);
+    if (!player.dialog.open) {
+      player.dialog.showModal();
+      document.documentElement.classList.add('solutions-open');
+      player.close.focus();
+    }
     return true;
   }
 
-  // Closes the player. Removing the iframe stops playback.
-  function close(options) {
-    if (!dialog) return;
-    const { overlay, onKey, opener } = dialog;
-    dialog = null;
-    document.removeEventListener('keydown', onKey);
-    overlay.remove();
+  // Stops playback, and brings the card of the last demo watched into view and focus.
+  function onClose() {
     document.documentElement.classList.remove('solutions-open');
-    if (options && options.keepHash) return;
+    player.frame.replaceChildren();
     setHash('#solutions');
-    if (opener && opener.isConnected) opener.focus();
+    const button = current && document.querySelector(`.solution-watch[data-solution-open="${current.id}"]`);
+    current = null;
+    if (!button) return;
+    const card = button.closest('.solution-card');
+    const track = card.parentElement;
+    const view = track.getBoundingClientRect(), r = card.getBoundingClientRect();
+    if (r.left < view.left || r.right > view.right) track.scrollLeft += r.left - view.left;
+    button.focus({ preventScroll: true });
   }
 
   // ---- Start --------------------------------------------------------------------------------------------------
@@ -295,8 +393,11 @@
     render();
     document.addEventListener('click', e => {
       const trigger = e.target.closest('[data-solution-open]');
-      if (trigger) open(trigger.getAttribute('data-solution-open'), trigger);
+      if (trigger) open(trigger.getAttribute('data-solution-open'));
     });
   });
-  document.addEventListener('i18n:changed', render);
+  document.addEventListener('i18n:changed', () => {
+    render();
+    if (current) fillPlayer();
+  });
 })();
