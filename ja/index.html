@@ -25,7 +25,7 @@
 <script src="/assets/js/solutions.js?v=4"></script>
 <script src="/assets/js/i18n.js?v=10" defer></script>
 <script src="/assets/js/section-links.js?v=3" defer></script>
-<script src="/assets/js/cases.js?v=2" defer></script>
+<script src="/assets/js/cases.js?v=3" defer></script>
 <script src="/assets/js/carousel.js?v=1" defer></script>
 <style>
 :where([class^="ri-"])::before { content: "\f3c2"; }
@@ -226,7 +226,9 @@ html.case-dialog-open { overflow: hidden; }
 .case-dialog[open] { display: flex; flex-direction: column; animation: dialog-in .25s ease; }
 .case-dialog::backdrop { background: rgba(17,24,39,.55); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
 @keyframes dialog-in { from { opacity: 0; transform: translateY(12px) scale(.98); } }
-.case-dialog-scroll { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+.case-dialog-scroll { position: relative; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+/* A hidden copy of one case, laid out only to measure its height (cases.js). */
+.case-dialog-sizer { position: absolute; top: 0; left: 0; right: 0; visibility: hidden; pointer-events: none; }
 .case-dialog-media { height: clamp(10rem, 30vh, 16rem); overflow: hidden; background: #f3f4f6; }
 .case-dialog-media picture, .case-dialog-media img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
 .case-dialog-head { padding: 1.75rem 2rem 0; }

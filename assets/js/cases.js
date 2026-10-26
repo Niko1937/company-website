@@ -97,15 +97,50 @@
     });
   }
 
-  // Copies the card's title and categories into the dialog header (again after a language switch).
-  function fillHeader() {
-    if (!current) return;
-    title.textContent = current.querySelector('.case-title').textContent;
-    tag.textContent = categoriesOf(current)
+  function tagText(card) {
+    return categoriesOf(card)
       .map(cat => buttons.find(b => b.getAttribute('data-filter') === cat))
       .filter(Boolean)
       .map(b => b.querySelector('[data-i18n]').textContent)
       .join(' · ');
+  }
+
+  // Copies the card's title and categories into the dialog header (again after a language switch).
+  function fillHeader() {
+    if (!current) return;
+    title.textContent = current.querySelector('.case-title').textContent;
+    tag.textContent = tagText(current);
+  }
+
+  // On wider screens the panel is as tall as its tallest case, for every case, so the close button and the
+  // arrows stay in the same place while paging (phones already use the whole screen). Each case is laid out
+  // once in a hidden copy of the header and details at the panel's width; the panel's max-height still applies.
+  const scroller = dialog.querySelector('.case-dialog-scroll');
+  const head = dialog.querySelector('.case-dialog-head');
+  const foot = dialog.querySelector('.case-dialog-foot');
+  const phone = window.matchMedia('(max-width: 639px)');
+
+  function fitHeight() {
+    dialog.style.height = '';
+    if (!dialog.open || phone.matches) return;
+    const sizer = document.createElement('div');
+    sizer.className = 'case-dialog-sizer';
+    sizer.setAttribute('aria-hidden', 'true');
+    scroller.appendChild(sizer);
+    let tallest = 0;
+    cards.forEach(card => {
+      const copyHead = head.cloneNode(true);
+      const copyTitle = copyHead.querySelector('[data-case-dialog-title]');
+      copyTitle.removeAttribute('id');
+      copyTitle.textContent = card.querySelector('.case-title').textContent;
+      copyHead.querySelector('[data-case-dialog-tag]').textContent = tagText(card);
+      const details = (card === current ? body : card).querySelector('.case-details').cloneNode(true);
+      details.hidden = false;
+      sizer.replaceChildren(copyHead, details);
+      tallest = Math.max(tallest, sizer.offsetHeight);
+    });
+    sizer.remove();
+    dialog.style.height = `${media.offsetHeight + tallest + foot.offsetHeight}px`;
   }
 
   // Puts the open card's details back into the card.
@@ -148,6 +183,7 @@
     if (!dialog.open) {
       dialog.showModal();
       document.documentElement.classList.add('case-dialog-open');
+      fitHeight();
     }
     return true;
   }
@@ -190,7 +226,6 @@
   });
   // Swipe sideways on touch screens. Mostly-vertical moves are scrolling and are ignored.
   let touch = null;
-  const scroller = dialog.querySelector('.case-dialog-scroll');
   scroller.addEventListener('touchstart', e => {
     touch = e.touches.length === 1 ? { x: e.touches[0].clientX, y: e.touches[0].clientY } : null;
   }, { passive: true });
@@ -217,6 +252,13 @@
     fillHeader();
     updatePager();
     placeIndicator();
+    fitHeight();
+  });
+  // The panel's width follows the window, which changes how the text wraps.
+  let resizeFrame = 0;
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(fitHeight);
   });
 
   countCases();
