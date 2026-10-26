@@ -41,7 +41,11 @@ body { margin: 0; background: #fff; color: var(--body); font-family: 'Inter', 'N
 /* Same text rendering as the home page (Tailwind's base styles): no font-smoothing override, which made the
    text look thinner on macOS. */
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-html[lang="ja"] { line-break: strict; overflow-wrap: break-word; font-feature-settings: "palt"; letter-spacing: .02em; }
+html[lang="ja"] { line-break: strict; overflow-wrap: break-word; }
+/* Japanese spacing follows the language of the text (as on the home page): the company name, the copyright line
+   and the language links look the same on both pages. */
+[lang="ja"] { font-feature-settings: "palt"; letter-spacing: .02em; }
+[lang="en"] { font-feature-settings: normal; letter-spacing: normal; }
 a { color: var(--primary); text-underline-offset: 2px; }
 button { font: inherit; }
 /* Tailwind's .container, as on the home page */
@@ -59,7 +63,8 @@ button { font: inherit; }
 .site-header { view-transition-name: site-header; }
 /* Header: the home page's header in its scrolled state */
 .site-header, footer { line-height: 1.5; }
-.site-header { position: sticky; top: 0; z-index: 50; background: rgba(31,31,31,.94); -webkit-backdrop-filter: blur(15px); backdrop-filter: blur(15px); }
+.site-header { position: sticky; top: 0; z-index: 50; background: rgba(31,31,31,.8); -webkit-backdrop-filter: blur(15px); backdrop-filter: blur(15px); }
+.site-header:has(#mobileMenuBtn[aria-expanded="true"]) { background: rgba(31,31,31,.94); }
 .site-header .bar { display: flex; align-items: center; justify-content: space-between; padding-top: .5rem; padding-bottom: .5rem; }
 .brand { color: #fff; font-family: 'Inter'; font-size: 1.5rem; line-height: 2rem; font-weight: 700; text-decoration: none; white-space: nowrap; }
 .desktop-nav { display: none; align-items: center; gap: 2rem; }
@@ -70,6 +75,10 @@ button { font: inherit; }
 .lang-switcher a { color: rgba(255,255,255,.85); text-decoration: none; transition: color .2s; }
 .lang-switcher a:hover, .lang-switcher a[aria-current] { color: #93c5fd; }
 .lang-switcher a[aria-current] { font-weight: 600; }
+/* Each link keeps the width of its bold version, so the globe stays put (as on the home page). */
+.lang-switcher { font-feature-settings: normal; letter-spacing: normal; }
+.lang-switcher a { display: inline-flex; flex-direction: column; align-items: center; }
+.lang-switcher a::after { content: attr(data-label); height: 0; overflow: hidden; visibility: hidden; font-weight: 600; pointer-events: none; user-select: none; }
 .lang-divider { color: rgba(255,255,255,.35); }
 .mobile-actions { display: flex; align-items: center; gap: 1rem; }
 .icon-btn { width: 2rem; height: 2rem; display: inline-flex; align-items: center; justify-content: center; color: rgba(255,255,255,.85); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: none; transition: color .25s ease; }
@@ -89,7 +98,6 @@ button { font: inherit; }
 
 /* Document */
 main { max-width: 46rem; margin: 0 auto; padding: 4rem 1.5rem 5rem; }
-html[lang="ja"] main { max-width: 42rem; }
 .eyebrow { margin: 0 0 .5rem; color: var(--primary); font-size: .875rem; font-weight: 600; }
 h1 { margin: 0 0 .75rem; color: var(--ink); font-size: clamp(2rem, 4vw, 2.5rem); line-height: 1.25; letter-spacing: -.01em; }
 .updated { margin: 0 0 2rem; color: var(--muted); font-size: .9375rem; }
@@ -119,7 +127,7 @@ th { color: var(--ink); font-weight: 600; white-space: nowrap; }
 
 /* Footer: same as the home page */
 footer { background: var(--dark); color: #fff; padding: 3rem 0; }
-html[lang="ja"] footer p { line-height: 1.85; }
+html[lang="ja"] footer p:not([lang="en"]) { line-height: 1.85; }
 .footer-top { display: flex; flex-direction: column; gap: 2.5rem; }
 .footer-brand { display: inline-block; margin-bottom: 1rem; color: #fff; font-family: 'Inter'; font-size: 1.875rem; line-height: 2.25rem; font-weight: 700; text-decoration: none; }
 .tagline { margin: 0 0 1.5rem; color: #9ca3af; }
@@ -138,6 +146,73 @@ html[lang="ja"] footer p { line-height: 1.85; }
   .footer-top { flex-direction: row; }
   .footer-top > div { width: 50%; }
 }
+"""
+
+# Kept as plain ES5 like MENU_SCRIPT. Both languages have the same sections in the same order (same ids).
+POSITION_SCRIPT = """
+// The language switch keeps the reader's place, as on the home page: the other language opens at the same
+// section and the same point within it. Nothing is added to the URL; the place is handed over in sessionStorage.
+(function () {
+  var KEY = 'legalPosition';
+  var header = document.querySelector('.site-header');
+  var main = document.querySelector('main');
+  // The intro (title, lead, contents) counts as the first block; it ends where the first section starts.
+  function blocks() {
+    var list = [{ id: '', el: main }];
+    main.querySelectorAll('section[id]').forEach(function (s) { list.push({ id: s.id, el: s }); });
+    return list;
+  }
+  function span(list, i) {
+    var top = list[i].el.getBoundingClientRect().top + scrollY;
+    var next = list[i + 1];
+    var bottom = (next ? next.el.getBoundingClientRect().top : main.getBoundingClientRect().bottom) + scrollY;
+    return { top: top, height: Math.max(bottom - top, 1) };
+  }
+  // The reading line is just below the sticky header.
+  function line() { return header.getBoundingClientRect().bottom; }
+  function current() {
+    if (scrollY <= 0) return null;
+    if (scrollY >= document.documentElement.scrollHeight - innerHeight - 2) return { end: true };
+    var list = blocks(), y = scrollY + line(), i = 0;
+    for (var k = 0; k < list.length; k++) if (span(list, k).top <= y) i = k;
+    var s = span(list, i);
+    return { id: list[i].id, f: Math.min(Math.max((y - s.top) / s.height, 0), 1) };
+  }
+  function restore(pos) {
+    var y = document.documentElement.scrollHeight;
+    if (!pos.end) {
+      var list = blocks(), i = -1;
+      for (var k = 0; k < list.length; k++) if (list[k].id === pos.id) i = k;
+      if (i < 0) return;
+      var s = span(list, i);
+      y = s.top + pos.f * s.height - line();
+    }
+    window.scrollTo({ top: y, behavior: 'instant' });
+  }
+  document.querySelectorAll('a[hreflang]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var pos = current();
+      try {
+        if (pos) { pos.page = a.pathname; pos.at = Date.now(); sessionStorage.setItem(KEY, JSON.stringify(pos)); }
+        else sessionStorage.removeItem(KEY);
+      } catch (_) {}
+    });
+  });
+  var saved = null;
+  try { saved = JSON.parse(sessionStorage.getItem(KEY)); sessionStorage.removeItem(KEY); } catch (_) {}
+  if (!saved || saved.page !== location.pathname || !(Date.now() - saved.at < 10000) || location.hash) return;
+  restore(saved);
+  // Web fonts can rewrap the text after they load: place the reader again unless they have moved by then.
+  // (The browser shifts scrollY itself while content above changes, so the reader's own input is what counts.)
+  var moved = false;
+  ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach(function (type) {
+    addEventListener(type, function () { moved = true; }, { once: true, passive: true });
+  });
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () { if (!moved) restore(saved); });
+  }
+})();
 """
 
 MENU_SCRIPT = """
@@ -174,14 +249,14 @@ def header(lang, kind, t):
     current = lambda l: ' aria-current="page"' if l == lang else ''
     return f"""<header class="site-header">
 <div class="container bar">
-<a class="brand" href="/{lang}/">{html.escape(COMPANY)}</a>
+<a class="brand" href="/{lang}/" lang="en">{html.escape(COMPANY)}</a>
 <nav class="desktop-nav" aria-label="{'Main' if lang == 'en' else 'メイン'}">
 {nav_links(lang, t, 'nav-link')}
 <span class="lang-switcher">
 <i class="ri-global-line" aria-hidden="true"></i>
-<a href="/en/{kind}/" hreflang="en" lang="en"{current('en')}>English</a>
+<a href="/en/{kind}/" hreflang="en" lang="en" data-label="English"{current('en')}>English</a>
 <span class="lang-divider">|</span>
-<a href="/ja/{kind}/" hreflang="ja" lang="ja"{current('ja')}>日本語</a>
+<a href="/ja/{kind}/" hreflang="ja" lang="ja" data-label="日本語"{current('ja')}>日本語</a>
 </span>
 </nav>
 <div class="mobile-actions">
@@ -203,7 +278,7 @@ def footer(lang, t):
 <div class="container">
 <div class="footer-top">
 <div>
-<a class="footer-brand" href="/{lang}/">{html.escape(COMPANY)}</a>
+<a class="footer-brand" href="/{lang}/" lang="en">{html.escape(COMPANY)}</a>
 <p class="tagline">{html.escape(f['taglineLine1'])}<br>{html.escape(f['taglineLine2'])}</p>
 <div class="social">
 <a href="https://www.linkedin.com/company/quests-group" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ri-linkedin-box-fill ri-lg" aria-hidden="true"></i></a>
@@ -226,7 +301,7 @@ def footer(lang, t):
 </div>
 </div>
 </div>
-<p class="copyright">© <span id="year">2026</span> {html.escape(f['copyrightSuffix'])}</p>
+<p class="copyright" lang="en">© <span id="year">2026</span> {html.escape(f['copyrightSuffix'])}</p>
 </div>
 </footer>"""
 
@@ -242,6 +317,11 @@ def page(lang, kind, c):
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+// Remember this page's language, as the home page does (assets/js/i18n.js, key "preferredLang"), so every later
+// page, including the root URL, opens in the same language. Done first thing, before fonts and styles load.
+try {{ localStorage.setItem('preferredLang', '{lang}'); }} catch (_) {{}}
+</script>
 <title>{html.escape(c['title'])} | {html.escape(COMPANY)}</title>
 <meta name="description" content="{html.escape(c['description'])}">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -263,7 +343,7 @@ def page(lang, kind, c):
 <body>
 {header(lang, kind, t)}
 <main>
-<p class="eyebrow">Quests Bay Pte. Ltd.</p>
+<p class="eyebrow" lang="en">Quests Bay Pte. Ltd.</p>
 <h1>{html.escape(c['title'])}</h1>
 <p class="updated">{html.escape(c['updated'])}</p>
 <p class="lead">{c['lead']}</p>
@@ -272,10 +352,7 @@ def page(lang, kind, c):
 {footer(lang, t)}
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
-// Remember this page's language, as the home page does (assets/js/i18n.js, key "preferredLang"),
-// so every later page, including the root URL, opens in the same language.
-try {{ localStorage.setItem('preferredLang', '{lang}'); }} catch (_) {{}}
-{MENU_SCRIPT}</script>
+{MENU_SCRIPT}{POSITION_SCRIPT}</script>
 </body>
 </html>
 """

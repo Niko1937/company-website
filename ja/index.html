@@ -89,6 +89,10 @@ margin: 0;
 .lang-switcher button:hover { color: #0047AB; }
 .lang-switcher button.lang-active { color: #0047AB; font-weight: 600; }
 .lang-switcher .lang-divider { color: #d1d5db; }
+/* Each label keeps the width of its bold version, so the globe and the divider stay put when the bold moves. */
+.lang-switcher { -webkit-font-feature-settings: normal; font-feature-settings: normal; letter-spacing: normal; }
+.lang-switcher button { display: inline-flex; flex-direction: column; align-items: center; }
+.lang-switcher button::after { content: attr(data-label); height: 0; overflow: hidden; visibility: hidden; font-weight: 600; pointer-events: none; user-select: none; }
 .site-header {
   background: rgba(17,24,39,0);
   backdrop-filter: blur(0);
@@ -98,12 +102,14 @@ margin: 0;
 }
 .site-header.is-scrolled,
 .site-header.menu-open {
-  /* Nearly opaque: at .8 the white sections showed through as a muddy grey. */
-  background: rgba(31,31,31,.94);
+  /* Frosted glass: the page shows faintly through the blur. */
+  background: rgba(31,31,31,.8);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border-bottom: 1px solid rgba(255,255,255,0);
 }
+/* With the phone menu open, the bar sits right above the white menu panel and stays nearly opaque. */
+.site-header.menu-open { background: rgba(31,31,31,.94); }
 .site-header .brand,
 .site-header .nav-link { color: #fff; transition: color .25s ease; }
 .site-header .nav-link { white-space: nowrap; }
@@ -113,9 +119,13 @@ margin: 0;
 .site-header .lang-switcher i { color: rgba(255,255,255,.85); }
 .site-header .lang-toggle-btn { color: rgba(255,255,255,.85); background: none; border: none; cursor: pointer; padding: 0; transition: color .25s ease; display: inline-flex; align-items: center; justify-content: center; }
 .site-header .lang-toggle-btn:hover { color: #93c5fd; }
-html[lang="ja"] { line-break: strict; overflow-wrap: break-word; -webkit-font-feature-settings: "palt"; font-feature-settings: "palt"; letter-spacing: .02em; }
+html[lang="ja"] { line-break: strict; overflow-wrap: break-word; }
+/* Japanese spacing follows the language of the text, not of the page: text marked lang="en" (the company name,
+   the copyright line, "English" in the switcher) looks the same on both pages, and so does "日本語". */
+[lang="ja"] { -webkit-font-feature-settings: "palt"; font-feature-settings: "palt"; letter-spacing: .02em; }
+[lang="en"] { -webkit-font-feature-settings: normal; font-feature-settings: normal; letter-spacing: normal; }
 html[lang="ja"] :is(h1, h2, h3, h4, [data-phrase]) { word-break: keep-all; }
-html[lang="ja"] p { line-height: 1.85; text-wrap: pretty; }
+html[lang="ja"] p:not([lang="en"]) { line-height: 1.85; text-wrap: pretty; }
 html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3, html[lang="ja"] h4 { text-wrap: balance; }
 .hero-line2 { text-wrap: balance; }
 @media (min-width: 1024px) {
@@ -295,7 +305,7 @@ html.case-dialog-open { overflow: hidden; }
 <!-- Header/Navigation -->
 <header class="site-header fixed top-0 left-0 right-0 z-50">
 <div class="container mx-auto px-6 py-2 flex justify-between items-center">
-<a href="#hero" class="brand text-2xl lg:text-3xl font-['Inter'] font-bold" data-i18n="brand.name">Quests</a>
+<a href="#hero" class="brand text-2xl lg:text-3xl font-['Inter'] font-bold" lang="en" data-i18n="brand.name">Quests</a>
 <nav class="hidden lg:flex items-center space-x-8">
 <a href="#about" class="nav-link transition-colors" data-i18n="nav.about">About</a>
 <a href="#services" class="nav-link transition-colors" data-i18n="nav.services">Services</a>
@@ -304,9 +314,9 @@ html.case-dialog-open { overflow: hidden; }
 <a href="#contact" class="nav-link transition-colors" data-i18n="nav.contact">Contact Us</a>
 <div class="lang-switcher pl-5 ml-1">
 <i class="ri-global-line text-base"></i>
-<button type="button" data-lang-switch="en">English</button>
+<button type="button" data-lang-switch="en" lang="en" data-label="English">English</button>
 <span class="lang-divider">|</span>
-<button type="button" data-lang-switch="ja">日本語</button>
+<button type="button" data-lang-switch="ja" lang="ja" data-label="日本語">日本語</button>
 </div>
 </nav>
 <div class="lg:hidden flex items-center gap-4">
@@ -373,19 +383,19 @@ html.case-dialog-open { overflow: hidden; }
 <div class="w-8 h-8 flex items-center justify-center">
 <i class="ri-amazon-fill ri-2x text-gray-500"></i>
 </div>
-<span class="text-gray-700 font-medium">AWS</span>
+<span class="text-gray-700 font-medium" lang="en">AWS</span>
 </div>
 <div class="flex items-center gap-3">
 <div class="w-8 h-8 flex items-center justify-center">
 <i class="ri-google-fill ri-2x text-gray-500"></i>
 </div>
-<span class="text-gray-700 font-medium">Google</span>
+<span class="text-gray-700 font-medium" lang="en">Google</span>
 </div>
 <div class="flex items-center gap-3">
 <div class="w-8 h-8 flex items-center justify-center">
 <i class="ri-microsoft-fill ri-2x text-gray-500"></i>
 </div>
-<span class="text-gray-700 font-medium">Microsoft</span>
+<span class="text-gray-700 font-medium" lang="en">Microsoft</span>
 </div>
 </div>
 </div>
@@ -823,8 +833,8 @@ html.case-dialog-open { overflow: hidden; }
 <i class="ri-map-pin-2-line text-primary"></i>
 </div>
 <div>
-<p class="font-semibold text-gray-900 flex items-baseline flex-wrap gap-x-2 gap-y-0.5"><span data-i18n="contact.side.office1Name">Quests Bay Pte. Ltd.</span><span class="text-sm font-normal text-gray-500" data-i18n="contact.side.office1Country">Singapore</span></p>
-<p class="text-gray-700" data-i18n="contact.side.office1Address">68 Circular Road, #02-01, Singapore 049422</p>
+<p class="font-semibold text-gray-900 flex items-baseline flex-wrap gap-x-2 gap-y-0.5" lang="en"><span data-i18n="contact.side.office1Name">Quests Bay Pte. Ltd.</span><span class="text-sm font-normal text-gray-500" data-i18n="contact.side.office1Country">Singapore</span></p>
+<p class="text-gray-700" lang="en" data-i18n="contact.side.office1Address">68 Circular Road, #02-01, Singapore 049422</p>
 </div>
 </div>
 <div class="flex items-start gap-4" data-show-if="showMarshallOffice">
@@ -851,7 +861,7 @@ html.case-dialog-open { overflow: hidden; }
 <div class="container mx-auto px-6">
 <div class="flex flex-col md:flex-row gap-10">
 <div class="md:w-1/2">
-<a href="#hero" class="text-3xl font-['Inter'] font-bold text-white mb-4 inline-block" data-i18n="brand.name">Quests</a>
+<a href="#hero" class="text-3xl font-['Inter'] font-bold text-white mb-4 inline-block" lang="en" data-i18n="brand.name">Quests</a>
 <p class="text-gray-400 mb-6" data-phrase><span data-i18n="footer.taglineLine1">AI, data, and cloud, delivered end to end.</span><br><span data-i18n-html="footer.taglineLine2">Big Tech expertise, without the big-firm overhead.</span></p>
 <div class="flex space-x-4">
 <a href="https://www.linkedin.com/company/quests-group" target="_blank" rel="noopener" aria-label="LinkedIn" class="text-gray-400 hover:text-white transition-colors">
@@ -887,7 +897,7 @@ html.case-dialog-open { overflow: hidden; }
 </div>
 </div>
 <div class="mt-10">
-<p class="text-gray-500">© <span id="copyrightYear">2025</span> <span data-i18n="footer.copyrightSuffix">Quests. All rights reserved.</span></p>
+<p class="text-gray-500" lang="en">© <span id="copyrightYear">2025</span> <span data-i18n="footer.copyrightSuffix">Quests. All rights reserved.</span></p>
 <script>document.getElementById('copyrightYear').textContent = new Date().getFullYear();</script>
 </div>
 </div>
