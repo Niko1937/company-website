@@ -260,7 +260,8 @@
       "office2Name": "Quests Ltd.",
       "office2Country": "Marshall",
       "office2Address": "Trust Company Complex, Ajeltake Road, Ajeltake Island, Majuro, RMI, MH 96960",
-      "mapSrc": "https://www.google.com/maps?q=68%20CIRCULAR%20ROAD%2C%20%2302-01%2C%20SINGAPORE%20049422&hl=ja&output=embed"
+      "mapSrc": "https://www.google.com/maps?q=68%20CIRCULAR%20ROAD%2C%20%2302-01%2C%20SINGAPORE%20049422&hl=ja&output=embed",
+      "openMap": "Google マップで開く"
     }
   },
   "privacy": {
