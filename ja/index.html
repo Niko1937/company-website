@@ -69,6 +69,9 @@ margin: 0;
 }
 .map-link { display: inline-flex; align-items: center; gap: .375rem; margin-top: .75rem; color: #0047AB; font-size: .9375rem; font-weight: 500; }
 .map-link:hover { text-decoration: underline; }
+/* Unselected budget: light like the placeholders of the other fields. The options in the list stay dark. */
+#budget:has(option[value=""]:checked) { color: #9ca3af; }
+#budget option { color: #111827; }
 /* Page changes (home <-> privacy/terms) cross-fade instead of flashing white, and the header stays in place.
    Browsers without cross-document view transitions simply load the page as before. */
 @media (prefers-reduced-motion: no-preference) {
