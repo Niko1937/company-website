@@ -4,7 +4,8 @@
   // Renders the Solutions demo videos listed in SITE_CONFIG.solutions. Load synchronously in <head>
   // (after config.js) so empty layers, or the whole section and its menu items, are hidden before the body renders.
   //   [data-solutions]                 : the section and its menu items (hidden when no demo is shown)
-  //   [data-solutions-layer="<cat>"]   : one layer per category (hidden when it has no demo)
+  //   [data-solutions-layer="<cat>"]   : one layer per category (hidden when it has no demo; when only one is
+  //                                      left, its heading is hidden as well)
   //   [data-solutions-track="<cat>"]   : where the cards of that category are rendered
   const CATEGORIES = ['business', 'consumer'];
   const LANGS = ['en', 'ja'];
@@ -84,8 +85,10 @@
       : ['[data-solutions]'];
     if (!selectors.length) return;
     const style = document.createElement('style');
-    // With one layer left there is nothing to divide it from.
-    style.textContent = `${selectors.join(',')}{display:none!important}.solutions-layer{padding-top:0!important;border-top:0!important}`;
+    // With one layer left there is nothing to divide it from, and its heading ("For Business") would only suggest
+    // that another kind exists, so the layer and dialog headings are hidden too.
+    style.textContent = `${selectors.join(',')}{display:none!important}.solutions-layer{padding-top:0!important;border-top:0!important}`
+      + (items.length ? '.solutions-layer-head,.solution-dialog-tag{display:none!important}' : '');
     document.head.appendChild(style);
   }
 
@@ -333,7 +336,8 @@
     const lang = currentLang();
     const frame = el('iframe', '', {
       title: item.title[lang],
-      allow: 'autoplay; encrypted-media; picture-in-picture; fullscreen',
+      // clipboard-write and web-share let the player's own Share / Copy link buttons work (as in YouTube's embed code).
+      allow: 'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share; fullscreen',
       allowfullscreen: '',
       referrerpolicy: 'strict-origin-when-cross-origin'
     });

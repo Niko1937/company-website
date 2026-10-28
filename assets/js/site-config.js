@@ -9,6 +9,17 @@ window.SITE_CONFIG = {
   // 法人向け・個人向けとも 0 本ならセクションとメニューの項目も隠れます。
   // show: false の動画も ID は誰でも見られるため、未公開の動画はここに書かないでください。
   solutions: [
+    {
+      id: "ai-claim-assessment",
+      category: "business",
+      show: true,
+      video: { en: "8WHcJ1mX5R4", ja: "PzZgiWfdLM0" },
+      title: { en: "AI Auto Claims Assessment", ja: "AI自動車事故査定" },
+      description: {
+        en: "Calculates the insurance payout from photos of the damaged car and the accident report in under a minute.",
+        ja: "事故車の写真と事故報告書から、保険金を1分以内で算定します。",
+      },
+    },
     // ▼ ローカル確認用のテスト動画（使うときはコメントを外す。本番に出さないこと）
     // { id: "test-business-1", category: "business", show: true,
     //   video: { en: "aqz-KE-bpKQ", ja: "jNQXAC9IVRw" },
