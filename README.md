@@ -125,6 +125,16 @@ GitHub Pages は HTML に最大10分のキャッシュを付けるため、利�
 
 `<html lang>` 属性も i18n.js が言語に合わせて動的に更新する。
 
+**リンクを共有したときの表示（OGP タグ）**
+
+LinkedIn・Slack・X などにリンクを貼ったときのタイトル・説明・画像は、`en/index.html`・`ja/index.html`・ルートの `index.html` の `<head>` にある `og:*`・`description`・`twitter:card` で決まる（[LinkedIn の仕様](https://www.linkedin.com/help/linkedin/answer/46687)：画像は 1200×627px 以上、1.91:1、5MB まで、`https://` から始まる URL）。
+
+- 共有する側のクローラーは JavaScript を実行しないため、翻訳JSONではなく HTML に直接書いている。文言を変えるときは3ファイルとも直す（ルートは英語ページと同じ内容で、`og:url` だけ `https://quests.it.com/`）。
+- `<title>` も同じ文言で、翻訳JSONの `meta.title` と合わせている（JavaScript が動いた後は `meta.title` が使われる）。
+- 社名（`site-config.js` の `companyName`）を変えたときは、これらの「Quests」も手で直す。
+- 画像は `/images/og/quests-1200x627.png`（元は `_sources/brand/linkedin/banner.html#og`。作り直し方は `_sources/brand/README.md`）。
+- LinkedIn はプレビューをしばらく保存する。変更を反映した後は、[Post Inspector](https://www.linkedin.com/post-inspector/) で URL を調べ直すと新しい内容になる。既に投稿・登録したリンクは古いままなので、貼り直す。
+
 ### 表示設定（site-config.js）
 
 ページの表示内容の一部を、`/assets/js/site-config.js` の値で切り替えられる。値を変更して `main` に push すれば反映される（ビルド不要）。

@@ -40,7 +40,10 @@ Quests のロゴマークは、頭文字「Q」をもとにした、円とひと
 | `logo-navy-2048.png` | 紺のマーク・背景透明・2048×2048px | SVG を扱えないソフト（古い PowerPoint、Word、メールの署名など） |
 | `logo-white-2048.png` | 白のマーク・背景透明・2048×2048px | 同上（暗い背景用） |
 | `linkedin-logo-400.png` | 紺の背景に白のマーク・400×400px | **LinkedIn の会社ロゴ**（推奨サイズちょうど）。その他 SNS のアイコン |
-| `linkedin-cover-1128x191.png` | サイトの Hero 背景から作ったカバー画像・1128×191px | LinkedIn の会社ページのカバー画像 |
+| `linkedin-cover-1512x256.png`（`@2x` は 3024×512px） | Hero と同じ背景に、Hero と同じ2行の見出し「Pioneering the Future / with Big Tech Expertise at Startup Speed」・1512×256px | **LinkedIn の会社ページのカバー画像**（現在の推奨サイズ） |
+| `linkedin-banner-ceo-1584x396.png`（`@2x` は 3168×792px） | 同じ背景に「Quests」と「Big Tech Expertise at Startup Speed」・1584×396px | **CEO の LinkedIn 個人ページの背景画像** |
+| `/images/og/quests-1200x627.png`（サイト側に置く） | 同じ背景に「Quests」と「Big Tech Expertise at Startup Speed」・1200×627px | **リンクを共有したときの画像**（OGP 画像。LinkedIn・Slack・X など） |
+| `linkedin-cover-1128x191.png` | Hero の背景を横に切っただけの文字なし版・1128×191px（旧推奨サイズ。`scripts/build_icons.py` が作る） | 文字なしのカバーにしたいとき |
 
 **サイト用**（このフォルダが正本。サイトにはコピーを配置）
 
@@ -53,13 +56,39 @@ Quests のロゴマークは、頭文字「Q」をもとにした、円とひと
 
 `/favicon.ico` と `/apple-touch-icon.png` は、ブラウザがサイトのルートを直接探しに来るため、ルートに置いています。
 
----|---|---|
-| `logo.svg` | 紺のマーク・背景透明（ベクター） | PowerPoint（Microsoft 365）、Keynote、Figma、印刷物。**最優先で使うファイル** |
-| `logo-white.svg` | 白のマーク・背景透明（ベクター） | 暗い背景のスライド・資料 |
-| `logo-navy-2048.png` | 紺のマーク・背景透明・2048×2048px | SVG を扱えないソフト（古い PowerPoint、Word、メールの署名など） |
-| `logo-white-2048.png` | 白のマーク・背景透明・2048×2048px | 同上（暗い背景用） |
-| `linkedin-logo-400.png` | 紺の背景に白のマーク・400×400px | **LinkedIn の会社ロゴ**（推奨サイズちょうど）。その他 SNS のアイコン |
-| `linkedin-cover-1128x191.png` | サイトの Hero 背景から作ったカバー画像・1128×191px | LinkedIn の会社ページのカバー画像 |
+
+---
+
+## LinkedIn のバナーとリンク共有用の画像
+
+`linkedin/banner.html` が元です（サイトと同じ Inter・同じグラデーション、背景は `_sources/photos/hero/background.jpg`）。文言や位置を変えたら、Chrome で PNG に書き出し直します（`#company` が会社ページ、`#ceo` が個人ページ）。
+
+```sh
+CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+"$CHROME" --headless=new --hide-scrollbars --virtual-time-budget=5000 --window-size=1512,256 --force-device-scale-factor=1 \
+  --screenshot=_sources/brand/linkedin-cover-1512x256.png "file://$PWD/_sources/brand/linkedin/banner.html#company"
+"$CHROME" --headless=new --hide-scrollbars --virtual-time-budget=5000 --window-size=1584,396 --force-device-scale-factor=1 \
+  --screenshot=_sources/brand/linkedin-banner-ceo-1584x396.png "file://$PWD/_sources/brand/linkedin/banner.html#ceo"
+```
+
+リンク共有用の画像（OGP）は `#og` を 1200×627 で書き出し、サイトの `images/og/` に置きます。
+
+```sh
+"$CHROME" --headless=new --hide-scrollbars --virtual-time-budget=5000 --window-size=1200,627 --force-device-scale-factor=1 \
+  --screenshot=images/og/quests-1200x627.png "file://$PWD/_sources/brand/linkedin/banner.html#og"
+```
+
+`@2x` 版は `--force-device-scale-factor=2` にして、ファイル名に `@2x` を付けます。どちらのサイズも LinkedIn にそのまま上げられます（比率が同じ。`@2x` は高解像度の画面でくっきり見える）。
+
+**文字を置いてよい範囲**（LinkedIn のロゴ・顔写真と、スマホで切れる部分を避ける）
+
+| | サイズ | 文字を置く範囲 | 避ける理由 |
+|---|---|---|---|
+| 会社ページ | 1512×256 | x 340〜1362、y 28〜200 | 左下に会社ロゴが重なる（x 45〜286、y 134〜下端）。スマホでは左右が約 8% 切れるとの説あり |
+| 個人ページ | 1584×396 | x 420〜1164、y 60〜300 | PC では左下に顔写真（左 25%・下 45%）。スマホでは左右が最大 20% 切れ、顔写真が下の中央に来るとの説あり |
+
+- サイズは LinkedIn ヘルプ（[会社ページ](https://www.linkedin.com/help/linkedin/answer/a563309)・[個人ページ](https://www.linkedin.com/help/linkedin/answer/a568217)）による。重なる位置は、LinkedIn 以外のガイドの計測値（ManyPixels ほか）を重ね合わせたもので、公式の数値ではない。上げた後は実際のスマホアプリでも確認する。
+- サイトの URL は画像に入れない（クリックできないため）。個人ページの「連絡先情報 → ウェブサイト」に登録する。
 
 ---
 
