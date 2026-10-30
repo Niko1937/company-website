@@ -30,9 +30,10 @@
   body.plain .banner { --photo-size: auto 240%; --photo-pos: right 50%; --fade-a: 40%; --fade-b: 75%; --shade-a: 0%; --shade-b: 0%; --shade-c: 0%; }
   body.plain .copy { display: none; }
 
-  /* CEO profile 1584x396: Quests / tagline (the URL goes in the profile's own link instead), inside the mobile-safe middle and clear of the photo */
-  body.ceo .banner { --photo-size: auto 175%; --photo-pos: right 50%; --fade-a: 50%; --fade-b: 75%; --shade-a: 55%; --shade-b: 68%; --shade-c: 84%; }
-  body.ceo .copy { left: 27.5vw; top: 50%; transform: translateY(-50%); }
+  /* CEO profile 1584x396: Quests / tagline (the URL goes in the profile's own link instead).
+     Placed right of and a little above the profile photo, which on phones is larger and further right (measured: centre ~267,407 r~204 in banner px) */
+  body.ceo .banner { --photo-size: auto 175%; --photo-pos: right 50%; --fade-a: 62%; --fade-b: 82%; --shade-a: 64%; --shade-b: 76%; --shade-c: 90%; }
+  body.ceo .copy { left: 35vw; top: 50%; transform: translateY(-58%); }
   body.ceo .name { font-size: 5.6vw; font-weight: 700; line-height: 1.05; letter-spacing: -.02em; }
   body.ceo h1 { font-size: 2.3vw; margin-top: 1.1vw; }
 
