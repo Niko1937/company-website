@@ -13,7 +13,7 @@ window.SITE_CONFIG = {
       id: "ai-claim-assessment",
       category: "business",
       show: true,
-      video: { en: "8WHcJ1mX5R4", ja: "PzZgiWfdLM0" },
+      video: { en: "6ovCw16oMjo", ja: "CWNEwtN3p10" },
       title: { en: "AI Auto Claims Assessment", ja: "AI自動車事故査定" },
       description: {
         en: "Calculates the insurance payout from photos of the damaged car and the accident report in under a minute.",
