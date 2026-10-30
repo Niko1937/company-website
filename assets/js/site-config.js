@@ -27,8 +27,8 @@ window.SITE_CONFIG = {
       video: { en: "DO7tTZ3F6XM", ja: "H2BcnbiJMyk" },
       title: { en: "AI AML Investigation", ja: "AIマネロン調査" },
       description: {
-        en: "AI triages 30 transaction alerts, traces the flow of funds and drafts the suspicious transaction report.",
-        ja: "取引アラート30件をAIが一次調査し、資金の流れの分析から疑わしい取引の届出書の下書きまで行います。",
+        en: "AI triages transaction alerts, traces the flow of funds and drafts the suspicious transaction report.",
+        ja: "取引アラートをAIが一次調査し、資金の流れの分析から疑わしい取引の届出書の下書きまで行います。",
       },
     },
     // ▼ ローカル確認用のテスト動画（使うときはコメントを外す。本番に出さないこと）
