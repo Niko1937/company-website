@@ -279,7 +279,7 @@ def footer(lang, t):
 <div class="footer-top">
 <div>
 <a class="footer-brand" href="/{lang}/" lang="en">{html.escape(COMPANY)}</a>
-<p class="tagline">{html.escape(f['taglineLine1'])}<br>{html.escape(f['taglineLine2'])}</p>
+<p class="tagline">{html.escape(f['tagline'])}</p>
 <div class="social">
 <a href="https://www.linkedin.com/company/quests-group" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ri-linkedin-box-fill ri-lg" aria-hidden="true"></i></a>
 <a href="https://www.youtube.com/@QuestsBay" target="_blank" rel="noopener" aria-label="YouTube"><i class="ri-youtube-fill ri-lg" aria-hidden="true"></i></a>
