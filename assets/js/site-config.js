@@ -10,21 +10,32 @@ window.SITE_CONFIG = {
   // show: false の動画も ID は誰でも見られるため、未公開の動画はここに書かないでください。
   solutions: [
     {
+      id: "ai-visual-inspection",
+      category: "business",
+      show: true,
+      video: { en: "aAw5N0cP-RI", ja: "sdY2_F9St-M" },
+      title: { en: "AI Visual Inspection", ja: "AI外観検査" },
+      description: {
+        en: "AI finds defects in circuit board images, estimates the likely root cause and drafts the quality report.",
+        ja: "基板の画像からAIが不良を見つけ、原因工程の推定から品質報告書の下書きまで行います。",
+      },
+    },
+    {
       id: "ai-claim-assessment",
       category: "business",
       show: true,
-      video: { en: "6ovCw16oMjo", ja: "CWNEwtN3p10" },
-      title: { en: "AI Auto Claims Assessment", ja: "AI自動車事故査定" },
+      video: { en: "YbYUzxvGqRQ", ja: "8v0HewJtLes" },
+      title: { en: "AI Auto Claims Assessment", ja: "AI自動車保険査定" },
       description: {
-        en: "Calculates the insurance payout from photos of the damaged car and the accident report in under a minute.",
-        ja: "事故車の写真と事故報告書から、保険金を1分以内で算定します。",
+        en: "AI pinpoints the damage in photos of the car, checks it against the accident report and calculates an itemized payout.",
+        ja: "事故車の写真からAIが損傷を特定し、事故報告書と照らし合わせて、支払額を項目ごとに算出します。",
       },
     },
     {
       id: "ai-aml-investigation",
       category: "business",
       show: true,
-      video: { en: "DO7tTZ3F6XM", ja: "H2BcnbiJMyk" },
+      video: { en: "PB7vu6Ai_18", ja: "dAuABiRaa_0" },
       title: { en: "AI AML Investigation", ja: "AIマネロン調査" },
       description: {
         en: "AI triages transaction alerts, traces the flow of funds and drafts the suspicious transaction report.",
