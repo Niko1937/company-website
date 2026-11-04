@@ -32,6 +32,9 @@
     "missionText": "Top tech firms often take only large projects and lock clients into rigid contracts. We started {company} to change that. You get the same caliber of expertise, with flexible terms and fast turnaround.",
     "expertiseTitle": "What We Bring",
     "expertiseText": "Engineers from AWS, Google, Microsoft, and other tech leaders work alongside consultants from the Big Four and other top firms. One team takes you from strategy to implementation, fast. Because engineering is our foundation, we go beyond recommendations and see the change through.",
+    "ceoName": "Akira Nagata",
+    "ceoTitle": "Founder & CEO",
+    "ceoLinkedIn": "Akira Nagata on LinkedIn (opens in a new tab)",
     "imageAlt": "The {company} team in our Singapore office"
   },
   "services": {

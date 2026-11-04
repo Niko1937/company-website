@@ -232,6 +232,31 @@ html.solutions-open { overflow: hidden; }
   .case-study:hover .case-open i { transform: translateX(3px); }
 }
 .case-study[hidden] { display: none; }
+/* CEO: name and title stacked like a signature, the LinkedIn link beside them on the name's line.
+   Reuses the section's type scale: the name matches the h3 headings, the title matches the body text.
+   English puts the name first; Japanese puts the title first, as on a business card. */
+#about .ceo { display: flex; align-items: baseline; column-gap: 2rem; }
+#about .ceo:lang(ja) { align-items: last baseline; }
+.ceo-id { display: flex; flex-direction: column; }
+.ceo-name { font-size: 1.5rem; line-height: 2rem; font-weight: 600; color: #111827; }
+.ceo-title { font-size: 1rem; line-height: 1.5rem; color: #6b7280; }
+:lang(ja) .ceo-title { order: -1; }
+/* From xl up, the photo grows to the height of the text beside it, so neither side sticks out. */
+@media (min-width: 1280px) {
+  #about .about-row { align-items: stretch; }
+  #about .about-media { aspect-ratio: 3 / 2; }
+  #about .about-media picture, #about .about-media img { height: 100%; }
+  #about .about-row > :last-child { display: flex; flex-direction: column; justify-content: center; }
+}
+/* Same text-link style as "View details" in Case Studies, plus the [in] logo and a ↗ for "opens in a new tab". */
+.ceo-linkedin { flex-shrink: 0; display: inline-flex; align-items: center; gap: .375rem; color: #0047AB; font-weight: 500; border-radius: 4px; }
+.ceo-linkedin .ri-linkedin-box-fill { color: #0A66C2; font-size: 1.25rem; line-height: 1; }
+.ceo-linkedin .ri-arrow-right-up-line { transition: transform .2s ease; }
+.ceo-linkedin:focus-visible { outline: 2px solid #0047AB; outline-offset: 2px; }
+@media (hover: hover) {
+  .ceo-linkedin:hover span { text-decoration: underline; text-underline-offset: 3px; }
+  .ceo-linkedin:hover .ri-arrow-right-up-line { transform: translate(2px, -2px); }
+}
 .case-study.is-entering { animation: case-in .4s ease both; }
 @keyframes case-in { from { opacity: 0; transform: translateY(8px); } }
 .case-study:has(.case-open:focus-visible) { outline: 2px solid #0047AB; outline-offset: 3px; }
@@ -393,8 +418,8 @@ html.case-dialog-open { overflow: hidden; }
 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-i18n="about.title">About Quests</h2>
 <p class="text-lg text-gray-600 max-w-3xl mx-auto" data-phrase data-i18n-html="about.subtitle">A senior team from global tech leaders, built to deliver results.</p>
 </div>
-<div class="flex flex-col md:flex-row items-center gap-10">
-<div class="md:w-1/2">
+<div class="about-row flex flex-col md:flex-row items-center gap-10">
+<div class="about-media md:w-1/2">
 <picture class="block"><source type="image/webp" srcset="/images/about/team-600.webp 600w, /images/about/team.webp 1200w" sizes="(min-width: 768px) 50vw, 100vw"><img src="/images/about/team.jpg" srcset="/images/about/team-600.jpg 600w, /images/about/team.jpg 1200w" sizes="(min-width: 768px) 50vw, 100vw" width="1200" height="800" decoding="async" alt="The Quests team in our Singapore office" data-i18n-attr-alt="about.imageAlt" class="rounded-lg shadow-lg w-full object-cover object-top"></picture>
 </div>
 <div class="md:w-1/2">
@@ -402,25 +427,11 @@ html.case-dialog-open { overflow: hidden; }
 <p class="text-gray-700 mb-6" data-i18n-html="about.missionText">Top tech firms often take only large projects and lock clients into rigid contracts. We started Quests to change that. You get the same caliber of expertise, with flexible terms and fast turnaround.</p>
 <h3 class="text-2xl font-semibold text-gray-900 mb-4" data-i18n="about.expertiseTitle">What We Bring</h3>
 <p class="text-gray-700 mb-6" data-i18n-html="about.expertiseText">Engineers from AWS, Google, Microsoft, and other tech leaders work alongside consultants from the Big Four and other top firms. One team takes you from strategy to implementation, fast. Because engineering is our foundation, we go beyond recommendations and see the change through.</p>
-<div class="flex flex-wrap gap-8 mt-8">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 flex items-center justify-center">
-<i class="ri-amazon-fill ri-2x text-gray-500"></i>
-</div>
-<span class="text-gray-700 font-medium" lang="en">AWS</span>
-</div>
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 flex items-center justify-center">
-<i class="ri-google-fill ri-2x text-gray-500"></i>
-</div>
-<span class="text-gray-700 font-medium" lang="en">Google</span>
-</div>
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 flex items-center justify-center">
-<i class="ri-microsoft-fill ri-2x text-gray-500"></i>
-</div>
-<span class="text-gray-700 font-medium" lang="en">Microsoft</span>
-</div>
+<div class="ceo pt-6 border-t border-gray-200">
+<p class="ceo-id"><span class="ceo-name" data-i18n="about.ceoName">Akira Nagata</span><span class="ceo-title" data-i18n="about.ceoTitle">Founder &amp; CEO</span></p>
+<a href="https://www.linkedin.com/in/akira-nagata/" target="_blank" rel="noopener" aria-label="Akira Nagata on LinkedIn (opens in a new tab)" data-i18n-attr-aria-label="about.ceoLinkedIn" class="ceo-linkedin">
+<i class="ri-linkedin-box-fill" aria-hidden="true"></i><span lang="en">LinkedIn</span><i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+</a>
 </div>
 </div>
 </div>
