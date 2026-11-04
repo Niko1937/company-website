@@ -232,12 +232,11 @@ html.solutions-open { overflow: hidden; }
   .case-study:hover .case-open i { transform: translateX(3px); }
 }
 .case-study[hidden] { display: none; }
-/* CEO: name and title stacked like a signature, the LinkedIn link beside them on the name's line.
+/* CEO: name and title stacked like a signature, the LinkedIn link on the name's own line.
    Reuses the section's type scale: the name matches the h3 headings, the title matches the body text.
    English puts the name first; Japanese puts the title first, as on a business card. */
-#about .ceo { display: flex; align-items: baseline; column-gap: 2rem; }
-#about .ceo:lang(ja) { align-items: last baseline; }
-.ceo-id { display: flex; flex-direction: column; }
+.ceo { display: flex; flex-direction: column; }
+.ceo-nameline { display: flex; align-items: baseline; column-gap: 2rem; }
 .ceo-name { font-size: 1.5rem; line-height: 2rem; font-weight: 600; color: #111827; }
 .ceo-title { font-size: 1rem; line-height: 1.5rem; color: #6b7280; }
 :lang(ja) .ceo-title { order: -1; }
@@ -428,10 +427,13 @@ html.case-dialog-open { overflow: hidden; }
 <h3 class="text-2xl font-semibold text-gray-900 mb-4" data-i18n="about.expertiseTitle">What We Bring</h3>
 <p class="text-gray-700 mb-6" data-i18n-html="about.expertiseText">Engineers from AWS, Google, Microsoft, and other tech leaders work alongside consultants from the Big Four and other top firms. One team takes you from strategy to implementation, fast. Because engineering is our foundation, we go beyond recommendations and see the change through.</p>
 <div class="ceo pt-6 border-t border-gray-200">
-<p class="ceo-id"><span class="ceo-name" data-i18n="about.ceoName">Akira Nagata</span><span class="ceo-title" data-i18n="about.ceoTitle">Founder &amp; CEO</span></p>
+<div class="ceo-nameline">
+<p class="ceo-name" data-i18n="about.ceoName">Akira Nagata</p>
 <a href="https://www.linkedin.com/in/akira-nagata/" target="_blank" rel="noopener" aria-label="Akira Nagata on LinkedIn (opens in a new tab)" data-i18n-attr-aria-label="about.ceoLinkedIn" class="ceo-linkedin">
 <i class="ri-linkedin-box-fill" aria-hidden="true"></i><span lang="en">LinkedIn</span><i class="ri-arrow-right-up-line" aria-hidden="true"></i>
 </a>
+</div>
+<p class="ceo-title" data-i18n="about.ceoTitle">Founder &amp; CEO</p>
 </div>
 </div>
 </div>
