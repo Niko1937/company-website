@@ -58,6 +58,7 @@ SPA構成で、軽量かつ多言語（英語・日本語）に対応してい�
 │   ├── optimize_images.py  写真を Web 用（JPEG/WebP・2サイズ）に変換するスクリプト
 │   ├── build_icons.py      ロゴの PNG / ICO を作り、サイト用のファイルを公開場所へコピーするスクリプト
 │   ├── legal_pages/        プライバシーポリシー・利用規約のページを作るスクリプトと文面（content_en.py / content_ja.py）
+│   ├── app_pages/          アプリのページを作るスクリプト（build.py）と、アプリごとの文面（pickle_up.py）。後述「アプリのページ」
 │   └── check_lang_links.py すべてのサイト内リンクが表示言語を保つか（/ja/ のページから /en/ に飛ばないか）を確認する
 ├── favicon.ico             旧ブラウザ用ファビコン（16/32/48px）
 ├── apple-touch-icon.png    iPhone のホーム画面用アイコン（180px）
@@ -218,6 +219,27 @@ solutions: [
 - ヘッダーとフッターはトップページと同じ見た目・動き（大手 IT 企業の法務ページと同じ構成）。ただし Tailwind は使わず、同じ見た目を CSS で再現した軽いページ。メニューやフッターの文言は `locales/v2/*.json`、社名は `site-config.js` の `companyName` から作るため、これらを変えたときも上のコマンドで作り直す。
 - 迷惑メール対策のため、サイトにはメールアドレスを表示しない。法務ページの問い合わせ窓口は、トップページのお問い合わせフォーム（`/ja/#contact`）へのリンクにしている。
 - 文面は大手 IT・コンサル企業の構成を参考にした雛形。公開前に、代表者名・個人情報保護責任者（DPO）の任命状況・準拠法などを含め、専門家の確認を受けること。
+
+### アプリのページ
+
+Quests が出すアプリのページ。URL は言語を先頭に付ける（サイトのほかのページと同じ形）。
+
+| URL | 内容 |
+|---|---|
+| `/ja/apps/` `/en/apps/` | アプリの一覧（サイトのヘッダー・フッター） |
+| `/ja/apps/<アプリ>/` | アプリの紹介（アプリの世界観に合わせた見た目。ストアのバッジ、機能、使い方、よくある質問） |
+| `/ja/apps/<アプリ>/support/` | サポート（よくある質問・お問い合わせ）。ストアの「サポート URL」 |
+| `/ja/apps/<アプリ>/privacy/` | アプリのプライバシーポリシー。ストアの「プライバシーポリシー URL」 |
+| `/apps/...`（言語なし） | 保存された言語（`preferredLang`）→ ブラウザの言語の順で `/ja/` か `/en/` に振り分ける（`assets/js/lang-redirect.js`） |
+
+- 文面・ストアのリンクは `scripts/app_pages/<アプリ>.py`、見た目は `assets/css/apps/<アプリ>.css`、画像は `images/apps/<アプリ>/`（アイコン、言語ごとの画面 `screens/<名前>-<ja|en>.webp`、リンクのプレビュー `og-<ja|en>.png`）。ストアのバッジは `images/apps/badges/`（Apple・Google の公式の画像。加工しない）。
+- 直したら、リポジトリのルートで次を実行し、生成された HTML もコミットする。一覧ページは法務ページのヘッダー・フッターを使うため、法務ページの後に作る。
+  ```bash
+  python3 scripts/legal_pages/build.py . && python3 scripts/app_pages/build.py . && python3 scripts/check_lang_links.py
+  ```
+- ストアに公開したら、`<アプリ>.py` の `STORES` に URL を入れて作り直す（それまではバッジをリンクなしで表示し、「近日公開」と添える）。
+- アプリの URL の名前（`pickle-up` など）は、ストアに登録するので後から変えない。
+- 新しいアプリは、`<アプリ>.py` と CSS を足し、`build.py` の `main()` の `apps` に加える。
 
 ### 表示言語の維持
 
