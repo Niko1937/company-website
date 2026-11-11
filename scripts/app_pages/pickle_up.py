@@ -141,7 +141,8 @@ JA = {
         'sections': [
             ('summary', '1. 要点', '''<ul>
 <li>本アプリで撮影した動画と、その解析結果は、お使いのスマートフォンの中だけに保存します。</li>
-<li>当社は、これらの動画や解析結果を受け取りません。本アプリは、当社のサーバーとの通信を行いません。</li>
+<li>当社は、これらの動画や解析結果を受け取りません。</li>
+<li>ご同意いただいた場合に限り、機能ごとの1日の利用回数などの匿名の統計だけを当社に送ります（既定はオフ。3章）。</li>
 <li>本アプリには、広告や行動分析のための外部のツールを組み込んでいません。</li>
 </ul>'''),
             ('data', '2. 本アプリが扱う情報', '''<p>本アプリは、次の情報を、お使いのスマートフォンの中の本アプリ専用の領域に保存します。</p>
@@ -151,20 +152,23 @@ JA = {
 <li>練習の記録、メモ、最初に入力していただいたプロフィール、アプリの設定</li>
 </ul>
 <p>解析はすべて端末の中で行い、通信は行いません。解析では、選手を見分けるために、映っている人の位置や服の色を使いますが、顔を認識したり、個人を特定したりはしません。</p>'''),
-            ('permissions', '3. 端末の機能へのアクセス', '''<div class="table-wrap"><table>
+            ('usage', '3. 利用状況の統計（任意）', '''<p>アプリの改善のため、ご同意いただいた場合に限り、匿名の利用統計を当社のサーバー（Amazon Web Services、シンガポール リージョン）に送信します。送信するのは、あらかじめ決めた機能（録画の開始、動画の読み込み、練習の記録、ドリルの表示、目標の設定など）を1日に何回使ったかの回数と、アプリのバージョン、OS の種類（iOS / Android）、アプリの表示言語、その日付（協定世界時、時刻を含まない）だけです。</p>
+<p>氏名、メールアドレス、アカウント ID、端末 ID、広告 ID、位置情報、動画、記録の内容、自由入力の文章は送信せず、統計をアカウントや端末と結び付けることもありません。送信時に通信の仕組み上 IP アドレスが当社に届きますが、統計とともに記録することはありません（不正なアクセスを防ぐためのアクセス記録には最大30日間残ります）。</p>
+<p>統計は既定ではオフで、アプリの「マイページ」でいつでもオン・オフを切り替えられます。オフにすると送信を止め、端末にたまっている未送信の統計も削除します。統計はアプリの改善のためだけに使い、広告や第三者への提供には使いません。受信した統計は最大30日間保存した後、自動的に削除します。</p>'''),
+            ('permissions', '4. 端末の機能へのアクセス', '''<div class="table-wrap"><table>
 <tr><th>カメラ</th><td>試合や練習を撮影するため</td></tr>
 <tr><th>マイク</th><td>動画に音声を記録するため</td></tr>
 <tr><th>写真</th><td>アプリの外で撮った動画を取り込むため、またお客様が選んだ動画を写真アプリに保存するため</td></tr>
 <tr><th>通知</th><td>お客様が設定した練習のリマインダーを、端末の中から通知するため</td></tr>
 </table></div>
 <p>いずれも、お客様が許可した場合にだけ使います。許可は、端末の設定アプリからいつでも変更できます。</p>'''),
-            ('people', '4. 映っている方について', '''<p>動画には、一緒にプレーする方や周りの方が映ることがあります。撮影する前に、映る方の了承を得てください。動画を共有するときも同様です。</p>'''),
-            ('sharing', '5. 共有と第三者への提供', '''<p>動画の共有や写真アプリへの保存は、お客様が操作したときにだけ、お客様が選んだ先に対して行います。当社が、本アプリの情報を第三者に提供することはありません。</p>
+            ('people', '5. 映っている方について', '''<p>動画には、一緒にプレーする方や周りの方が映ることがあります。撮影する前に、映る方の了承を得てください。動画を共有するときも同様です。</p>'''),
+            ('sharing', '6. 共有と第三者への提供', '''<p>動画の共有や写真アプリへの保存は、お客様が操作したときにだけ、お客様が選んだ先に対して行います。当社が、本アプリの情報（3章の統計を含む）を第三者に提供することはありません。</p>
 <p>本アプリのダウンロードや更新の際に、Apple Inc. または Google LLC が取得する情報は、それぞれのプライバシーポリシーに従って扱われます。</p>'''),
-            ('delete', '6. 情報の削除', '''<p>動画は、動画の画面からいつでも削除できます。マイページの「すべてのデータを削除」で、本アプリが保存したすべての情報を削除できます。本アプリを端末から削除した場合も、本アプリ専用の領域の情報は削除されます。ただし、写真アプリに保存した動画は残ります。</p>'''),
-            ('children', '7. お子さまの利用', '''<p>本アプリは、お子さまから当社が情報を受け取る仕組みを持ちません。保護者の方の判断のもとでご利用ください。</p>'''),
-            ('changes', '8. 本ポリシーの変更', '''<p>ログインや AI によるアドバイスなど、情報の扱いが変わる機能を追加するときは、その前に本ポリシーを改定し、本アプリとこのページでお知らせします。</p>'''),
-            ('contact', '9. お問い合わせ', '''<div class="contact"><p>Quests Bay Pte. Ltd.<br>68 Circular Road, #02-01, Singapore 049422（シンガポール）<br><a href="/ja/#contact">お問い合わせフォーム</a></p></div>'''),
+            ('delete', '7. 情報の削除', '''<p>動画は、動画の画面からいつでも削除できます。マイページの「すべてのデータを削除」で、本アプリが保存したすべての情報を削除できます。本アプリを端末から削除した場合も、本アプリ専用の領域の情報は削除されます。ただし、写真アプリに保存した動画は残ります。</p>'''),
+            ('children', '8. お子さまの利用', '''<p>本アプリは、お子さまから当社が情報を受け取る仕組みを持ちません。保護者の方の判断のもとでご利用ください。</p>'''),
+            ('changes', '9. 本ポリシーの変更', '''<p>ログインや AI によるアドバイスなど、情報の扱いが変わる機能を追加するときは、その前に本ポリシーを改定し、本アプリとこのページでお知らせします。</p>'''),
+            ('contact', '10. お問い合わせ', '''<div class="contact"><p>Quests Bay Pte. Ltd.<br>68 Circular Road, #02-01, Singapore 049422（シンガポール）<br><a href="/ja/#contact">お問い合わせフォーム</a></p></div>'''),
         ],
     },
 }
@@ -296,7 +300,8 @@ EN = {
         'sections': [
             ('summary', '1. In short', '''<ul>
 <li>The videos you film with the app, and the results of analysing them, are stored only on your phone.</li>
-<li>We do not receive these videos or results. The app does not communicate with our servers.</li>
+<li>We do not receive these videos or results.</li>
+<li>Only if you agree, the app sends us anonymous statistics, such as how many times a day each feature was used (off by default; see section 3).</li>
 <li>The app contains no third-party tools for advertising or for analysing how you use it.</li>
 </ul>'''),
             ('data', '2. Information the app handles', '''<p>The app keeps the following in its own storage on your phone:</p>
@@ -306,20 +311,23 @@ EN = {
 <li>Your practice log, notes, the profile you entered when you started, and the app’s settings</li>
 </ul>
 <p>All analysis runs on the device, without any network connection. To tell players apart, it uses where the people in the video stand and the colours of their clothes. It does not recognise faces or identify anyone.</p>'''),
-            ('permissions', '3. Access to your phone’s features', '''<div class="table-wrap"><table>
+            ('usage', '3. Usage statistics (optional)', '''<p>To improve the app, and only if you agree, pickle-up sends anonymous usage statistics to our servers (Amazon Web Services, Singapore region). We send only how many times a day a fixed set of features was used (such as starting a recording, importing a video, logging practice, opening a drill or setting a goal), together with the app version, the operating system (iOS or Android), the app’s display language and the date (UTC, without the time).</p>
+<p>We do not send your name, email address, account ID, device ID, advertising ID, location, videos, the content of your records or any text you type, and we do not link the statistics to your account or device. Your IP address necessarily reaches our servers when the statistics are sent, but it is not recorded with them (it stays in our security access logs for up to 30 days).</p>
+<p>Usage statistics are off by default, and you can turn them on or off at any time in the app’s Me tab. Turning them off stops sending and deletes any unsent statistics on your device. We use the statistics only to improve the app, never for advertising, and we do not share them with third parties. Statistics we receive are kept for up to 30 days and then deleted automatically.</p>'''),
+            ('permissions', '4. Access to your phone’s features', '''<div class="table-wrap"><table>
 <tr><th>Camera</th><td>To film matches and practice</td></tr>
 <tr><th>Microphone</th><td>To record sound with your videos</td></tr>
 <tr><th>Photos</th><td>To bring in videos filmed outside the app, and to save videos you choose to the Photos app</td></tr>
 <tr><th>Notifications</th><td>To show the practice reminders you set, from the device itself</td></tr>
 </table></div>
 <p>Each is used only if you allow it. You can change this at any time in your phone’s Settings.</p>'''),
-            ('people', '4. People in your videos', '''<p>Your videos may show the people you play with and others nearby. Please get their agreement before you film them, and before you share a video.</p>'''),
-            ('sharing', '5. Sharing and third parties', '''<p>Videos are shared or saved to the Photos app only when you do so, and only to where you choose. We never give information from the app to third parties.</p>
+            ('people', '5. People in your videos', '''<p>Your videos may show the people you play with and others nearby. Please get their agreement before you film them, and before you share a video.</p>'''),
+            ('sharing', '6. Sharing and third parties', '''<p>Videos are shared or saved to the Photos app only when you do so, and only to where you choose. We never give information from the app (including the statistics in section 3) to third parties.</p>
 <p>Information that Apple Inc. or Google LLC collect when you download or update the app is handled under their own privacy policies.</p>'''),
-            ('delete', '6. Deleting your information', '''<p>You can delete a video from its screen at any time. Delete all data in the Me tab removes everything the app has stored. Deleting the app from your phone also removes what it stored. Videos you saved to the Photos app stay there.</p>'''),
-            ('children', '7. Children', '''<p>The app has no way for us to receive information from children. Children should use it with a parent’s or guardian’s consent.</p>'''),
-            ('changes', '8. Changes to this policy', '''<p>Before we add features that change how information is handled, such as signing in or advice from AI, we will update this policy and announce it in the app and on this page.</p>'''),
-            ('contact', '9. Contact', '''<div class="contact"><p>Quests Bay Pte. Ltd.<br>68 Circular Road, #02-01, Singapore 049422<br><a href="/en/#contact">Contact form</a></p></div>'''),
+            ('delete', '7. Deleting your information', '''<p>You can delete a video from its screen at any time. Delete all data in the Me tab removes everything the app has stored. Deleting the app from your phone also removes what it stored. Videos you saved to the Photos app stay there.</p>'''),
+            ('children', '8. Children', '''<p>The app has no way for us to receive information from children. Children should use it with a parent’s or guardian’s consent.</p>'''),
+            ('changes', '9. Changes to this policy', '''<p>Before we add features that change how information is handled, such as signing in or advice from AI, we will update this policy and announce it in the app and on this page.</p>'''),
+            ('contact', '10. Contact', '''<div class="contact"><p>Quests Bay Pte. Ltd.<br>68 Circular Road, #02-01, Singapore 049422<br><a href="/en/#contact">Contact form</a></p></div>'''),
         ],
     },
 }
