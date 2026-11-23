@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>try { localStorage.setItem('preferredLang', 'en'); } catch (_) {}</script>
-<title>pickle-up | Film your pickleball games and see every shot you hit</title>
-<meta name="description" content="Set your phone behind the court and film the game. pickle-up splits the rallies, keeps the score, and shows where and how high every shot you hit went, on a picture of the court.">
+<title>Pickle Up | Film your pickleball games: score, shots and an AI coach</title>
+<meta name="description" content="Set your phone behind the court and film the game. Pickle Up keeps and calls the score, shows every shot you hit on the court, and an AI coach tells you what to work on next.">
 <meta name="theme-color" content="#0E1014">
 <link rel="icon" href="/images/apps/pickle-up/icon-64.png" sizes="64x64" type="image/png">
 <link rel="apple-touch-icon" href="/images/apps/pickle-up/icon-180.png">
@@ -14,9 +14,9 @@
 <link rel="alternate" hreflang="ja" href="/ja/apps/pickle-up/">
 <link rel="alternate" hreflang="x-default" href="/en/apps/pickle-up/">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="pickle-up">
-<meta property="og:title" content="pickle-up | Film your pickleball games and see every shot you hit">
-<meta property="og:description" content="Set your phone behind the court and film the game. pickle-up splits the rallies, keeps the score, and shows where and how high every shot you hit went, on a picture of the court.">
+<meta property="og:site_name" content="Pickle Up">
+<meta property="og:title" content="Pickle Up | Film your pickleball games: score, shots and an AI coach">
+<meta property="og:description" content="Set your phone behind the court and film the game. Pickle Up keeps and calls the score, shows every shot you hit on the court, and an AI coach tells you what to work on next.">
 <meta property="og:url" content="https://quests.it.com/en/apps/pickle-up/">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://quests.it.com/images/apps/pickle-up/og-en.png">
@@ -27,12 +27,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
-<link rel="stylesheet" href="/assets/css/apps/pickle-up.css?v=1">
+<link rel="stylesheet" href="/assets/css/apps/pickle-up.css?v=2">
 </head>
 <body class="page-home">
 <header class="app-header">
 <div class="wrap bar">
-<a class="app-brand" href="/en/apps/pickle-up/"><img src="/images/apps/pickle-up/icon-128.png" alt="" width="32" height="32"><span lang="en">pickle-up</span></a>
+<a class="app-brand" href="/en/apps/pickle-up/"><img src="/images/apps/pickle-up/icon-128.png" alt="" width="32" height="32"><span lang="en">Pickle Up</span></a>
 <nav class="app-nav" aria-label="Menu">
 <a href="#features">Features</a>
 <a href="#how">How it works</a>
@@ -50,14 +50,14 @@
 <svg class="court-lines" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><path d="M354 565 L682 783 M827 217 L1070 288 M354 565 L827 217 M682 783 L1070 288 M573 403 L871 541 M715 299 L985 397 M500 662 L709 466 M840 344 L941 250" fill="none" stroke="currentColor" stroke-width="2"/><path d="M633 303 L957 426" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
 <div class="wrap hero-grid">
 <div class="hero-copy">
-<p class="eyebrow">Pickleball match analysis</p>
-<h1><span class="phrase">Film the game.</span><span class="phrase">See every shot</span><span class="phrase">you hit.</span></h1>
-<p class="lead">Set your phone behind the court and play. pickle-up splits the rallies and keeps the score, then shows where and how high each of your shots went, on a picture of the court.</p>
+<p class="eyebrow">Your pickleball AI coach</p>
+<h1><span class="phrase">Film the game.</span><span class="phrase">See the score</span><span class="phrase">and every shot.</span></h1>
+<p class="lead">Set your phone behind the court and play as usual. Pickle Up keeps and calls the score, draws every shot you hit on a 3D court, and an AI coach tells you what to work on next.</p>
 <div class="stores stores-hero"><span class="store"><img src="/images/apps/badges/app-store-en.svg" alt="Download on the App Store" width="144" height="48"></span><span class="store"><img src="/images/apps/badges/google-play-en.png" alt="Get it on Google Play" width="161" height="48"></span></div><p class="stores-note">Coming soon</p>
 </div>
 <div class="hero-media">
 <div class="glow" aria-hidden="true"></div>
-<figure class="phone"><img src="/images/apps/pickle-up/screens/analysis-3d-en.webp" alt="The Insights tab, with your shots drawn on the court in 3D" width="300" height="652" fetchpriority="high"></figure>
+<figure class="phone"><img src="/images/apps/pickle-up/screens/shots-3d-en.webp" alt="The match screen, with your shots drawn on the court in 3D" width="300" height="667" fetchpriority="high"></figure>
 </div>
 </div>
 </section>
@@ -65,57 +65,73 @@
 <div class="wrap">
 <div class="section-head"><p class="eyebrow">Features</p><h2>Film the match. The app does the rest.</h2></div>
 <article class="feature">
-<div class="feature-media"><figure class="phone"><img src="/images/apps/pickle-up/screens/record-en.webp" alt="The Record tab, with the start button and the score calling and scoring settings" width="300" height="652" loading="lazy" decoding="async"></figure></div>
+<div class="feature-media"><figure class="phone"><img src="/images/apps/pickle-up/screens/score-en.webp" alt="The match screen, with a score of 11–8 and the calls made during the game" width="300" height="667" loading="lazy" decoding="async"></figure></div>
 <div class="feature-copy">
 <p class="feature-index" lang="en">01</p>
-<h3>Set it up and play. Rallies and score, automatic.</h3>
-<p>pickle-up finds where each rally starts and ends, keeps the score, and tells a match from practice. It can call the score out loud, so you can keep your eyes on the ball.</p>
-<ul class="points"><li><i class="ri-check-line" aria-hidden="true"></i>Splits the rallies for you</li><li><i class="ri-check-line" aria-hidden="true"></i>Keeps and calls the score</li><li><i class="ri-check-line" aria-hidden="true"></i>Tells matches from practice</li></ul>
+<h3><span class="phrase">Just film it.</span><span class="phrase">The score</span><span class="phrase">keeps itself.</span></h3>
+<p>Set your phone down and play as usual. Pickle Up splits the rallies, keeps the score, and calls it out the official way after every rally. No more arguing over the score, no more scribbled notes.</p>
+<ul class="points"><li><i class="ri-check-line" aria-hidden="true"></i>Rallies and score, recorded for you</li><li><i class="ri-check-line" aria-hidden="true"></i>Score called out loud (English or Japanese)</li><li><i class="ri-check-line" aria-hidden="true"></i>Tells a match from practice</li></ul>
 </div>
 </article><article class="feature feature-flip">
-<div class="feature-media"><figure class="phone"><img src="/images/apps/pickle-up/screens/analysis-flat-en.webp" alt="The Insights tab, with your shots drawn on the court from above" width="300" height="652" loading="lazy" decoding="async"></figure></div>
+<div class="feature-media"><figure class="phone"><img src="/images/apps/pickle-up/screens/shots-flat-en.webp" alt="The match screen, with your 47 shots drawn on the court from above" width="300" height="667" loading="lazy" decoding="async"></figure></div>
 <div class="feature-copy">
 <p class="feature-index" lang="en">02</p>
-<h3>Your shots, on the court</h3>
-<p>Tap yourself once in the video. Each shot you hit is drawn from where you hit it to where it landed on the other side. Look over a week or a month and your patterns show.</p>
-<ul class="points"><li><i class="ri-check-line" aria-hidden="true"></i>Where you hit and where it landed</li><li><i class="ri-check-line" aria-hidden="true"></i>Filter by in, out and volleys</li><li><i class="ri-check-line" aria-hidden="true"></i>By week, month, match or rally</li></ul>
+<h3><span class="phrase">Every shot you hit,</span><span class="phrase">on the court</span></h3>
+<p>Tap yourself once in the video. Every shot you hit is drawn from where you hit it to where it landed. In or out, and whether it was volleyed back, at a glance.</p>
+<ul class="points"><li><i class="ri-check-line" aria-hidden="true"></i>Where you hit and where it landed</li><li><i class="ri-check-line" aria-hidden="true"></i>In rate and volley share, counted for you</li><li><i class="ri-check-line" aria-hidden="true"></i>By match, week or month</li></ul>
 </div>
 </article><article class="feature">
-<div class="feature-media"><figure class="phone"><img src="/images/apps/pickle-up/screens/analysis-3d-en.webp" alt="The Insights tab in 3D, with the shots and the median height from the net" width="300" height="652" loading="lazy" decoding="async"></figure></div>
+<div class="feature-media"><figure class="phone"><img src="/images/apps/pickle-up/screens/kinds-en.webp" alt="The match screen, showing only your returns" width="300" height="667" loading="lazy" decoding="async"></figure></div>
 <div class="feature-copy">
 <p class="feature-index" lang="en">03</p>
-<h3>See the height in 3D. Turn it with a finger.</h3>
-<p>Shots are drawn in 3D, with an estimate of how far above the net each one passed. Check whether your dinks float or your drives stay low, in centimetres.</p>
-<ul class="points"><li><i class="ri-check-line" aria-hidden="true"></i>Shot height in 3D</li><li><i class="ri-check-line" aria-hidden="true"></i>Height from the net (median)</li><li><i class="ri-check-line" aria-hidden="true"></i>Turn and zoom to any angle</li></ul>
+<h3><span class="phrase">Spot your habits,</span><span class="phrase">shot by shot</span></h3>
+<p>Serves, returns, drops, dinks and drives. Split your shots by kind and compare their paths. Habits like short returns or long drops show up in the picture and the numbers.</p>
+<ul class="points"><li><i class="ri-check-line" aria-hidden="true"></i>Serves, returns, dinks and more</li><li><i class="ri-check-line" aria-hidden="true"></i>Landing spread, drawn on the court</li><li><i class="ri-check-line" aria-hidden="true"></i>A 0–100 score for each kind of shot</li></ul>
 </div>
 </article><article class="feature feature-flip">
-<div class="feature-media"><figure class="phone"><img src="/images/apps/pickle-up/screens/home-en.webp" alt="The Home tab, with a bar chart of the week’s practice time" width="300" height="652" loading="lazy" decoding="async"></figure></div>
+<div class="feature-media"><figure class="phone"><img src="/images/apps/pickle-up/screens/shots-3d-en.webp" alt="The match screen in 3D, looking at the shots from above and to the side" width="300" height="667" loading="lazy" decoding="async"></figure></div>
 <div class="feature-copy">
 <p class="feature-index" lang="en">04</p>
-<h3>Your practice, at a glance</h3>
-<p>See the time you practised each day, by week or by month. Practice you log by hand and matches you film are counted together.</p>
-<ul class="points"><li><i class="ri-check-line" aria-hidden="true"></i>Practice time by week and month</li><li><i class="ri-check-line" aria-hidden="true"></i>The days you played, on a calendar</li><li><i class="ri-check-line" aria-hidden="true"></i>Practice log and reminders</li></ul>
+<h3><span class="phrase">See the height in 3D.</span><span class="phrase">Turn it with a finger.</span></h3>
+<p>Shots are drawn in 3D, with an estimate of how far above the net each one passed. Check whether your dinks float or your drives stay low, from any angle.</p>
+<ul class="points"><li><i class="ri-check-line" aria-hidden="true"></i>Shot height in 3D</li><li><i class="ri-check-line" aria-hidden="true"></i>Height from the net (median)</li><li><i class="ri-check-line" aria-hidden="true"></i>Turn and zoom to any angle</li></ul>
+</div>
+</article><article class="feature">
+<div class="feature-media"><figure class="phone"><img src="/images/apps/pickle-up/screens/coach-en.webp" alt="An example of AI coach advice: what went well and three things to try" width="300" height="667" loading="lazy" decoding="async"></figure></div>
+<div class="feature-copy">
+<p class="feature-index" lang="en">05</p>
+<h3><span class="phrase">An AI coach that tells you</span><span class="phrase">what to fix next</span></h3>
+<p>From your match numbers and shot patterns, the AI coach tells you what went well and narrows what to work on down to three points. On practice videos, it looks at your form too.</p>
+<ul class="points"><li><i class="ri-check-line" aria-hidden="true"></i>What went well, and what to fix</li><li><i class="ri-check-line" aria-hidden="true"></i>Concrete tips you can try next time</li><li><i class="ri-check-line" aria-hidden="true"></i>For matches, practice and weekly recaps</li></ul>
+</div>
+</article><article class="feature feature-flip">
+<div class="feature-media"><figure class="phone"><img src="/images/apps/pickle-up/screens/practice-en.webp" alt="The Practice tab, with drills suggested for your level and drills by shot" width="300" height="667" loading="lazy" decoding="async"></figure></div>
+<div class="feature-copy">
+<p class="feature-index" lang="en">06</p>
+<h3><span class="phrase">Drills that match</span><span class="phrase">your level</span></h3>
+<p>25 drills, sorted by USA Pickleball skill level. Dinks, drops, volleys and more, each with a court diagram and steps, with the ones for your level suggested first.</p>
+<ul class="points"><li><i class="ri-check-line" aria-hidden="true"></i>25 drills, by skill level</li><li><i class="ri-check-line" aria-hidden="true"></i>Court diagrams and step-by-step</li><li><i class="ri-check-line" aria-hidden="true"></i>Practice log and weekly goals</li></ul>
 </div>
 </article>
 </div>
 </section>
 <section id="privacy" class="section section-dark">
 <div class="wrap">
-<div class="section-head"><p class="eyebrow">Privacy</p><h2>Your videos stay on your phone</h2><p class="section-lead">Every video is analysed on your phone. Neither your videos nor the results are ever sent to our servers.</p></div>
-<ul class="promises"><li><i class="ri-smartphone-line" aria-hidden="true"></i><h3>Analysed on your phone</h3><p>Finding players and the ball, and working out every shot, happens on the device, offline.</p></li><li><i class="ri-lock-line" aria-hidden="true"></i><h3>Videos never leave it</h3><p>Videos are kept in the app’s own storage. They are shared only when you choose to.</p></li><li><i class="ri-user-unfollow-line" aria-hidden="true"></i><h3>No sign-up</h3><p>Start right away, no account needed.</p></li></ul>
+<div class="section-head"><p class="eyebrow">Privacy</p><h2>Your videos stay on your phone</h2><p class="section-lead">Your videos are kept on your phone only. All of the video analysis happens on the device, and videos are never sent to our servers.</p></div>
+<ul class="promises"><li><i class="ri-smartphone-line" aria-hidden="true"></i><h3>Analysed on your phone</h3><p>Finding players and the ball, splitting rallies and keeping the score all happen on the device.</p></li><li><i class="ri-lock-line" aria-hidden="true"></i><h3>Videos never leave it</h3><p>Videos are kept in the app’s own storage. They are shared only when you choose to.</p></li><li><i class="ri-user-unfollow-line" aria-hidden="true"></i><h3>No sign-up needed</h3><p>No name or email needed. Create an account only if you want to move your records to a new phone.</p></li></ul>
 <p class="section-more"><a href="privacy/">Read the privacy policy<i class="ri-arrow-right-line" aria-hidden="true"></i></a></p>
 </div>
 </section>
 <section id="how" class="section section-light">
 <div class="wrap">
 <div class="section-head"><p class="eyebrow">How it works</p><h2>Three steps, starting with your next match</h2></div>
-<ol class="steps"><li><span class="step-number" lang="en">1</span><h3>Set it behind the court</h3><p>Put your phone behind the baseline, as high as you can. Once all four corners and the server waiting behind the near line are in view, you are ready.</p></li><li><span class="step-number" lang="en">2</span><h3>Film the match</h3><p>Tap Start recording and play as usual.</p></li><li><span class="step-number" lang="en">3</span><h3>Look back at your shots</h3><p>Open the Insights tab to go through your shots, match by match and rally by rally.</p></li></ol>
+<ol class="steps"><li><span class="step-number" lang="en">1</span><h3>Set it behind the court</h3><p>Put your phone behind the baseline, as high as you can. Once all four corners and the server waiting behind the near line are in view, you are ready.</p></li><li><span class="step-number" lang="en">2</span><h3>Film the match</h3><p>Tap Start recording and play as usual. The score is kept and called out for you.</p></li><li><span class="step-number" lang="en">3</span><h3>See your shots and tips</h3><p>Go through your shots on the match screen and in the Insights tab, and read the AI coach’s advice.</p></li></ol>
 </div>
 </section>
 <section id="faq" class="section">
 <div class="wrap narrow">
 <div class="section-head"><p class="eyebrow">FAQ</p><h2>Frequently asked questions</h2></div>
-<div class="faq"><details><summary>How should I film?<i class="ri-add-line" aria-hidden="true"></i></summary><p>From behind the court, with all four corners and the server on the near side in view. The app’s filming guide shows where to put your phone.</p></details><details><summary>Where are my videos kept?<i class="ri-add-line" aria-hidden="true"></i></summary><p>In the app’s own storage on your phone. We never upload them.</p></details><details><summary>How accurate is the analysis?<i class="ri-add-line" aria-hidden="true"></i></summary><p>Everything is estimated from a single phone’s video, so landings on the far side and ball heights have some error. Shots that cannot be judged with enough certainty are not drawn; they are counted as unclear.</p></details><details><summary>Which phones does it run on?<i class="ri-add-line" aria-hidden="true"></i></summary><p>Versions for iPhone and Android are on the way. We will announce them on this page.</p></details></div>
+<div class="faq"><details><summary>How should I film?<i class="ri-add-line" aria-hidden="true"></i></summary><p>From behind the court, with all four corners and the server on the near side in view. The app’s filming guide shows where to put your phone.</p></details><details><summary>Where are my videos kept?<i class="ri-add-line" aria-hidden="true"></i></summary><p>In the app’s own storage on your phone. Videos are never sent to our servers.</p></details><details><summary>How accurate is the analysis?<i class="ri-add-line" aria-hidden="true"></i></summary><p>Everything is estimated from a single phone’s video, so landings on the far side and ball heights have some error. Shots that cannot be judged with enough certainty are not drawn; they are counted as unclear.</p></details><details><summary>Is it free?<i class="ri-add-line" aria-hidden="true"></i></summary><p>Recording, automatic scoring and calls, and the drills are free. Shot analysis is free for your first video, and unlimited with Premium.</p></details><details><summary>Which phones does it run on?<i class="ri-add-line" aria-hidden="true"></i></summary><p>Versions for iPhone and Android are on the way. We will announce them on this page.</p></details></div>
 <p class="section-more"><a href="support/">Visit the support page<i class="ri-arrow-right-line" aria-hidden="true"></i></a></p>
 </div>
 </section>
@@ -124,7 +140,7 @@
 <div class="wrap cta-inner">
 <img class="cta-icon" src="/images/apps/pickle-up/icon-256.png" alt="" width="96" height="96">
 <h2>Film your next match.</h2>
-<p>Set your phone down, play, and see every shot you hit.</p>
+<p>Set your phone down and play. The score and every shot are there when you finish.</p>
 <div class="stores stores-cta"><span class="store"><img src="/images/apps/badges/app-store-en.svg" alt="Download on the App Store" width="144" height="48"></span><span class="store"><img src="/images/apps/badges/google-play-en.png" alt="Get it on Google Play" width="161" height="48"></span></div><p class="stores-note">Coming soon</p>
 </div>
 </section>
@@ -133,14 +149,14 @@
 <div class="wrap">
 <div class="footer-grid">
 <div class="footer-about">
-<a class="app-brand" href="/en/apps/pickle-up/"><img src="/images/apps/pickle-up/icon-128.png" alt="" width="32" height="32"><span lang="en">pickle-up</span></a>
-<p>Film your pickleball games and see every shot you hit.</p>
+<a class="app-brand" href="/en/apps/pickle-up/"><img src="/images/apps/pickle-up/icon-128.png" alt="" width="32" height="32"><span lang="en">Pickle Up</span></a>
+<p>Film your pickleball games. Get the score and every shot, analysed for you.</p>
 </div>
 <div>
 <h2>App</h2>
 <ul>
-<li><a href="/en/apps/pickle-up/#features">Features</a></li>
 <li><a href="/en/apps/pickle-up/support/">Support</a></li>
+<li><a href="/en/apps/pickle-up/support/#contact">Contact</a></li>
 <li><a href="/en/apps/pickle-up/privacy/">Privacy policy</a></li>
 </ul>
 </div>
@@ -149,13 +165,12 @@
 <ul>
 <li><a href="/en/">About Quests</a></li>
 <li><a href="/en/apps/">Apps by Quests</a></li>
-<li><a href="/en/#contact">Contact</a></li>
 </ul>
 </div>
 </div>
 <div class="footer-bottom">
-<p class="footer-by"><a class="quests" href="/en/" lang="en">Quests</a><span>pickle-up is built and run by Quests Bay Pte. Ltd.</span></p>
-<p class="footer-meta"><a class="lang" href="/ja/apps/pickle-up/" hreflang="ja" lang="ja"><i class="ri-global-line" aria-hidden="true"></i>日本語</a><span lang="en">© <span data-year>2026</span> Quests Bay Pte. Ltd.</span></p>
+<p class="footer-by"><a class="quests" href="/en/" lang="en">Quests</a><span>Pickle Up is built and run by Quests Bay Pte. Ltd.</span></p>
+<p class="footer-meta"><span lang="en">© <span data-year>2026</span> Quests Bay Pte. Ltd.</span></p>
 <p class="trademarks">Apple and the Apple logo are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc. Google Play and the Google Play logo are trademarks of Google LLC.</p>
 </div>
 </div>

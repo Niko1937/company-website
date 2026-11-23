@@ -186,3 +186,40 @@ th { color: var(--ink); font-weight: 700; white-space: nowrap; }
 .footer-meta .lang { padding: 0; }
 .trademarks { margin: .5rem 0 0; color: #7D8592; font-size: .75rem; line-height: 1.6; }
 @media (min-width: 760px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+
+/* Documents: headings inside a section (the privacy policy) */
+.doc-section h3 { margin: 1.5rem 0 .5rem; font-size: 1.0625rem; line-height: 1.5; color: var(--ink); }
+
+/* Contact form, at the end of the support page (#contact): the soft card of the documents */
+.contact-section { scroll-margin-top: 88px; padding: 2rem 1.5rem; border-radius: var(--radius); background: var(--soft); border: 1px solid var(--line); }
+.contact-section > h2 { margin-top: 0; }
+.contact-section > p { color: var(--muted); }
+.contact-form { display: grid; gap: 1.25rem; margin-top: 1.5rem; }
+.form-row { display: grid; gap: 1.25rem; }
+.form-field { display: grid; gap: .5rem; }
+.form-field label { display: flex; align-items: center; gap: .5rem; font-weight: 700; color: var(--ink); }
+.form-required { padding: .0625rem .5rem; border-radius: 999px; background: #FDE8E8; color: #B42318; font-size: .75rem; font-weight: 700; line-height: 1.6; }
+.contact-form input, .contact-form select, .contact-form textarea { width: 100%; box-sizing: border-box; min-height: 48px; padding: .75rem 1rem; border: 1px solid #CDD3DA; border-radius: 12px; background: var(--paper); color: var(--text); font: inherit; font-size: 1rem; line-height: 1.5; transition: border-color .2s, box-shadow .2s; }
+.contact-form textarea { resize: vertical; min-height: 9rem; }
+.contact-form select { appearance: none; -webkit-appearance: none; padding-right: 2.75rem; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='20' height='20' fill='%235A616C'%3E%3Cpath d='M12 15.6 6.4 10l1.4-1.4 4.2 4.2 4.2-4.2 1.4 1.4z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .875rem center; }
+.contact-form :is(input, select, textarea):focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px rgba(11,122,92,.18); }
+.contact-form [aria-invalid="true"] { border-color: #D92D20; }
+.form-hint { margin: 0; color: var(--muted); font-size: .875rem; line-height: 1.6; }
+.form-error { margin: 0; color: #B42318; font-size: .875rem; font-weight: 600; }
+.form-note { margin: 0; color: var(--muted); font-size: .875rem; }
+.contact-form .button { justify-self: start; border: 0; cursor: pointer; font: inherit; font-weight: 700; }
+@media (min-width: 640px) { .contact-section { padding: 2.5rem; } .form-row { grid-template-columns: 1fr 1fr; align-items: start; } }
+
+/* The mail service chooser opened by the contact form */
+.mailer { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+.mailer-backdrop { position: absolute; inset: 0; background: rgba(14,16,20,.55); }
+.mailer-panel { position: relative; width: 100%; max-width: 380px; padding: 1.75rem 1.5rem 1.5rem; border-radius: var(--radius); background: var(--paper); box-shadow: 0 30px 60px -20px rgba(0,0,0,.45); }
+.mailer-panel h3 { margin: 0 0 .25rem; font-size: 1.125rem; color: var(--ink); }
+.mailer-lead { margin: 0 0 1.25rem; color: var(--muted); font-size: .875rem; line-height: 1.6; }
+.mailer-close { position: absolute; top: .5rem; right: .5rem; width: 44px; height: 44px; border: 0; border-radius: 999px; background: none; color: var(--muted); font-size: 1.25rem; cursor: pointer; }
+.mailer-options { display: grid; gap: .625rem; }
+.mailer-options button { display: flex; align-items: center; gap: .75rem; min-height: 52px; padding: 0 1rem; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); color: var(--text); font: inherit; font-weight: 600; text-align: left; cursor: pointer; transition: border-color .2s, background-color .2s; }
+.mailer-options button:hover, .mailer-options button:focus-visible { border-color: var(--green); background: #F1FBF4; outline: none; }
+.mailer-options i { font-size: 1.25rem; color: var(--green); }
+.mailer-options [data-mailer="gmail"] i { color: #EA4335; }
+.mailer-options [data-mailer="outlook"] i { color: #0078D4; }

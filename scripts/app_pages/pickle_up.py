@@ -1,75 +1,96 @@
-# The pickle-up pages' text and settings (build.py turns them into /ja|en/apps/pickle-up/...).
+# The Pickle Up pages' text and settings (build.py turns them into /ja|en/apps/pickle-up/...).
+# The privacy policy and the support FAQ are in pickle_up_legal.py.
 # Store links: None until the app is out; the badge then shows without a link and "coming soon" beside it.
+import pickle_up_legal as legal
 
 SLUG = 'pickle-up'
-NAME = 'pickle-up'
+NAME = 'Pickle Up'
 STORES = {
     # e.g. 'https://apps.apple.com/app/id0000000000'
     'appStore': None,
     # 'https://play.google.com/store/apps/details?id=com.it.quests.pickleup'
     'googlePlay': None,
 }
-UPDATED = {'ja': '2026年11月11日', 'en': 'November 11, 2026'}
+UPDATED = legal.UPDATED
 
-# Screens (images/apps/pickle-up/screens/<name>.webp), each 1206 x 2622 (iPhone, @3x), shown at 300 px wide.
-SCREEN_SIZE = (1206, 2622)
+# Screens (images/apps/pickle-up/screens/<name>-<lang>.webp), each 900 x 2000, shown at 300 px wide. Taken from
+# the app's sample match (made-up data, nobody real in it) and its Practice tab, in each language.
+SCREEN_SIZE = (900, 2000)
+
+# The contact form at the end of the support page (#contact): the kinds of question, in the order shown.
+CONTACT_TOPICS = ('bug', 'howto', 'plan', 'account', 'idea', 'other')
 
 JA = {
     'lang': 'ja',
-    'title': 'pickle-up | ピックルボールの試合を撮って、自分の打球を振り返る',
-    'description': 'コートの後ろにスマホを置いて試合を撮るだけ。ラリーと得点を自動で区切り、あなたの打球がどこへ、どれくらいの高さで飛んだかをコートの図で振り返れるアプリです。',
+    'title': 'Pickle Up | ピックルボールの試合を撮るだけで、スコアも打球も AI コーチも',
+    'description': 'コートの後ろにスマホを置いて試合を撮るだけ。スコアを自動で数えて読み上げ、あなたの打球をコートの図で振り返り、AI コーチが次に直すポイントを教えるピックルボールのアプリです。',
     'nav': {'features': '機能', 'how': '使い方', 'faq': 'よくある質問', 'support': 'サポート', 'download': 'ダウンロード', 'menu': 'メニュー'},
     'langSwitch': '言語を切り替える',
     'soon': '近日公開',
     'storeAlt': {'appStore': 'App Store からダウンロード', 'googlePlay': 'Google Play で手に入れよう'},
     'hero': {
-        'eyebrow': 'ピックルボールの試合分析アプリ',
-        'title': ['撮るだけで、', '自分の打球が', '見えてくる。'],
-        'lead': 'コートの後ろにスマホを置いて、試合を撮るだけ。ラリーと得点を自動で区切り、あなたの打球がどこへ、どれくらいの高さで飛んだかを、コートの図で振り返れます。',
-        'screenAlt': '分析タブ。自分の打球の軌道を、立体のコートに重ねて表示している',
+        'eyebrow': 'ピックルボールの AI コーチ',
+        'title': ['撮るだけで、', 'スコアも打球も', '見えてくる。'],
+        'lead': 'コートの後ろにスマホを置いて、いつもどおりプレーするだけ。スコアを自動で数えて読み上げ、あなたの打球を立体のコートで振り返り、AI コーチが次に直すポイントを教えます。',
+        'screen': 'shots-3d',
+        'screenAlt': '試合の画面。自分の打球の軌道を、立体のコートに重ねて表示している',
     },
     'features': {
         'eyebrow': '機能',
         'title': '試合を撮ったら、|あとは|アプリに|おまかせ',
         'items': [
             {
-                'screen': 'record',
-                'title': '置いて|撮るだけ。|区切りも|得点も|自動で',
-                'body': 'ラリーの始まりと終わり、得点、試合か練習かを自動で判定します。スコアの読み上げにも対応しているので、プレーに集中できます。',
-                'points': ['ラリーを自動で区切る', '得点を数えて読み上げる', '試合か練習かを自動で判定'],
-                'alt': '録画タブ。撮影をはじめるボタンと、スコアの読み上げ・得点方式の設定',
+                'screen': 'score',
+                'title': '撮るだけで、|スコアを|自動で|カウント',
+                'body': 'スマホを置いて、いつもどおりプレーするだけ。ラリーを自動で区切ってスコアを数え、ラリーが終わるたびに公式の形でコールします。数え間違いの言い合いも、メモを取る手間も、もうありません。',
+                'points': ['ラリーとスコアを自動で記録', 'スコアを声でコール（英語・日本語）', '試合か練習かも自動で判定'],
+                'alt': '試合の画面。11対8のスコアと、読み上げたスコアコールの一覧',
             },
             {
-                'screen': 'analysis-flat',
-                'title': 'あなたの|打球を、|コートの|図に',
-                'body': '動画の中で自分を1回タップするだけ。打った位置から、相手のコートのどこに落ちたかまでを線で描きます。週や月でまとめれば、狙いのくせが見えてきます。',
-                'points': ['打った位置と着地点', 'イン・アウト・ボレーで絞り込み', '週・月・試合・ラリーごとに'],
-                'alt': '分析タブ。自分の打球を、上から見たコートに線で重ねて表示している',
+                'screen': 'shots-flat',
+                'title': 'あなたの|打球が、|コートの上に',
+                'body': '動画の中で自分を1回タップするだけ。あなたが打ったすべての打球を、打った位置から着地点まで線で描きます。インかアウトか、相手にボレーされたかまで、ひと目でわかります。',
+                'points': ['打った位置と着地点を1本ずつ', 'イン率・ボレーの割合を自動で集計', '試合ごと・週・月でまとめて'],
+                'alt': '試合の画面。自分の打球47本を、上から見たコートに線で重ねて表示している',
             },
             {
-                'screen': 'analysis-3d',
-                'title': '高さは|立体で。|指で|回して|確かめる',
-                'body': '打球の軌道を立体で描き、ネットから何cm上を通ったかも推定します。ディンクが浮いていないか、ドライブが低く通っているかを、数字で確かめられます。',
+                'screen': 'kinds',
+                'title': 'ショットの|種類ごとに、|くせが見える',
+                'body': 'サーブ、リターン、ドロップ、ディンク、ドライブ。打球を種類ごとに分けて、軌道を見比べられます。「リターンが浅い」「ドロップが長い」といった自分のくせが、図と数字で見えてきます。',
+                'points': ['サーブ・リターン・ディンクなど種類別', '着地のばらつきを図で表示', '種類ごとに0〜100点で評価'],
+                'alt': '試合の画面。リターンだけに絞り込んだ打球の軌道',
+            },
+            {
+                'screen': 'shots-3d',
+                'title': '高さまで|立体で。|指で回して|確かめる',
+                'body': '打球の軌道を立体で描き、ネットの何cm上を通ったかも推定します。ディンクが浮いていないか、ドライブが低く通っているかを、好きな角度から確かめられます。',
                 'points': ['軌道の高さを立体で表示', 'ネットからの高さ（中央値）', '回転・拡大で好きな角度に'],
-                'alt': '分析タブの立体表示。打球の軌道と、ネットからの高さの中央値',
+                'alt': '試合の画面の立体表示。打球の軌道を斜め上から見ている',
             },
             {
-                'screen': 'home',
-                'title': '練習の|積み重ねが、|ひと目で',
-                'body': '毎日の練習時間を、週や月のグラフで見られます。手で記録した練習も、撮影した試合もまとめて集計します。',
-                'points': ['週・月の練習時間のグラフ', '練習した日をカレンダーに', '練習の記録とリマインダー'],
-                'alt': 'ホーム。週の練習時間の棒グラフと、練習した日数',
+                'screen': 'coach',
+                'title': 'AI コーチが、|次に直す|ことを教える',
+                'body': '試合の数字と打球の傾向から、AI コーチが良かった点と、次に直すポイントを3つに絞って伝えます。練習の動画では、フォームについてもアドバイスします。',
+                'points': ['良かった点と、次に直すポイント', 'すぐ試せる、具体的なアドバイス', '試合・練習・週や月のふりかえりに'],
+                'alt': 'AI コーチのアドバイスの例。良かった点と、次に試す3つのポイント',
+            },
+            {
+                'screen': 'practice',
+                'title': 'レベルに|合った|練習メニューを',
+                'body': 'USA Pickleball のスキルレベルを目安に、25種類のドリルを用意しました。ディンク・ドロップ・ボレーなどの種類ごとに、コートの図とやり方つきで、あなたのレベルに合う練習をおすすめします。',
+                'points': ['25種類のドリルをレベル別に', 'コートの図と手順つき', '練習の記録と週の目標'],
+                'alt': '練習タブ。レベルに合わせたおすすめと、種類ごとの練習メニュー',
             },
         ],
     },
     'privacy': {
         'eyebrow': 'プライバシー',
         'title': '動画は、|あなたの|スマホの|中だけに',
-        'lead': '撮った動画の解析は、すべてスマホの中で行います。動画や解析結果を、私たちのサーバーに送ることはありません。',
+        'lead': '撮った動画は、スマホの中だけに保存します。動画の解析もすべて端末の中で行い、動画をサーバーに送ることはありません。',
         'items': [
-            ('ri-smartphone-line', 'スマホの中で解析', '骨格やボールの検出も、打球の計算も、通信せずに端末だけで行います。'),
+            ('ri-smartphone-line', '解析はスマホの中で', '骨格やボールの検出も、ラリーとスコアの判定も、端末の中で行います。'),
             ('ri-lock-line', '動画は外に出ない', '動画はアプリ専用の場所に保存します。共有するのは、あなたが選んだときだけです。'),
-            ('ri-user-unfollow-line', '登録なしで使える', 'アカウントを作らずに、すぐに使いはじめられます。'),
+            ('ri-user-unfollow-line', 'ログインなしで使える', '名前もメールアドレスも要りません。機種変更で記録を引き継ぎたいときだけ、アカウントを作れます。'),
         ],
         'link': 'プライバシーポリシーを読む',
     },
@@ -78,157 +99,150 @@ JA = {
         'title': '3ステップで、|次の|試合から',
         'steps': [
             ('コートの後ろに置く', 'ベースラインの後ろの、なるべく高い位置にスマホを置きます。コートの四隅と、手前でサーブを待つ人まで入れば準備完了です。'),
-            ('試合を撮る', '「撮影をはじめる」を押して、いつもどおりプレーします。'),
-            ('打球を振り返る', '分析タブで、試合ごと・ラリーごとに自分の打球を確かめます。'),
+            ('試合を撮る', '「撮影をはじめる」を押して、いつもどおりプレーします。スコアは自動で数えて、声でお知らせします。'),
+            ('打球とアドバイスを見る', '試合の画面と分析タブで自分の打球を振り返り、AI コーチのアドバイスを読みます。'),
         ],
     },
     'faq': {
         'eyebrow': 'よくある質問',
         'title': 'よくある質問',
         'items': [
-            ('どんな撮り方が必要ですか？', 'コートの後ろから、コートの四隅と手前のサーバーまで入るように撮ってください。アプリの「撮影のしかた」で、置き方の図を見られます。'),
-            ('撮った動画はどこに保存されますか？', 'スマホの中の、アプリ専用の場所に保存します。私たちのサーバーには送りません。'),
+            ('どんな撮り方が必要ですか？', 'コートの後ろから、コートの四隅と手前のサーバーまで入るように撮ってください。アプリの「撮影のしかた」で、置き方の見本を見られます。'),
+            ('撮った動画はどこに保存されますか？', 'スマホの中の、アプリ専用の場所に保存します。動画をサーバーに送ることはありません。'),
             ('分析はどれくらい正確ですか？', 'スマホ1台の映像から推定するため、奥のコートの着地点や球の高さには誤差があります。判定に十分な確かさがない打球は図に描かず、「判定不能」として数えます。'),
+            ('無料で使えますか？', '録画、スコアの自動カウントと読み上げ、練習メニューは無料です。打球の分析は最初の動画1本を無料で見られ、プレミアムなら何本でも見られます。'),
             ('対応している機種は？', 'iPhone 版と Android 版を準備しています。公開したら、このページでお知らせします。'),
         ],
         'more': 'サポートページを見る',
     },
-    'cta': {'title': '次の|試合を、|撮ってみませんか。', 'lead': 'スマホを置いて撮るだけで、自分の打球が見えてきます。'},
+    'cta': {'title': '次の|試合を、|撮ってみませんか。', 'lead': 'スマホを置いて撮るだけで、スコアも打球も見えてきます。'},
     'footer': {
-        'tagline': 'ピックルボールの試合を撮って、自分の打球を振り返るアプリ',
+        'tagline': 'ピックルボールの試合を撮って、スコアと打球を自動で分析するアプリ',
         'app': 'アプリ',
         'company': '開発元',
-        'links': {'features': '機能', 'support': 'サポート', 'privacy': 'プライバシーポリシー'},
-        'companyLinks': {'home': 'Quests について', 'apps': 'Quests のアプリ', 'contact': 'お問い合わせ'},
-        'by': 'pickle-up は Quests Bay Pte. Ltd. が開発・運営しています。',
+        'links': {'support': 'サポート', 'contact': 'お問い合わせ', 'privacy': 'プライバシーポリシー'},
+        'companyLinks': {'home': 'Quests について', 'apps': 'Quests のアプリ'},
+        'by': 'Pickle Up は Quests Bay Pte. Ltd. が開発・運営しています。',
         'trademarks': 'Apple および Apple ロゴは、米国その他の国で登録された Apple Inc. の商標です。App Store は Apple Inc. のサービスマークです。Google Play および Google Play ロゴは Google LLC の商標です。',
     },
     'support': {
-        'title': 'サポート | pickle-up',
-        'description': 'pickle-up の使い方、よくある質問、お問い合わせ先。',
+        'title': 'サポート | Pickle Up',
+        'description': 'Pickle Up の使い方、よくある質問、お問い合わせ。',
         'eyebrow': 'サポート',
-        'h1': 'pickle-up のサポート',
-        'lead': '使い方で困ったときは、まず下のよくある質問をご覧ください。解決しないときは、お問い合わせフォームからご連絡ください。',
-        'groups': [
-            ('撮影', [
-                ('スマホはどこに置けばよいですか？', 'ベースラインの後ろの、なるべく高い位置に置いてください。コートの四隅と、手前のラインの後ろでサーブを待つ人まで入るように、少し広めに映します。三脚やフェンスに付けるホルダーが便利です。'),
-                ('前（ネット側）から撮れますか？', '打球がスマホに当たるおそれがあるため、後ろか横から撮ってください。分析はコートの後ろから撮った動画を前提にしています。'),
-                ('試合か練習かは選ぶ必要がありますか？', '選ぶ必要はありません。撮った動画から自動で判定します。違っていたら、動画の画面で直せます。'),
-            ]),
-            ('分析', [
-                ('自分の打球を出すには？', '試合の動画を開き、「自分」から、全員が映った場面で自分の四角をタップします。ラリーごとに打球を取り出し、分析タブに表示します。'),
-                ('「判定不能」とは何ですか？', '着地点やイン・アウトを判断できるほど確かでない打球です。図には描かず、本数だけを数えます。'),
-                ('ネットからの高さはどう測っていますか？', '映像から打球の軌道を立体で推定し、ネットの真上を通った位置で、球の下端からネットの上端までの高さを出しています。ネットにかかった球は、ネットに当たった位置の高さをマイナスで表します。'),
-                ('コートの位置がずれています', '動画の画面の「コートの位置」から、四隅の位置を直せます。直した位置で分析し直します。'),
-            ]),
-            ('データ', [
-                ('動画はサーバーに送られますか？', '送りません。動画も解析結果も、スマホの中のアプリ専用の場所に保存します。'),
-                ('データを消すには？', '動画ごとに動画の画面から削除できます。すべて消すときは、マイページの「すべてのデータを削除」を使ってください。写真アプリに保存した動画は残ります。'),
-                ('機種変更したときは？', '今の版では、データは端末の中だけにあり、新しい端末には引き継がれません。残したい動画は、写真アプリに保存してください。'),
-            ]),
-        ],
-        'contactTitle': 'お問い合わせ',
-        'contactBody': 'お問い合わせフォームからご連絡ください。お使いの機種、OS のバージョン、アプリのバージョン（マイページの「バージョン」）を書いていただくと、早くお答えできます。',
-        'contactLink': 'お問い合わせフォームへ',
+        'h1': 'Pickle Up のサポート',
+        'lead': legal.SUPPORT_LEAD['ja'],
+        'groups': legal.SUPPORT_GROUPS['ja'],
+        'contact': {
+            'title': 'お問い合わせ',
+            'lead': '不具合のご報告、使い方のご質問、ご意見やご要望をお送りください。送信を押すと、内容を入れたメールの作成画面が開きます。',
+            'required': '必須',
+            'name': 'お名前',
+            'namePlaceholder': '山田 太郎',
+            'email': 'メールアドレス',
+            'emailPlaceholder': 'you@example.com',
+            'topic': 'お問い合わせの種類',
+            'topicPlaceholder': '選んでください',
+            'topics': {'bug': '不具合のご報告', 'howto': '使い方について', 'plan': 'プラン・購入について', 'account': 'アカウント・データについて', 'idea': 'ご意見・ご要望', 'other': 'その他'},
+            'device': 'お使いの端末',
+            'devicePlaceholder': '例：iPhone 15・iOS 18.1',
+            'appVersion': 'アプリのバージョン',
+            'appVersionPlaceholder': '例：1.0.0',
+            'appVersionHint': 'アプリの「設定 › ヘルプとこのアプリについて」で確かめられます。アプリのお問い合わせボタンから開くと、自動で入ります。',
+            'message': 'お問い合わせ内容',
+            'messagePlaceholder': '起きたこと、そのときの操作、いつからか、などを書いてください。',
+            'privacyNote': 'いただいた内容は、<a href="../privacy/">プライバシーポリシー</a>に従って扱います。',
+            'submit': 'メールで送る',
+            'errors': {'name': 'お名前を入力してください。', 'email': 'メールアドレスを入力してください。', 'emailFormat': 'メールアドレスの形式を確かめてください（例：name@example.com）。', 'topic': 'お問い合わせの種類を選んでください。', 'message': 'お問い合わせ内容を入力してください。'},
+            'mailSubject': '[Pickle Up] お問い合わせ',
+            'mailerTitle': 'メールの送り方を選ぶ',
+            'mailerDescription': '使うメールを選んでください。入力した内容が入った作成画面が開きます。',
+            'mailerDefault': 'いつものメールアプリ',
+            'mailerOutlookWeb': 'Outlook（ウェブ版）',
+            'close': '閉じる',
+        },
     },
     'privacyPage': {
-        'title': 'プライバシーポリシー | pickle-up',
-        'description': 'pickle-up における情報の取り扱いについて。',
-        'eyebrow': 'pickle-up',
+        'title': 'プライバシーポリシー | Pickle Up',
+        'description': 'Pickle Up における情報の取り扱いについて。',
+        'eyebrow': 'Pickle Up',
         'h1': 'プライバシーポリシー',
         'updated': '最終更新日',
-        'lead': 'Quests Bay Pte. Ltd.（以下「当社」）は、スマートフォン向けアプリ「pickle-up」（以下「本アプリ」）で扱う情報について、以下のとおり定めます。当社全体の個人情報の取り扱いは、<a href="/ja/privacy/">当社のプライバシーポリシー</a>をご覧ください。',
-        'sections': [
-            ('summary', '1. 要点', '''<ul>
-<li>本アプリで撮影した動画と、その解析結果は、お使いのスマートフォンの中だけに保存します。</li>
-<li>当社は、これらの動画や解析結果を受け取りません。</li>
-<li>ご同意いただいた場合に限り、機能ごとの1日の利用回数などの匿名の統計だけを当社に送ります（既定はオフ。3章）。</li>
-<li>本アプリには、広告や行動分析のための外部のツールを組み込んでいません。</li>
-</ul>'''),
-            ('data', '2. 本アプリが扱う情報', '''<p>本アプリは、次の情報を、お使いのスマートフォンの中の本アプリ専用の領域に保存します。</p>
-<ul>
-<li>撮影した動画と、その音声</li>
-<li>動画の解析結果（人の姿勢の推定、ボールの位置、ラリーの区切り、得点、打球の位置や高さなど）</li>
-<li>練習の記録、メモ、最初に入力していただいたプロフィール、アプリの設定</li>
-</ul>
-<p>解析はすべて端末の中で行い、通信は行いません。解析では、選手を見分けるために、映っている人の位置や服の色を使いますが、顔を認識したり、個人を特定したりはしません。</p>'''),
-            ('usage', '3. 利用状況の統計（任意）', '''<p>アプリの改善のため、ご同意いただいた場合に限り、匿名の利用統計を当社のサーバー（Amazon Web Services、シンガポール リージョン）に送信します。送信するのは、あらかじめ決めた機能（録画の開始、動画の読み込み、練習の記録、ドリルの表示、目標の設定など）を1日に何回使ったかの回数と、アプリのバージョン、OS の種類（iOS / Android）、アプリの表示言語、その日付（協定世界時、時刻を含まない）だけです。</p>
-<p>氏名、メールアドレス、アカウント ID、端末 ID、広告 ID、位置情報、動画、記録の内容、自由入力の文章は送信せず、統計をアカウントや端末と結び付けることもありません。送信時に通信の仕組み上 IP アドレスが当社に届きますが、統計とともに記録することはありません（不正なアクセスを防ぐためのアクセス記録には最大30日間残ります）。</p>
-<p>統計は既定ではオフで、アプリの「マイページ」でいつでもオン・オフを切り替えられます。オフにすると送信を止め、端末にたまっている未送信の統計も削除します。統計はアプリの改善のためだけに使い、広告や第三者への提供には使いません。受信した統計は最大30日間保存した後、自動的に削除します。</p>'''),
-            ('permissions', '4. 端末の機能へのアクセス', '''<div class="table-wrap"><table>
-<tr><th>カメラ</th><td>試合や練習を撮影するため</td></tr>
-<tr><th>マイク</th><td>動画に音声を記録するため</td></tr>
-<tr><th>写真</th><td>アプリの外で撮った動画を取り込むため、またお客様が選んだ動画を写真アプリに保存するため</td></tr>
-<tr><th>通知</th><td>お客様が設定した練習のリマインダーを、端末の中から通知するため</td></tr>
-</table></div>
-<p>いずれも、お客様が許可した場合にだけ使います。許可は、端末の設定アプリからいつでも変更できます。</p>'''),
-            ('people', '5. 映っている方について', '''<p>動画には、一緒にプレーする方や周りの方が映ることがあります。撮影する前に、映る方の了承を得てください。動画を共有するときも同様です。</p>'''),
-            ('sharing', '6. 共有と第三者への提供', '''<p>動画の共有や写真アプリへの保存は、お客様が操作したときにだけ、お客様が選んだ先に対して行います。当社が、本アプリの情報（3章の統計を含む）を第三者に提供することはありません。</p>
-<p>本アプリのダウンロードや更新の際に、Apple Inc. または Google LLC が取得する情報は、それぞれのプライバシーポリシーに従って扱われます。</p>'''),
-            ('delete', '7. 情報の削除', '''<p>動画は、動画の画面からいつでも削除できます。マイページの「すべてのデータを削除」で、本アプリが保存したすべての情報を削除できます。本アプリを端末から削除した場合も、本アプリ専用の領域の情報は削除されます。ただし、写真アプリに保存した動画は残ります。</p>'''),
-            ('children', '8. お子さまの利用', '''<p>本アプリは、お子さまから当社が情報を受け取る仕組みを持ちません。保護者の方の判断のもとでご利用ください。</p>'''),
-            ('changes', '9. 本ポリシーの変更', '''<p>ログインや AI によるアドバイスなど、情報の扱いが変わる機能を追加するときは、その前に本ポリシーを改定し、本アプリとこのページでお知らせします。</p>'''),
-            ('contact', '10. お問い合わせ', '''<div class="contact"><p>Quests Bay Pte. Ltd.<br>68 Circular Road, #02-01, Singapore 049422（シンガポール）<br><a href="/ja/#contact">お問い合わせフォーム</a></p></div>'''),
-        ],
+        'lead': legal.PRIVACY_LEAD['ja'],
+        'sections': legal.PRIVACY_SECTIONS['ja'],
     },
 }
 
 EN = {
     'lang': 'en',
-    'title': 'pickle-up | Film your pickleball games and see every shot you hit',
-    'description': 'Set your phone behind the court and film the game. pickle-up splits the rallies, keeps the score, and shows where and how high every shot you hit went, on a picture of the court.',
+    'title': 'Pickle Up | Film your pickleball games: score, shots and an AI coach',
+    'description': 'Set your phone behind the court and film the game. Pickle Up keeps and calls the score, shows every shot you hit on the court, and an AI coach tells you what to work on next.',
     'nav': {'features': 'Features', 'how': 'How it works', 'faq': 'FAQ', 'support': 'Support', 'download': 'Download', 'menu': 'Menu'},
     'langSwitch': 'Change language',
     'soon': 'Coming soon',
     'storeAlt': {'appStore': 'Download on the App Store', 'googlePlay': 'Get it on Google Play'},
     'hero': {
-        'eyebrow': 'Pickleball match analysis',
-        'title': ['Film the game.', 'See every shot', 'you hit.'],
-        'lead': 'Set your phone behind the court and play. pickle-up splits the rallies and keeps the score, then shows where and how high each of your shots went, on a picture of the court.',
-        'screenAlt': 'The Insights tab, with your shots drawn on the court in 3D',
+        'eyebrow': 'Your pickleball AI coach',
+        'title': ['Film the game.', 'See the score', 'and every shot.'],
+        'lead': 'Set your phone behind the court and play as usual. Pickle Up keeps and calls the score, draws every shot you hit on a 3D court, and an AI coach tells you what to work on next.',
+        'screen': 'shots-3d',
+        'screenAlt': 'The match screen, with your shots drawn on the court in 3D',
     },
     'features': {
         'eyebrow': 'Features',
         'title': 'Film the match. The app does the rest.',
         'items': [
             {
-                'screen': 'record',
-                'title': 'Set it up and play. Rallies and score, automatic.',
-                'body': 'pickle-up finds where each rally starts and ends, keeps the score, and tells a match from practice. It can call the score out loud, so you can keep your eyes on the ball.',
-                'points': ['Splits the rallies for you', 'Keeps and calls the score', 'Tells matches from practice'],
-                'alt': 'The Record tab, with the start button and the score calling and scoring settings',
+                'screen': 'score',
+                'title': 'Just film it.|The score|keeps itself.',
+                'body': 'Set your phone down and play as usual. Pickle Up splits the rallies, keeps the score, and calls it out the official way after every rally. No more arguing over the score, no more scribbled notes.',
+                'points': ['Rallies and score, recorded for you', 'Score called out loud (English or Japanese)', 'Tells a match from practice'],
+                'alt': 'The match screen, with a score of 11–8 and the calls made during the game',
             },
             {
-                'screen': 'analysis-flat',
-                'title': 'Your shots, on the court',
-                'body': 'Tap yourself once in the video. Each shot you hit is drawn from where you hit it to where it landed on the other side. Look over a week or a month and your patterns show.',
-                'points': ['Where you hit and where it landed', 'Filter by in, out and volleys', 'By week, month, match or rally'],
-                'alt': 'The Insights tab, with your shots drawn on the court from above',
+                'screen': 'shots-flat',
+                'title': 'Every shot you hit,|on the court',
+                'body': 'Tap yourself once in the video. Every shot you hit is drawn from where you hit it to where it landed. In or out, and whether it was volleyed back, at a glance.',
+                'points': ['Where you hit and where it landed', 'In rate and volley share, counted for you', 'By match, week or month'],
+                'alt': 'The match screen, with your 47 shots drawn on the court from above',
             },
             {
-                'screen': 'analysis-3d',
-                'title': 'See the height in 3D. Turn it with a finger.',
-                'body': 'Shots are drawn in 3D, with an estimate of how far above the net each one passed. Check whether your dinks float or your drives stay low, in centimetres.',
+                'screen': 'kinds',
+                'title': 'Spot your habits,|shot by shot',
+                'body': 'Serves, returns, drops, dinks and drives. Split your shots by kind and compare their paths. Habits like short returns or long drops show up in the picture and the numbers.',
+                'points': ['Serves, returns, dinks and more', 'Landing spread, drawn on the court', 'A 0–100 score for each kind of shot'],
+                'alt': 'The match screen, showing only your returns',
+            },
+            {
+                'screen': 'shots-3d',
+                'title': 'See the height in 3D.|Turn it with a finger.',
+                'body': 'Shots are drawn in 3D, with an estimate of how far above the net each one passed. Check whether your dinks float or your drives stay low, from any angle.',
                 'points': ['Shot height in 3D', 'Height from the net (median)', 'Turn and zoom to any angle'],
-                'alt': 'The Insights tab in 3D, with the shots and the median height from the net',
+                'alt': 'The match screen in 3D, looking at the shots from above and to the side',
             },
             {
-                'screen': 'home',
-                'title': 'Your practice, at a glance',
-                'body': 'See the time you practised each day, by week or by month. Practice you log by hand and matches you film are counted together.',
-                'points': ['Practice time by week and month', 'The days you played, on a calendar', 'Practice log and reminders'],
-                'alt': 'The Home tab, with a bar chart of the week’s practice time',
+                'screen': 'coach',
+                'title': 'An AI coach that tells you|what to fix next',
+                'body': 'From your match numbers and shot patterns, the AI coach tells you what went well and narrows what to work on down to three points. On practice videos, it looks at your form too.',
+                'points': ['What went well, and what to fix', 'Concrete tips you can try next time', 'For matches, practice and weekly recaps'],
+                'alt': 'An example of AI coach advice: what went well and three things to try',
+            },
+            {
+                'screen': 'practice',
+                'title': 'Drills that match|your level',
+                'body': '25 drills, sorted by USA Pickleball skill level. Dinks, drops, volleys and more, each with a court diagram and steps, with the ones for your level suggested first.',
+                'points': ['25 drills, by skill level', 'Court diagrams and step-by-step', 'Practice log and weekly goals'],
+                'alt': 'The Practice tab, with drills suggested for your level and drills by shot',
             },
         ],
     },
     'privacy': {
         'eyebrow': 'Privacy',
         'title': 'Your videos stay on your phone',
-        'lead': 'Every video is analysed on your phone. Neither your videos nor the results are ever sent to our servers.',
+        'lead': 'Your videos are kept on your phone only. All of the video analysis happens on the device, and videos are never sent to our servers.',
         'items': [
-            ('ri-smartphone-line', 'Analysed on your phone', 'Finding players and the ball, and working out every shot, happens on the device, offline.'),
+            ('ri-smartphone-line', 'Analysed on your phone', 'Finding players and the ball, splitting rallies and keeping the score all happen on the device.'),
             ('ri-lock-line', 'Videos never leave it', 'Videos are kept in the app’s own storage. They are shared only when you choose to.'),
-            ('ri-user-unfollow-line', 'No sign-up', 'Start right away, no account needed.'),
+            ('ri-user-unfollow-line', 'No sign-up needed', 'No name or email needed. Create an account only if you want to move your records to a new phone.'),
         ],
         'link': 'Read the privacy policy',
     },
@@ -237,8 +251,8 @@ EN = {
         'title': 'Three steps, starting with your next match',
         'steps': [
             ('Set it behind the court', 'Put your phone behind the baseline, as high as you can. Once all four corners and the server waiting behind the near line are in view, you are ready.'),
-            ('Film the match', 'Tap Start recording and play as usual.'),
-            ('Look back at your shots', 'Open the Insights tab to go through your shots, match by match and rally by rally.'),
+            ('Film the match', 'Tap Start recording and play as usual. The score is kept and called out for you.'),
+            ('See your shots and tips', 'Go through your shots on the match screen and in the Insights tab, and read the AI coach’s advice.'),
         ],
     },
     'faq': {
@@ -246,93 +260,72 @@ EN = {
         'title': 'Frequently asked questions',
         'items': [
             ('How should I film?', 'From behind the court, with all four corners and the server on the near side in view. The app’s filming guide shows where to put your phone.'),
-            ('Where are my videos kept?', 'In the app’s own storage on your phone. We never upload them.'),
+            ('Where are my videos kept?', 'In the app’s own storage on your phone. Videos are never sent to our servers.'),
             ('How accurate is the analysis?', 'Everything is estimated from a single phone’s video, so landings on the far side and ball heights have some error. Shots that cannot be judged with enough certainty are not drawn; they are counted as unclear.'),
+            ('Is it free?', 'Recording, automatic scoring and calls, and the drills are free. Shot analysis is free for your first video, and unlimited with Premium.'),
             ('Which phones does it run on?', 'Versions for iPhone and Android are on the way. We will announce them on this page.'),
         ],
         'more': 'Visit the support page',
     },
-    'cta': {'title': 'Film your next match.', 'lead': 'Set your phone down, play, and see every shot you hit.'},
+    'cta': {'title': 'Film your next match.', 'lead': 'Set your phone down and play. The score and every shot are there when you finish.'},
     'footer': {
-        'tagline': 'Film your pickleball games and see every shot you hit.',
+        'tagline': 'Film your pickleball games. Get the score and every shot, analysed for you.',
         'app': 'App',
         'company': 'Made by',
-        'links': {'features': 'Features', 'support': 'Support', 'privacy': 'Privacy policy'},
-        'companyLinks': {'home': 'About Quests', 'apps': 'Apps by Quests', 'contact': 'Contact'},
-        'by': 'pickle-up is built and run by Quests Bay Pte. Ltd.',
+        'links': {'support': 'Support', 'contact': 'Contact', 'privacy': 'Privacy policy'},
+        'companyLinks': {'home': 'About Quests', 'apps': 'Apps by Quests'},
+        'by': 'Pickle Up is built and run by Quests Bay Pte. Ltd.',
         'trademarks': 'Apple and the Apple logo are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc. Google Play and the Google Play logo are trademarks of Google LLC.',
     },
     'support': {
-        'title': 'Support | pickle-up',
-        'description': 'How to use pickle-up, answers to common questions, and how to reach us.',
+        'title': 'Support | Pickle Up',
+        'description': 'How to use Pickle Up, answers to common questions, and how to reach us.',
         'eyebrow': 'Support',
-        'h1': 'pickle-up support',
-        'lead': 'If something is not working as you expect, start with the questions below. If they do not help, send us a message through the contact form.',
-        'groups': [
-            ('Filming', [
-                ('Where should I put my phone?', 'Behind the baseline, as high as you can. Frame it a little wide, so all four corners and the player waiting to serve behind the near line are in view. A tripod or a fence mount helps.'),
-                ('Can I film from the front, by the net?', 'Please film from behind or from the side: a shot could hit your phone. The analysis expects video taken from behind the court.'),
-                ('Do I need to say whether it is a match or practice?', 'No. The app works it out from the video. If it gets it wrong, you can change it on the video’s screen.'),
-            ]),
-            ('Analysis', [
-                ('How do I see my own shots?', 'Open the match’s video, choose You, and tap your box in a frame where everyone is in view. Your shots are found rally by rally and shown in the Insights tab.'),
-                ('What does “unclear” mean?', 'A shot whose landing, or whether it was in or out, cannot be judged with enough certainty. It is counted but not drawn.'),
-                ('How is the height from the net measured?', 'The shot’s flight is estimated in 3D from the video. Where it passes over the net, we measure from the bottom of the ball to the top of the net. For a ball that hits the net, the height where it met the net is shown as a negative number.'),
-                ('The court is in the wrong place', 'Open Court position on the video’s screen and move the corners. The video is analysed again with the corrected court.'),
-            ]),
-            ('Your data', [
-                ('Are my videos uploaded?', 'No. Videos and results are kept in the app’s own storage on your phone.'),
-                ('How do I delete my data?', 'Delete a video from its screen. To delete everything, use Delete all data in the Me tab. Videos you saved to the Photos app stay there.'),
-                ('What happens when I change phones?', 'In this version your data lives only on the phone and does not move to a new one. Save the videos you want to keep to the Photos app.'),
-            ]),
-        ],
-        'contactTitle': 'Contact us',
-        'contactBody': 'Send us a message through the contact form. Telling us your phone model, its OS version and the app’s version (Version, in the Me tab) helps us answer sooner.',
-        'contactLink': 'Go to the contact form',
+        'h1': 'Pickle Up support',
+        'lead': legal.SUPPORT_LEAD['en'],
+        'groups': legal.SUPPORT_GROUPS['en'],
+        'contact': {
+            'title': 'Contact us',
+            'lead': 'Report a problem, ask how something works, or send us your ideas. Sending opens your email app with your message filled in.',
+            'required': 'Required',
+            'name': 'Name',
+            'namePlaceholder': 'Alex Smith',
+            'email': 'Email',
+            'emailPlaceholder': 'you@example.com',
+            'topic': 'What is it about?',
+            'topicPlaceholder': 'Choose one',
+            'topics': {'bug': 'Something isn’t working', 'howto': 'How to use the app', 'plan': 'Plans and purchases', 'account': 'Account and data', 'idea': 'Ideas and requests', 'other': 'Something else'},
+            'device': 'Your phone',
+            'devicePlaceholder': 'e.g. iPhone 15, iOS 18.1',
+            'appVersion': 'App version',
+            'appVersionPlaceholder': 'e.g. 1.0.0',
+            'appVersionHint': 'Find it in the app under Settings › Help and about. Opened from the app’s Contact button, it is filled in for you.',
+            'message': 'Message',
+            'messagePlaceholder': 'What happened, what you were doing, and since when.',
+            'privacyNote': 'We handle your message under our <a href="../privacy/">privacy policy</a>.',
+            'submit': 'Continue to email',
+            'errors': {'name': 'Please enter your name.', 'email': 'Please enter your email address.', 'emailFormat': 'Please check the email address (e.g. name@example.com).', 'topic': 'Please choose what it is about.', 'message': 'Please write your message.'},
+            'mailSubject': '[Pickle Up] Contact',
+            'mailerTitle': 'Choose your email app',
+            'mailerDescription': 'Select your email service. A compose window opens with your message filled in.',
+            'mailerDefault': 'Default mail app',
+            'mailerOutlookWeb': 'Outlook (web)',
+            'close': 'Close',
+        },
     },
     'privacyPage': {
-        'title': 'Privacy policy | pickle-up',
-        'description': 'How pickle-up handles your information.',
-        'eyebrow': 'pickle-up',
+        'title': 'Privacy policy | Pickle Up',
+        'description': 'How Pickle Up handles your information.',
+        'eyebrow': 'Pickle Up',
         'h1': 'Privacy policy',
         'updated': 'Last updated',
-        'lead': 'This policy explains how Quests Bay Pte. Ltd. (“we”) handles information in the pickle-up app for smartphones (“the app”). For how we handle personal data in general, see <a href="/en/privacy/">our privacy policy</a>.',
-        'sections': [
-            ('summary', '1. In short', '''<ul>
-<li>The videos you film with the app, and the results of analysing them, are stored only on your phone.</li>
-<li>We do not receive these videos or results.</li>
-<li>Only if you agree, the app sends us anonymous statistics, such as how many times a day each feature was used (off by default; see section 3).</li>
-<li>The app contains no third-party tools for advertising or for analysing how you use it.</li>
-</ul>'''),
-            ('data', '2. Information the app handles', '''<p>The app keeps the following in its own storage on your phone:</p>
-<ul>
-<li>The videos you film, with their sound</li>
-<li>The results of analysing them (estimated body positions, ball positions, rallies, scores, and the positions and heights of shots)</li>
-<li>Your practice log, notes, the profile you entered when you started, and the app’s settings</li>
-</ul>
-<p>All analysis runs on the device, without any network connection. To tell players apart, it uses where the people in the video stand and the colours of their clothes. It does not recognise faces or identify anyone.</p>'''),
-            ('usage', '3. Usage statistics (optional)', '''<p>To improve the app, and only if you agree, pickle-up sends anonymous usage statistics to our servers (Amazon Web Services, Singapore region). We send only how many times a day a fixed set of features was used (such as starting a recording, importing a video, logging practice, opening a drill or setting a goal), together with the app version, the operating system (iOS or Android), the app’s display language and the date (UTC, without the time).</p>
-<p>We do not send your name, email address, account ID, device ID, advertising ID, location, videos, the content of your records or any text you type, and we do not link the statistics to your account or device. Your IP address necessarily reaches our servers when the statistics are sent, but it is not recorded with them (it stays in our security access logs for up to 30 days).</p>
-<p>Usage statistics are off by default, and you can turn them on or off at any time in the app’s Me tab. Turning them off stops sending and deletes any unsent statistics on your device. We use the statistics only to improve the app, never for advertising, and we do not share them with third parties. Statistics we receive are kept for up to 30 days and then deleted automatically.</p>'''),
-            ('permissions', '4. Access to your phone’s features', '''<div class="table-wrap"><table>
-<tr><th>Camera</th><td>To film matches and practice</td></tr>
-<tr><th>Microphone</th><td>To record sound with your videos</td></tr>
-<tr><th>Photos</th><td>To bring in videos filmed outside the app, and to save videos you choose to the Photos app</td></tr>
-<tr><th>Notifications</th><td>To show the practice reminders you set, from the device itself</td></tr>
-</table></div>
-<p>Each is used only if you allow it. You can change this at any time in your phone’s Settings.</p>'''),
-            ('people', '5. People in your videos', '''<p>Your videos may show the people you play with and others nearby. Please get their agreement before you film them, and before you share a video.</p>'''),
-            ('sharing', '6. Sharing and third parties', '''<p>Videos are shared or saved to the Photos app only when you do so, and only to where you choose. We never give information from the app (including the statistics in section 3) to third parties.</p>
-<p>Information that Apple Inc. or Google LLC collect when you download or update the app is handled under their own privacy policies.</p>'''),
-            ('delete', '7. Deleting your information', '''<p>You can delete a video from its screen at any time. Delete all data in the Me tab removes everything the app has stored. Deleting the app from your phone also removes what it stored. Videos you saved to the Photos app stay there.</p>'''),
-            ('children', '8. Children', '''<p>The app has no way for us to receive information from children. Children should use it with a parent’s or guardian’s consent.</p>'''),
-            ('changes', '9. Changes to this policy', '''<p>Before we add features that change how information is handled, such as signing in or advice from AI, we will update this policy and announce it in the app and on this page.</p>'''),
-            ('contact', '10. Contact', '''<div class="contact"><p>Quests Bay Pte. Ltd.<br>68 Circular Road, #02-01, Singapore 049422<br><a href="/en/#contact">Contact form</a></p></div>'''),
-        ],
+        'lead': legal.PRIVACY_LEAD['en'],
+        'sections': legal.PRIVACY_SECTIONS['en'],
     },
 }
 
+# The card on the /apps/ list.
 APP_CARD = {
-    'ja': {'title': 'pickle-up', 'body': 'ピックルボールの試合を撮って、自分の打球を振り返るアプリ。ラリーと得点を自動で区切り、打球の行き先と高さをコートの図で見せます。', 'cta': '詳しく見る'},
-    'en': {'title': 'pickle-up', 'body': 'Film your pickleball games and see every shot you hit. Rallies and score are kept for you, and each shot is drawn on the court with its height.', 'cta': 'Learn more'},
+    'ja': {'title': 'Pickle Up', 'body': 'ピックルボールの試合を撮るだけで、スコアを自動で数え、あなたの打球をコートの図で振り返り、AI コーチが次に直すポイントを教えるアプリ。', 'cta': '詳しく見る'},
+    'en': {'title': 'Pickle Up', 'body': 'Film your pickleball games: the score is kept and called for you, every shot you hit is drawn on the court, and an AI coach tells you what to work on next.', 'cta': 'Learn more'},
 }

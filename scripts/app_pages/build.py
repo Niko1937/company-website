@@ -5,7 +5,7 @@
 # from the built /ja|en/privacy/ pages): python3 scripts/app_pages/build.py .
 #
 # The text of each app lives in its own file here (pickle_up.py); the styles in assets/css/apps/<app>.css.
-import html, os, re, sys
+import html, json, os, re, sys
 
 ROOT = sys.argv[1]
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 1
+CSS_VERSION = 2
 
 
 def read(path):
@@ -147,7 +147,7 @@ class App:
     def footer(self, lang, path):
         t = self.text(lang)
         f = t['footer']
-        other = OTHER[lang]
+        # The year is this year's, set by the script below (the 2026 written in the page is only the fallback).
         return f'''<footer class="app-footer">
 <div class="wrap">
 <div class="footer-grid">
@@ -158,8 +158,8 @@ class App:
 <div>
 <h2>{e(f['app'])}</h2>
 <ul>
-<li><a href="/{lang}/{self.base}#features">{e(f['links']['features'])}</a></li>
 <li><a href="/{lang}/{self.base}support/">{e(f['links']['support'])}</a></li>
+<li><a href="/{lang}/{self.base}support/#contact">{e(f['links']['contact'])}</a></li>
 <li><a href="/{lang}/{self.base}privacy/">{e(f['links']['privacy'])}</a></li>
 </ul>
 </div>
@@ -168,13 +168,12 @@ class App:
 <ul>
 <li><a href="/{lang}/">{e(f['companyLinks']['home'])}</a></li>
 <li><a href="/{lang}/apps/">{e(f['companyLinks']['apps'])}</a></li>
-<li><a href="/{lang}/#contact">{e(f['companyLinks']['contact'])}</a></li>
 </ul>
 </div>
 </div>
 <div class="footer-bottom">
 <p class="footer-by"><a class="quests" href="/{lang}/" lang="en">Quests</a><span>{e(f['by'])}</span></p>
-<p class="footer-meta"><a class="lang" href="/{other}/{path}" hreflang="{other}" lang="{other}"><i class="ri-global-line" aria-hidden="true"></i>{LANG_LABEL[other]}</a><span lang="en">© <span data-year>2026</span> Quests Bay Pte. Ltd.</span></p>
+<p class="footer-meta"><span lang="en">© <span data-year>2026</span> Quests Bay Pte. Ltd.</span></p>
 <p class="trademarks">{e(f['trademarks'])}</p>
 </div>
 </div>
@@ -226,7 +225,7 @@ class App:
 </div>
 <div class="hero-media">
 <div class="glow" aria-hidden="true"></div>
-{self.phone('analysis-3d', h['screenAlt'], lang, eager=True)}
+{self.phone(h['screen'], h['screenAlt'], lang, eager=True)}
 </div>
 </div>
 </section>
@@ -297,12 +296,49 @@ class App:
 <h1>{e(s['h1'])}</h1>
 <p class="lead">{e(s['lead'])}</p>
 {''.join(groups)}
-<section class="doc-section contact-card">
-<h2>{e(s['contactTitle'])}</h2>
-<p>{e(s['contactBody'])}</p>
-<p><a class="button" href="/{lang}/#contact">{e(s['contactLink'])}<i class="ri-arrow-right-line" aria-hidden="true"></i></a></p>
-</section>'''
+{self.contact_form(lang)}'''
         return self.document(lang, 'support/', s, inner)
+
+    def contact_form(self, lang):
+        # The app's own contact form, at the end of its support page (the footer's Contact and the app's
+        # Contact button open it at #contact). It works like the company's form on the home page: nothing is
+        # sent from the page; it opens the visitor's email app with the answers filled in
+        # (assets/js/app-contact.js). ?app= and ?os=, added by the app, fill in the version and the phone.
+        c = self.text(lang)['support']['contact']
+        req = f'<span class="form-required">{e(c["required"])}</span>'
+
+        def field(fid, label, control, required=False, hint=''):
+            hint_html = f'<p class="form-hint" id="{fid}-hint">{e(hint)}</p>' if hint else ''
+            error = f'<p class="form-error" id="{fid}-error" role="alert" hidden></p>' if required else ''
+            return (f'<div class="form-field"><label for="{fid}">{e(label)}{req if required else ""}</label>'
+                    f'{control}{hint_html}{error}</div>')
+
+        def described(fid, required, hint=False):
+            ids = ([f'{fid}-hint'] if hint else []) + ([f'{fid}-error'] if required else [])
+            return f' aria-describedby="{" ".join(ids)}"' if ids else ''
+
+        topics = ''.join(f'<option value="{k}">{e(c["topics"][k])}</option>' for k in self.m.CONTACT_TOPICS)
+        strings = {k: c[k] for k in ('name', 'email', 'topic', 'device', 'appVersion', 'message', 'mailSubject',
+                                     'mailerTitle', 'mailerDescription', 'mailerDefault', 'mailerOutlookWeb', 'close')}
+        strings['errors'] = c['errors']
+        data = e(json.dumps(strings, ensure_ascii=False))
+        return f'''<section class="doc-section contact-section" id="contact">
+<h2>{e(c['title'])}</h2>
+<p>{e(c['lead'])}</p>
+<form class="contact-form" id="appContactForm" novalidate data-strings="{data}" data-lang="{lang}">
+{field('cf-name', c['name'], f'<input type="text" id="cf-name" name="name" autocomplete="name" placeholder="{e(c["namePlaceholder"])}" required{described("cf-name", True)}>', True)}
+{field('cf-email', c['email'], f'<input type="email" id="cf-email" name="email" autocomplete="email" placeholder="{e(c["emailPlaceholder"])}" required{described("cf-email", True)}>', True)}
+{field('cf-topic', c['topic'], f'<select id="cf-topic" name="topic" required{described("cf-topic", True)}><option value="" disabled selected>{e(c["topicPlaceholder"])}</option>{topics}</select>', True)}
+<div class="form-row">
+{field('cf-device', c['device'], f'<input type="text" id="cf-device" name="device" placeholder="{e(c["devicePlaceholder"])}">')}
+{field('cf-app', c['appVersion'], f'<input type="text" id="cf-app" name="app" inputmode="decimal" placeholder="{e(c["appVersionPlaceholder"])}"{described("cf-app", False, True)}>', hint=c['appVersionHint'])}
+</div>
+{field('cf-message', c['message'], f'<textarea id="cf-message" name="message" rows="6" placeholder="{e(c["messagePlaceholder"])}" required{described("cf-message", True)}></textarea>', True)}
+<p class="form-note">{c['privacyNote']}</p>
+<button type="submit" class="button">{e(c['submit'])}<i class="ri-mail-send-line" aria-hidden="true"></i></button>
+</form>
+</section>
+<script src="/assets/js/app-contact.js?v={CSS_VERSION}" defer></script>'''
 
     def privacy(self, lang):
         p = self.text(lang)['privacyPage']
