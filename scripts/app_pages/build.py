@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 2
+CSS_VERSION = 4
 
 
 def read(path):
@@ -134,6 +134,7 @@ class App:
 <nav class="app-nav" aria-label="{e(n['menu'])}">
 <a href="{top}#features">{e(n['features'])}</a>
 <a href="{top}#how">{e(n['how'])}</a>
+<a href="{top}#privacy">{e(n['privacy'])}</a>
 <a href="{top}#faq">{e(n['faq'])}</a>
 <a href="/{lang}/{self.base}support/">{e(n['support'])}</a>
 </nav>
@@ -180,12 +181,28 @@ class App:
 </footer>
 <script>document.querySelectorAll('[data-year]').forEach(function (el) {{ el.textContent = new Date().getFullYear(); }});</script>'''
 
-    def phone(self, screen, alt, lang, eager=False):
+    def phone(self, screen, alt, lang, eager=False, tag='figure'):
         w, h = self.m.SCREEN_SIZE
         dh = round(300 * h / w)
         load = 'fetchpriority="high"' if eager else 'loading="lazy" decoding="async"'
-        return (f'<figure class="phone"><img src="{self.img}/screens/{screen}-{lang}.webp" alt="{e(alt)}" '
-                f'width="300" height="{dh}" {load}></figure>')
+        return (f'<{tag} class="phone"><img src="{self.img}/screens/{screen}-{lang}.webp" alt="{e(alt)}" '
+                f'width="300" height="{dh}" {load}></{tag}>')
+
+    def slides(self, slides, lang):
+        # One screen with its caption, or several to page through (‹ ›, the dots, or a swipe; assets/js/app-carousel.js).
+        # Without the script they still scroll sideways, one screen at a time.
+        figs = ''.join(f'<figure class="slide">{self.phone(screen, alt, lang, tag="div")}<figcaption>{e(cap)}</figcaption></figure>'
+                       for screen, cap, alt in slides)
+        if len(slides) == 1:
+            return f'<div class="carousel carousel-single"><div class="carousel-track">{figs}</div></div>'
+        c = self.text(lang)['carousel']
+        current = ' aria-current="true"'
+        dots = ''.join(f'<button type="button" class="carousel-dot" aria-label="{e(c["slide"].format(n=i + 1))}"{current if i == 0 else ""}></button>'
+                       for i in range(len(slides)))
+        return (f'<div class="carousel" data-carousel><div class="carousel-track" tabindex="0">{figs}</div>'
+                f'<div class="carousel-nav"><button type="button" class="carousel-prev" aria-label="{e(c["prev"])}" disabled><i class="ri-arrow-left-s-line" aria-hidden="true"></i></button>'
+                f'<div class="carousel-dots">{dots}</div>'
+                f'<button type="button" class="carousel-next" aria-label="{e(c["next"])}"><i class="ri-arrow-right-s-line" aria-hidden="true"></i></button></div></div>')
 
     def home(self, lang):
         t = self.text(lang)
@@ -194,18 +211,17 @@ class App:
         title = ''.join(f'<span class="phrase">{e(p)}</span>' for p in h['title'])
         feats = []
         for i, it in enumerate(t['features']['items']):
-            points = ''.join(f'<li><i class="ri-check-line" aria-hidden="true"></i>{e(p)}</li>' for p in it['points'])
+            note = f'<p class="feature-note">{e(it["note"])}</p>' if it.get('note') else ''
             feats.append(f'''<article class="feature{' feature-flip' if i % 2 else ''}">
-<div class="feature-media">{self.phone(it['screen'], it['alt'], lang)}</div>
+<div class="feature-media">{self.slides(it['slides'], lang)}</div>
 <div class="feature-copy">
-<p class="feature-index" lang="en">0{i + 1}</p>
 <h3>{ph(it['title'])}</h3>
 <p>{e(it['body'])}</p>
-<ul class="points">{points}</ul>
+{note}
 </div>
 </article>''')
         pv = t['privacy']
-        pv_items = ''.join(f'<li><i class="{icon}" aria-hidden="true"></i><h3>{e(a)}</h3><p>{e(b)}</p></li>' for icon, a, b in pv['items'])
+        pv_items = ''.join(f'<li><h3><i class="{icon}" aria-hidden="true"></i>{e(a)}</h3><p>{e(b)}</p></li>' for icon, a, b in pv['items'])
         steps = ''.join(f'<li><span class="step-number" lang="en">{n + 1}</span><h3>{e(a)}</h3><p>{e(b)}</p></li>'
                         for n, (a, b) in enumerate(t['how']['steps']))
         faq = ''.join(f'<details><summary>{e(q)}<i class="ri-add-line" aria-hidden="true"></i></summary><p>{e(a)}</p></details>'
@@ -218,39 +234,37 @@ class App:
 {court}
 <div class="wrap hero-grid">
 <div class="hero-copy">
-<p class="eyebrow">{e(h['eyebrow'])}</p>
 <h1>{title}</h1>
 <p class="lead">{e(h['lead'])}</p>
 {self.badges(lang, 'hero')}
 </div>
 <div class="hero-media">
-<div class="glow" aria-hidden="true"></div>
 {self.phone(h['screen'], h['screenAlt'], lang, eager=True)}
 </div>
 </div>
 </section>
 <section id="features" class="section section-light">
 <div class="wrap">
-<div class="section-head"><p class="eyebrow">{e(t['features']['eyebrow'])}</p><h2>{ph(t['features']['title'])}</h2></div>
+<h2 class="section-title">{ph(t['features']['title'])}</h2>
 {''.join(feats)}
+</div>
+</section>
+<section id="how" class="section">
+<div class="wrap">
+<h2 class="section-title">{ph(t['how']['title'])}</h2>
+<ol class="steps">{steps}</ol>
 </div>
 </section>
 <section id="privacy" class="section section-dark">
 <div class="wrap">
-<div class="section-head"><p class="eyebrow">{e(pv['eyebrow'])}</p><h2>{ph(pv['title'])}</h2><p class="section-lead">{e(pv['lead'])}</p></div>
+<h2 class="section-title">{ph(pv['title'])}</h2>
 <ul class="promises">{pv_items}</ul>
 <p class="section-more"><a href="privacy/">{e(pv['link'])}<i class="ri-arrow-right-line" aria-hidden="true"></i></a></p>
 </div>
 </section>
-<section id="how" class="section section-light">
-<div class="wrap">
-<div class="section-head"><p class="eyebrow">{e(t['how']['eyebrow'])}</p><h2>{ph(t['how']['title'])}</h2></div>
-<ol class="steps">{steps}</ol>
-</div>
-</section>
 <section id="faq" class="section">
 <div class="wrap narrow">
-<div class="section-head"><p class="eyebrow">{e(t['faq']['eyebrow'])}</p><h2>{ph(t['faq']['title'])}</h2></div>
+<h2 class="section-title">{ph(t['faq']['title'])}</h2>
 <div class="faq">{faq}</div>
 <p class="section-more"><a href="support/">{e(t['faq']['more'])}<i class="ri-arrow-right-line" aria-hidden="true"></i></a></p>
 </div>
@@ -266,6 +280,7 @@ class App:
 </section>
 </main>
 {self.footer(lang, path)}
+<script src="/assets/js/app-carousel.js?v={CSS_VERSION}" defer></script>
 </body>
 </html>
 '''
@@ -292,8 +307,7 @@ class App:
         for name, items in s['groups']:
             qa = ''.join(f'<details><summary>{e(q)}<i class="ri-add-line" aria-hidden="true"></i></summary><p>{e(a)}</p></details>' for q, a in items)
             groups.append(f'<section class="doc-section"><h2>{e(name)}</h2><div class="faq">{qa}</div></section>')
-        inner = f'''<p class="eyebrow">{e(s['eyebrow'])}</p>
-<h1>{e(s['h1'])}</h1>
+        inner = f'''<h1>{e(s['h1'])}</h1>
 <p class="lead">{e(s['lead'])}</p>
 {''.join(groups)}
 {self.contact_form(lang)}'''
