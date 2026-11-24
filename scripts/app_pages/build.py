@@ -164,7 +164,6 @@ class App:
 <div class="footer-grid">
 <div class="footer-about">
 <a class="app-brand" href="/{lang}/{self.base}"><img src="{self.img}/icon-128.png" alt="" width="32" height="32"><span lang="en">{self.m.NAME}</span></a>
-<p>{e(f['tagline'])}</p>
 </div>
 <div>
 <h2>{e(f['app'])}</h2>
