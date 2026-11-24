@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 29
+CSS_VERSION = 30
 
 
 def read(path):
@@ -295,7 +295,8 @@ class App:
 <section id="how" class="section">
 <div class="wrap">
 <h2 class="section-title">{ph(t['how']['title'])}</h2>
-<ol class="steps">{steps}</ol>
+<ol class="steps" data-swipe>{steps}</ol>
+<div class="swipe-pager" data-swipe-pager hidden><span class="swipe-count" data-swipe-count aria-live="polite"></span><button type="button" class="swipe-arrow" data-swipe-prev aria-label="{e(t['carousel']['prev'])}"><i class="ri-arrow-left-s-line" aria-hidden="true"></i></button><button type="button" class="swipe-arrow" data-swipe-next aria-label="{e(t['carousel']['next'])}"><i class="ri-arrow-right-s-line" aria-hidden="true"></i></button></div>
 </div>
 </section>
 <section id="pricing" class="section section-light">
@@ -308,7 +309,8 @@ class App:
 <section id="privacy" class="section section-dark">
 <div class="wrap">
 <h2 class="section-title">{ph(pv['title'])}</h2>
-<ul class="promises">{pv_items}</ul>
+<ul class="promises" data-swipe>{pv_items}</ul>
+<div class="swipe-pager swipe-pager-dark" data-swipe-pager hidden><span class="swipe-count" data-swipe-count aria-live="polite"></span><button type="button" class="swipe-arrow" data-swipe-prev aria-label="{e(t['carousel']['prev'])}"><i class="ri-arrow-left-s-line" aria-hidden="true"></i></button><button type="button" class="swipe-arrow" data-swipe-next aria-label="{e(t['carousel']['next'])}"><i class="ri-arrow-right-s-line" aria-hidden="true"></i></button></div>
 <p class="section-more"><a href="privacy/">{e(pv['link'])}<i class="ri-arrow-right-line" aria-hidden="true"></i></a></p>
 </div>
 </section>
@@ -331,6 +333,7 @@ class App:
 {self.footer(lang, path)}
 <script src="/assets/js/app-carousel.js?v={CSS_VERSION}" defer></script>
 <script src="/assets/js/app-audio.js?v={CSS_VERSION}" defer></script>
+<script src="/assets/js/app-swipe.js?v={CSS_VERSION}" defer></script>
 </body>
 </html>
 '''
