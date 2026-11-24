@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 10
+CSS_VERSION = 13
 
 
 def read(path):
@@ -126,6 +126,7 @@ class App:
         t = self.text(lang)
         n = t['nav']
         # On the app's own page the menu scrolls within it; elsewhere it leads back to that page's sections.
+        # The support page is not one of them: it is reached from the FAQ's link and the footer.
         top = '' if home else f'/{lang}/{self.base}'
         other = OTHER[lang]
         return f'''<header class="app-header">
@@ -136,7 +137,6 @@ class App:
 <a href="{top}#how">{e(n['how'])}</a>
 <a href="{top}#privacy">{e(n['privacy'])}</a>
 <a href="{top}#faq">{e(n['faq'])}</a>
-<a href="/{lang}/{self.base}support/">{e(n['support'])}</a>
 </nav>
 <div class="app-actions">
 <a class="lang" href="/{other}/{path}" hreflang="{other}" lang="{other}" aria-label="{e(t['langSwitch'])}"><i class="ri-global-line" aria-hidden="true"></i><span>{LANG_LABEL[other]}</span></a>
@@ -150,7 +150,6 @@ class App:
 <a href="{top}#how">{e(n['how'])}</a>
 <a href="{top}#privacy">{e(n['privacy'])}</a>
 <a href="{top}#faq">{e(n['faq'])}</a>
-<a href="/{lang}/{self.base}support/">{e(n['support'])}</a>
 <a class="app-menu-download" href="{top}#download">{e(n['download'])}</a>
 </nav>
 </div>
@@ -241,10 +240,14 @@ class App:
                       for q, a in t['faq']['items'])
         court = court_lines_svg()
         hero_court = court_lines_svg(shots=True)
-        # Two of the sample's numbers beside the phone: decorative, as its screen shows them too.
+        # Two of the sample's numbers beside the phone (never over it): decorative, as its screens show them too.
         (in_label, in_value), (net_label, net_value) = h['stats']
-        stats = f'''<div class="hero-stat hero-stat-in" aria-hidden="true"><span class="hero-stat-label">{e(in_label)}</span><span class="hero-stat-value">{e(in_value)}</span><span class="hero-stat-bar"><span style="width:82%"></span></span></div>
-<div class="hero-stat hero-stat-net" aria-hidden="true"><span class="hero-stat-label">{e(net_label)}</span><span class="hero-stat-value">{e(net_value)}</span><svg class="hero-stat-bars" viewBox="0 0 84 28"><rect x="0" y="20" width="10" height="8" rx="2"/><rect x="12" y="12" width="10" height="16" rx="2"/><rect x="24" y="4" width="10" height="24" rx="2"/><rect x="36" y="0" width="10" height="28" rx="2"/><rect x="48" y="9" width="10" height="19" rx="2"/><rect x="60" y="16" width="10" height="12" rx="2"/><rect x="72" y="22" width="10" height="6" rx="2"/></svg></div>'''
+        # A label breaks only before its bracket ("…（中央値）"), not inside a word.
+        label = lambda text: ''.join(f'<span class="phrase">{e(p)}</span>' for p in re.split(r'(?=（| \()', text))
+        stats = f'''<div class="hero-stats" aria-hidden="true">
+<div class="hero-stat"><span class="hero-stat-label">{label(in_label)}</span><span class="hero-stat-value">{e(in_value)}</span><span class="hero-stat-bar"><span style="width:{e(in_value)}"></span></span></div>
+<div class="hero-stat"><span class="hero-stat-label">{label(net_label)}</span><span class="hero-stat-value">{e(net_value)}</span><svg class="hero-stat-bars" viewBox="0 0 84 28"><rect x="0" y="20" width="10" height="8" rx="2"/><rect x="12" y="12" width="10" height="16" rx="2"/><rect x="24" y="4" width="10" height="24" rx="2"/><rect x="36" y="0" width="10" height="28" rx="2"/><rect x="48" y="9" width="10" height="19" rx="2"/><rect x="60" y="16" width="10" height="12" rx="2"/><rect x="72" y="22" width="10" height="6" rx="2"/></svg></div>
+</div>'''
         body = f'''<body class="page-home">
 {self.header(lang, path, True)}
 <main>
@@ -258,8 +261,8 @@ class App:
 {self.badges(lang, 'hero')}
 </div>
 <div class="hero-media">
-{self.phone(h['screen'], h['screenAlt'], lang, eager=True)}
 {stats}
+{self.phone(h['screen'], h['screenAlt'], lang, eager=True)}
 </div>
 </div>
 </section>
@@ -294,7 +297,6 @@ class App:
 <div class="wrap cta-inner">
 <img class="cta-icon" src="{self.img}/icon-256.png" alt="" width="96" height="96">
 <h2>{ph(t['cta']['title'])}</h2>
-<p>{e(t['cta']['lead'])}</p>
 {self.badges(lang, 'cta')}
 </div>
 </section>

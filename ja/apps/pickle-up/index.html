@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
-<link rel="stylesheet" href="/assets/css/apps/pickle-up.css?v=10">
+<link rel="stylesheet" href="/assets/css/apps/pickle-up.css?v=13">
 </head>
 <body class="page-home">
 <header class="app-header">
@@ -38,7 +38,6 @@
 <a href="#how">使い方</a>
 <a href="#privacy">プライバシー</a>
 <a href="#faq">よくある質問</a>
-<a href="/ja/apps/pickle-up/support/">サポート</a>
 </nav>
 <div class="app-actions">
 <a class="lang" href="/en/apps/pickle-up/" hreflang="en" lang="en" aria-label="言語を切り替える"><i class="ri-global-line" aria-hidden="true"></i><span>English</span></a>
@@ -52,7 +51,6 @@
 <a href="#how">使い方</a>
 <a href="#privacy">プライバシー</a>
 <a href="#faq">よくある質問</a>
-<a href="/ja/apps/pickle-up/support/">サポート</a>
 <a class="app-menu-download" href="#download">ダウンロード</a>
 </nav>
 </div>
@@ -68,9 +66,11 @@
 <div class="stores stores-hero"><span class="store"><img src="/images/apps/badges/app-store-ja.svg" alt="App Store からダウンロード" width="131" height="48"></span><span class="store"><img src="/images/apps/badges/google-play-ja.png" alt="Google Play で手に入れよう" width="161" height="48"></span></div><p class="stores-note">近日公開</p>
 </div>
 <div class="hero-media">
+<div class="hero-stats" aria-hidden="true">
+<div class="hero-stat"><span class="hero-stat-label"><span class="phrase">イン率</span><span class="phrase">（ボレー）</span></span><span class="hero-stat-value">63%</span><span class="hero-stat-bar"><span style="width:63%"></span></span></div>
+<div class="hero-stat"><span class="hero-stat-label"><span class="phrase">ネットの上の高さ</span><span class="phrase">（中央値）</span></span><span class="hero-stat-value">+19 cm</span><svg class="hero-stat-bars" viewBox="0 0 84 28"><rect x="0" y="20" width="10" height="8" rx="2"/><rect x="12" y="12" width="10" height="16" rx="2"/><rect x="24" y="4" width="10" height="24" rx="2"/><rect x="36" y="0" width="10" height="28" rx="2"/><rect x="48" y="9" width="10" height="19" rx="2"/><rect x="60" y="16" width="10" height="12" rx="2"/><rect x="72" y="22" width="10" height="6" rx="2"/></svg></div>
+</div>
 <figure class="phone"><img src="/images/apps/pickle-up/screens/3d-all-ja.webp" alt="サンプルの試合の画面。45本の打球を立体のコートに描き、イン率82%、ネットからの高さの中央値 +19cm を表示している" width="300" height="667" fetchpriority="high"></figure>
-<div class="hero-stat hero-stat-in" aria-hidden="true"><span class="hero-stat-label">イン率</span><span class="hero-stat-value">82%</span><span class="hero-stat-bar"><span style="width:82%"></span></span></div>
-<div class="hero-stat hero-stat-net" aria-hidden="true"><span class="hero-stat-label">ネットの上の高さ（中央値）</span><span class="hero-stat-value">+19 cm</span><svg class="hero-stat-bars" viewBox="0 0 84 28"><rect x="0" y="20" width="10" height="8" rx="2"/><rect x="12" y="12" width="10" height="16" rx="2"/><rect x="24" y="4" width="10" height="24" rx="2"/><rect x="36" y="0" width="10" height="28" rx="2"/><rect x="48" y="9" width="10" height="19" rx="2"/><rect x="60" y="16" width="10" height="12" rx="2"/><rect x="72" y="22" width="10" height="6" rx="2"/></svg></div>
 </div>
 </div>
 </section>
@@ -125,8 +125,7 @@
 <svg class="court-lines" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><path class="lines" d="M354 565 L682 783 M827 217 L1070 288 M354 565 L827 217 M682 783 L1070 288 M573 403 L871 541 M715 299 L985 397 M500 662 L709 466 M840 344 L941 250" fill="none" stroke="currentColor" stroke-width="2"/><path class="lines" d="M633 303 L957 426" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
 <div class="wrap cta-inner">
 <img class="cta-icon" src="/images/apps/pickle-up/icon-256.png" alt="" width="96" height="96">
-<h2><span class="phrase">次の試合から、</span><span class="phrase">分析してみましょう。</span></h2>
-<p>先に中身を見たいときは、アプリの中のサンプルの試合をどうぞ。撮らなくても開けます。</p>
+<h2><span class="phrase">撮るだけで</span><span class="phrase">次の試合が変わる</span></h2>
 <div class="stores stores-cta"><span class="store"><img src="/images/apps/badges/app-store-ja.svg" alt="App Store からダウンロード" width="131" height="48"></span><span class="store"><img src="/images/apps/badges/google-play-ja.png" alt="Google Play で手に入れよう" width="161" height="48"></span></div><p class="stores-note">近日公開</p>
 </div>
 </section>
@@ -161,9 +160,9 @@
 </div>
 </div>
 </footer>
-<script src="/assets/js/app-menu.js?v=10" defer></script>
-<script src="/assets/js/app-lang.js?v=10" defer></script>
+<script src="/assets/js/app-menu.js?v=13" defer></script>
+<script src="/assets/js/app-lang.js?v=13" defer></script>
 <script>document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });</script>
-<script src="/assets/js/app-carousel.js?v=10" defer></script>
+<script src="/assets/js/app-carousel.js?v=13" defer></script>
 </body>
 </html>

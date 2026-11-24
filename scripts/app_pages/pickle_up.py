@@ -35,7 +35,7 @@ JA = {
         'screen': '3d-all',
         'screenAlt': 'サンプルの試合の画面。45本の打球を立体のコートに描き、イン率82%、ネットからの高さの中央値 +19cm を表示している',
         # Beside the phone (decorative: the same numbers as its screen).
-        'stats': [('イン率', '82%'), ('ネットの上の高さ（中央値）', '+19 cm')],
+        'stats': [('イン率（ボレー）', '63%'), ('ネットの上の高さ（中央値）', '+19 cm')],
     },
     'features': {
         'title': '機能',
@@ -97,7 +97,7 @@ JA = {
         ],
         'more': 'サポートページを見る',
     },
-    'cta': {'title': '次の試合から、|分析してみましょう。', 'lead': '先に中身を見たいときは、アプリの中のサンプルの試合をどうぞ。撮らなくても開けます。'},
+    'cta': {'title': '撮るだけで|次の試合が変わる'},
     'footer': {
         'tagline': 'ピックルボールの試合を撮って、スコアと打った球を記録するアプリ',
         'app': 'アプリ',
@@ -168,7 +168,7 @@ EN = {
         'lead': 'See the shots that lose you points, and your game changes. Your video shows your strengths and weak spots to practise.',
         'screen': '3d-all',
         'screenAlt': 'The sample match: 45 shots drawn on a 3D court, with an 82% in rate and a median height over the net of +19 cm',
-        'stats': [('In rate', '82%'), ('Height over the net (median)', '+19 cm')],
+        'stats': [('In rate (volleys)', '63%'), ('Height over the net (median)', '+19 cm')],
     },
     'features': {
         'title': 'Features',
@@ -230,7 +230,7 @@ EN = {
         ],
         'more': 'Visit the support page',
     },
-    'cta': {'title': 'Try it at your next game.', 'lead': 'Want to look first? The app has a sample match you can open without filming anything.'},
+    'cta': {'title': 'Just film it.|Play better next game.'},
     'footer': {
         'tagline': 'Film your pickleball games. Keep the score and every shot you hit.',
         'app': 'App',
