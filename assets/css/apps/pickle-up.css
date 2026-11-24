@@ -185,7 +185,7 @@ html[lang="ja"] .section-title { letter-spacing: 0; }
 .plan dl { margin: 0; padding-top: 1.25rem; border-top: 1px solid #C9EED8; display: grid; gap: .875rem; align-content: start; }
 .plan dl > div { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
 .plan dt { color: var(--text); }
-.plan dd { margin: 0; font-weight: 700; color: var(--green); white-space: nowrap; text-align: right; }
+.plan dd { margin: 0; color: var(--green); white-space: nowrap; text-align: right; }
 .plan-premium { border: 2px solid var(--green); box-shadow: 0 24px 48px -30px rgba(11,122,92,.45); }
 .plans-note { max-width: 56rem; margin: 1.5rem 0 0; color: var(--muted); font-size: .875rem; }
 
