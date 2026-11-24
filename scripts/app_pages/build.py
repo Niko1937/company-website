@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 5
+CSS_VERSION = 6
 
 
 def read(path):
@@ -191,6 +191,7 @@ class App:
 </div>
 </footer>
 <script src="/assets/js/app-menu.js?v={CSS_VERSION}" defer></script>
+<script src="/assets/js/app-lang.js?v={CSS_VERSION}" defer></script>
 <script>document.querySelectorAll('[data-year]').forEach(function (el) {{ el.textContent = new Date().getFullYear(); }});</script>'''
 
     def phone(self, screen, alt, lang, eager=False, tag='figure'):
