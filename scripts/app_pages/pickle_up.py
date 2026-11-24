@@ -24,7 +24,7 @@ JA = {
     'lang': 'ja',
     'title': 'Pickle Up | 試合を撮って、打った球を全部振り返るピックルボールのアプリ',
     'description': 'コートの後ろにスマホを置いて試合をすると、スコアを数えて読み上げ、あなたが打った球を1本ずつコートに描きます。ドロップは入っているのにボレーはネット、といった傾向が数字で分かり、AI コーチが次に練習することを教えます。',
-    'nav': {'features': '機能', 'how': '使い方', 'privacy': 'プライバシー', 'faq': 'よくある質問', 'support': 'サポート', 'download': 'ダウンロード', 'menu': 'メニュー'},
+    'nav': {'features': '機能', 'how': '使い方', 'privacy': 'プライバシー', 'faq': 'よくある質問', 'support': 'サポート', 'download': 'ダウンロード', 'menu': 'メニュー', 'menuOpen': 'メニューを開く', 'menuClose': 'メニューを閉じる'},
     'langSwitch': '言語を切り替える',
     'soon': '近日公開',
     'storeAlt': {'appStore': 'App Store からダウンロード', 'googlePlay': 'Google Play で手に入れよう'},
@@ -33,7 +33,7 @@ JA = {
         'title': ['試合を撮ると、', '打った球が', '全部見える。'],
         'lead': 'スマホをコートの後ろに置いて、いつもどおり試合をしてください。Pickle Up がスコアを数えて読み上げ、あなたが打った球を1本ずつコートに描きます。試合のあとは AI コーチが、次に何を練習すればいいかを教えます。',
         'screen': '3d-all',
-        'screenAlt': 'サンプルの試合の画面。45本の打球を立体のコートに描き、イン率82%、ネットからの高さの中央値 +30cm を表示している',
+        'screenAlt': 'サンプルの試合の画面。45本の打球を立体のコートに描き、イン率82%、ネットからの高さの中央値 +19cm を表示している',
     },
     'features': {
         'title': 'Pickle Up でできること',
@@ -53,7 +53,7 @@ JA = {
                     ('flat-all', '上から見た45本。奥のベースラインの外と、ネットの上にある×がミスした球です。', '45本の打球を上から見たコートに描いた画面。アウトとネットのミスが赤い×で表示されている'),
                     ('3d-drop', 'ドロップだけに絞ると、7本中6本がイン。全部キッチンに届いていて、ドロップのスコアは95点です。', 'ドロップだけを表示した立体の画面。イン率86%、キッチンに届いた割合100%、スコア95点'),
                     ('3d-volley', 'ボレーだけにすると、8本中3本がネットに。イン率は63%、スコアは78点まで下がります。', 'ボレーだけを表示した立体の画面。ネットにかかった3本が赤い×で表示され、イン率63%、スコア78点'),
-                    ('3d-all', '立体で見ると、球の高さが分かります。この試合でネットの上を通った高さは、中央値で +30cm でした。指で回して角度を変えられます。', '45本の打球を立体のコートに描いた画面。イン率82%、ネットからの高さの中央値 +30cm'),
+                    ('3d-all', '立体で見ると、球の高さが分かります。この試合でネットの上を通った高さは、中央値で +19cm でした。指で回して角度を変えられます。', '45本の打球を立体のコートに描いた画面。イン率82%、ネットからの高さの中央値 +19cm'),
                 ],
             },
             {
@@ -78,9 +78,9 @@ JA = {
     'privacy': {
         'title': '動画は、|あなたのスマホから|出ません',
         'items': [
-            ('ri-lock-line', '動画は外に出ない', '動画はあなたの端末にしか保存されません。サーバー側で処理するのは、動画から判定された骨格や打球の動きの情報のみです。フォームの助言を頼んだときだけ静止画を最大4枚送り、すぐに削除します。'),
-            ('ri-user-unfollow-line', 'ログインなしで使える', '名前もメールアドレスも要りません。機種変更で記録を引き継ぎたくなったら、そのときにアカウントを作れます。'),
-            ('ri-eye-off-line', '広告も追跡もなし', '広告は出しません。行動を追跡するツールも組み込んでいません。あなたの情報を売ることもありません。'),
+            ('ri-lock-line', '動画は外に出ない', '動画はあなたの端末にしか保存されません。サーバー側で処理するのは、動画から判定された骨格や打球の動きの情報のみです。'),
+            ('ri-user-unfollow-line', 'ログインなしで使える', 'アカウント登録は不要です。機種変更などでデータを引き継ぎたい場合は、アカウントを作成して同期できます。'),
+            ('ri-eye-off-line', '広告も追跡もなし', '行動を追跡するツールは組み込んでおらず、広告用途などであなたの情報が外に漏れることもありません。'),
         ],
         'link': 'プライバシーポリシーを読む',
     },
@@ -156,7 +156,7 @@ EN = {
     'lang': 'en',
     'title': 'Pickle Up | Film your pickleball games and see every shot you hit',
     'description': 'Prop your phone behind the court and play. Pickle Up keeps and calls the score, draws each of your shots on the court, shows where they go wrong (your drops land, your volleys find the net), and its AI coach tells you what to practise.',
-    'nav': {'features': 'Features', 'how': 'How it works', 'privacy': 'Privacy', 'faq': 'FAQ', 'support': 'Support', 'download': 'Download', 'menu': 'Menu'},
+    'nav': {'features': 'Features', 'how': 'How it works', 'privacy': 'Privacy', 'faq': 'FAQ', 'support': 'Support', 'download': 'Download', 'menu': 'Menu', 'menuOpen': 'Open menu', 'menuClose': 'Close menu'},
     'langSwitch': 'Change language',
     'soon': 'Coming soon',
     'storeAlt': {'appStore': 'Download on the App Store', 'googlePlay': 'Get it on Google Play'},
@@ -165,7 +165,7 @@ EN = {
         'title': ['Film your game.', 'See every shot', 'you hit.'],
         'lead': 'Prop your phone behind the court and play as you always do. Pickle Up keeps score and calls it out, then draws each of your shots on the court. After the match, its AI coach tells you what to practise next.',
         'screen': '3d-all',
-        'screenAlt': 'The sample match: 45 shots drawn on a 3D court, with an 82% in rate and a median height over the net of +30 cm',
+        'screenAlt': 'The sample match: 45 shots drawn on a 3D court, with an 82% in rate and a median height over the net of +19 cm',
     },
     'features': {
         'title': 'What it does',
@@ -185,7 +185,7 @@ EN = {
                     ('flat-all', 'All 45 shots from above. The ×s past the far baseline and on the net are the misses.', '45 shots drawn on the court from above, with outs and nets marked with red ×s'),
                     ('3d-drop', 'Drops only: 6 of 7 went in, and every one reached the kitchen. Drop score: 95.', 'Drops only, in 3D: 86% in, 100% reached the kitchen, score 95'),
                     ('3d-volley', 'Volleys only: 3 of 8 went into the net. The in rate drops to 63% and the score to 78.', 'Volleys only, in 3D: three shots into the net marked with red ×s, 63% in, score 78'),
-                    ('3d-all', 'In 3D you can see how high each ball went. In this match, the median height over the net was +30 cm. Drag to turn the court.', '45 shots drawn on a 3D court, with an 82% in rate and a median height over the net of +30 cm'),
+                    ('3d-all', 'In 3D you can see how high each ball went. In this match, the median height over the net was +19 cm. Drag to turn the court.', '45 shots drawn on a 3D court, with an 82% in rate and a median height over the net of +19 cm'),
                 ],
             },
             {
@@ -210,9 +210,9 @@ EN = {
     'privacy': {
         'title': 'Your videos stay on your phone',
         'items': [
-            ('ri-lock-line', 'Videos never leave it', 'Videos are saved only on your phone. Our servers only handle the body and ball movement worked out from the video. If you ask for feedback on your form, up to 4 still frames are sent and deleted right after.'),
-            ('ri-user-unfollow-line', 'No sign-up', 'No name or email needed. If you want to move your records to a new phone later, you can make an account then.'),
-            ('ri-eye-off-line', 'No ads, no tracking', 'There are no ads and no tracking tools in the app. We never sell your information.'),
+            ('ri-lock-line', 'Videos never leave it', 'Videos are saved only on your phone. Our servers only handle the body and ball movement worked out from the video.'),
+            ('ri-user-unfollow-line', 'No sign-up', 'No account needed. To move your data to a new phone, create an account and sync.'),
+            ('ri-eye-off-line', 'No ads, no tracking', 'There are no tracking tools in the app, and your information never leaves it for advertising or anything like it.'),
         ],
         'link': 'Read the privacy policy',
     },

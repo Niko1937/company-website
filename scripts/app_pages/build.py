@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 4
+CSS_VERSION = 5
 
 
 def read(path):
@@ -140,8 +140,19 @@ class App:
 </nav>
 <div class="app-actions">
 <a class="lang" href="/{other}/{path}" hreflang="{other}" lang="{other}" aria-label="{e(t['langSwitch'])}"><i class="ri-global-line" aria-hidden="true"></i><span>{LANG_LABEL[other]}</span></a>
-<a class="button button-small" href="{top}#download">{e(n['download'])}</a>
+<a class="button button-small header-download" href="{top}#download">{e(n['download'])}</a>
+<button type="button" id="appMenuBtn" class="menu-btn" aria-expanded="false" aria-controls="appMenu" aria-label="{e(n['menuOpen'])}" data-open-label="{e(n['menuOpen'])}" data-close-label="{e(n['menuClose'])}"><i class="ri-menu-line" aria-hidden="true"></i></button>
 </div>
+</div>
+<div id="appMenu" class="app-menu" hidden>
+<nav class="wrap" aria-label="{e(n['menu'])}">
+<a href="{top}#features">{e(n['features'])}</a>
+<a href="{top}#how">{e(n['how'])}</a>
+<a href="{top}#privacy">{e(n['privacy'])}</a>
+<a href="{top}#faq">{e(n['faq'])}</a>
+<a href="/{lang}/{self.base}support/">{e(n['support'])}</a>
+<a class="app-menu-download" href="{top}#download">{e(n['download'])}</a>
+</nav>
 </div>
 </header>'''
 
@@ -179,6 +190,7 @@ class App:
 </div>
 </div>
 </footer>
+<script src="/assets/js/app-menu.js?v={CSS_VERSION}" defer></script>
 <script>document.querySelectorAll('[data-year]').forEach(function (el) {{ el.textContent = new Date().getFullYear(); }});</script>'''
 
     def phone(self, screen, alt, lang, eager=False, tag='figure'):

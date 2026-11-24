@@ -42,7 +42,23 @@ img { max-width: 100%; height: auto; }
 .lang:hover { color: var(--on-ink); }
 .lang i { font-size: 1.0625rem; }
 @media (max-width: 479px) { .app-actions .lang span { display: none; } }
-@media (min-width: 900px) { .app-nav { display: flex; } }
+/* Phones: the sections, support and Download move into a menu under the bar, as on the Quests site */
+.menu-btn { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin-right: -.5rem; border: 0; border-radius: 999px; background: none; color: var(--on-ink); font-size: 1.5rem; cursor: pointer; }
+.menu-btn:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; }
+.app-actions .header-download { display: none; }
+.app-menu { position: absolute; left: 0; right: 0; background: var(--ink-2); border-top: 1px solid rgba(255,255,255,.06); box-shadow: 0 16px 32px -12px rgba(0,0,0,.45); }
+.app-menu[hidden] { display: none; }
+.app-menu nav { display: flex; flex-direction: column; padding-top: .5rem; padding-bottom: 1rem; }
+.app-menu a { display: block; padding: .875rem 0; color: var(--on-ink); font-size: 1.0625rem; font-weight: 500; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.07); }
+.app-menu a:hover { color: var(--mint); }
+.app-menu .app-menu-download { margin-top: 1rem; padding: .75rem 1rem; border: 0; border-radius: 999px; background: var(--mint); color: var(--ink); font-weight: 700; text-align: center; }
+.app-menu .app-menu-download:hover { color: var(--ink); background: #E6FCE9; }
+.app-header:has(.menu-btn[aria-expanded="true"]) { background: var(--ink-2); }
+@media (min-width: 900px) {
+  .app-nav { display: flex; }
+  .app-actions .header-download { display: inline-flex; }
+  .menu-btn, .app-menu { display: none !important; }
+}
 
 .button { display: inline-flex; align-items: center; justify-content: center; gap: .375rem; min-height: 48px; padding: 0 1.375rem; border-radius: 999px; background: var(--mint); color: var(--ink); font-weight: 700; text-decoration: none; transition: transform .15s ease, background-color .2s; }
 .button:hover { background: #E6FCE9; }

@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
-<link rel="stylesheet" href="/assets/css/apps/pickle-up.css?v=4">
+<link rel="stylesheet" href="/assets/css/apps/pickle-up.css?v=5">
 </head>
 <body class="page-home">
 <header class="app-header">
@@ -42,8 +42,19 @@
 </nav>
 <div class="app-actions">
 <a class="lang" href="/ja/apps/pickle-up/" hreflang="ja" lang="ja" aria-label="Change language"><i class="ri-global-line" aria-hidden="true"></i><span>日本語</span></a>
-<a class="button button-small" href="#download">Download</a>
+<a class="button button-small header-download" href="#download">Download</a>
+<button type="button" id="appMenuBtn" class="menu-btn" aria-expanded="false" aria-controls="appMenu" aria-label="Open menu" data-open-label="Open menu" data-close-label="Close menu"><i class="ri-menu-line" aria-hidden="true"></i></button>
 </div>
+</div>
+<div id="appMenu" class="app-menu" hidden>
+<nav class="wrap" aria-label="Menu">
+<a href="#features">Features</a>
+<a href="#how">How it works</a>
+<a href="#privacy">Privacy</a>
+<a href="#faq">FAQ</a>
+<a href="/en/apps/pickle-up/support/">Support</a>
+<a class="app-menu-download" href="#download">Download</a>
+</nav>
 </div>
 </header>
 <main>
@@ -56,7 +67,7 @@
 <div class="stores stores-hero"><span class="store"><img src="/images/apps/badges/app-store-en.svg" alt="Download on the App Store" width="144" height="48"></span><span class="store"><img src="/images/apps/badges/google-play-en.png" alt="Get it on Google Play" width="161" height="48"></span></div><p class="stores-note">Coming soon</p>
 </div>
 <div class="hero-media">
-<figure class="phone"><img src="/images/apps/pickle-up/screens/3d-all-en.webp" alt="The sample match: 45 shots drawn on a 3D court, with an 82% in rate and a median height over the net of +30 cm" width="300" height="667" fetchpriority="high"></figure>
+<figure class="phone"><img src="/images/apps/pickle-up/screens/3d-all-en.webp" alt="The sample match: 45 shots drawn on a 3D court, with an 82% in rate and a median height over the net of +19 cm" width="300" height="667" fetchpriority="high"></figure>
 </div>
 </div>
 </section>
@@ -71,7 +82,7 @@
 <p class="feature-note">Side-out and rally scoring. Calls are in English, and you can switch them to Japanese.</p>
 </div>
 </article><article class="feature feature-flip">
-<div class="feature-media"><div class="carousel" data-carousel><div class="carousel-track" tabindex="0"><figure class="slide"><div class="phone"><img src="/images/apps/pickle-up/screens/flat-all-en.webp" alt="45 shots drawn on the court from above, with outs and nets marked with red ×s" width="300" height="667" loading="lazy" decoding="async"></div><figcaption>All 45 shots from above. The ×s past the far baseline and on the net are the misses.</figcaption></figure><figure class="slide"><div class="phone"><img src="/images/apps/pickle-up/screens/3d-drop-en.webp" alt="Drops only, in 3D: 86% in, 100% reached the kitchen, score 95" width="300" height="667" loading="lazy" decoding="async"></div><figcaption>Drops only: 6 of 7 went in, and every one reached the kitchen. Drop score: 95.</figcaption></figure><figure class="slide"><div class="phone"><img src="/images/apps/pickle-up/screens/3d-volley-en.webp" alt="Volleys only, in 3D: three shots into the net marked with red ×s, 63% in, score 78" width="300" height="667" loading="lazy" decoding="async"></div><figcaption>Volleys only: 3 of 8 went into the net. The in rate drops to 63% and the score to 78.</figcaption></figure><figure class="slide"><div class="phone"><img src="/images/apps/pickle-up/screens/3d-all-en.webp" alt="45 shots drawn on a 3D court, with an 82% in rate and a median height over the net of +30 cm" width="300" height="667" loading="lazy" decoding="async"></div><figcaption>In 3D you can see how high each ball went. In this match, the median height over the net was +30 cm. Drag to turn the court.</figcaption></figure></div><div class="carousel-nav"><button type="button" class="carousel-prev" aria-label="Previous screen" disabled><i class="ri-arrow-left-s-line" aria-hidden="true"></i></button><div class="carousel-dots"><button type="button" class="carousel-dot" aria-label="Screen 1" aria-current="true"></button><button type="button" class="carousel-dot" aria-label="Screen 2"></button><button type="button" class="carousel-dot" aria-label="Screen 3"></button><button type="button" class="carousel-dot" aria-label="Screen 4"></button></div><button type="button" class="carousel-next" aria-label="Next screen"><i class="ri-arrow-right-s-line" aria-hidden="true"></i></button></div></div></div>
+<div class="feature-media"><div class="carousel" data-carousel><div class="carousel-track" tabindex="0"><figure class="slide"><div class="phone"><img src="/images/apps/pickle-up/screens/flat-all-en.webp" alt="45 shots drawn on the court from above, with outs and nets marked with red ×s" width="300" height="667" loading="lazy" decoding="async"></div><figcaption>All 45 shots from above. The ×s past the far baseline and on the net are the misses.</figcaption></figure><figure class="slide"><div class="phone"><img src="/images/apps/pickle-up/screens/3d-drop-en.webp" alt="Drops only, in 3D: 86% in, 100% reached the kitchen, score 95" width="300" height="667" loading="lazy" decoding="async"></div><figcaption>Drops only: 6 of 7 went in, and every one reached the kitchen. Drop score: 95.</figcaption></figure><figure class="slide"><div class="phone"><img src="/images/apps/pickle-up/screens/3d-volley-en.webp" alt="Volleys only, in 3D: three shots into the net marked with red ×s, 63% in, score 78" width="300" height="667" loading="lazy" decoding="async"></div><figcaption>Volleys only: 3 of 8 went into the net. The in rate drops to 63% and the score to 78.</figcaption></figure><figure class="slide"><div class="phone"><img src="/images/apps/pickle-up/screens/3d-all-en.webp" alt="45 shots drawn on a 3D court, with an 82% in rate and a median height over the net of +19 cm" width="300" height="667" loading="lazy" decoding="async"></div><figcaption>In 3D you can see how high each ball went. In this match, the median height over the net was +19 cm. Drag to turn the court.</figcaption></figure></div><div class="carousel-nav"><button type="button" class="carousel-prev" aria-label="Previous screen" disabled><i class="ri-arrow-left-s-line" aria-hidden="true"></i></button><div class="carousel-dots"><button type="button" class="carousel-dot" aria-label="Screen 1" aria-current="true"></button><button type="button" class="carousel-dot" aria-label="Screen 2"></button><button type="button" class="carousel-dot" aria-label="Screen 3"></button><button type="button" class="carousel-dot" aria-label="Screen 4"></button></div><button type="button" class="carousel-next" aria-label="Next screen"><i class="ri-arrow-right-s-line" aria-hidden="true"></i></button></div></div></div>
 <div class="feature-copy">
 <h3>Every shot on the court, misses included</h3>
 <p>Tap yourself once in the video and Pickle Up draws each shot you hit. Shots that land get a circle; outs and nets get a red ×. Filter by shot and the differences show up in numbers. Maybe your drops land and your volleys keep finding the net.</p>
@@ -96,7 +107,7 @@
 <section id="privacy" class="section section-dark">
 <div class="wrap">
 <h2 class="section-title">Your videos stay on your phone</h2>
-<ul class="promises"><li><h3><i class="ri-lock-line" aria-hidden="true"></i>Videos never leave it</h3><p>Videos are saved only on your phone. Our servers only handle the body and ball movement worked out from the video. If you ask for feedback on your form, up to 4 still frames are sent and deleted right after.</p></li><li><h3><i class="ri-user-unfollow-line" aria-hidden="true"></i>No sign-up</h3><p>No name or email needed. If you want to move your records to a new phone later, you can make an account then.</p></li><li><h3><i class="ri-eye-off-line" aria-hidden="true"></i>No ads, no tracking</h3><p>There are no ads and no tracking tools in the app. We never sell your information.</p></li></ul>
+<ul class="promises"><li><h3><i class="ri-lock-line" aria-hidden="true"></i>Videos never leave it</h3><p>Videos are saved only on your phone. Our servers only handle the body and ball movement worked out from the video.</p></li><li><h3><i class="ri-user-unfollow-line" aria-hidden="true"></i>No sign-up</h3><p>No account needed. To move your data to a new phone, create an account and sync.</p></li><li><h3><i class="ri-eye-off-line" aria-hidden="true"></i>No ads, no tracking</h3><p>There are no tracking tools in the app, and your information never leaves it for advertising or anything like it.</p></li></ul>
 <p class="section-more"><a href="privacy/">Read the privacy policy<i class="ri-arrow-right-line" aria-hidden="true"></i></a></p>
 </div>
 </section>
@@ -147,7 +158,8 @@
 </div>
 </div>
 </footer>
+<script src="/assets/js/app-menu.js?v=5" defer></script>
 <script>document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });</script>
-<script src="/assets/js/app-carousel.js?v=4" defer></script>
+<script src="/assets/js/app-carousel.js?v=5" defer></script>
 </body>
 </html>

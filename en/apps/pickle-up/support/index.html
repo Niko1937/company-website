@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
-<link rel="stylesheet" href="/assets/css/apps/pickle-up.css?v=4">
+<link rel="stylesheet" href="/assets/css/apps/pickle-up.css?v=5">
 </head>
 <body class="page-doc">
 <header class="app-header">
@@ -42,8 +42,19 @@
 </nav>
 <div class="app-actions">
 <a class="lang" href="/ja/apps/pickle-up/support/" hreflang="ja" lang="ja" aria-label="Change language"><i class="ri-global-line" aria-hidden="true"></i><span>日本語</span></a>
-<a class="button button-small" href="/en/apps/pickle-up/#download">Download</a>
+<a class="button button-small header-download" href="/en/apps/pickle-up/#download">Download</a>
+<button type="button" id="appMenuBtn" class="menu-btn" aria-expanded="false" aria-controls="appMenu" aria-label="Open menu" data-open-label="Open menu" data-close-label="Close menu"><i class="ri-menu-line" aria-hidden="true"></i></button>
 </div>
+</div>
+<div id="appMenu" class="app-menu" hidden>
+<nav class="wrap" aria-label="Menu">
+<a href="/en/apps/pickle-up/#features">Features</a>
+<a href="/en/apps/pickle-up/#how">How it works</a>
+<a href="/en/apps/pickle-up/#privacy">Privacy</a>
+<a href="/en/apps/pickle-up/#faq">FAQ</a>
+<a href="/en/apps/pickle-up/support/">Support</a>
+<a class="app-menu-download" href="/en/apps/pickle-up/#download">Download</a>
+</nav>
 </div>
 </header>
 <main class="doc">
@@ -67,7 +78,7 @@
 <button type="submit" class="button">Continue to email<i class="ri-mail-send-line" aria-hidden="true"></i></button>
 </form>
 </section>
-<script src="/assets/js/app-contact.js?v=4" defer></script>
+<script src="/assets/js/app-contact.js?v=5" defer></script>
 </div>
 </main>
 <footer class="app-footer">
@@ -100,6 +111,7 @@
 </div>
 </div>
 </footer>
+<script src="/assets/js/app-menu.js?v=5" defer></script>
 <script>document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });</script>
 </body>
 </html>
