@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 25
+CSS_VERSION = 26
 
 
 def read(path):
