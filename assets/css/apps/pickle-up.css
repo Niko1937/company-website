@@ -324,3 +324,13 @@ th { color: var(--ink); font-weight: 700; white-space: nowrap; }
 .mailer-options i { font-size: 1.25rem; color: var(--green); }
 .mailer-options [data-mailer="gmail"] i { color: #EA4335; }
 .mailer-options [data-mailer="outlook"] i { color: #0078D4; }
+
+/* A sound sample beside a feature: a quiet pill; while it plays, the icon pulses. */
+.audio-sample { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; margin-top: 1.25rem; padding: 0 1.125rem; border: 1px solid var(--line); border-radius: 999px; background: var(--paper); color: var(--text); font: inherit; font-size: .9375rem; font-weight: 600; cursor: pointer; transition: background-color .2s, border-color .2s; }
+.audio-sample i { color: var(--green); font-size: 1.25rem; }
+.audio-sample:hover { border-color: var(--green); }
+.audio-sample:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+.audio-sample.is-playing { background: #ECFAF2; border-color: var(--green); }
+.audio-sample.is-playing i { animation: audio-pulse .8s ease-in-out infinite alternate; }
+@keyframes audio-pulse { from { opacity: 1; } to { opacity: .35; } }
+@media (prefers-reduced-motion: reduce) { .audio-sample.is-playing i { animation: none; } }

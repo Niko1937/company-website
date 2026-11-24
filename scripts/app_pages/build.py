@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 26
+CSS_VERSION = 27
 
 
 def read(path):
@@ -200,6 +200,13 @@ class App:
         return (f'<{tag} class="phone"><img src="{self.img}/screens/{screen}-{lang}.webp" alt="{e(alt)}" '
                 f'width="300" height="{dh}" {load}></{tag}>')
 
+    def audio_button(self, audio):
+        # A sound sample beside a feature (the score call, in the app's own voice; assets/js/app-audio.js).
+        if not audio:
+            return ''
+        return (f'\n<button type="button" class="audio-sample" data-audio="/assets/audio/apps/{self.slug}/{audio["src"]}">'
+                f'<i class="ri-volume-up-line" aria-hidden="true"></i><span>{e(audio["label"])}</span></button>')
+
     def slides(self, slides, lang):
         # One screen, or several to page through (‹ ›, the dots, or a swipe; assets/js/app-carousel.js).
         # Without the script they still scroll sideways, one screen at a time.
@@ -227,7 +234,7 @@ class App:
 <div class="feature-media">{self.slides(it['slides'], lang)}</div>
 <div class="feature-copy">
 <h3>{ph(it['title'])}</h3>
-<p>{e(it['body'])}</p>
+<p>{e(it['body'])}</p>{self.audio_button(it.get('audio'))}
 </div>
 </article>''')
         pv = t['privacy']
@@ -323,6 +330,7 @@ class App:
 </main>
 {self.footer(lang, path)}
 <script src="/assets/js/app-carousel.js?v={CSS_VERSION}" defer></script>
+<script src="/assets/js/app-audio.js?v={CSS_VERSION}" defer></script>
 </body>
 </html>
 '''

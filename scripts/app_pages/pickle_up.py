@@ -43,7 +43,11 @@ JA = {
             {
                 'title': 'スコアはアプリが数えて、|声でコールする',
                 'body': 'ラリーが終わるたびに、アプリがスコアを声でコール。数え間違いを気にせず、プレーに集中できます。',
+                # Heard on the page: the call the first screen shows, in the app's own English voice.
+                'audio': {'src': 'score-call-en.mp3', 'label': '読み上げの例を聞く（英語・7-5）'},
                 'slides': [
+                    ('recording', '試合を録画している画面。コートの映像の上に 7-5 のスコアが出ていて、右上の読み上げはオン'),
+                    ('recording-settings', '録画中に開いた試合の設定。得点方式・何点先取・デュース・ゲーム数を、録画を続けたまま変えられる'),
                     ('score', '試合の画面。自分11点・相手8点で勝ちの表示'),
                 ],
             },
@@ -187,7 +191,10 @@ EN = {
             {
                 'title': 'It keeps score and calls it out',
                 'body': 'After every rally, the app calls the score out loud. No miscounts. Just play.',
+                'audio': {'src': 'score-call-en.mp3', 'label': 'Hear an example call (7–5)'},
                 'slides': [
+                    ('recording', 'Recording a match: the score 7–5 over the court, with the score call switched on'),
+                    ('recording-settings', 'Match settings opened while recording: scoring, points to win, win by 2 and games, changed without stopping'),
                     ('score', 'The match screen: won 11–8'),
                 ],
             },
