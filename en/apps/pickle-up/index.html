@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
-<link rel="stylesheet" href="/assets/css/apps/pickle-up.css?v=22">
+<link rel="stylesheet" href="/assets/css/apps/pickle-up.css?v=24">
 </head>
 <body class="page-home">
 <header class="app-header">
@@ -111,15 +111,19 @@
 <div class="wrap">
 <h2 class="section-title">Pricing</h2>
 <div class="plans"><article class="plan">
-<h3>Free</h3>
+<div class="plan-head">
+<div class="plan-title"><h3>Free plan</h3></div>
 <p class="plan-price"><span lang="en">$0</span><span class="plan-period"></span></p>
 <p class="plan-sub">Free forever</p>
-<ul><li><i class="ri-check-line" aria-hidden="true"></i>Score kept and called out</li><li><i class="ri-check-line" aria-hidden="true"></i>Shot analysis, 60 minutes a month</li><li><i class="ri-check-line" aria-hidden="true"></i>AI coach advice, 2 a month</li><li><i class="ri-check-line" aria-hidden="true"></i>Form check and drills</li></ul>
+</div>
+<dl><div><dt>Shot analysis</dt><dd>60 min a month</dd></div><div><dt>Form review</dt><dd>60 min a month</dd></div><div><dt>AI coach advice</dt><dd>2 a month</dd></div><div><dt>Score kept and called out</dt><dd>Unlimited</dd></div><div><dt>Practice drills</dt><dd>Unlimited</dd></div></dl>
 </article><article class="plan plan-premium">
-<h3>Premium</h3><span class="plan-badge">7-day free trial</span>
+<div class="plan-head">
+<div class="plan-title"><h3>Premium plan</h3><span class="plan-badge">7-day free trial</span></div>
 <p class="plan-price"><span lang="en">$19.99</span><span class="plan-period">/month</span></p>
 <p class="plan-sub">Or $164.99 a year (about $13.75 a month)</p><p class="plan-trial">Try the yearly plan free for 7 days. Cancel before it ends and you pay nothing.</p>
-<ul><li><i class="ri-check-line" aria-hidden="true"></i>Unlimited shot analysis</li><li><i class="ri-check-line" aria-hidden="true"></i>AI coach advice, 50 a month</li><li><i class="ri-check-line" aria-hidden="true"></i>Everything in Free</li></ul>
+</div>
+<dl><div><dt>Shot analysis</dt><dd>Unlimited</dd></div><div><dt>Form review</dt><dd>Unlimited</dd></div><div><dt>AI coach advice</dt><dd>50 a month</dd></div><div><dt>Score kept and called out</dt><dd>Unlimited</dd></div><div><dt>Practice drills</dt><dd>Unlimited</dd></div></dl>
 </article></div>
 <p class="plans-note">Prices are in US dollars and vary by country; your app store shows yours.</p>
 </div>
@@ -134,7 +138,7 @@
 <section id="faq" class="section">
 <div class="wrap narrow">
 <h2 class="section-title">Questions</h2>
-<div class="faq"><details><summary>Where do I put my phone?<i class="ri-add-line" aria-hidden="true"></i></summary><p>Behind the court, with all four corners and the server on your side in view. The app’s filming guide shows an example.</p></details><details><summary>Where are my videos kept?<i class="ri-add-line" aria-hidden="true"></i></summary><p>In the app’s own storage on your phone. Videos are never sent to our servers.</p></details><details><summary>How accurate is the analysis?<i class="ri-add-line" aria-hidden="true"></i></summary><p>It is estimated from one phone’s video, so landings on the far side and ball heights are off by a little. Shots it cannot judge with confidence are not drawn; they are counted as unclear.</p></details><details><summary>Is it free?<i class="ri-add-line" aria-hidden="true"></i></summary><p>Yes. Recording, automatic scoring and calls, and the drills are free. Shot analysis is free for 60 minutes of video a month, and unlimited with Premium.</p></details><details><summary>Which phones does it run on?<i class="ri-add-line" aria-hidden="true"></i></summary><p>iPhone and Android versions are on the way. We will post here when they are out.</p></details></div>
+<div class="faq"><details><summary>Where do I put my phone?<i class="ri-add-line" aria-hidden="true"></i></summary><p>Behind the court, with all four corners and the server on your side in view. The app’s filming guide shows an example.</p></details><details><summary>Where are my videos kept?<i class="ri-add-line" aria-hidden="true"></i></summary><p>In the app’s own storage on your phone. Videos are never sent to our servers.</p></details><details><summary>How accurate is the analysis?<i class="ri-add-line" aria-hidden="true"></i></summary><p>It is estimated from one phone’s video, so landings on the far side and ball heights are off by a little. Shots it cannot judge with confidence are not drawn; they are counted as unclear.</p></details><details><summary>Is it free?<i class="ri-add-line" aria-hidden="true"></i></summary><p>Yes. Recording, automatic scoring and calls, and the drills are free. Shot analysis and form review are each free for 60 minutes of video a month, and unlimited with Premium.</p></details><details><summary>Which phones does it run on?<i class="ri-add-line" aria-hidden="true"></i></summary><p>iPhone and Android versions are on the way. We will post here when they are out.</p></details></div>
 <p class="section-more"><a href="support/">Visit the support page<i class="ri-arrow-right-line" aria-hidden="true"></i></a></p>
 </div>
 </section>
@@ -175,9 +179,9 @@
 </div>
 </div>
 </footer>
-<script src="/assets/js/app-menu.js?v=22" defer></script>
-<script src="/assets/js/app-lang.js?v=22" defer></script>
+<script src="/assets/js/app-menu.js?v=24" defer></script>
+<script src="/assets/js/app-lang.js?v=24" defer></script>
 <script>document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });</script>
-<script src="/assets/js/app-carousel.js?v=22" defer></script>
+<script src="/assets/js/app-carousel.js?v=24" defer></script>
 </body>
 </html>

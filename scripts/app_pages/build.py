@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 22
+CSS_VERSION = 24
 
 
 def read(path):
@@ -235,10 +235,12 @@ class App:
         # Two cards, the free plan and Premium (highlighted); docs/PRICING.md in the app's repository is the source.
         plans = ''.join(
             f'''<article class="plan{' plan-premium' if p.get('badge') else ''}">
-<h3>{e(p['name'])}</h3>{f'<span class="plan-badge">{e(p["badge"])}</span>' if p.get('badge') else ''}
+<div class="plan-head">
+<div class="plan-title"><h3>{e(p['name'])}</h3>{f'<span class="plan-badge">{e(p["badge"])}</span>' if p.get('badge') else ''}</div>
 <p class="plan-price"><span lang="en">{e(p['price'])}</span><span class="plan-period">{e(p['period'])}</span></p>
 <p class="plan-sub">{e(p['sub'])}</p>{f'<p class="plan-trial">{e(p["trial"])}</p>' if p.get('trial') else ''}
-<ul>{''.join(f'<li><i class="ri-check-line" aria-hidden="true"></i>{e(x)}</li>' for x in p['items'])}</ul>
+</div>
+<dl>{''.join(f'<div><dt>{e(k)}</dt><dd>{e(v)}</dd></div>' for k, v in p['items'])}</dl>
 </article>''' for p in t['pricing']['plans'])
         steps = ''.join(f'<li><span class="step-number" lang="en">{n + 1}</span><h3>{e(a)}</h3><p>{e(b)}</p></li>'
                         for n, (a, b) in enumerate(t['how']['steps']))
