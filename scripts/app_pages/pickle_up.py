@@ -31,7 +31,7 @@ JA = {
     'carousel': {'prev': '前の画面', 'next': '次の画面', 'slide': '{n}枚目'},
     'hero': {
         'title': ['撮るだけで', '次の試合が変わる'],
-        'lead': 'プレー中は、どこで点を落としているか分かりません。Pickle Up が動画からミスの傾向を数字で示し、次に練習することを教えます。',
+        'lead': 'コーチがいなくても、自分の弱点が分かる。試合の動画から点を落としているショットを見つけ、次に練習することまで教えます。',
         'screen': '3d-all',
         'screenAlt': 'サンプルの試合の画面。45本の打球を立体のコートに描き、イン率82%、ネットからの高さの中央値 +19cm を表示している',
     },
@@ -43,7 +43,7 @@ JA = {
                 'body': 'ラリーが終わるたびに「1-0-2」のようにスコアをコールします。サーブの順番もアプリが覚えているので、プレーを止めて数え直すことはありません。終わった試合はスコアと一緒に記録に残ります。',
                 'note': 'サイドアウト制とラリーポイント制に対応しています。コールは英語で、日本語にも切り替えられます。',
                 'slides': [
-                    ('score', '試合中にコールしたスコアの一覧。11対8、41ラリーの試合です。', '試合の画面。11対8のスコアと、読み上げたスコアコールの一覧'),
+                    ('score', 'どちらが自分たちで、勝ったか負けたかがひと目で分かります。下は試合中に読み上げたスコアです。', '試合の画面。自分たち11点・相手8点で勝ちの表示と、読み上げたスコアコールの一覧'),
                 ],
             },
             {
@@ -163,7 +163,7 @@ EN = {
     'carousel': {'prev': 'Previous screen', 'next': 'Next screen', 'slide': 'Screen {n}'},
     'hero': {
         'title': ['Just film it.', 'Play better next game.'],
-        'lead': 'Mid-game, you can’t see which shots cost you points. Pickle Up finds them in your video and tells you what to practise.',
+        'lead': 'No coach? You’ll still find your weak spots: the shots costing you points, and what to practise next.',
         'screen': '3d-all',
         'screenAlt': 'The sample match: 45 shots drawn on a 3D court, with an 82% in rate and a median height over the net of +19 cm',
     },
@@ -175,7 +175,7 @@ EN = {
                 'body': 'After every rally it calls the score, like “1-0-2”. It keeps track of who serves, so nobody has to stop and recount. When the game ends, the score goes into your history.',
                 'note': 'Side-out and rally scoring. Calls are in English, and you can switch them to Japanese.',
                 'slides': [
-                    ('score', 'The calls made during an 11–8 game of 41 rallies.', 'The match screen, with an 11–8 score and the calls made during the game'),
+                    ('score', 'See at a glance which side is yours and whether you won. Below are the calls made during play.', 'The match screen: won 11–8, with the calls made during the game'),
                 ],
             },
             {
