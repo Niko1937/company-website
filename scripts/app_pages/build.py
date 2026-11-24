@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 17
+CSS_VERSION = 18
 
 
 def read(path):
@@ -199,10 +199,10 @@ class App:
                 f'width="300" height="{dh}" {load}></{tag}>')
 
     def slides(self, slides, lang):
-        # One screen with its caption, or several to page through (‹ ›, the dots, or a swipe; assets/js/app-carousel.js).
+        # One screen, or several to page through (‹ ›, the dots, or a swipe; assets/js/app-carousel.js).
         # Without the script they still scroll sideways, one screen at a time.
-        figs = ''.join(f'<figure class="slide">{self.phone(screen, alt, lang, tag="div")}<figcaption>{e(cap)}</figcaption></figure>'
-                       for screen, cap, alt in slides)
+        # No caption under the screen: the feature's text says it, and on phones it was too much to read.
+        figs = ''.join(f'<figure class="slide">{self.phone(screen, alt, lang, tag="div")}</figure>' for screen, alt in slides)
         if len(slides) == 1:
             return f'<div class="carousel carousel-single"><div class="carousel-track">{figs}</div></div>'
         c = self.text(lang)['carousel']
@@ -221,13 +221,11 @@ class App:
         title = ''.join(f'<span class="phrase">{e(p)}</span>' for p in h['title'])
         feats = []
         for i, it in enumerate(t['features']['items']):
-            note = f'<p class="feature-note">{e(it["note"])}</p>' if it.get('note') else ''
             feats.append(f'''<article class="feature{' feature-flip' if i % 2 else ''}">
 <div class="feature-media">{self.slides(it['slides'], lang)}</div>
 <div class="feature-copy">
 <h3>{ph(it['title'])}</h3>
 <p>{e(it['body'])}</p>
-{note}
 </div>
 </article>''')
         pv = t['privacy']

@@ -175,7 +175,6 @@ html[lang="ja"] .section-title { letter-spacing: 0; }
 .feature h3 { margin: 0 0 1rem; font-size: clamp(1.5rem, 2.8vw, 2rem); line-height: 1.4; font-weight: 800; letter-spacing: -.01em; }
 html[lang="ja"] .feature h3 { letter-spacing: 0; }
 .feature-copy > p { margin: 0 0 1rem; color: var(--muted); font-size: 1.0625rem; }
-.feature-copy > .feature-note { font-size: .9375rem; }
 @media (min-width: 900px) {
   .feature { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4rem; }
   .feature + .feature { margin-top: 7rem; }
@@ -190,7 +189,6 @@ html[lang="ja"] .feature h3 { letter-spacing: 0; }
 .carousel-track:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-radius: 12px; }
 .slide { flex: 0 0 100%; margin: 0; display: grid; justify-items: center; align-content: start; gap: 1.25rem; padding: 0 1rem 1.5rem; scroll-snap-align: center; }
 .slide .phone { box-shadow: 0 0 0 1px rgba(255,255,255,.06) inset, 0 20px 28px -20px rgba(14,16,20,.5); }
-.slide figcaption { max-width: 300px; color: var(--muted); font-size: .9375rem; line-height: 1.7; }
 .carousel-nav { display: flex; align-items: center; gap: 1rem; }
 .carousel-prev, .carousel-next { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 999px; background: var(--paper); color: var(--ink); font-size: 1.5rem; cursor: pointer; transition: background-color .2s, opacity .2s; }
 .carousel-prev:hover:not(:disabled), .carousel-next:hover:not(:disabled) { background: var(--mint); }

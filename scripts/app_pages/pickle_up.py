@@ -42,29 +42,28 @@ JA = {
         'items': [
             {
                 'title': 'スコアはアプリが数えて、|声でコールする',
-                'body': 'ラリーが終わるたびに「1-0-2」のようにスコアをコールします。サーブの順番もアプリが覚えているので、プレーを止めて数え直すことはありません。終わった試合はスコアと一緒に記録に残ります。',
-                'note': 'サイドアウト制とラリーポイント制に対応しています。コールは英語で、日本語にも切り替えられます。',
+                'body': 'ラリーが終わるたびに、アプリがスコアを声でコール。数え間違いを気にせず、プレーに集中できます。',
                 'slides': [
-                    ('score', 'どちらが自分で、勝ったか負けたかがひと目で分かります。得点の流れも、いつも自分の点が左です。', '試合の画面。自分11点・相手8点で勝ちの表示と、自分の点を左にした得点の流れ'),
+                    ('score', '試合の画面。自分11点・相手8点で勝ちの表示'),
                 ],
             },
             {
-                'title': 'ネットにかけた球も、|アウトした球も、|コートに残る',
-                'body': '動画の中で自分を1回タップすると、あなたが打った球を1本ずつコートに描きます。入った球は着地点に丸、アウトとネットは赤い×です。ショットの種類で絞り込むと、ドロップは入っているのにボレーはネットにかけている、といった差が数字で分かります。',
+                'title': '打った球を、|コートの上で分析',
+                'body': '打球の軌道と着地点を、1本ずつコートに描きます。ショットの種類ごとに、得意な球と失点につながる球が数字で分かります。',
                 'slides': [
-                    ('flat-all', '上から見た45本。奥のベースラインの外と、ネットの上にある×がミスした球です。', '45本の打球を上から見たコートに描いた画面。アウトとネットのミスが赤い×で表示されている'),
-                    ('3d-drop', 'ドロップだけに絞ると、7本中6本がイン。全部キッチンに届いていて、ドロップのスコアは95点です。', 'ドロップだけを表示した立体の画面。イン率86%、キッチンに届いた割合100%、スコア95点'),
-                    ('3d-volley', 'ボレーだけにすると、8本中3本がネットに。イン率は63%、スコアは78点まで下がります。', 'ボレーだけを表示した立体の画面。ネットにかかった3本が赤い×で表示され、イン率63%、スコア78点'),
-                    ('3d-all', '立体で見ると、球の高さが分かります。この試合でネットの上を通った高さは、中央値で +19cm でした。指で回して角度を変えられます。', '45本の打球を立体のコートに描いた画面。イン率82%、ネットからの高さの中央値 +19cm'),
+                    ('flat-all', '45本の打球を上から見たコートに描いた画面。アウトとネットのミスが赤い×で表示されている'),
+                    ('3d-drop', 'ドロップだけを表示した立体の画面。イン率86%、キッチンに届いた割合100%'),
+                    ('3d-volley', 'ボレーだけを表示した立体の画面。ネットにかかった3本が赤い×で表示され、イン率63%'),
+                    ('3d-all', '45本の打球を立体のコートに描いた画面。イン率82%、ネットからの高さの中央値 +19cm'),
                 ],
             },
             {
                 'title': '次に何を練習するか、|AI コーチが|数字から答える',
-                'body': 'AI コーチは試合の数字と打球の傾向を読んで、良かったところと次に直すことを返します。ボレーが8本中3本ネットにかかっていると分かったら、練習タブで「ボレーの早打ち」のようなドリルを探せます。ドリルは25種類。USA Pickleball のスキルレベルを目安に、あなたのレベルに合うものから並べています。',
+                'body': '試合の数字から、良かったところと次に直すことを AI コーチが提案。あなたのレベルに合うドリルもすぐに見つかります。',
                 'slides': [
-                    ('coach', 'AI コーチのアドバイスの例。ドロップは安定、ボレーはネットが多い、という試合の数字から書いています。', 'AI コーチのアドバイスの例。ボレーのミスと、おすすめのドリル'),
-                    ('drill', 'アドバイスに出てきたドリル。コートの図と手順つきで、2人で8分ほどです。', 'ドリル「ボレーの早打ち（ハンドバトル）」の画面。コートの図とレベル3.0〜4.0の表示'),
-                    ('practice', '練習タブ。ディンク、ドロップ、ボレーなど、ショットごとにドリルを探せます。', '練習タブ。レベルに合わせたおすすめと、ショットごとの練習メニュー'),
+                    ('coach', 'AI コーチのアドバイスの例。ボレーのミスと、おすすめのドリル'),
+                    ('drill', 'ドリル「ボレーの早打ち（ハンドバトル）」の画面。コートの図とレベル3.0〜4.0の表示'),
+                    ('practice', '練習タブ。レベルに合わせたおすすめと、ショットごとの練習メニュー'),
                 ],
             },
         ],
@@ -173,29 +172,28 @@ EN = {
         'items': [
             {
                 'title': 'It keeps score and calls it out',
-                'body': 'After every rally it calls the score, like “1-0-2”. It keeps track of who serves, so nobody has to stop and recount. When the game ends, the score goes into your history.',
-                'note': 'Side-out and rally scoring. Calls are in English, and you can switch them to Japanese.',
+                'body': 'After every rally, the app calls the score out loud. No miscounts. Just play.',
                 'slides': [
-                    ('score', 'See at a glance which side is yours and whether you won. The score’s progress keeps yours on the left too.', 'The match screen: won 11–8, with how the score went, yours on the left'),
+                    ('score', 'The match screen: won 11–8'),
                 ],
             },
             {
-                'title': 'Every shot on the court, misses included',
-                'body': 'Tap yourself once in the video and Pickle Up draws each shot you hit. Shots that land get a circle; outs and nets get a red ×. Filter by shot and the differences show up in numbers. Maybe your drops land and your volleys keep finding the net.',
+                'title': 'Every shot you hit, analysed on the court',
+                'body': 'See the path and landing spot of every shot. Filter by shot to find the ones you win with, and the ones that cost you points.',
                 'slides': [
-                    ('flat-all', 'All 45 shots from above. The ×s past the far baseline and on the net are the misses.', '45 shots drawn on the court from above, with outs and nets marked with red ×s'),
-                    ('3d-drop', 'Drops only: 6 of 7 went in, and every one reached the kitchen. Drop score: 95.', 'Drops only, in 3D: 86% in, 100% reached the kitchen, score 95'),
-                    ('3d-volley', 'Volleys only: 3 of 8 went into the net. The in rate drops to 63% and the score to 78.', 'Volleys only, in 3D: three shots into the net marked with red ×s, 63% in, score 78'),
-                    ('3d-all', 'In 3D you can see how high each ball went. In this match, the median height over the net was +19 cm. Drag to turn the court.', '45 shots drawn on a 3D court, with an 82% in rate and a median height over the net of +19 cm'),
+                    ('flat-all', '45 shots drawn on the court from above, with outs and nets marked with red ×s'),
+                    ('3d-drop', 'Drops only, in 3D: 86% in, 100% reached the kitchen'),
+                    ('3d-volley', 'Volleys only, in 3D: three shots into the net marked with red ×s, 63% in'),
+                    ('3d-all', '45 shots drawn on a 3D court, with an 82% in rate and a median height over the net of +19 cm'),
                 ],
             },
             {
                 'title': 'An AI coach that reads your numbers and tells you what to practise',
-                'body': 'The AI coach reads your match numbers and shot patterns, then tells you what went well and what to fix. If 3 of your 8 volleys went into the net, the Practice tab has drills like Volley hands battle. There are 25 drills, sorted by USA Pickleball skill level, with the ones for your level first.',
+                'body': 'From your match numbers, the AI coach points out what went well and what to fix, and finds drills for your level.',
                 'slides': [
-                    ('coach', 'An example of the AI coach’s advice: steady drops, too many volleys in the net. It is written from the match numbers.', 'An example of AI coach advice about volley errors, with a suggested drill'),
-                    ('drill', 'The drill from the advice, with a court diagram and steps. Two players, about 8 minutes.', 'The Volley hands battle drill, with a court diagram and level 3.0–4.0'),
-                    ('practice', 'The Practice tab. Find drills by shot: dinks, drops, volleys and more.', 'The Practice tab, with drills suggested for your level and drills by shot'),
+                    ('coach', 'An example of AI coach advice about volley errors, with a suggested drill'),
+                    ('drill', 'The Volley hands battle drill, with a court diagram and level 3.0–4.0'),
+                    ('practice', 'The Practice tab, with drills suggested for your level and drills by shot'),
                 ],
             },
         ],
