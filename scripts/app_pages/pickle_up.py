@@ -104,7 +104,6 @@ JA = {
         'company': '開発元',
         'links': {'support': 'サポート', 'contact': 'お問い合わせ', 'privacy': 'プライバシーポリシー'},
         'companyLinks': {'home': 'Quests について', 'apps': 'Quests のアプリ'},
-        'by': 'Pickle Up は Quests Bay Pte. Ltd. が開発・運営しています。',
         'trademarks': 'Apple および Apple ロゴは、米国その他の国で登録された Apple Inc. の商標です。App Store は Apple Inc. のサービスマークです。Google Play および Google Play ロゴは Google LLC の商標です。',
     },
     'support': {
@@ -237,7 +236,6 @@ EN = {
         'company': 'Made by',
         'links': {'support': 'Support', 'contact': 'Contact', 'privacy': 'Privacy policy'},
         'companyLinks': {'home': 'About Quests', 'apps': 'Apps by Quests'},
-        'by': 'Pickle Up is built and run by Quests Bay Pte. Ltd.',
         'trademarks': 'Apple and the Apple logo are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc. Google Play and the Google Play logo are trademarks of Google LLC.',
     },
     'support': {

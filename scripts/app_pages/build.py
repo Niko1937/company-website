@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 13
+CSS_VERSION = 14
 
 
 def read(path):
@@ -183,8 +183,7 @@ class App:
 </div>
 </div>
 <div class="footer-bottom">
-<p class="footer-by"><a class="quests" href="/{lang}/" lang="en">Quests</a><span>{e(f['by'])}</span></p>
-<p class="footer-meta"><span lang="en">© <span data-year>2026</span> Quests Bay Pte. Ltd.</span></p>
+<p class="footer-by"><a class="quests" href="/{lang}/" lang="en">Quests</a><span lang="en">© <span data-year>2026</span> Quests Bay Pte. Ltd.</span></p>
 <p class="trademarks">{e(f['trademarks'])}</p>
 </div>
 </div>
