@@ -24,7 +24,7 @@ JA = {
     'lang': 'ja',
     'title': 'Pickle Up | 撮るだけで次の試合が変わるピックルボールのアプリ',
     'description': 'コートの後ろにスマホを置いて試合をすると、スコアを数えて読み上げ、あなたが打った球を1本ずつコートに描きます。ドロップは入っているのにボレーはネット、といった傾向が数字で分かり、AI コーチが次に練習することを教えます。',
-    'nav': {'features': '機能', 'how': '使い方', 'privacy': 'プライバシー', 'faq': 'よくある質問', 'support': 'サポート', 'download': 'ダウンロード', 'menu': 'メニュー', 'menuOpen': 'メニューを開く', 'menuClose': 'メニューを閉じる'},
+    'nav': {'features': '機能', 'how': '使い方', 'pricing': '料金', 'privacy': 'プライバシー', 'faq': 'よくある質問', 'support': 'サポート', 'download': 'ダウンロード', 'menu': 'メニュー', 'menuOpen': 'メニューを開く', 'menuClose': 'メニューを閉じる'},
     'langSwitch': '言語を切り替える',
     'soon': '近日公開',
     'storeAlt': {'appStore': 'App Store からダウンロード', 'googlePlay': 'Google Play で手に入れよう'},
@@ -76,6 +76,16 @@ JA = {
             ('試合のあとに振り返る', '試合の画面で自分を1回タップすると、打球の図ができます。分析タブでは、週や月ごとのまとめも見られます。'),
         ],
     },
+    'pricing': {
+        'title': '料金',
+        'plans': [
+            {'name': '無料プラン', 'price': '¥0', 'period': '', 'sub': 'ずっと無料',
+             'items': ['スコアの自動カウントと読み上げ', '打球の分析 毎月60分まで', 'AI コーチ 月2回', 'フォームの評価・ドリル']},
+            {'name': 'プレミアム', 'price': '¥2,980', 'period': '/月', 'sub': '年額 ¥24,800（月あたり約 ¥2,067）', 'badge': '年額は7日間無料',
+             'items': ['打球の分析が無制限', 'AI コーチ 月50回', '無料プランのすべての機能']},
+        ],
+        'note': 'AI コーチは 10回分 ¥800（期限なし）で追加できます。価格は日本の App Store・Google Play での税込みの価格です。',
+    },
     'privacy': {
         'title': 'プライバシー',
         'items': [
@@ -91,7 +101,7 @@ JA = {
             ('どこから撮ればいいですか？', 'コートの後ろからです。コートの四隅と、手前でサーブを待つ人が入るように置いてください。アプリの「撮影のしかた」に、置き方の見本があります。'),
             ('撮った動画はどこに保存されますか？', 'スマホの中の、アプリ専用の場所です。動画をサーバーに送ることはありません。'),
             ('分析はどれくらい正確ですか？', 'スマホ1台の映像から推定しているので、奥のコートの着地点や球の高さには誤差があります。判定に自信がない球は図に描かず、「判定不能」として数えます。'),
-            ('無料で使えますか？', '録画、スコアの自動カウントと読み上げ、練習メニューは無料です。打球の分析は最初の動画1本を無料で見られます。プレミアムにすると何本でも見られます。'),
+            ('無料で使えますか？', 'はい。録画、スコアの自動カウントと読み上げ、練習メニューは無料です。打球の分析は毎月60分まで無料で、プレミアムにすると無制限になります。'),
             ('対応している機種は？', 'iPhone 版と Android 版を準備しています。公開したら、このページでお知らせします。'),
         ],
         'more': 'サポートページを見る',
@@ -155,7 +165,7 @@ EN = {
     'lang': 'en',
     'title': 'Pickle Up | Just film your pickleball games, and play better the next one',
     'description': 'Prop your phone behind the court and play. Pickle Up keeps and calls the score, draws each of your shots on the court, shows where they go wrong (your drops land, your volleys find the net), and its AI coach tells you what to practise.',
-    'nav': {'features': 'Features', 'how': 'How it works', 'privacy': 'Privacy', 'faq': 'FAQ', 'support': 'Support', 'download': 'Download', 'menu': 'Menu', 'menuOpen': 'Open menu', 'menuClose': 'Close menu'},
+    'nav': {'features': 'Features', 'how': 'How it works', 'pricing': 'Pricing', 'privacy': 'Privacy', 'faq': 'FAQ', 'support': 'Support', 'download': 'Download', 'menu': 'Menu', 'menuOpen': 'Open menu', 'menuClose': 'Close menu'},
     'langSwitch': 'Change language',
     'soon': 'Coming soon',
     'storeAlt': {'appStore': 'Download on the App Store', 'googlePlay': 'Get it on Google Play'},
@@ -206,6 +216,16 @@ EN = {
             ('Look back after the match', 'Tap yourself once on the match screen to get your shot map. The Insights tab adds up your weeks and months.'),
         ],
     },
+    'pricing': {
+        'title': 'Pricing',
+        'plans': [
+            {'name': 'Free', 'price': '$0', 'period': '', 'sub': 'Free forever',
+             'items': ['Score kept and called out', 'Shot analysis, 60 minutes a month', 'AI coach, 2 a month', 'Form check and drills']},
+            {'name': 'Premium', 'price': '$19.99', 'period': '/month', 'sub': 'Or $164.99 a year (about $13.75 a month)', 'badge': '7-day free trial, yearly',
+             'items': ['Unlimited shot analysis', 'AI coach, 50 a month', 'Everything in Free']},
+        ],
+        'note': 'Add 10 AI coach sessions for $4.99; they never expire. Prices are in US dollars and vary by country; your app store shows yours.',
+    },
     'privacy': {
         'title': 'Privacy',
         'items': [
@@ -221,7 +241,7 @@ EN = {
             ('Where do I put my phone?', 'Behind the court, with all four corners and the server on your side in view. The app’s filming guide shows an example.'),
             ('Where are my videos kept?', 'In the app’s own storage on your phone. Videos are never sent to our servers.'),
             ('How accurate is the analysis?', 'It is estimated from one phone’s video, so landings on the far side and ball heights are off by a little. Shots it cannot judge with confidence are not drawn; they are counted as unclear.'),
-            ('Is it free?', 'Recording, automatic scoring and calls, and the drills are free. Shot analysis is free for your first video. With Premium there is no limit.'),
+            ('Is it free?', 'Yes. Recording, automatic scoring and calls, and the drills are free. Shot analysis is free for 60 minutes of video a month, and unlimited with Premium.'),
             ('Which phones does it run on?', 'iPhone and Android versions are on the way. We will post here when they are out.'),
         ],
         'more': 'Visit the support page',

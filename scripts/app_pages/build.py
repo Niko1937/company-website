@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 18
+CSS_VERSION = 19
 
 
 def read(path):
@@ -135,6 +135,7 @@ class App:
 <nav class="app-nav" aria-label="{e(n['menu'])}">
 <a href="{top}#features">{e(n['features'])}</a>
 <a href="{top}#how">{e(n['how'])}</a>
+<a href="{top}#pricing">{e(n['pricing'])}</a>
 <a href="{top}#privacy">{e(n['privacy'])}</a>
 <a href="{top}#faq">{e(n['faq'])}</a>
 </nav>
@@ -148,6 +149,7 @@ class App:
 <nav class="wrap" aria-label="{e(n['menu'])}">
 <a href="{top}#features">{e(n['features'])}</a>
 <a href="{top}#how">{e(n['how'])}</a>
+<a href="{top}#pricing">{e(n['pricing'])}</a>
 <a href="{top}#privacy">{e(n['privacy'])}</a>
 <a href="{top}#faq">{e(n['faq'])}</a>
 <a class="app-menu-download" href="{top}#download">{e(n['download'])}</a>
@@ -230,6 +232,14 @@ class App:
 </article>''')
         pv = t['privacy']
         pv_items = ''.join(f'<li><i class="{icon}" aria-hidden="true"></i><h3>{e(a)}</h3><p>{e(b)}</p></li>' for icon, a, b in pv['items'])
+        # Two cards, the free plan and Premium (highlighted); docs/PRICING.md in the app's repository is the source.
+        plans = ''.join(
+            f'''<article class="plan{' plan-premium' if p.get('badge') else ''}">
+<h3>{e(p['name'])}</h3>{f'<span class="plan-badge">{e(p["badge"])}</span>' if p.get('badge') else ''}
+<p class="plan-price"><span lang="en">{e(p['price'])}</span><span class="plan-period">{e(p['period'])}</span></p>
+<p class="plan-sub">{e(p['sub'])}</p>
+<ul>{''.join(f'<li><i class="ri-check-line" aria-hidden="true"></i>{e(x)}</li>' for x in p['items'])}</ul>
+</article>''' for p in t['pricing']['plans'])
         steps = ''.join(f'<li><span class="step-number" lang="en">{n + 1}</span><h3>{e(a)}</h3><p>{e(b)}</p></li>'
                         for n, (a, b) in enumerate(t['how']['steps']))
         faq = ''.join(f'<details><summary>{e(q)}<i class="ri-add-line" aria-hidden="true"></i></summary><p>{e(a)}</p></details>'
@@ -275,6 +285,13 @@ class App:
 <div class="wrap">
 <h2 class="section-title">{ph(t['how']['title'])}</h2>
 <ol class="steps">{steps}</ol>
+</div>
+</section>
+<section id="pricing" class="section">
+<div class="wrap">
+<h2 class="section-title">{ph(t['pricing']['title'])}</h2>
+<div class="plans">{plans}</div>
+<p class="plans-note">{e(t['pricing']['note'])}</p>
 </div>
 </section>
 <section id="privacy" class="section section-dark">

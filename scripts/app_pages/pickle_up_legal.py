@@ -258,7 +258,7 @@ SUPPORT_GROUPS = {
             ('パドルを登録できますか？', 'できます。設定タブの「パドル」から、メーカー・モデル・重さ・形・購入日を登録できます。新しく撮った動画や、練習・試合の記録に、使ったパドルが付きます。'),
         ]),
         ('プランと購入', [
-            ('無料でどこまで使えますか？', '録画、スコアの自動カウントと読み上げ、ラリーの区切り、フォームの評価、練習の記録は無料で使えます。打球の分析は、最初の動画1本だけ無料で見られます。AI コーチは月2回まで使えます。'),
+            ('無料でどこまで使えますか？', '録画、スコアの自動カウントと読み上げ、ラリーの区切り、フォームの評価、練習の記録は無料で使えます。打球の分析は毎月60分まで、AI コーチは月2回まで無料で使えます。'),
             ('プレミアムでは何ができますか？', '打球の分析を何本でも見られます。AI コーチは月50回まで使えます。月額と年額から選べます。'),
             ('「AI コーチ 10回分」とは？', 'AI コーチを10回分、追加で使える商品です。期限はありません。今月のプランの回数を使い切ったあとに使います。'),
             ('購入した内容を、新しいスマホで使うには？', '同じアカウントでログインしてください。設定 › プランの「購入を復元」でも、以前に購入したプランを使えるようにできます。'),
@@ -304,7 +304,7 @@ SUPPORT_GROUPS = {
             ('Can I add my paddles?', 'Yes. Add the maker, model, weight, shape and purchase date under Paddles in the Settings tab. Your paddle is then added to new videos and to practice and match records.'),
         ]),
         ('Plans and purchases', [
-            ('What can I do for free?', 'Recording, automatic scoring and calls, rally splitting, form reviews and practice logs are all free. You can see shot analysis for your first video for free, and use the AI coach twice a month.'),
+            ('What can I do for free?', 'Recording, automatic scoring and calls, rally splitting, form reviews and practice logs are all free. Shot analysis is free for 60 minutes of video a month, and the AI coach twice a month.'),
             ('What does Premium add?', 'Shot analysis for every video, and the AI coach up to 50 times a month. Choose monthly or yearly.'),
             ('What are 10 AI Coach sessions?', 'Ten extra uses of the AI coach. They never expire, and are used once your plan’s sessions for the month run out.'),
             ('How do I use my purchases on a new phone?', 'Sign in with the same account. You can also use Restore purchases in Settings › Plan to bring back a plan you bought before.'),
