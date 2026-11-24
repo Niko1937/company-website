@@ -160,7 +160,7 @@ a.store:hover { transform: translateY(-1px); }
 /* Sections */
 .section { padding: 5rem 0; }
 .section-light { background: var(--soft); }
-.section-title { max-width: 44rem; margin: 0 0 3rem; font-size: clamp(1.75rem, 3.6vw, 2.5rem); line-height: 1.3; font-weight: 800; letter-spacing: -.015em; }
+.section-title { max-width: 44rem; margin: 0 auto 3rem; text-align: center; font-size: clamp(1.75rem, 3.6vw, 2.5rem); line-height: 1.3; font-weight: 800; letter-spacing: -.015em; }
 html[lang="ja"] .section-title { letter-spacing: 0; }
 .section-more { margin: 2.5rem 0 0; }
 .section-more a { display: inline-flex; align-items: center; gap: .25rem; min-height: 44px; font-weight: 700; text-decoration: none; }
@@ -170,7 +170,7 @@ html[lang="ja"] .section-title { letter-spacing: 0; }
 /* Pricing: two cards in the same soft green; Premium told apart only by its green edge and badge.
    Side by side, the cards share two grid rows (subgrid), so the line under the prices sits at the same height
    and the rows below line up, one comparison per line. */
-.plans { display: grid; gap: 1.25rem; max-width: 56rem; }
+.plans { display: grid; gap: 1.25rem; max-width: 56rem; margin: 0 auto; }
 @media (min-width: 760px) { .plans { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto auto; column-gap: 1.25rem; row-gap: 0; } }
 .plan { position: relative; display: grid; grid-row: span 2; grid-template-rows: subgrid; padding: 2rem; border-radius: var(--radius);
   background: #ECFAF2; border: 1px solid #C9EED8; color: var(--text); }
@@ -187,7 +187,7 @@ html[lang="ja"] .section-title { letter-spacing: 0; }
 .plan dt { color: var(--text); }
 .plan dd { margin: 0; color: var(--green); white-space: nowrap; text-align: right; }
 .plan-premium { border: 2px solid var(--green); box-shadow: 0 24px 48px -30px rgba(11,122,92,.45); }
-.plans-note { max-width: 56rem; margin: 1.5rem 0 0; color: var(--muted); font-size: .875rem; }
+.plans-note { max-width: 56rem; margin: 1.5rem auto 0; text-align: center; color: var(--muted); font-size: .875rem; }
 
 /* Features: the app's screens (one, or several to page through) and the words, sides alternating on wide screens */
 .feature { display: grid; gap: 2rem; align-items: center; }
