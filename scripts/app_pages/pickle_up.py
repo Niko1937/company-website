@@ -31,7 +31,7 @@ JA = {
     'carousel': {'prev': '前の画面', 'next': '次の画面', 'slide': '{n}枚目'},
     'hero': {
         'title': ['撮るだけで', '次の試合が変わる'],
-        'lead': 'どのショットで点を落としているかは、プレー中の自分には分かりません。Pickle Up は試合の動画から、ショットの種類ごとに入った割合とミスの傾向を数字で出します。「ボレーが8本中3本ネット」と分かれば、次の練習で直すことがはっきりします。スマホをコートの後ろに置くだけ。スコアも数えて読み上げるので、試合に集中できます。',
+        'lead': 'プレー中は、どこで点を落としているか分かりません。Pickle Up が動画からミスの傾向を数字で示し、次に練習することを教えます。',
         'screen': '3d-all',
         'screenAlt': 'サンプルの試合の画面。45本の打球を立体のコートに描き、イン率82%、ネットからの高さの中央値 +19cm を表示している',
     },
@@ -163,7 +163,7 @@ EN = {
     'carousel': {'prev': 'Previous screen', 'next': 'Next screen', 'slide': 'Screen {n}'},
     'hero': {
         'title': ['Just film it.', 'Play better next game.'],
-        'lead': 'In the middle of a game, you can’t tell which shots are costing you points. Pickle Up reads your match video and shows, for each kind of shot, how often it goes in and how it misses. Once you know 3 of your 8 volleys went into the net, you know exactly what to practise. Just prop your phone behind the court. It keeps and calls the score too, so you can focus on playing.',
+        'lead': 'Mid-game, you can’t see which shots cost you points. Pickle Up finds them in your video and tells you what to practise.',
         'screen': '3d-all',
         'screenAlt': 'The sample match: 45 shots drawn on a 3D court, with an 82% in rate and a median height over the net of +19 cm',
     },
