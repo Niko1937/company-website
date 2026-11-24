@@ -31,7 +31,7 @@ JA = {
     'carousel': {'prev': '前の画面', 'next': '次の画面', 'slide': '{n}枚目'},
     'hero': {
         'title': ['撮るだけで', '次の試合が変わる'],
-        'lead': 'コーチがいなくても、自分の弱点が分かる。試合の動画から点を落としているショットを見つけ、次に練習することまで教えます。',
+        'lead': '失点したショットが分かれば、意識・練習が変わる。撮影した動画から得意や苦手を見つけ、次の練習に役立てることができます。',
         'screen': '3d-all',
         'screenAlt': 'サンプルの試合の画面。45本の打球を立体のコートに描き、イン率82%、ネットからの高さの中央値 +19cm を表示している',
     },
@@ -163,7 +163,7 @@ EN = {
     'carousel': {'prev': 'Previous screen', 'next': 'Next screen', 'slide': 'Screen {n}'},
     'hero': {
         'title': ['Just film it.', 'Play better next game.'],
-        'lead': 'No coach? You’ll still find your weak spots: the shots costing you points, and what to practise next.',
+        'lead': 'See the shots that lose you points, and your game changes. Your video shows your strengths and weak spots to practise.',
         'screen': '3d-all',
         'screenAlt': 'The sample match: 45 shots drawn on a 3D court, with an 82% in rate and a median height over the net of +19 cm',
     },
