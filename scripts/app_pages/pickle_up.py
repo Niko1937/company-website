@@ -80,11 +80,11 @@ JA = {
         'title': '料金',
         'plans': [
             {'name': '無料プラン', 'price': '¥0', 'period': '', 'sub': 'ずっと無料',
-             'items': ['スコアの自動カウントと読み上げ', '打球の分析 毎月60分まで', 'AI コーチ 月2回', 'フォームの評価・ドリル']},
+             'items': ['スコアの自動カウントと読み上げ', '打球の分析 毎月60分まで', 'AI コーチのアドバイス 月2回', 'フォームの評価・ドリル']},
             {'name': 'プレミアム', 'price': '¥2,980', 'period': '/月', 'sub': '年額 ¥24,800（月あたり約 ¥2,067）', 'badge': '年額は7日間無料',
-             'items': ['打球の分析が無制限', 'AI コーチ 月50回', '無料プランのすべての機能']},
+             'items': ['打球の分析が無制限', 'AI コーチのアドバイス 月50回', '無料プランのすべての機能']},
         ],
-        'note': 'AI コーチは 10回分 ¥800（期限なし）で追加できます。価格は日本の App Store・Google Play での税込みの価格です。',
+        'note': '価格は日本の App Store・Google Play での税込みの価格です。',
     },
     'privacy': {
         'title': 'プライバシー',
@@ -220,11 +220,11 @@ EN = {
         'title': 'Pricing',
         'plans': [
             {'name': 'Free', 'price': '$0', 'period': '', 'sub': 'Free forever',
-             'items': ['Score kept and called out', 'Shot analysis, 60 minutes a month', 'AI coach, 2 a month', 'Form check and drills']},
+             'items': ['Score kept and called out', 'Shot analysis, 60 minutes a month', 'AI coach advice, 2 a month', 'Form check and drills']},
             {'name': 'Premium', 'price': '$19.99', 'period': '/month', 'sub': 'Or $164.99 a year (about $13.75 a month)', 'badge': '7-day free trial, yearly',
-             'items': ['Unlimited shot analysis', 'AI coach, 50 a month', 'Everything in Free']},
+             'items': ['Unlimited shot analysis', 'AI coach advice, 50 a month', 'Everything in Free']},
         ],
-        'note': 'Add 10 AI coach sessions for $4.99; they never expire. Prices are in US dollars and vary by country; your app store shows yours.',
+        'note': 'Prices are in US dollars and vary by country; your app store shows yours.',
     },
     'privacy': {
         'title': 'Privacy',
