@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 6
+CSS_VERSION = 7
 
 
 def read(path):
@@ -234,7 +234,7 @@ class App:
 </div>
 </article>''')
         pv = t['privacy']
-        pv_items = ''.join(f'<li><h3><i class="{icon}" aria-hidden="true"></i>{e(a)}</h3><p>{e(b)}</p></li>' for icon, a, b in pv['items'])
+        pv_items = ''.join(f'<li><i class="{icon}" aria-hidden="true"></i><h3>{e(a)}</h3><p>{e(b)}</p></li>' for icon, a, b in pv['items'])
         steps = ''.join(f'<li><span class="step-number" lang="en">{n + 1}</span><h3>{e(a)}</h3><p>{e(b)}</p></li>'
                         for n, (a, b) in enumerate(t['how']['steps']))
         faq = ''.join(f'<details><summary>{e(q)}<i class="ri-add-line" aria-hidden="true"></i></summary><p>{e(a)}</p></details>'
