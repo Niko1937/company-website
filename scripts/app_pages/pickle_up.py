@@ -22,7 +22,7 @@ CONTACT_TOPICS = ('bug', 'howto', 'plan', 'account', 'idea', 'other')
 
 JA = {
     'lang': 'ja',
-    'title': 'Pickle Up | 試合を撮って、打った球を全部振り返るピックルボールのアプリ',
+    'title': 'Pickle Up | 撮るだけで、次の試合が変わるピックルボールのアプリ',
     'description': 'コートの後ろにスマホを置いて試合をすると、スコアを数えて読み上げ、あなたが打った球を1本ずつコートに描きます。ドロップは入っているのにボレーはネット、といった傾向が数字で分かり、AI コーチが次に練習することを教えます。',
     'nav': {'features': '機能', 'how': '使い方', 'privacy': 'プライバシー', 'faq': 'よくある質問', 'support': 'サポート', 'download': 'ダウンロード', 'menu': 'メニュー', 'menuOpen': 'メニューを開く', 'menuClose': 'メニューを閉じる'},
     'langSwitch': '言語を切り替える',
@@ -30,7 +30,7 @@ JA = {
     'storeAlt': {'appStore': 'App Store からダウンロード', 'googlePlay': 'Google Play で手に入れよう'},
     'carousel': {'prev': '前の画面', 'next': '次の画面', 'slide': '{n}枚目'},
     'hero': {
-        'title': ['試合を撮ると、', '打った球が', '全部見える。'],
+        'title': ['撮るだけで、', '次の試合が', '変わる。'],
         'lead': 'スマホをコートの後ろに置いて、いつもどおり試合をしてください。Pickle Up がスコアを数えて読み上げ、あなたが打った球を1本ずつコートに描きます。試合のあとは AI コーチが、次に何を練習すればいいかを教えます。',
         'screen': '3d-all',
         'screenAlt': 'サンプルの試合の画面。45本の打球を立体のコートに描き、イン率82%、ネットからの高さの中央値 +19cm を表示している',
@@ -154,7 +154,7 @@ JA = {
 
 EN = {
     'lang': 'en',
-    'title': 'Pickle Up | Film your pickleball games and see every shot you hit',
+    'title': 'Pickle Up | Just film your pickleball games, and play better the next one',
     'description': 'Prop your phone behind the court and play. Pickle Up keeps and calls the score, draws each of your shots on the court, shows where they go wrong (your drops land, your volleys find the net), and its AI coach tells you what to practise.',
     'nav': {'features': 'Features', 'how': 'How it works', 'privacy': 'Privacy', 'faq': 'FAQ', 'support': 'Support', 'download': 'Download', 'menu': 'Menu', 'menuOpen': 'Open menu', 'menuClose': 'Close menu'},
     'langSwitch': 'Change language',
@@ -162,7 +162,7 @@ EN = {
     'storeAlt': {'appStore': 'Download on the App Store', 'googlePlay': 'Get it on Google Play'},
     'carousel': {'prev': 'Previous screen', 'next': 'Next screen', 'slide': 'Screen {n}'},
     'hero': {
-        'title': ['Film your game.', 'See every shot', 'you hit.'],
+        'title': ['Just film it.', 'Play better', 'next game.'],
         'lead': 'Prop your phone behind the court and play as you always do. Pickle Up keeps score and calls it out, then draws each of your shots on the court. After the match, its AI coach tells you what to practise next.',
         'screen': '3d-all',
         'screenAlt': 'The sample match: 45 shots drawn on a 3D court, with an 82% in rate and a median height over the net of +19 cm',
