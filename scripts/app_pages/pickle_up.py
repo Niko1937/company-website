@@ -81,7 +81,8 @@ JA = {
         'plans': [
             {'name': '無料プラン', 'price': '¥0', 'period': '', 'sub': 'ずっと無料',
              'items': ['スコアの自動カウントと読み上げ', '打球の分析 毎月60分まで', 'AI コーチのアドバイス 月2回', 'フォームの評価・ドリル']},
-            {'name': 'プレミアム', 'price': '¥2,980', 'period': '/月', 'sub': '年額 ¥24,800（月あたり約 ¥2,067）', 'badge': '年額は7日間無料',
+            {'name': 'プレミアム', 'price': '¥2,980', 'period': '/月', 'sub': '年額 ¥24,800（月あたり約 ¥2,067）', 'badge': '7日間無料トライアル',
+             'trial': '年額プランは7日間無料でお試しできます。期間中に解約すれば、料金はかかりません。',
              'items': ['打球の分析が無制限', 'AI コーチのアドバイス 月50回', '無料プランのすべての機能']},
         ],
         'note': '価格は日本の App Store・Google Play での税込みの価格です。',
@@ -221,7 +222,8 @@ EN = {
         'plans': [
             {'name': 'Free', 'price': '$0', 'period': '', 'sub': 'Free forever',
              'items': ['Score kept and called out', 'Shot analysis, 60 minutes a month', 'AI coach advice, 2 a month', 'Form check and drills']},
-            {'name': 'Premium', 'price': '$19.99', 'period': '/month', 'sub': 'Or $164.99 a year (about $13.75 a month)', 'badge': '7-day free trial, yearly',
+            {'name': 'Premium', 'price': '$19.99', 'period': '/month', 'sub': 'Or $164.99 a year (about $13.75 a month)', 'badge': '7-day free trial',
+             'trial': 'Try the yearly plan free for 7 days. Cancel before it ends and you pay nothing.',
              'items': ['Unlimited shot analysis', 'AI coach advice, 50 a month', 'Everything in Free']},
         ],
         'note': 'Prices are in US dollars and vary by country; your app store shows yours.',
