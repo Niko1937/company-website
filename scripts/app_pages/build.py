@@ -287,7 +287,7 @@ class App:
 <ol class="steps">{steps}</ol>
 </div>
 </section>
-<section id="pricing" class="section">
+<section id="pricing" class="section section-light">
 <div class="wrap">
 <h2 class="section-title">{ph(t['pricing']['title'])}</h2>
 <div class="plans">{plans}</div>
