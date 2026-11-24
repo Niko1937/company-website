@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 9
+CSS_VERSION = 10
 
 
 def read(path):
@@ -252,6 +252,7 @@ class App:
 {hero_court}
 <div class="wrap hero-grid">
 <div class="hero-copy">
+<p class="hero-app"><img src="{self.img}/icon-128.png" alt="" width="40" height="40"><span lang="en">{self.m.NAME}</span></p>
 <h1>{title}</h1>
 <p class="lead">{e(h['lead'])}</p>
 {self.badges(lang, 'hero')}

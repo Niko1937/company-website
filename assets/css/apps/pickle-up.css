@@ -117,6 +117,9 @@ html[lang="en"] .hero h1 { font-size: min(4rem, 9.4cqi); }
 /* Phrase by phrase: a phrase never breaks inside, so the lines end where the meaning does. */
 .phrase { display: inline-block; }
 .hero h1 .phrase { display: block; }
+/* The app's name above the headline: its icon and name, as on the store. */
+.hero-app { display: flex; align-items: center; gap: .625rem; margin: 0 0 1.25rem; font-size: 1.125rem; font-weight: 800; letter-spacing: -.01em; color: var(--on-ink); }
+.hero-app img { width: 40px; height: 40px; border-radius: 10px; }
 .hero .lead { max-width: 34rem; margin: 0 0 2rem; color: var(--on-ink-muted); font-size: 1.0625rem; line-height: 1.85; }
 .hero-media { position: relative; display: flex; justify-content: center; }
 @media (min-width: 900px) {

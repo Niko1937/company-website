@@ -38,7 +38,7 @@ JA = {
         'stats': [('イン率', '82%'), ('ネットの上の高さ（中央値）', '+19 cm')],
     },
     'features': {
-        'title': 'Pickle Up でできること',
+        'title': '機能',
         'items': [
             {
                 'title': 'スコアはアプリが数えて、|声でコールする',
@@ -78,7 +78,7 @@ JA = {
         ],
     },
     'privacy': {
-        'title': '動画は、|あなたのスマホから|出ません',
+        'title': 'プライバシー',
         'items': [
             ('ri-lock-line', '動画は外に出ない', '動画はあなたの端末にしか保存されません。サーバー側で処理するのは、動画から判定された骨格や打球の動きの情報のみです。'),
             ('ri-user-unfollow-line', 'ログインなしで使える', 'アカウント登録は不要です。機種変更などでデータを引き継ぎたい場合は、アカウントを作成して同期できます。'),
@@ -171,7 +171,7 @@ EN = {
         'stats': [('In rate', '82%'), ('Height over the net (median)', '+19 cm')],
     },
     'features': {
-        'title': 'What it does',
+        'title': 'Features',
         'items': [
             {
                 'title': 'It keeps score and calls it out',
@@ -211,7 +211,7 @@ EN = {
         ],
     },
     'privacy': {
-        'title': 'Your videos stay on your phone',
+        'title': 'Privacy',
         'items': [
             ('ri-lock-line', 'Videos never leave it', 'Videos are saved only on your phone. Our servers only handle the body and ball movement worked out from the video.'),
             ('ri-user-unfollow-line', 'No sign-up', 'No account needed. To move your data to a new phone, create an account and sync.'),
