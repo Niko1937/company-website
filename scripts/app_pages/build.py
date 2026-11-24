@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 8
+CSS_VERSION = 9
 
 
 def read(path):
@@ -240,11 +240,16 @@ class App:
         faq = ''.join(f'<details><summary>{e(q)}<i class="ri-add-line" aria-hidden="true"></i></summary><p>{e(a)}</p></details>'
                       for q, a in t['faq']['items'])
         court = court_lines_svg()
+        hero_court = court_lines_svg(shots=True)
+        # Two of the sample's numbers beside the phone: decorative, as its screen shows them too.
+        (in_label, in_value), (net_label, net_value) = h['stats']
+        stats = f'''<div class="hero-stat hero-stat-in" aria-hidden="true"><span class="hero-stat-label">{e(in_label)}</span><span class="hero-stat-value">{e(in_value)}</span><span class="hero-stat-bar"><span style="width:82%"></span></span></div>
+<div class="hero-stat hero-stat-net" aria-hidden="true"><span class="hero-stat-label">{e(net_label)}</span><span class="hero-stat-value">{e(net_value)}</span><svg class="hero-stat-bars" viewBox="0 0 84 28"><rect x="0" y="20" width="10" height="8" rx="2"/><rect x="12" y="12" width="10" height="16" rx="2"/><rect x="24" y="4" width="10" height="24" rx="2"/><rect x="36" y="0" width="10" height="28" rx="2"/><rect x="48" y="9" width="10" height="19" rx="2"/><rect x="60" y="16" width="10" height="12" rx="2"/><rect x="72" y="22" width="10" height="6" rx="2"/></svg></div>'''
         body = f'''<body class="page-home">
 {self.header(lang, path, True)}
 <main>
 <section class="hero">
-{court}
+{hero_court}
 <div class="wrap hero-grid">
 <div class="hero-copy">
 <h1>{title}</h1>
@@ -253,6 +258,7 @@ class App:
 </div>
 <div class="hero-media">
 {self.phone(h['screen'], h['screenAlt'], lang, eager=True)}
+{stats}
 </div>
 </div>
 </section>
@@ -378,9 +384,11 @@ class App:
         return self.document(lang, 'privacy/', p, inner)
 
 
-def court_lines_svg():
+def court_lines_svg(shots=False):
     # A court seen at an angle, as in the app's 3D view (the same camera: up behind the near right corner,
     # looking at the net), faint behind the hero and the closing call. Court metres: across, depth, height.
+    # shots: also a few shots' flights over it (from the near court to the far one, two of them misses), as
+    # the app draws them, so the hero reads as a match being measured.
     import math
     W, L, NET, K = 6.1, 13.41, 6.705, 2.13
     eye, target = (W + 4, -4.0, 10.0), (W / 2, NET, 0.0)
@@ -401,9 +409,33 @@ def court_lines_svg():
              ((W / 2, 0), (W / 2, NET - K)), ((W / 2, NET + K), (W / 2, L))]
     court = ' '.join(f'M{at(*a)} L{at(*b)}' for a, b in lines)
     net = f'M{at(-0.3, NET, 0.914)} L{at(W + 0.3, NET, 0.914)}'
-    return (f'<svg class="court-lines" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">'
-            f'<path d="{court}" fill="none" stroke="currentColor" stroke-width="2"/>'
-            f'<path d="{net}" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>')
+    flights = ''
+    if shots:
+        # (hit x, hit y), (end x, end y), apex height (m), missed. Ends past the baseline or on the net are misses.
+        plan = [((1.2, 1.0), (4.6, 11.2), 2.2, False), ((4.8, 2.0), (1.4, 9.0), 1.7, False),
+                ((2.6, 0.6), (3.2, 12.6), 2.6, False), ((5.2, 4.0), (2.2, 8.4), 1.4, False),
+                ((0.8, 3.0), (5.4, 10.4), 2.0, False), ((3.4, 1.6), (0.9, 12.2), 2.4, False),
+                ((4.2, 4.6), (4.9, 8.2), 1.3, False), ((1.8, 0.8), (2.4, 14.4), 2.8, True),
+                ((3.0, 4.2), (3.6, NET), 1.0, True)]
+        paths, ends = [], []
+        for (hx, hy), (ex, ey), top, miss in plan:
+            pts = []
+            for i in range(25):
+                s = i / 24
+                # A parabola through the hit (1 m up), the apex and the end (on the ground; a net miss stops at the tape).
+                z0, z1 = 1.0, 0.6 if ey == NET else 0.0
+                z = (1 - s) * z0 + s * z1 + 4 * (top - (z0 + z1) / 2) * s * (1 - s)
+                pts.append(at(hx + (ex - hx) * s, hy + (ey - hy) * s, z))
+            paths.append(f'<path class="{"arc-miss" if miss else "arc"}" d="M{" L".join(pts)}"/>')
+            x, y = map(float, at(ex, ey, 0.6 if ey == NET else 0.0).split())
+            ends.append(f'<path class="end-miss" d="M{x - 6:.0f} {y - 6:.0f} L{x + 6:.0f} {y + 6:.0f} M{x + 6:.0f} {y - 6:.0f} L{x - 6:.0f} {y + 6:.0f}"/>'
+                        if miss else f'<circle class="end" cx="{x:.0f}" cy="{y:.0f}" r="6"/>')
+        flights = ('<defs><linearGradient id="arcFade" x1="0" y1="1" x2="0" y2="0">'
+                   '<stop offset="0" stop-color="#2DD4BF" stop-opacity=".25"/><stop offset="1" stop-color="#6EE7B7" stop-opacity=".9"/>'
+                   f'</linearGradient></defs><g class="flights">{"".join(paths)}{"".join(ends)}</g>')
+    return (f'<svg class="court-lines{" with-shots" if shots else ""}" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">'
+            f'<path class="lines" d="{court}" fill="none" stroke="currentColor" stroke-width="2"/>'
+            f'<path class="lines" d="{net}" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>{flights}</svg>')
 
 
 # --------------------------------------------------------------------------------------- language-neutral URLs

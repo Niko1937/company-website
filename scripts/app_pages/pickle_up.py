@@ -31,9 +31,11 @@ JA = {
     'carousel': {'prev': '前の画面', 'next': '次の画面', 'slide': '{n}枚目'},
     'hero': {
         'title': ['撮るだけで', '次の試合が変わる'],
-        'lead': '失点したショットが分かれば、意識・練習が変わる。撮影した動画から得意や苦手を見つけ、次の練習に役立てることができます。',
+        'lead': '失点したショットが分かれば、意識と練習が変わる。撮影動画から自分の得意や苦手を見つけ、次の練習に役立てることができます。',
         'screen': '3d-all',
         'screenAlt': 'サンプルの試合の画面。45本の打球を立体のコートに描き、イン率82%、ネットからの高さの中央値 +19cm を表示している',
+        # Beside the phone (decorative: the same numbers as its screen).
+        'stats': [('イン率', '82%'), ('ネットの上の高さ（中央値）', '+19 cm')],
     },
     'features': {
         'title': 'Pickle Up でできること',
@@ -43,7 +45,7 @@ JA = {
                 'body': 'ラリーが終わるたびに「1-0-2」のようにスコアをコールします。サーブの順番もアプリが覚えているので、プレーを止めて数え直すことはありません。終わった試合はスコアと一緒に記録に残ります。',
                 'note': 'サイドアウト制とラリーポイント制に対応しています。コールは英語で、日本語にも切り替えられます。',
                 'slides': [
-                    ('score', 'どちらが自分たちで、勝ったか負けたかがひと目で分かります。下は試合中に読み上げたスコアです。', '試合の画面。自分たち11点・相手8点で勝ちの表示と、読み上げたスコアコールの一覧'),
+                    ('score', 'どちらが自分で、勝ったか負けたかがひと目で分かります。得点の流れも、いつも自分の点が左です。', '試合の画面。自分11点・相手8点で勝ちの表示と、自分の点を左にした得点の流れ'),
                 ],
             },
             {
@@ -166,6 +168,7 @@ EN = {
         'lead': 'See the shots that lose you points, and your game changes. Your video shows your strengths and weak spots to practise.',
         'screen': '3d-all',
         'screenAlt': 'The sample match: 45 shots drawn on a 3D court, with an 82% in rate and a median height over the net of +19 cm',
+        'stats': [('In rate', '82%'), ('Height over the net (median)', '+19 cm')],
     },
     'features': {
         'title': 'What it does',
@@ -175,7 +178,7 @@ EN = {
                 'body': 'After every rally it calls the score, like “1-0-2”. It keeps track of who serves, so nobody has to stop and recount. When the game ends, the score goes into your history.',
                 'note': 'Side-out and rally scoring. Calls are in English, and you can switch them to Japanese.',
                 'slides': [
-                    ('score', 'See at a glance which side is yours and whether you won. Below are the calls made during play.', 'The match screen: won 11–8, with the calls made during the game'),
+                    ('score', 'See at a glance which side is yours and whether you won. The score’s progress keeps yours on the left too.', 'The match screen: won 11–8, with how the score went, yours on the left'),
                 ],
             },
             {
