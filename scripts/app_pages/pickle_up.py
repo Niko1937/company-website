@@ -162,7 +162,7 @@ EN = {
     'storeAlt': {'appStore': 'Download on the App Store', 'googlePlay': 'Get it on Google Play'},
     'carousel': {'prev': 'Previous screen', 'next': 'Next screen', 'slide': 'Screen {n}'},
     'hero': {
-        'title': ['Just film it', 'Play better next game'],
+        'title': ['Just film it.', 'Play better next game.'],
         'lead': 'In the middle of a game, you can’t tell which shots are costing you points. Pickle Up reads your match video and shows, for each kind of shot, how often it goes in and how it misses. Once you know 3 of your 8 volleys went into the net, you know exactly what to practise. Just prop your phone behind the court. It keeps and calls the score too, so you can focus on playing.',
         'screen': '3d-all',
         'screenAlt': 'The sample match: 45 shots drawn on a 3D court, with an 82% in rate and a median height over the net of +19 cm',

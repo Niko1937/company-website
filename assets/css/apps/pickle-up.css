@@ -77,7 +77,7 @@ img { max-width: 100%; height: auto; }
 .hero .eyebrow, .section-dark .eyebrow, .cta .eyebrow { color: var(--mint); }
 .hero h1 { margin: 0 0 1.25rem; font-size: clamp(2.375rem, 6.4vw, 4.25rem); line-height: 1.12; font-weight: 800; letter-spacing: -.025em; }
 html[lang="ja"] .hero h1 { line-height: 1.22; letter-spacing: 0; }
-/* Two lines at every width: sized from the column, by the longer line (ja 7.9em, en 10.2em wide). */
+/* Two lines at every width: sized from the column, by the longer line (ja 7.9em, en 10.5em wide). */
 .hero-copy { container-type: inline-size; }
 .hero h1 { font-size: min(4.25rem, 12cqi); }
 html[lang="en"] .hero h1 { font-size: min(4rem, 9.4cqi); }
