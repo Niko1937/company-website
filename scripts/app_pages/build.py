@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 16
+CSS_VERSION = 17
 
 
 def read(path):
@@ -241,14 +241,14 @@ class App:
         # Up and to the right of the closing call's, so it sits behind the phone and its cards.
         hero_court = court_lines_svg(shots=True, at_x=880, at_y=330)
         # Three of the sample's numbers around the phone (never over it): decorative, as its screens show them too.
-        (in_label, in_value), (net_label, net_value), (score_label, score_value) = h['stats']
+        (in_label, in_value), (net_label, net_value), (miss_label, (net_name, net_n), (out_name, out_n)) = h['stats']
         # A label breaks only before its bracket ("…（中央値）"), not inside a word.
         label = lambda text: ''.join(f'<span class="phrase">{e(p)}</span>' for p in re.split(r'(?=（| \()', text))
         bars = ''.join(f'<rect x="{i * 12}" y="{28 - v}" width="10" height="{v}" rx="2"/>' for i, v in enumerate((8, 16, 24, 28, 19, 12, 6)))
         stats = f'''<div class="hero-stats" aria-hidden="true">
 <div class="hero-stat hero-stat-1"><span class="hero-stat-label">{label(in_label)}</span><span class="hero-stat-value">{e(in_value)}</span><span class="hero-stat-bar"><span style="width:{e(in_value)}"></span></span></div>
 <div class="hero-stat hero-stat-2"><span class="hero-stat-label">{label(net_label)}</span><span class="hero-stat-value">{e(net_value)}</span><svg class="hero-stat-bars" viewBox="0 0 82 28">{bars}</svg></div>
-<div class="hero-stat hero-stat-3"><span class="hero-stat-label">{label(score_label)}</span><span class="hero-stat-row"><span class="hero-stat-value">{e(score_value)}</span><svg class="hero-stat-ring" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16"/><circle class="done" cx="20" cy="20" r="16" pathLength="100" stroke-dasharray="95 100"/></svg></span></div>
+<div class="hero-stat hero-stat-3"><span class="hero-stat-label">{label(miss_label)}</span><span class="hero-stat-misses"><span><b>{net_n}</b> {e(net_name)}</span><span><b>{out_n}</b> {e(out_name)}</span></span><span class="hero-stat-split"><span class="net" style="flex:{net_n}"></span><span class="out" style="flex:{out_n}"></span></span></div>
 </div>'''
         body = f'''<body class="page-home">
 {self.header(lang, path, True)}
@@ -425,7 +425,8 @@ def court_lines_svg(shots=False, at_x=780, at_y=400):
                 ((2.6, 0.6), (3.2, 12.6), 2.6, False), ((5.2, 4.0), (2.2, 8.4), 1.4, False),
                 ((0.8, 3.0), (5.4, 10.4), 2.0, False), ((3.4, 1.6), (0.9, 12.2), 2.4, False),
                 ((4.2, 4.6), (4.9, 8.2), 1.3, False), ((1.8, 0.8), (2.4, 14.4), 2.8, True),
-                ((3.0, 4.2), (3.6, NET), 1.0, True)]
+                ((3.0, 4.2), (3.6, NET), 1.0, True), ((4.6, 1.2), (6.9, 10.6), 2.1, True),
+                ((0.6, 2.2), (0.2, 14.2), 2.5, True)]
         paths, ends = [], []
         for (hx, hy), (ex, ey), top, miss in plan:
             pts = []

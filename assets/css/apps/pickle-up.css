@@ -82,21 +82,26 @@ img { max-width: 100%; height: auto; }
 .flights .arc-miss { stroke: #FB7185; opacity: .28; }
 .flights .end { fill: none; stroke: #6EE7B7; stroke-width: 2; opacity: .45; }
 .flights .end-miss { stroke: #FB7185; stroke-width: 2; stroke-linecap: round; opacity: .4; }
-/* Cards light against the dark hero, so they read at a glance. */
+/* Cards as tinted green glass over the dark hero: see-through, blurred, a light edge on top. */
 .hero-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; width: min(100%, 26rem); }
 .hero-stat-3 { grid-column: 1 / -1; }
-.hero-stat { display: grid; align-content: start; gap: .25rem; min-width: 0; padding: .875rem 1rem; border-radius: 16px;
-  background: #F8FAFC; color: #0E1014; box-shadow: 0 24px 48px -22px rgba(0,0,0,.75), 0 0 0 1px rgba(255,255,255,.6) inset; }
-.hero-stat-label { font-size: .75rem; color: #5A616C; }
-.hero-stat-value { white-space: nowrap; font-size: 1.5rem; font-weight: 800; letter-spacing: -.01em; color: #0E1014; font-variant-numeric: tabular-nums; }
-.hero-stat-bar { display: block; height: 6px; margin-top: .125rem; border-radius: 999px; background: #E2E8F0; overflow: hidden; }
-.hero-stat-bar span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #14B8A6, #10B981); }
-.hero-stat-bars { width: 82px; height: 28px; fill: #10B981; }
-.hero-stat-bars rect:nth-child(4) { fill: #0F766E; }
-.hero-stat-row { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
-.hero-stat-ring { flex: none; width: 40px; height: 40px; transform: rotate(-90deg); fill: none; stroke-width: 5; }
-.hero-stat-ring circle { stroke: #E2E8F0; }
-.hero-stat-ring .done { stroke: #10B981; stroke-linecap: round; }
+.hero-stat { display: grid; align-content: start; gap: .25rem; min-width: 0; padding: .875rem 1rem; border-radius: 18px;
+  background: linear-gradient(160deg, rgba(52,211,153,.20), rgba(20,184,166,.08) 60%, rgba(14,16,20,.35));
+  border: 1px solid rgba(110,231,183,.22); box-shadow: 0 1px 0 rgba(255,255,255,.10) inset, 0 24px 48px -24px rgba(0,0,0,.8);
+  -webkit-backdrop-filter: blur(16px) saturate(150%); backdrop-filter: blur(16px) saturate(150%); color: var(--on-ink); }
+.hero-stat-label { font-size: .75rem; color: #A7F3D0; opacity: .85; }
+.hero-stat-value { white-space: nowrap; font-size: 1.5rem; font-weight: 800; letter-spacing: -.01em; color: #F7F8FA; font-variant-numeric: tabular-nums; }
+.hero-stat-bar { display: block; height: 6px; margin-top: .125rem; border-radius: 999px; background: rgba(255,255,255,.12); overflow: hidden; }
+.hero-stat-bar span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #2DD4BF, #6EE7B7); }
+.hero-stat-bars { width: 82px; height: 28px; fill: #6EE7B7; opacity: .9; }
+.hero-stat-bars rect:nth-child(4) { fill: #D1FAE5; }
+.hero-stat-misses { display: flex; flex-wrap: wrap; gap: 0 .875rem; font-size: .8125rem; color: var(--on-ink-muted); }
+.hero-stat-misses > span { white-space: nowrap; }
+.hero-stat-misses b { font-size: 1.5rem; font-weight: 800; color: #F7F8FA; font-variant-numeric: tabular-nums; }
+.hero-stat-split { display: flex; min-width: 0; overflow: hidden; gap: 3px; height: 6px; margin-top: .125rem; }
+.hero-stat-split span { border-radius: 999px; }
+.hero-stat-split .net { background: #FB7185; }
+.hero-stat-split .out { background: #FBBF24; }
 /* Phones and narrow screens: the cards under the phone. */
 .hero-media { position: relative; display: flex; justify-content: center; flex-direction: column-reverse; align-items: center; gap: 1.25rem; }
 @media (min-width: 600px) and (max-width: 1179px) {
