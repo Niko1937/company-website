@@ -34,9 +34,9 @@
 <script>tailwind.config={theme:{extend:{colors:{primary:'#0047AB',secondary:'#00264d'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
 <script src="https://cdn.jsdelivr.net/npm/budoux@0.8.4/bundle/budoux-ja.min.js" defer></script>
 <script>document.documentElement.classList.add('js');</script>
-<script src="/assets/js/site-config.js?v=10"></script>
+<script src="/assets/js/site-config.js?v=11"></script>
 <script src="/assets/js/config.js?v=1"></script>
-<script src="/assets/js/solutions.js?v=6"></script>
+<script src="/assets/js/solutions.js?v=7"></script>
 <script src="/assets/js/i18n.js?v=10" defer></script>
 <script src="/assets/js/section-links.js?v=3" defer></script>
 <script src="/assets/js/cases.js?v=3" defer></script>
@@ -191,8 +191,9 @@ html.solutions-open { overflow: hidden; }
 .solutions-arrows[hidden] { display: none; }
 .solutions-track { display: flex; gap: 1.5rem; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; padding: .5rem 1.5rem .5rem 0; margin-right: calc((100% - 100vw) / 2 + var(--solutions-gutter)); scrollbar-width: none; }
 .solutions-track::-webkit-scrollbar { display: none; }
-/* All cards fit: center them under the heading instead of scrolling to the screen edge. */
-.solutions-track.is-centered { justify-content: center; margin-right: 0; padding-right: 0; }
+/* All cards fit in the panel: center them under the heading instead of scrolling to the screen edge. The track then
+   spans the panel on both sides (a card's gap from its edges), so the cards are centered on the panel, as the heading is. */
+.solutions-track.is-centered { justify-content: center; margin-left: calc((100% - 100vw) / 2 + var(--solutions-gutter)); padding-left: 1.5rem; }
 .solution-card { position: relative; flex: 0 0 min(72vw, 520px); scroll-snap-align: start; display: flex; flex-direction: column; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 16px; overflow: hidden; transition: transform .3s ease, border-color .3s ease, background-color .3s ease; }
 /* Hover effects only where a pointer can really hover: touch browsers keep :hover on the last tapped card,
    which would leave it lifted out of line with its neighbours. */
@@ -217,6 +218,15 @@ html.solutions-open { overflow: hidden; }
 .solution-watch { outline: none; }
 .solution-watch::after { content: ""; position: absolute; inset: 0; }
 .solution-card:has(.solution-watch:focus-visible) { outline: 2px solid #93c5fd; outline-offset: -2px; }
+/* App cards: store badges (40px high, Apple's on-screen minimum; a quarter of that apart at least). A badge with a
+   store URL sits above the card's link; until then it is part of the card and "Coming soon" sits beside it. */
+.solution-stores { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin-bottom: 1.25rem; }
+.solution-store { display: inline-flex; border-radius: 8px; }
+.solution-store img { display: block; height: 40px; width: auto; }
+a.solution-store { position: relative; z-index: 1; transition: transform .15s ease; }
+a.solution-store:focus-visible { outline: 2px solid #93c5fd; outline-offset: 2px; }
+@media (hover: hover) { a.solution-store:hover { transform: translateY(-1px); } }
+.solution-stores-note { color: #9ca3af; font-size: .875rem; }
 .case-filters { position: relative; display: inline-flex; flex-wrap: wrap; justify-content: center; gap: .25rem; padding: .25rem; background: #f3f4f6; border-radius: 1.375rem; }
 .case-filter-indicator { position: absolute; top: 0; left: 0; width: 0; height: 0; background: #fff; border-radius: 9999px; box-shadow: 0 1px 3px rgba(16,24,40,.12), 0 1px 2px rgba(16,24,40,.06); transition: transform .3s ease, width .3s ease, height .3s ease; }
 .case-filter-btn { position: relative; display: inline-flex; align-items: center; gap: .5rem; padding: .5rem .875rem .5rem 1rem; border-radius: 9999px; color: #4b5563; font-weight: 500; white-space: nowrap; transition: color .2s; }

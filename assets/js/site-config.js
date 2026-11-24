@@ -42,6 +42,21 @@ window.SITE_CONFIG = {
         ja: "取引アラートをAIが一次調査し、資金の流れの分析から疑わしい取引の届出書の下書きまで行います。",
       },
     },
+    // アプリは動画の代わりに link（紹介ページ）と image（16:9 の画像）を書く。書き方は README の「アプリのカード」
+    {
+      id: "pickle-up",
+      category: "consumer",
+      show: true,
+      link: { en: "/en/apps/pickle-up/", ja: "/ja/apps/pickle-up/" },
+      image: { en: "/images/apps/pickle-up/card-en.webp", ja: "/images/apps/pickle-up/card-ja.webp" },
+      title: "Pickle Up",
+      description: {
+        en: "Just film your games, and play better the next one. Your video shows which shots are your strengths and weak spots, so you know what to practise next.",
+        ja: "撮るだけで次の試合が変わる。撮影動画から自分のショットの得意と苦手を分析し、次の練習に役立てることができます。",
+      },
+      // リリース後に各ストアの URL を入れると、バッジからストアへ飛べる（scripts/app_pages/pickle_up.py の STORES も同じ URL に）
+      stores: { appStore: null, googlePlay: null },
+    },
     // ▼ ローカル確認用のテスト動画（使うときはコメントを外す。本番に出さないこと）
     // { id: "test-business-1", category: "business", show: true,
     //   video: { en: "aqz-KE-bpKQ", ja: "jNQXAC9IVRw" },

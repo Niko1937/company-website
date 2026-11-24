@@ -251,8 +251,10 @@ class App:
         hero_court = court_lines_svg(shots=True, at_x=880, at_y=330)
         # Three of the sample's numbers around the phone (never over it): decorative, as its screens show them too.
         (in_label, in_value), (net_label, net_value), (miss_label, (net_name, net_n), (out_name, out_n)) = h['stats']
-        # A label breaks only before its bracket ("…（中央値）"), not inside a word.
-        label = lambda text: ''.join(f'<span class="phrase">{e(p)}</span>' for p in re.split(r'(?=（| \()', text))
+        # A label breaks only before its bracket ("…（中央値）"), not inside a word. The space before an English
+        # bracket stays between the phrases: inside one (an inline-block), it would be dropped.
+        label = lambda text: ' '.join(''.join(f'<span class="phrase">{e(p)}</span>' for p in re.split(r'(?=（)', part))
+                                      for part in re.split(r' (?=\()', text))
         bars = ''.join(f'<rect x="{i * 12}" y="{28 - v}" width="10" height="{v}" rx="2"/>' for i, v in enumerate((8, 16, 24, 28, 19, 12, 6)))
         stats = f'''<div class="hero-stats" aria-hidden="true">
 <div class="hero-stat hero-stat-1"><span class="hero-stat-label">{label(in_label)}</span><span class="hero-stat-value">{e(in_value)}</span><span class="hero-stat-bar"><span style="width:{e(in_value)}"></span></span></div>

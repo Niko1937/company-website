@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  // Renders the Solutions demo videos listed in SITE_CONFIG.solutions. Load synchronously in <head>
+  // Renders the Solutions demo videos (and app cards) listed in SITE_CONFIG.solutions. Load synchronously in <head>
   // (after config.js) so empty layers, or the whole section and its menu items, are hidden before the body renders.
   //   [data-solutions]                 : the section and its menu items (hidden when no demo is shown)
   //   [data-solutions-layer="<cat>"]   : one layer per category (hidden when it has no demo; when only one is
@@ -12,6 +12,14 @@
   const ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
   const YOUTUBE_ID = /^[A-Za-z0-9_-]{11}$/;
   const PREVIEW = /^\/videos\/(?:[\w-]+\/)*[\w-]+\.(?:mp4|webm)$/;
+  // An app card links to a page of this site in the same language, shows an image of its own, and has a badge per
+  // store (linked once the store URL is set).
+  const LINK = /^\/(?:en|ja)\/(?:[\w-]+\/)*$/;
+  const IMAGE = /^\/images\/(?:[\w-]+\/)*[\w-]+\.(?:webp|png|jpe?g)$/;
+  const STORES = {
+    appStore: { url: /^https:\/\/apps\.apple\.com\//, badge: lang => `/images/apps/badges/app-store-${lang}.svg` },
+    googlePlay: { url: /^https:\/\/play\.google\.com\//, badge: lang => `/images/apps/badges/google-play-${lang}.png` },
+  };
 
   const items = readItems((window.SITE_CONFIG || {}).solutions);
   hideEmpty();
@@ -43,8 +51,16 @@
     if (!ID.test(item.id || '')) problems.push('id');
     if (!CATEGORIES.includes(item.category)) problems.push('category');
 
-    const video = readLocalized(item.video, v => YOUTUBE_ID.test(v), 'video', problems);
-    if (!video.en && !problems.some(p => p.startsWith('video'))) problems.push('video');
+    // Either a video (a demo card) or a link (an app card), never both.
+    const isApp = item.link != null;
+    if (isApp && item.video != null) problems.push('video');
+    const video = isApp ? null : readLocalized(item.video, v => YOUTUBE_ID.test(v), 'video', problems);
+    if (video && !video.en && !problems.some(p => p.startsWith('video'))) problems.push('video');
+    const link = isApp ? readLocalized(item.link, v => LINK.test(v), 'link', problems) : null;
+    if (link && !link.en && !problems.some(p => p.startsWith('link'))) problems.push('link');
+    const image = isApp ? readLocalized(item.image, v => IMAGE.test(v), 'image', problems) : null;
+    if (image && !image.en && !problems.some(p => p.startsWith('image'))) problems.push('image');
+    const stores = isApp ? readStores(item.stores, problems) : null;
     const title = readLocalized(item.title, Boolean, 'title', problems);
     if (!title.en) problems.push('title');
     const description = readLocalized(item.description, Boolean, 'description', problems);
@@ -59,7 +75,19 @@
       console.warn(`[solutions] Skipped solutions[${index}]: check ${[...new Set(problems)].join(', ')}.`);
       return null;
     }
-    return { id: item.id, category: item.category, video, title, description, preview };
+    return { id: item.id, category: item.category, video, link, image, stores, title, description, preview };
+  }
+
+  // { appStore: url | null, googlePlay: url | null }: null (or left out) until the app is out in that store.
+  function readStores(value, problems) {
+    const out = {};
+    if (value != null && typeof value !== 'object') problems.push('stores');
+    Object.entries(STORES).forEach(([store, { url }]) => {
+      const raw = value && typeof value === 'object' ? value[store] : null;
+      if (raw != null && raw !== '' && !(typeof raw === 'string' && url.test(raw.trim()))) problems.push(`stores.${store}`);
+      out[store] = typeof raw === 'string' && url.test(raw.trim()) ? raw.trim() : null;
+    });
+    return out;
   }
 
   // Reads an { en, ja } value (a plain string means the same value for both languages).
@@ -133,6 +161,7 @@
   }
 
   function card(item, lang) {
+    if (item.link) return appCard(item, lang);
     const title = item.title[lang];
     const watch = tr('solutions.watchDemo', 'Watch demo');
     const article = el('article', 'solution-card');
@@ -161,6 +190,54 @@
     label.textContent = watch;
     button.appendChild(label);
     body.appendChild(button);
+    article.appendChild(body);
+    return article;
+  }
+
+  // The same card as a demo's, with the app's image in place of the video, its store badges, and a link to its page
+  // in place of "Watch demo". The link covers the card; badges with a store URL sit above it.
+  function appCard(item, lang) {
+    const title = item.title[lang];
+    const view = tr('solutions.viewApp', 'View app');
+    const article = el('article', 'solution-card');
+
+    const thumb = el('div', 'solution-thumb');
+    thumb.appendChild(el('img', 'solution-image', { src: item.image[lang], alt: '', loading: 'lazy', decoding: 'async' }));
+    article.appendChild(thumb);
+
+    const body = el('div', 'solution-body');
+    const heading = el('h4', 'solution-title');
+    heading.textContent = title;
+    body.appendChild(heading);
+    if (item.description[lang]) {
+      const desc = el('p', 'solution-desc');
+      desc.textContent = item.description[lang];
+      body.appendChild(desc);
+    }
+    const stores = el('div', 'solution-stores');
+    Object.entries(STORES).forEach(([store, { badge }]) => {
+      const alt = tr(`solutions.${store}`, store === 'appStore' ? 'Download on the App Store' : 'Get it on Google Play');
+      const img = el('img', '', { src: badge(lang), alt, height: '40', loading: 'lazy', decoding: 'async' });
+      const url = item.stores[store];
+      const node = url
+        ? el('a', 'solution-store', { href: url, target: '_blank', rel: 'noopener' })
+        : el('span', 'solution-store');
+      node.appendChild(img);
+      stores.appendChild(node);
+    });
+    if (!Object.values(item.stores).every(Boolean)) {
+      const soon = el('span', 'solution-stores-note');
+      soon.textContent = tr('solutions.soon', 'Coming soon');
+      stores.appendChild(soon);
+    }
+    body.appendChild(stores);
+
+    const link = el('a', 'solution-watch', { href: item.link[lang], 'aria-label': `${view}: ${title}` });
+    const label = el('span');
+    label.textContent = view;
+    link.appendChild(label);
+    link.appendChild(el('i', 'ri-arrow-right-line', { 'aria-hidden': 'true' }));
+    body.appendChild(link);
     article.appendChild(body);
     return article;
   }
@@ -203,11 +280,12 @@
     const layer = track.closest('[data-solutions-layer]');
     const arrows = layer && layer.querySelector('[data-solutions-arrows]');
     if (!arrows) return;
-    // Decide from the cards' own widths, not from the overflow: centering makes the track narrower, so measuring
-    // the overflow would flip between the two layouts.
+    // Decide from the cards' own widths, not from the overflow: centering changes the track's width, so measuring
+    // the overflow would flip between the two layouts. Centered, the track spans the panel less a gap at each side.
     const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
     const needed = Array.from(track.children).reduce((sum, card) => sum + card.offsetWidth, 0) + gap * Math.max(track.children.length - 1, 0);
-    track.classList.toggle('is-centered', needed <= layer.clientWidth);
+    const panel = layer.closest('.solutions-panel');
+    track.classList.toggle('is-centered', needed <= (panel ? panel.clientWidth - 2 * gap : layer.clientWidth));
     const max = track.scrollWidth - track.clientWidth;
     arrows.hidden = track.classList.contains('is-centered') || max <= 1;
     arrows.querySelector('[data-solutions-prev]').disabled = track.scrollLeft <= 1;
@@ -305,8 +383,9 @@
     return { dialog, tag, title, frame, desc, count, steps, close };
   }
 
+  // The demos the player pages through: the videos of the same layer (app cards open their own page instead).
   function sameLayer(item) {
-    return items.filter(i => i.category === item.category);
+    return items.filter(i => i.video && i.category === item.category);
   }
 
   // Header, description, "2 / 6" and arrow labels for the current demo, in the current language.
@@ -358,9 +437,9 @@
     }
   }
 
-  // Opens the player for one demo. Returns false when no shown demo has that id.
+  // Opens the player for one demo. Returns false when no shown demo has that id (or it is an app card).
   function open(id) {
-    const item = items.find(i => i.id === id);
+    const item = items.find(i => i.id === id && i.video);
     if (!item) return false;
     player = player || buildPlayer();
     show(item);

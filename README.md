@@ -42,7 +42,7 @@ SPA構成で、軽量かつ多言語（英語・日本語）に対応してい�
 │       ├── i18n.js         言語切替ロジック（依存ライブラリなし）
 │       ├── site-config.js  表示設定の値（後述「表示設定」）
 │       ├── config.js       表示設定を画面に反映するロジック
-│       ├── solutions.js    Solutions のデモ動画の表示・再生（後述「Solutions のデモ動画」）
+│       ├── solutions.js    Solutions のデモ動画とアプリのカードの表示・再生（後述「Solutions のデモ動画」）
 │       ├── section-links.js  ページ内リンク（#services など）の移動と URL の更新（後述「セクションへのリンク」）
 │       └── cases.js        Case Studies の絞り込みと、詳細の重ね表示（`#cases-<id>`）
 ├── videos/solutions/       （任意）Solutions のカードで流す短いループ映像。使うときに作成する
@@ -58,7 +58,7 @@ SPA構成で、軽量かつ多言語（英語・日本語）に対応してい�
 │   ├── optimize_images.py  写真を Web 用（JPEG/WebP・2サイズ）に変換するスクリプト
 │   ├── build_icons.py      ロゴの PNG / ICO を作り、サイト用のファイルを公開場所へコピーするスクリプト
 │   ├── legal_pages/        プライバシーポリシー・利用規約のページを作るスクリプトと文面（content_en.py / content_ja.py）
-│   ├── app_pages/          アプリのページを作るスクリプト（build.py）と、アプリごとの文面（pickle_up.py）。後述「アプリのページ」
+│   ├── app_pages/          アプリのページを作るスクリプト（build.py）と、アプリごとの文面（pickle_up.py）、Solutions のカードの画像を撮るスクリプト（card_image.mjs）。後述「アプリのページ」
 │   └── check_lang_links.py すべてのサイト内リンクが表示言語を保つか（/ja/ のページから /en/ に飛ばないか）を確認する
 ├── favicon.ico             旧ブラウザ用ファビコン（16/32/48px）
 ├── apple-touch-icon.png    iPhone のホーム画面用アイコン（180px）
@@ -167,7 +167,7 @@ window.SITE_CONFIG = {
 
 ### Solutions のデモ動画
 
-Solutions セクション（Services と Cases の間。ページの中に浮かぶ、角の丸い暗いパネル）に、自社ソリューションのデモ動画を「法人向け」「個人向け」の2段で並べる。動画は `site-config.js` の `solutions` に書くだけで追加・変更・非表示にできる（HTML や翻訳JSONの編集は不要）。
+Solutions セクション（Services と Cases の間。ページの中に浮かぶ、角の丸い暗いパネル）に、自社ソリューションのデモ動画（と自社アプリのカード。後述「アプリのカード」）を「法人向け」「個人向け」の2段で並べる。動画は `site-config.js` の `solutions` に書くだけで追加・変更・非表示にできる（HTML や翻訳JSONの編集は不要）。
 
 ```js
 solutions: [
@@ -193,7 +193,7 @@ solutions: [
 
 - 動画が 0 本の段（法人向け・個人向け）は見出しごと隠れる。両方 0 本ならセクションと、ヘッダー・スマホメニュー・フッターの「Solutions」、Hero の「ソリューションを見る」ボタンも隠れる。
 - 段の見出し（法人向け／個人向け）は中央に表示する。両方の段があるときだけ、見出しと間の区切り線を出す。片方の段しかないときは、段の見出しも再生画面の見出し上の小さな「法人向け」も出さない（ほかの種類もあるように見えないようにするため）。
-- 1段のカードがすべて画面に収まるときは、カードも中央に並べる。
+- 1段のカードがすべてパネルの幅に収まるときは、カードを見出しの真下に中央で並べる。
 - 1段のカードが画面に収まらないとき（PC では3本以上、スマホでは2本以上）は、次のカードの一部が右端からのぞき、列の下の ← → ボタンとスワイプで送れる。矢印の左には見えている範囲（例: `1–3 / 6`）を出す。収まるときは矢印も件数も出さない。
 - 再生画面でも、同じ段の前後の動画に `2 / 6 (←)(→)` と ← → キーで送れる（送り操作の見た目は Case Studies の詳細画面と共通の部品 `.pager`）。
 - カードには YouTube のサムネイルを表示する（`i.ytimg.com` から読み込み）。プレーヤーはクリックされてから読み込むため、ページは重くならない。再生は `youtube-nocookie.com` の埋め込みで、画面に重なるウィンドウ（Esc・背景クリックで閉じる）で行う。
@@ -206,6 +206,33 @@ solutions: [
 - `site-config.js` は公開ファイルなので、`show: false` の動画も ID は誰でも見られる。**公開前の動画は書かないこと。** また、限定公開の動画も URL を知っていれば誰でも見られるため、社外秘の画面は映さない。
 - YouTube は、収益化していない動画にも広告を表示することがある。広告を確実に避けたい場合は、Vimeo などへの移行を検討する（`solutions.js` の埋め込み URL の変更が必要）。
 - 変更は push 後、利用者のブラウザでは最大約10分古いまま見えることがある（GitHub Pages のキャッシュ）。
+
+#### アプリのカード
+
+自社アプリは、動画の代わりにアプリの紹介ページへのリンクと画像を書く（`video` は書かない）。カードの見た目はデモ動画と同じで、再生ボタンの代わりに「アプリを見る →」、説明の下にストアのバッジを出す。
+
+```js
+{
+  id: "pickle-up",
+  category: "consumer",
+  show: true,
+  link: { en: "/en/apps/pickle-up/", ja: "/ja/apps/pickle-up/" },   // サイト内の言語付きのパス（/en/ か /ja/ で始まり / で終わる）
+  image: { en: "/images/apps/pickle-up/card-en.webp", ja: "/images/apps/pickle-up/card-ja.webp" },  // 16:9。/images/ の下の webp・png・jpg
+  title: "Pickle Up",
+  description: { en: "...", ja: "..." },
+  stores: { appStore: null, googlePlay: null },   // ストアに出したら URL（https://apps.apple.com/… と https://play.google.com/…）
+},
+```
+
+- カードのどこを押しても、同じタブで紹介ページに移る。再生画面には入らず、`#solutions-<id>` で開いたときは Solutions を表示するだけ。
+- `stores` の URL が入ったバッジだけがリンクになり、ストアを新しいタブで開く。どちらかが `null` の間は、バッジの横に「近日公開」（`solutions.soon`）を出す。**ストアに出したら、`scripts/app_pages/<アプリ>.py` の `STORES` と、ここの `stores` の両方に同じ URL を入れる。**
+- バッジは紹介ページと同じ公式の画像（`images/apps/badges/`）を高さ 40px（Apple が定める画面上の最小）で表示する。
+- 画像は紹介ページの冒頭（コート・スマホ・3つの数字）をカード用に並べ直したもの。紹介ページの画面や数字を変えたら、次の手順で作り直す（Playwright は リポジトリの外に入れる）。
+  ```bash
+  python3 -m http.server 8080 &                       # 別のターミナルでもよい
+  node scripts/app_pages/card_image.mjs ja /tmp/card-ja.png   # en も同様
+  python3 -c "from PIL import Image; Image.open('/tmp/card-ja.png').convert('RGB').resize((1560, 878), Image.LANCZOS).save('images/apps/pickle-up/card-ja.webp', 'WEBP', quality=88, method=6)"
+  ```
 
 ### プライバシーポリシー・利用規約
 
@@ -232,12 +259,12 @@ Quests が出すアプリのページ。URL は言語を先頭に付ける（サ
 | `/ja/apps/<アプリ>/privacy/` | アプリのプライバシーポリシー。ストアの「プライバシーポリシー URL」 |
 | `/apps/...`（言語なし） | 保存された言語（`preferredLang`）→ ブラウザの言語の順で `/ja/` か `/en/` に振り分ける（`assets/js/lang-redirect.js`） |
 
-- 文面・ストアのリンクは `scripts/app_pages/<アプリ>.py`、見た目は `assets/css/apps/<アプリ>.css`、画像は `images/apps/<アプリ>/`（アイコン、言語ごとの画面 `screens/<名前>-<ja|en>.webp`、リンクのプレビュー `og-<ja|en>.png`）。ストアのバッジは `images/apps/badges/`（Apple・Google の公式の画像。加工しない）。
+- 文面・ストアのリンクは `scripts/app_pages/<アプリ>.py`、見た目は `assets/css/apps/<アプリ>.css`、画像は `images/apps/<アプリ>/`（アイコン、言語ごとの画面 `screens/<名前>-<ja|en>.webp`、リンクのプレビュー `og-<ja|en>.png`、Solutions のカード `card-<ja|en>.webp`）。画面は、一番上の時刻・電池などの表示（上から 60px ほど）をアプリの上部と同じ色で塗りつぶしてから置く（スマホの枠の角で見切れるため。iPhone・Android のどちらかの表示にも寄せない）。ストアのバッジは `images/apps/badges/`（Apple・Google の公式の画像。加工しない）。
 - 直したら、リポジトリのルートで次を実行し、生成された HTML もコミットする。一覧ページは法務ページのヘッダー・フッターを使うため、法務ページの後に作る。
   ```bash
   python3 scripts/legal_pages/build.py . && python3 scripts/app_pages/build.py . && python3 scripts/check_lang_links.py
   ```
-- ストアに公開したら、`<アプリ>.py` の `STORES` に URL を入れて作り直す（それまではバッジをリンクなしで表示し、「近日公開」と添える）。
+- ストアに公開したら、`<アプリ>.py` の `STORES` に URL を入れて作り直す（それまではバッジをリンクなしで表示し、「近日公開」と添える）。トップページの Solutions のカードにも同じ URL を入れる（`site-config.js` の `stores`。前述「アプリのカード」）。
 - アプリの URL の名前（`pickle-up` など）は、ストアに登録するので後から変えない。
 - 新しいアプリは、`<アプリ>.py` と CSS を足し、`build.py` の `main()` の `apps` に加える。
 
