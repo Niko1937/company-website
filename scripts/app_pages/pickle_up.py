@@ -41,14 +41,13 @@ JA = {
         'title': '機能',
         'items': [
             {
-                'title': 'スコアはアプリが数えて、|声でコールする',
-                'body': 'ラリーが終わるたびに、アプリがスコアを声でコール。数え間違いを気にせず、プレーに集中できます。',
+                'title': 'スコアはアプリが数えて、|音声でコールする',
+                'body': 'ラリーが終わるたびに、アプリがスコアを音声でコール。数え間違いを気にせず、プレーに集中できます。',
                 # Heard on the page: the call the first screen shows (10-7, match point), in the app's own English voice.
                 'audio': {'src': 'score-call-en.mp3', 'label': 'スコア読み上げの例を聞く'},
                 'slides': [
                     ('recording', '試合を録画している画面。コート全体と4人が映った映像の上に 10-7 のスコアが出ていて、右上の読み上げはオン'),
                     ('recording-settings', '録画中に開いた試合の設定。得点方式・何点先取・デュース・ゲーム数を、録画を続けたまま変えられる'),
-                    ('score', '試合の画面。自分11点・相手8点で勝ちの表示'),
                 ],
             },
             {
@@ -56,9 +55,9 @@ JA = {
                 'body': '打球の軌道と着地点を、1本ずつコートに描きます。ショットの種類ごとに、得意な球と失点につながる球が数字で分かります。',
                 'slides': [
                     ('flat-all', '45本の打球を上から見たコートに描いた画面。アウトとネットのミスが赤い×で表示されている'),
+                    ('3d-all', '45本の打球を立体のコートに描いた画面。イン率82%、ネットからの高さの中央値 +19cm'),
                     ('3d-drop', 'ドロップだけを表示した立体の画面。イン率86%、キッチンに届いた割合100%'),
                     ('3d-volley', 'ボレーだけを表示した立体の画面。ネットにかかった3本が赤い×で表示され、イン率63%'),
-                    ('3d-all', '45本の打球を立体のコートに描いた画面。イン率82%、ネットからの高さの中央値 +19cm'),
                 ],
             },
             {
@@ -195,7 +194,6 @@ EN = {
                 'slides': [
                     ('recording', 'Recording a match: the whole court and all four players in view, the score 10–7 shown, with the score call switched on'),
                     ('recording-settings', 'Match settings opened while recording: scoring, points to win, win by 2 and games, changed without stopping'),
-                    ('score', 'The match screen: won 11–8'),
                 ],
             },
             {
@@ -203,9 +201,9 @@ EN = {
                 'body': 'See the path and landing spot of every shot. Filter by shot to find the ones you win with, and the ones that cost you points.',
                 'slides': [
                     ('flat-all', '45 shots drawn on the court from above, with outs and nets marked with red ×s'),
+                    ('3d-all', '45 shots drawn on a 3D court, with an 82% in rate and a median height over the net of +19 cm'),
                     ('3d-drop', 'Drops only, in 3D: 86% in, 100% reached the kitchen'),
                     ('3d-volley', 'Volleys only, in 3D: three shots into the net marked with red ×s, 63% in'),
-                    ('3d-all', '45 shots drawn on a 3D court, with an 82% in rate and a median height over the net of +19 cm'),
                 ],
             },
             {
