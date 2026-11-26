@@ -22,6 +22,9 @@ try {
   await page.addStyleTag({ content: `
     *{animation:none!important;transition:none!important}
     .hero-copy{visibility:hidden!important}
+    /* Without the words on its left, the court sat too far left in the frame: moved right, the shots
+       landing right of the phone. */
+    .court-lines.hero-court{transform:translate(calc(-50% + 120px), -50%)!important}
     .app-header,.site-header,header{visibility:hidden!important}
   ` });
   await page.evaluate(() => document.fonts.ready);
