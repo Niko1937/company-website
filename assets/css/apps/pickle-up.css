@@ -45,7 +45,7 @@ img { max-width: 100%; height: auto; }
 @media (min-width: 1536px) { .app-header .bar { max-width: 1536px; } }
 /* Over the hero (the app's own page): clear, as on the Quests site, until the page moves (app-menu.js sets
    .is-scrolled); the hero runs up under it. */
-.app-header.over-hero { margin-bottom: -64px; background: rgba(20,17,16,0); -webkit-backdrop-filter: blur(0); backdrop-filter: blur(0); border-bottom-color: transparent; }
+.app-header.over-hero { margin-bottom: -65px; background: rgba(20,17,16,0); -webkit-backdrop-filter: blur(0); backdrop-filter: blur(0); border-bottom-color: transparent; }
 .app-header.over-hero.is-scrolled { background: rgba(20,17,16,.8); -webkit-backdrop-filter: blur(15px); backdrop-filter: blur(15px); border-bottom-color: rgba(255,255,255,.06); }
 .app-header.over-hero + main > .hero:first-child { padding-top: 64px; }
 .app-brand { display: inline-flex; align-items: center; gap: .625rem; color: var(--on-ink); font-weight: 800; font-size: 1.125rem; letter-spacing: -.01em; text-decoration: none; white-space: nowrap; }
@@ -100,7 +100,7 @@ img { max-width: 100%; height: auto; }
 @media (min-width: 1180px) {
   .court-lines.hero-court { inset: auto; left: 50%; top: 50%; width: 2860px; height: 1320px; transform: translate(-50%, -50%); }
   /* Centred on the content, below the bar the hero runs up under. */
-  .app-header.over-hero + main .court-lines.hero-court { top: calc(50% + 32px); }
+  .app-header.over-hero + main > .hero .court-lines.hero-court { top: calc(50% + 32px); }
 }
 /* Cards as warm tangerine-tinted glass over the dark hero: light enough to stand off the dark base, blurred, a light edge on top. */
 .hero-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; width: min(100%, 26rem); }

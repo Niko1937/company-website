@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 42
+CSS_VERSION = 43
 
 
 def read(path):
@@ -254,7 +254,8 @@ class App:
                         for n, (a, b) in enumerate(t['how']['steps']))
         faq = ''.join(f'<details><summary>{e(q)}<i class="ri-add-line" aria-hidden="true"></i></summary><p>{e(a)}</p></details>'
                       for q, a in t['faq']['items'])
-        court = court_lines_svg()
+        # The closing call shows the hero's court again, without the shots.
+        court = hero_court_svg(with_shots=False).replace('<g class="hero-shots"></g>', '')
         hero_court = hero_court_svg()
         # Three of the sample's numbers around the phone (never over it): decorative, as its screens show them too.
         (in_label, in_value), (net_label, net_value), (miss_label, (net_name, net_n), (out_name, out_n)) = h['stats']
@@ -418,40 +419,7 @@ class App:
         return self.document(lang, 'privacy/', p, inner)
 
 
-def court_lines_svg(at_x=780, at_y=400):
-    # A court seen at an angle, as in the app's 3D view (the same camera: up behind the near right corner,
-    # looking at the net), faint behind the closing call. Court metres: across, depth, height.
-    import math
-    W, L, NET, K = 6.1, 13.41, 6.705, 2.13
-    eye, target = (W + 4, -4.0, 10.0), (W / 2, NET, 0.0)
-    sub = lambda a, b: tuple(x - y for x, y in zip(a, b))
-    dot = lambda a, b: sum(x * y for x, y in zip(a, b))
-    cross = lambda a, b: (a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0])
-    unit = lambda a: tuple(x / math.sqrt(dot(a, a)) for x in a)
-    f = unit(sub(target, eye)); r = unit(cross(f, (0, 0, 1))); u = cross(r, f)
-
-    def at(x, y, z=0.0):
-        d = sub((x, y, z), eye)
-        depth = dot(d, f)
-        # Scaled and placed so the court sits to the right of a 1200 x 700 picture.
-        return f'{at_x + 900 * dot(d, r) / depth:.0f} {at_y - 900 * dot(d, u) / depth:.0f}'
-
-    lines = [((0, 0), (W, 0)), ((0, L), (W, L)), ((0, 0), (0, L)), ((W, 0), (W, L)),
-             ((0, NET - K), (W, NET - K)), ((0, NET + K), (W, NET + K)),
-             ((W / 2, 0), (W / 2, NET - K)), ((W / 2, NET + K), (W / 2, L))]
-    court = ' '.join(f'M{at(*a)} L{at(*b)}' for a, b in lines)
-    # The net as it stands: a post just outside each sideline, the tape between their tops, and the mesh
-    # down to the ground (a raised line alone read as floating off the court).
-    P, H = 0.15, 0.914
-    net = (f'M{at(-P, NET)} L{at(-P, NET, H)} L{at(W + P, NET, H)} L{at(W + P, NET)}')
-    mesh = f'M{at(-P, NET, H)} L{at(W + P, NET, H)} L{at(W + P, NET)} L{at(-P, NET)} Z'
-    return (f'<svg class="court-lines" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">'
-            f'<path class="lines" d="{court}" fill="none" stroke="currentColor" stroke-width="2"/>'
-            f'<path class="lines" d="{mesh}" fill="currentColor" fill-opacity=".18" stroke="none"/>'
-            f'<path class="lines" d="{net}" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg>')
-
-
-def hero_court_svg(side=5.0, back=-3.0, up=6.5, x0=900, y0=240, scale=920, shots=None):
+def hero_court_svg(side=5.0, back=-3.0, up=6.5, x0=900, y0=240, scale=920, shots=None, with_shots=True):
     # The hero's picture: a big court at the app's 3D angle (up behind the near right corner, looking at the
     # net), with three of your shots as the app marks them: a drop into the back of the far kitchen and a deep
     # ball to the far right back (yellow rings, in), and one long past the baseline (an orange x, out).
@@ -504,7 +472,7 @@ def hero_court_svg(side=5.0, back=-3.0, up=6.5, x0=900, y0=240, scale=920, shots
                       ((3.0, .5), (4.0, 13.0), 1.6, .5, False, .22),      # the deep ball
                       ((3.0, 1.5), (.25, 14.25), 2.2, .5, True, .3)]      # the long one, out
     out.append('<g class="hero-shots">')
-    for hit, end, top, peak, miss, rad in shots:
+    for hit, end, top, peak, miss, rad in (shots if with_shots else []):
         dots = list(flight(hit, end, top, peak))
         for i, (x, y, z) in enumerate(dots):
             # Faint near you, fuller further away.
