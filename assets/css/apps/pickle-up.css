@@ -79,9 +79,15 @@ img { max-width: 100%; height: auto; }
 .court-lines { position: absolute; inset: 0; width: 100%; height: 100%; color: var(--accent); opacity: .09; pointer-events: none; }
 /* The hero: the plain dark base and the court at the app's 3D angle with three shots drawn as the app marks
    them (build.py hero_court_svg; its colours are in the picture). */
-.court-lines.hero-court { opacity: 1; }
+/* Quiet, so the words and the phone come first. */
+.court-lines.hero-court { opacity: .55; }
 /* The shots are placed around the phone and its cards as they sit on wide screens only. */
 @media (max-width: 1179px) { .hero-court .hero-shots { display: none; } }
+/* On wide screens one size, centred on the hero as its content is, so the picture keeps to the phone and its
+   cards however wide the window (stretched to the window's width, it grew past them and was cut off). */
+@media (min-width: 1180px) {
+  .court-lines.hero-court { inset: auto; left: 50%; top: 50%; width: 1320px; height: 770px; transform: translate(-50%, -50%); }
+}
 /* Cards as warm tangerine-tinted glass over the dark hero: light enough to stand off the dark base, blurred, a light edge on top. */
 .hero-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; width: min(100%, 26rem); }
 .hero-stat-3 { grid-column: 1 / -1; }
