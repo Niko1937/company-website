@@ -84,11 +84,11 @@ JA = {
         # The same rows in the same order on both cards, so each line compares like with like.
         'plans': [
             {'name': '無料プラン', 'price': '¥0', 'period': '', 'sub': 'ずっと無料',
-             'items': [('打球の分析', '月60分'), ('フォームの評価', '月60分'), ('AI コーチのアドバイス', '月2回'),
+             'items': [('打球の分析', '月60分'), ('AI コーチのアドバイス', '月2回'),
                        ('スコアの自動カウントと読み上げ', '無制限'), ('練習用ドリル', '無制限')]},
             {'name': 'プレミアムプラン', 'price': '¥2,980', 'period': '/月', 'sub': '年額 ¥24,800（月あたり約 ¥2,067）', 'badge': '7日間無料トライアル',
              'trial': '年額プランは7日間無料でお試しできます。\n期間中に解約すれば、料金はかかりません。',
-             'items': [('打球の分析', '無制限'), ('フォームの評価', '無制限'), ('AI コーチのアドバイス', '月50回'),
+             'items': [('打球の分析', '無制限'), ('AI コーチのアドバイス', '月50回'),
                        ('スコアの自動カウントと読み上げ', '無制限'), ('練習用ドリル', '無制限')]},
         ],
         'note': '価格は日本の App Store・Google Play での税込みの価格です。',
@@ -229,11 +229,11 @@ EN = {
         'title': 'Pricing',
         'plans': [
             {'name': 'Free plan', 'price': '$0', 'period': '', 'sub': 'Free forever',
-             'items': [('Shot analysis', '60 min a month'), ('Form review', '60 min a month'), ('AI coach advice', '2 a month'),
+             'items': [('Shot analysis', '60 min a month'), ('AI coach advice', '2 a month'),
                        ('Score kept and called out', 'Unlimited'), ('Practice drills', 'Unlimited')]},
             {'name': 'Premium plan', 'price': '$19.99', 'period': '/month', 'sub': 'Or $164.99 a year (about $13.75 a month)', 'badge': '7-day free trial',
              'trial': 'Try the yearly plan free for 7 days.\nCancel before it ends and you pay nothing.',
-             'items': [('Shot analysis', 'Unlimited'), ('Form review', 'Unlimited'), ('AI coach advice', '50 a month'),
+             'items': [('Shot analysis', 'Unlimited'), ('AI coach advice', '50 a month'),
                        ('Score kept and called out', 'Unlimited'), ('Practice drills', 'Unlimited')]},
         ],
         'note': 'Prices are in US dollars and vary by country; your app store shows yours.',
