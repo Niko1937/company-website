@@ -173,26 +173,31 @@ html[lang="ja"] .section-title { letter-spacing: 0; }
 .section-more a:hover { text-decoration: underline; }
 .section-dark .section-more a { color: var(--accent); }
 
-/* Pricing: two cards in the same soft tangerine tint; Premium told apart only by its edge and badge.
+/* Pricing: white cards lifted off the warm ground; Premium with the brand's edge, a warm glow at its top, its badge
+   in the brand's fill and a check on each of its values, so the step up reads at a glance.
    Side by side, the cards share two grid rows (subgrid), so the line under the prices sits at the same height
    and the rows below line up, one comparison per line. */
 .plans { display: grid; gap: 1.25rem; max-width: 56rem; margin: 0 auto; }
 @media (min-width: 760px) { .plans { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto auto; column-gap: 1.25rem; row-gap: 0; } }
 .plan { position: relative; display: grid; grid-row: span 2; grid-template-rows: subgrid; padding: 2rem; border-radius: var(--radius);
-  background: var(--tint); border: 1px solid var(--tint-line); color: var(--text); }
+  background: var(--paper); border: 1px solid var(--line); color: var(--text);
+  box-shadow: 0 1px 2px rgba(28,23,19,.04), 0 12px 32px -16px rgba(28,23,19,.12); }
 .plan h3 { margin: 0; font-size: 1.125rem; }
 .plan-title { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem; min-height: 1.875rem; }
-.plan-badge { padding: .25rem .75rem; border-radius: 999px; background: var(--brand-text); color: #fff; font-size: .8125rem; font-weight: 700; }
+.plan-badge { padding: .25rem .75rem; border-radius: 999px; background: var(--accent); color: var(--ink); font-size: .8125rem; font-weight: 700; }
 .plan-price { margin: 1rem 0 .25rem; font-size: 2.5rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; font-variant-numeric: tabular-nums; }
 .plan-period { margin-left: .25rem; font-size: 1rem; font-weight: 600; color: var(--muted); }
 .plan-sub { margin: 0; color: var(--muted); font-size: .9375rem; }
 .plan-trial { margin: .375rem 0 0; color: var(--muted); font-size: .8125rem; }
 .plan-head { padding-bottom: 1.25rem; }
-.plan dl { margin: 0; padding-top: 1.25rem; border-top: 1px solid var(--tint-line); display: grid; gap: .875rem; align-content: start; }
+.plan dl { margin: 0; padding-top: 1.25rem; border-top: 1px solid var(--line); display: grid; gap: .875rem; align-content: start; }
 .plan dl > div { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
 .plan dt { color: var(--text); }
-.plan dd { margin: 0; color: var(--brand-text); white-space: nowrap; text-align: right; }
-.plan-premium { border: 2px solid var(--brand-text); box-shadow: 0 24px 48px -30px rgba(184,61,11,.45); }
+.plan dd { margin: 0; color: var(--text); font-weight: 500; white-space: nowrap; text-align: right; }
+.plan-premium dd { display: inline-flex; align-items: center; gap: .25rem; color: var(--brand-text); font-weight: 700; }
+.plan-premium dd i { font-size: 1.125rem; }
+.plan-premium { border: 2px solid var(--accent); background: linear-gradient(180deg, var(--tint) 0, var(--paper) 11rem);
+  box-shadow: 0 28px 56px -28px rgba(255,95,31,.45); }
 .plans-note { max-width: 56rem; margin: 1.5rem auto 0; text-align: center; color: var(--muted); font-size: .875rem; }
 
 /* Features: the app's screens (one, or several to page through) and the words, sides alternating on wide screens */
@@ -288,8 +293,12 @@ th { color: var(--ink); font-weight: 700; white-space: nowrap; }
 .app-footer ul a:hover { color: var(--on-ink); }
 .footer-bottom { padding-top: 1.5rem; display: grid; gap: .5rem; }
 .footer-by { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: .25rem .75rem; }
-.footer-by .quests { color: var(--on-ink); font-weight: 800; font-size: 1.125rem; text-decoration: none; }
-.footer-by .quests:hover { color: var(--accent); }
+/* Quests: a link, so it looks like one: underlined, with an arrow that moves on hover. */
+.footer-by .quests { display: inline-flex; align-items: center; gap: .125rem; color: var(--on-ink); font-weight: 800; font-size: 1.125rem;
+  text-decoration: underline; text-decoration-color: rgba(247,242,236,.35); text-decoration-thickness: 1px; text-underline-offset: 4px; transition: color .2s, text-decoration-color .2s; }
+.footer-by .quests i { font-size: 1rem; transition: transform .2s; }
+.footer-by .quests:hover, .footer-by .quests:focus-visible { color: var(--accent); text-decoration-color: currentColor; }
+.footer-by .quests:hover i { transform: translate(2px, -2px); }
 /* Asked for by Apple's and Google's badge guidelines; kept small and quiet. */
 .trademarks { margin: .75rem 0 0; color: #8C8279; font-size: .6875rem; line-height: 1.6; }
 @media (min-width: 760px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }

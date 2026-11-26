@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 32
+CSS_VERSION = 33
 
 
 def read(path):
@@ -184,7 +184,7 @@ class App:
 </div>
 </div>
 <div class="footer-bottom">
-<p class="footer-by"><a class="quests" href="/{lang}/" lang="en">Quests</a><span lang="en">© <span data-year>2026</span> Quests Bay Pte. Ltd.</span></p>
+<p class="footer-by"><a class="quests" href="/{lang}/" lang="en">Quests<i class="ri-arrow-right-up-line" aria-hidden="true"></i></a><span lang="en">© <span data-year>2026</span> Quests Bay Pte. Ltd.</span></p>
 <p class="trademarks">{e(f['trademarks'])}</p>
 </div>
 </div>
@@ -247,7 +247,7 @@ class App:
 <p class="plan-price"><span lang="en">{e(p['price'])}</span><span class="plan-period">{e(p['period'])}</span></p>
 <p class="plan-sub">{e(p['sub'])}</p>{f'<p class="plan-trial">{e(p["trial"])}</p>' if p.get('trial') else ''}
 </div>
-<dl>{''.join(f'<div><dt>{e(k)}</dt><dd>{e(v)}</dd></div>' for k, v in p['items'])}</dl>
+<dl>{''.join(f'<div><dt>{e(k)}</dt><dd>{'<i class="ri-check-line" aria-hidden="true"></i>' if p.get('badge') else ''}{e(v)}</dd></div>' for k, v in p['items'])}</dl>
 </article>''' for p in t['pricing']['plans'])
         steps = ''.join(f'<li><span class="step-number" lang="en">{n + 1}</span><h3>{e(a)}</h3><p>{e(b)}</p></li>'
                         for n, (a, b) in enumerate(t['how']['steps']))
