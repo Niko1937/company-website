@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 39
+CSS_VERSION = 40
 
 
 def read(path):
@@ -129,8 +129,9 @@ class App:
         # The support page is not one of them: it is reached from the FAQ's link and the footer.
         top = '' if home else f'/{lang}/{self.base}'
         other = OTHER[lang]
-        return f'''<header class="app-header">
-<div class="wrap bar">
+        # On the app's own page the bar lies over the dark hero, see-through until the page is scrolled.
+        return f'''<header class="app-header{' over-hero' if home else ''}">
+<div class="bar">
 <a class="app-brand" href="/{lang}/{self.base}"><img src="{self.img}/icon-128.png" alt="" width="32" height="32"><span lang="en">{self.m.NAME}</span></a>
 <nav class="app-nav" aria-label="{e(n['menu'])}">
 <a href="{top}#features">{e(n['features'])}</a>
@@ -450,7 +451,7 @@ def court_lines_svg(at_x=780, at_y=400):
             f'<path class="lines" d="{net}" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg>')
 
 
-def hero_court_svg():
+def hero_court_svg(side=3.0, back=-3.0, up=6.5, x0=860, y0=240, scale=920, shots=None):
     # The hero's picture: a big court at the app's 3D angle (up behind the near right corner, looking at the
     # net), with three of your shots as the app marks them: a drop into the back of the far kitchen and a deep
     # ball to the far right back (yellow rings, in), and one long past the baseline (an orange x, out).
@@ -462,7 +463,8 @@ def hero_court_svg():
     import math
     W, L, NET, K = 6.1, 13.41, 6.705, 2.13
     TANGERINE, LIGHT_TANGERINE, BALL, LINE = '#FF6B2C', '#FF8A57', '#FCE97A', '#F7F2EC'
-    eye, target = (W + 3.0, -3.0, 6.5), (W / 2 - .5, NET + 1.0, 0.0)
+    # The camera: `side` m right of the right sideline, `back` m behind the near baseline, `up` m high.
+    eye, target = (W + side, back, up), (W / 2 - .5, NET + 1.0, 0.0)
     sub = lambda a, b: tuple(x - y for x, y in zip(a, b))
     dot = lambda a, b: sum(x * y for x, y in zip(a, b))
     cross = lambda a, b: (a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0])
@@ -472,7 +474,7 @@ def hero_court_svg():
     def at(x, y, z=0.0):
         d = sub((x, y, z), eye)
         depth = dot(d, f)
-        return 860 + 920 * dot(d, r) / depth, 240 - 920 * dot(d, u) / depth
+        return x0 + scale * dot(d, r) / depth, y0 - scale * dot(d, u) / depth
 
     pts = lambda ps: ' L'.join(f'{x:.1f} {y:.1f}' for x, y in ps)
     out = []
@@ -495,20 +497,20 @@ def hero_court_svg():
 
     def ring(x, y, rad):
         ps = [at(x + rad * math.cos(a), y + rad * math.sin(a)) for a in [i / 24 * 2 * math.pi for i in range(24)]]
-        return f'<path d="M{pts(ps)} Z" fill="none" stroke="{BALL}" stroke-width="2.6"/>'
+        return f'<path class="mark" d="M{pts(ps)} Z" fill="none" stroke="{BALL}" stroke-width="2.6"/>'
 
     # (hit, landing, highest point m, where it peaks, out, ring radius m)
-    shots = [((1.75, 4.0), (4.3, 8.3), 1.8, .4, False, .3),     # the drop
-             ((2.5, 1.25), (5.15, 12.2), 1.6, .5, False, .22),  # the deep ball
-             ((4.75, .25), (1.8, 14.6), 2.2, .5, True, .3)]     # the long one, out
+    shots = shots or [((1.75, 4.0), (4.3, 8.3), 1.8, .4, False, .3),     # the drop
+                      ((2.5, 1.25), (5.15, 12.2), 1.6, .5, False, .22),  # the deep ball
+                      ((4.75, .25), (1.8, 14.6), 2.2, .5, True, .3)]     # the long one, out
     out.append('<g class="hero-shots">')
     for hit, end, top, peak, miss, rad in shots:
         dots = list(flight(hit, end, top, peak))
-        for x, y, z in dots:
+        for i, (x, y, z) in enumerate(dots):
             # Faint near you, fuller further away.
             s = min(max((y + 1.0) / (L + 2.5), 0), 1)
             px, py = at(x, y, z)
-            out.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="3.6" fill="{LIGHT_TANGERINE if miss else BALL}" fill-opacity="{.3 + .65 * s ** 1.3:.2f}"/>')
+            out.append(f'<circle{' class="start"' if i == 0 else ''} cx="{px:.1f}" cy="{py:.1f}" r="3.6" fill="{LIGHT_TANGERINE if miss else BALL}" fill-opacity="{.3 + .65 * s ** 1.3:.2f}"/>')
         if not miss:
             out.append(ring(*end, rad))
             continue
@@ -523,7 +525,7 @@ def hero_court_svg():
         k, w = half * .85, max(2.4, half * .2)
         arms = ' '.join(f'M{cx - k * math.cos(a):.1f} {cy - k * math.sin(a):.1f} L{cx + k * math.cos(a):.1f} {cy + k * math.sin(a):.1f}'
                         for a in (math.pi / 4 + turn, -math.pi / 4 + turn))
-        out.append(f'<path d="{arms}" stroke="{TANGERINE}" stroke-width="{w:.1f}" stroke-linecap="round"/>')
+        out.append(f'<path class="mark" d="{arms}" stroke="{TANGERINE}" stroke-width="{w:.1f}" stroke-linecap="round"/>')
     out.append('</g>')
     # The net as it stands (posts, tape and mesh), last.
     P, H = .15, .914

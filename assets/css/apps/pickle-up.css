@@ -34,16 +34,28 @@ img { max-width: 100%; height: auto; }
 .wrap.narrow { max-width: 760px; }
 
 /* Header: the app's ink, a little see-through, fixed at the top */
-.app-header { position: sticky; top: 0; z-index: 50; background: rgba(20,17,16,.82); -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%); border-bottom: 1px solid rgba(255,255,255,.06); }
-.app-header .bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 64px; }
+.app-header { position: sticky; top: 0; z-index: 50; background: rgba(20,17,16,.82); -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%); border-bottom: 1px solid rgba(255,255,255,.06);
+  transition: background-color .25s ease, border-color .25s ease, backdrop-filter .25s ease, -webkit-backdrop-filter .25s ease; }
+/* The bar is as wide as the Quests site's header (its container: 640 / 768 / 1024 / 1280 / 1536 px, 24px in). */
+.app-header .bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 64px; width: 100%; margin: 0 auto; padding: 0 1.5rem; }
+@media (min-width: 640px) { .app-header .bar { max-width: 640px; } }
+@media (min-width: 768px) { .app-header .bar { max-width: 768px; } }
+@media (min-width: 1024px) { .app-header .bar { max-width: 1024px; } }
+@media (min-width: 1280px) { .app-header .bar { max-width: 1280px; } }
+@media (min-width: 1536px) { .app-header .bar { max-width: 1536px; } }
+/* Over the hero (the app's own page): clear, as on the Quests site, until the page moves (app-menu.js sets
+   .is-scrolled); the hero runs up under it. */
+.app-header.over-hero { margin-bottom: -64px; background: rgba(20,17,16,0); -webkit-backdrop-filter: blur(0); backdrop-filter: blur(0); border-bottom-color: transparent; }
+.app-header.over-hero.is-scrolled { background: rgba(20,17,16,.8); -webkit-backdrop-filter: blur(15px); backdrop-filter: blur(15px); border-bottom-color: rgba(255,255,255,.06); }
+.app-header.over-hero + main > .hero:first-child { padding-top: 64px; }
 .app-brand { display: inline-flex; align-items: center; gap: .625rem; color: var(--on-ink); font-weight: 800; font-size: 1.125rem; letter-spacing: -.01em; text-decoration: none; white-space: nowrap; }
 .app-brand img { width: 32px; height: 32px; border-radius: 8px; }
 .app-nav { display: none; gap: 2rem; }
-.app-nav a { color: var(--on-ink-muted); text-decoration: none; font-size: .9375rem; font-weight: 500; transition: color .2s; }
-.app-nav a:hover { color: var(--on-ink); }
+.app-nav a { color: #fff; text-decoration: none; font-size: .9375rem; font-weight: 500; transition: color .2s; }
+.app-nav a:hover { color: #FFB48F; }
 .app-actions { display: flex; align-items: center; gap: .75rem; }
-.lang { display: inline-flex; align-items: center; gap: .375rem; min-height: 44px; padding: 0 .25rem; color: var(--on-ink-muted); text-decoration: none; font-size: .875rem; transition: color .2s; }
-.lang:hover { color: var(--on-ink); }
+.lang { display: inline-flex; align-items: center; gap: .375rem; min-height: 44px; padding: 0 .25rem; color: #fff; text-decoration: none; font-size: .875rem; transition: color .2s; }
+.lang:hover { color: #FFB48F; }
 .lang i { font-size: 1.0625rem; }
 @media (max-width: 479px) { .app-actions .lang span { display: none; } }
 /* Phones: the sections, support and Download move into a menu under the bar, as on the Quests site */
@@ -58,7 +70,7 @@ img { max-width: 100%; height: auto; }
 .app-menu .app-menu-download { margin-top: 1rem; padding: .75rem 1rem; border: 0; border-radius: 999px; background: var(--accent); color: var(--ink); font-weight: 700; text-align: center; }
 .app-menu .app-menu-download:hover { color: var(--ink); background: var(--accent-hover); }
 .app-header:has(.menu-btn[aria-expanded="true"]) { background: var(--ink-2); }
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
   .app-nav { display: flex; }
   .app-actions .header-download { display: inline-flex; }
   .menu-btn, .app-menu { display: none !important; }
@@ -87,6 +99,8 @@ img { max-width: 100%; height: auto; }
    cards however wide the window (stretched to the window's width, it grew past them and was cut off). */
 @media (min-width: 1180px) {
   .court-lines.hero-court { inset: auto; left: 50%; top: 50%; width: 1320px; height: 770px; transform: translate(-50%, -50%); }
+  /* Centred on the content, below the bar the hero runs up under. */
+  .app-header.over-hero + main .court-lines.hero-court { top: calc(50% + 32px); }
 }
 /* Cards as warm tangerine-tinted glass over the dark hero: light enough to stand off the dark base, blurred, a light edge on top. */
 .hero-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; width: min(100%, 26rem); }
