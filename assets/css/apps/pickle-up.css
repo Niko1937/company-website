@@ -293,12 +293,9 @@ th { color: var(--ink); font-weight: 700; white-space: nowrap; }
 .app-footer ul a:hover { color: var(--on-ink); }
 .footer-bottom { padding-top: 1.5rem; display: grid; gap: .5rem; }
 .footer-by { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: .25rem .75rem; }
-/* Quests: a link, so it looks like one: underlined, with an arrow that moves on hover. */
-.footer-by .quests { display: inline-flex; align-items: center; gap: .125rem; color: var(--on-ink); font-weight: 800; font-size: 1.125rem;
-  text-decoration: underline; text-decoration-color: rgba(247,242,236,.35); text-decoration-thickness: 1px; text-underline-offset: 4px; transition: color .2s, text-decoration-color .2s; }
-.footer-by .quests i { font-size: 1rem; transition: transform .2s; }
-.footer-by .quests:hover, .footer-by .quests:focus-visible { color: var(--accent); text-decoration-color: currentColor; }
-.footer-by .quests:hover i { transform: translate(2px, -2px); }
+/* Quests: a link, told by a quiet light tangerine (phones have no hover to give it away), brighter on hover. */
+.footer-by .quests { color: #FFB48F; font-weight: 800; font-size: 1.125rem; text-decoration: none; transition: color .2s; }
+.footer-by .quests:hover, .footer-by .quests:focus-visible { color: var(--accent); }
 /* Asked for by Apple's and Google's badge guidelines; kept small and quiet. */
 .trademarks { margin: .75rem 0 0; color: #8C8279; font-size: .6875rem; line-height: 1.6; }
 @media (min-width: 760px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
