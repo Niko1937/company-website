@@ -10,7 +10,7 @@ if (!['ja', 'en'].includes(lang) || !out) throw new Error('usage: node card_imag
 
 // The hero on a wide screen (the court with its shots, the phone and its three number cards), its words
 // hidden, cut to 16:9 around the phone: the picture is laid out for the wide hero, so it stays where it
-// belongs. The cut is centred a little right of the phone (the shots land right of it).
+// belongs. The cut is centred on the phone, which puts the court in the middle of the frame too.
 const VIEW = { width: 1536, height: 864 };
 const CLIP_HEIGHT = 612;
 const CLIP_WIDTH = CLIP_HEIGHT * 16 / 9;
@@ -22,16 +22,13 @@ try {
   await page.addStyleTag({ content: `
     *{animation:none!important;transition:none!important}
     .hero-copy{visibility:hidden!important}
-    /* Without the words on its left, the court sat too far left in the frame: moved right, the shots
-       landing right of the phone. */
-    .court-lines.hero-court{transform:translate(calc(-50% + 120px), -50%)!important}
     .app-header,.site-header,header{visibility:hidden!important}
   ` });
   await page.evaluate(() => document.fonts.ready);
   await page.waitForTimeout(500);
   const hero = await page.locator('.hero').boundingBox();
   const phone = await page.locator('.hero-media .phone').boundingBox();
-  const middle = phone.x + phone.width / 2 + 60;
+  const middle = phone.x + phone.width / 2;
   const x = Math.min(Math.max(middle - CLIP_WIDTH / 2, hero.x), hero.x + hero.width - CLIP_WIDTH);
   await page.screenshot({ path: out, clip: { x, y: phone.y - 42, width: CLIP_WIDTH, height: CLIP_HEIGHT } });
 } finally {

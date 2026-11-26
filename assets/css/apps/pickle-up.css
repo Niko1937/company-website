@@ -95,10 +95,10 @@ img { max-width: 100%; height: auto; }
 .court-lines.hero-court { opacity: .55; }
 /* The shots are placed around the phone and its cards as they sit on wide screens only. */
 @media (max-width: 1179px) { .hero-court .hero-shots { display: none; } }
-/* On wide screens one size, centred on the hero as its content is, so the picture keeps to the phone and its
-   cards however wide the window (stretched to the window's width, it grew past them and was cut off). */
+/* On wide screens one size (its 1200 x 700 frame at 1320 x 770 px), centred on the hero as its content is, so
+   the picture keeps to the phone and its cards however wide the window; the court runs on past the frame. */
 @media (min-width: 1180px) {
-  .court-lines.hero-court { inset: auto; left: 50%; top: 50%; width: 1320px; height: 770px; transform: translate(-50%, -50%); }
+  .court-lines.hero-court { inset: auto; left: 50%; top: 50%; width: 2860px; height: 1320px; transform: translate(-50%, -50%); }
   /* Centred on the content, below the bar the hero runs up under. */
   .app-header.over-hero + main .court-lines.hero-court { top: calc(50% + 32px); }
 }

@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 41
+CSS_VERSION = 42
 
 
 def read(path):
@@ -531,7 +531,9 @@ def hero_court_svg(side=5.0, back=-3.0, up=6.5, x0=900, y0=240, scale=920, shots
     P, H = .15, .914
     out.append(f'<path d="M{pts([at(-P, NET), at(-P, NET, H), at(W + P, NET, H), at(W + P, NET)])} Z" fill="{LINE}" fill-opacity=".06" '
                f'stroke="{LINE}" stroke-opacity=".4" stroke-width="2.5" stroke-linejoin="round"/>')
-    return (f'<svg class="court-lines hero-court" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">'
+    # Laid out in a 1200 x 700 frame; the picture reaches well past it on every side (centred on the same
+    # point), so on a wide screen the court runs on to the edge instead of stopping at the frame's.
+    return (f'<svg class="court-lines hero-court" viewBox="-700 -250 2600 1200" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">'
             f'{"".join(out)}</svg>')
 
 
