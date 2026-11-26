@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 40
+CSS_VERSION = 41
 
 
 def read(path):
@@ -451,7 +451,7 @@ def court_lines_svg(at_x=780, at_y=400):
             f'<path class="lines" d="{net}" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg>')
 
 
-def hero_court_svg(side=3.0, back=-3.0, up=6.5, x0=860, y0=240, scale=920, shots=None):
+def hero_court_svg(side=5.0, back=-3.0, up=6.5, x0=900, y0=240, scale=920, shots=None):
     # The hero's picture: a big court at the app's 3D angle (up behind the near right corner, looking at the
     # net), with three of your shots as the app marks them: a drop into the back of the far kitchen and a deep
     # ball to the far right back (yellow rings, in), and one long past the baseline (an orange x, out).
@@ -500,9 +500,9 @@ def hero_court_svg(side=3.0, back=-3.0, up=6.5, x0=860, y0=240, scale=920, shots
         return f'<path class="mark" d="M{pts(ps)} Z" fill="none" stroke="{BALL}" stroke-width="2.6"/>'
 
     # (hit, landing, highest point m, where it peaks, out, ring radius m)
-    shots = shots or [((1.75, 4.0), (4.3, 8.3), 1.8, .4, False, .3),     # the drop
-                      ((2.5, 1.25), (5.15, 12.2), 1.6, .5, False, .22),  # the deep ball
-                      ((4.75, .25), (1.8, 14.6), 2.2, .5, True, .3)]     # the long one, out
+    shots = shots or [((4.5, 1.25), (4.25, 8.6875), 1.8, .4, False, .3),  # the drop
+                      ((3.0, .5), (4.0, 13.0), 1.6, .5, False, .22),      # the deep ball
+                      ((3.0, 1.5), (.25, 14.25), 2.2, .5, True, .3)]      # the long one, out
     out.append('<g class="hero-shots">')
     for hit, end, top, peak, miss, rad in shots:
         dots = list(flight(hit, end, top, peak))
