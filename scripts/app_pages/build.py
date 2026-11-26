@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 31
+CSS_VERSION = 32
 
 
 def read(path):
@@ -91,7 +91,7 @@ class App:
             '<!DOCTYPE html>', f'<html lang="{lang}">', '<head>', '<meta charset="UTF-8">',
             '<meta name="viewport" content="width=device-width, initial-scale=1.0">', remember_lang(lang),
             f'<title>{e(title)}</title>', f'<meta name="description" content="{e(description)}">',
-            '<meta name="theme-color" content="#0E1014">',
+            '<meta name="theme-color" content="#141110">',
             f'<link rel="icon" href="{self.img}/icon-64.png" sizes="64x64" type="image/png">',
             f'<link rel="apple-touch-icon" href="{self.img}/icon-180.png">',
             alternates(path).replace('{lang}', lang),
@@ -470,7 +470,7 @@ def court_lines_svg(shots=False, at_x=780, at_y=400):
             ends.append(f'<path class="end-miss" d="M{x - 6:.0f} {y - 6:.0f} L{x + 6:.0f} {y + 6:.0f} M{x + 6:.0f} {y - 6:.0f} L{x - 6:.0f} {y + 6:.0f}"/>'
                         if miss else f'<circle class="end" cx="{x:.0f}" cy="{y:.0f}" r="6"/>')
         flights = ('<defs><linearGradient id="arcFade" x1="0" y1="1" x2="0" y2="0">'
-                   '<stop offset="0" stop-color="#2DD4BF" stop-opacity=".25"/><stop offset="1" stop-color="#6EE7B7" stop-opacity=".9"/>'
+                   '<stop offset="0" stop-color="#FFB48F" stop-opacity=".25"/><stop offset="1" stop-color="#FCE97A" stop-opacity=".9"/>'
                    f'</linearGradient></defs><g class="flights">{"".join(paths)}{"".join(ends)}</g>')
     return (f'<svg class="court-lines{" with-shots" if shots else ""}" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">'
             f'<path class="lines" d="{court}" fill="none" stroke="currentColor" stroke-width="2"/>'

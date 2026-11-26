@@ -89,7 +89,7 @@ PRIVACY_SECTIONS = {
 </table></div>
 <p>いずれも、許可していただいた場合にだけ使います。許可は、端末の設定アプリからいつでも変えられます。</p>'''),
         ('people', '7. 映っている方と、顔のぼかし', '''<p>動画には、一緒にプレーする方や周りの方が映ることがあります。撮影する前に、映る方の了承を得てください。動画を共有するときも同様です。</p>
-<p>動画やハイライトを共有するとき、ほかの人の顔をぼかしたコピーを作れます。最初の設定は「ぼかす」で、自分の顔はぼかしません。設定 › プライバシーとデータの「顔のぼかし」で変えられ、共有のたびにも選べます。顔の位置は解析で見つけた骨格から推定するため、小さく映った人など、骨格が見つからない人の顔はぼかされないことがあります。共有する前にご確認ください。元の動画と、写真アプリに保存した動画は変わりません。</p>'''),
+<p>動画やハイライトを共有するときは、ほかの人の顔に自動でぼかしを入れたコピーを作ります。自分の顔もぼかすかどうかは、設定 › プライバシーとデータの「自分の顔もぼかす」で決められ（最初はオフ）、共有のたびにも選べます。解析が終わっていない動画は顔の位置が分からないため、ぼかせません。顔の位置は解析で見つけた骨格から推定するため、小さく映った人など、骨格が見つからない人の顔はぼかされないことがあります。共有する前にご確認ください。元の動画と、写真アプリに保存した動画は変わりません。</p>'''),
         ('sharing', '8. 共有と第三者への提供', '''<p>動画や画像の共有と、写真アプリへの保存は、操作したときにだけ、選んだ先に対して行います。</p>
 <p>当社は、本アプリの情報を売ることはありません。広告やトラッキングにも使いません。本アプリには、広告や行動の追跡のための外部のツールを組み込んでいません。4章の委託先のほかに、本アプリの情報を第三者に提供することはありません。ただし、法令に基づいて求められた場合を除きます。</p>'''),
         ('delete', '9. 情報の削除', '''<h3>動画</h3>
@@ -189,7 +189,7 @@ PRIVACY_SECTIONS = {
 </table></div>
 <p>Each is used only if you allow it. You can change this at any time in your phone’s Settings.</p>'''),
         ('people', '7. People in your videos, and face blur', '''<p>Your videos may show the people you play with and others nearby. Please get their agreement before you film them, and before you share a video.</p>
-<p>When you share a video or highlight, the app can make a copy with other people’s faces blurred. Blurring is on by default, and your own face is left clear. You can change this under Face blur in Settings › Privacy and data, and choose again each time you share. Faces are located from the skeletons found during analysis, so people whose skeleton isn’t found, such as those far away, may not be blurred. Please check before you share. Your original video, and videos saved to your Photos app, are not changed.</p>'''),
+<p>When you share a video or highlight, the app makes a copy with other people’s faces blurred automatically. Whether your own face is blurred too is up to you: Blur my face too in Settings › Privacy and data (off at first), and you can choose again each time you share. Videos whose analysis hasn’t finished can’t be blurred, as the faces haven’t been located yet. Faces are located from the skeletons found during analysis, so people whose skeleton isn’t found, such as those far away, may not be blurred. Please check before you share. Your original video, and videos saved to your Photos app, are not changed.</p>'''),
         ('sharing', '8. Sharing and third parties', '''<p>Videos and images are shared or saved to your Photos app only when you do so, and only to where you choose.</p>
 <p>We never sell information from the app, and we never use it for advertising or tracking. The app contains no third-party tools for advertising or for tracking what you do. Apart from the providers in section 4, we don’t give information from the app to anyone, unless the law requires us to.</p>'''),
         ('delete', '9. Deleting your information', '''<h3>Videos</h3>
@@ -254,7 +254,7 @@ SUPPORT_GROUPS = {
             ('すべてのデータを消すには？', '設定 › プライバシーとデータの「すべてのデータを削除」を使ってください。この端末の動画・記録・設定を削除します。ログイン中は、アカウントの記録は消えず、次の同期で戻ります。'),
             ('アカウントを削除するには？', '設定 › アカウントの「アカウントを削除」を使ってください。サーバーの記録も削除します。有料プランは自動では解約されないので、App Store または Google Play で解約してください。'),
             ('使い方の統計を止めたい', '設定 › プライバシーとデータの「使い方の統計を送る」をオフにしてください。送るのは、機能ごとの1日の利用回数などの匿名の数だけです。個人を特定できる情報は送りません。'),
-            ('共有する動画の顔をぼかせますか？', 'できます。共有するとき、ほかの人の顔をぼかしたコピーを作ります。最初の設定は「ぼかす」です。設定 › プライバシーとデータの「顔のぼかし」で変えられます。小さく映った人など、ぼかされないことがあるので、共有の前にご確認ください。'),
+            ('共有する動画の顔をぼかせますか？', 'はい。共有するときは、ほかの人の顔に自動でぼかしが入ります。自分の顔もぼかしたいときは、設定 › プライバシーとデータの「自分の顔もぼかす」をオンにしてください。小さく映った人など、ぼかされないことがあるので、共有の前にご確認ください。'),
             ('パドルを登録できますか？', 'できます。設定タブの「パドル」から、メーカー・モデル・重さ・形・購入日を登録できます。新しく撮った動画や、練習・試合の記録に、使ったパドルが付きます。'),
         ]),
         ('プランと購入', [
@@ -300,7 +300,7 @@ SUPPORT_GROUPS = {
             ('How do I delete all my data?', 'Use Delete all data in Settings › Privacy and data. It removes every video, record and setting from this phone. If you’re signed in, your account’s records are kept and come back at the next sync.'),
             ('How do I delete my account?', 'Use Delete account in Settings › Account. Your records on our servers are deleted too. A paid plan isn’t cancelled automatically, so cancel it in the App Store or Google Play.'),
             ('How do I stop usage statistics?', 'Turn off Send usage statistics in Settings › Privacy and data. Only anonymous counts are sent, such as how many times a day each feature is used. Nothing that identifies you is sent.'),
-            ('Can I blur faces in videos I share?', 'Yes. When you share, the app makes a copy with other people’s faces blurred. Blurring is on by default; change it under Face blur in Settings › Privacy and data. Some faces, such as people far away, may not be blurred, so please check before you share.'),
+            ('Can I blur faces in videos I share?', 'Yes. When you share, other people’s faces are blurred automatically. To blur your own face too, turn on Blur my face too in Settings › Privacy and data. Some faces, such as people far away, may not be blurred, so please check before you share.'),
             ('Can I add my paddles?', 'Yes. Add the maker, model, weight, shape and purchase date under Paddles in the Settings tab. Your paddle is then added to new videos and to practice and match records.'),
         ]),
         ('Plans and purchases', [

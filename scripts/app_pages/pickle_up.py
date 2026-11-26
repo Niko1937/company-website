@@ -54,10 +54,10 @@ JA = {
                 'title': '打った球を、|コートの上で分析',
                 'body': '打球の軌道と着地点を、1本ずつコートに描きます。ショットの種類ごとに、得意な球と失点につながる球が数字で分かります。',
                 'slides': [
-                    ('flat-all', '45本の打球を上から見たコートに描いた画面。アウトとネットのミスが赤い×で表示されている'),
+                    ('flat-all', '45本の打球を上から見たコートに描いた画面。アウトとネットのミスがオレンジの×で表示されている'),
                     ('3d-all', '45本の打球を立体のコートに描いた画面。イン率82%、ネットからの高さの中央値 +19cm'),
                     ('3d-drop', 'ドロップだけを表示した立体の画面。イン率86%、キッチンに届いた割合100%'),
-                    ('3d-volley', 'ボレーだけを表示した立体の画面。ネットにかかった3本が赤い×で表示され、イン率63%'),
+                    ('3d-volley', 'ボレーだけを表示した立体の画面。ネットにかかった3本がオレンジの×で表示され、イン率63%'),
                 ],
             },
             {
@@ -200,10 +200,10 @@ EN = {
                 'title': 'Every shot you hit, analysed on the court',
                 'body': 'See the path and landing spot of every shot. Filter by shot to find the ones you win with, and the ones that cost you points.',
                 'slides': [
-                    ('flat-all', '45 shots drawn on the court from above, with outs and nets marked with red ×s'),
+                    ('flat-all', '45 shots drawn on the court from above, with outs and nets marked with orange ×s'),
                     ('3d-all', '45 shots drawn on a 3D court, with an 82% in rate and a median height over the net of +19 cm'),
                     ('3d-drop', 'Drops only, in 3D: 86% in, 100% reached the kitchen'),
-                    ('3d-volley', 'Volleys only, in 3D: three shots into the net marked with red ×s, 63% in'),
+                    ('3d-volley', 'Volleys only, in 3D: three shots into the net marked with orange ×s, 63% in'),
                 ],
             },
             {
