@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 34
+CSS_VERSION = 35
 
 
 def read(path):
@@ -245,7 +245,7 @@ class App:
 <div class="plan-head">
 <div class="plan-title"><h3>{e(p['name'])}</h3>{f'<span class="plan-badge">{e(p["badge"])}</span>' if p.get('badge') else ''}</div>
 <p class="plan-price"><span lang="en">{e(p['price'])}</span><span class="plan-period">{e(p['period'])}</span></p>
-<p class="plan-sub">{e(p['sub'])}</p>{f'<p class="plan-trial">{e(p["trial"])}</p>' if p.get('trial') else ''}
+<p class="plan-sub">{e(p['sub'])}</p>{f'<p class="plan-trial">{e(p["trial"]).replace(chr(10), "<br>")}</p>' if p.get('trial') else ''}
 </div>
 <dl>{''.join(f'<div><dt>{e(k)}</dt><dd>{'<i class="ri-check-line" aria-hidden="true"></i>' if p.get('badge') else ''}{e(v)}</dd></div>' for k, v in p['items'])}</dl>
 </article>''' for p in t['pricing']['plans'])
