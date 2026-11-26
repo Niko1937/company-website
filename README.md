@@ -227,7 +227,7 @@ solutions: [
 - カードのどこを押しても、同じタブで紹介ページに移る。再生画面には入らず、`#solutions-<id>` で開いたときは Solutions を表示するだけ。
 - `stores` の URL が入ったバッジだけがリンクになり、ストアを新しいタブで開く。どちらかが `null` の間は、バッジの横に「近日公開」（`solutions.soon`）を出す。**ストアに出したら、`scripts/app_pages/<アプリ>.py` の `STORES` と、ここの `stores` の両方に同じ URL を入れる。**
 - バッジは紹介ページと同じ公式の画像（`images/apps/badges/`）を高さ 40px（Apple が定める画面上の最小）で表示する。
-- 画像は紹介ページの冒頭（コート・スマホ・3つの数字）をカード用に並べ直したもの。紹介ページの画面や数字を変えたら、次の手順で作り直す（Playwright は リポジトリの外に入れる）。
+- 画像は紹介ページの冒頭（コートと打球・スマホ・3つの数字）を、文字を隠して 16:9 に切り出したもの。紹介ページの画面や数字を変えたら、次の手順で作り直す（Playwright は リポジトリの外に入れる）。
   ```bash
   python3 -m http.server 8080 &                       # 別のターミナルでもよい
   node scripts/app_pages/card_image.mjs ja /tmp/card-ja.png   # en も同様

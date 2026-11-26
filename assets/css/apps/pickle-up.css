@@ -77,15 +77,11 @@ img { max-width: 100%; height: auto; }
 /* Hero: dark, with the court's lines behind */
 .hero, .cta, .section-dark { position: relative; overflow: hidden; background: var(--ink); color: var(--on-ink); }
 .court-lines { position: absolute; inset: 0; width: 100%; height: 100%; color: var(--accent); opacity: .09; pointer-events: none; }
-/* The hero: the plain dark base, the court with a few shot flights drawn over it as the app draws them
-   (thin, quiet), and two of the sample's numbers beside the phone. */
-.court-lines.with-shots { opacity: 1; }
-.court-lines.with-shots .lines { opacity: .10; }
-.flights .arc, .flights .arc-miss { fill: none; stroke-width: 1.75; stroke-linecap: round; }
-.flights .arc { stroke: url(#arcFade); opacity: .38; }
-.flights .arc-miss { stroke: #FF6B2C; opacity: .4; }
-.flights .end { fill: none; stroke: #FCE97A; stroke-width: 2; opacity: .55; }
-.flights .end-miss { stroke: #FF6B2C; stroke-width: 2.5; stroke-linecap: round; opacity: .7; }
+/* The hero: the plain dark base and the court at the app's 3D angle with three shots drawn as the app marks
+   them (build.py hero_court_svg; its colours are in the picture). */
+.court-lines.hero-court { opacity: 1; }
+/* The shots are placed around the phone and its cards as they sit on wide screens only. */
+@media (max-width: 1179px) { .hero-court .hero-shots { display: none; } }
 /* Cards as warm tangerine-tinted glass over the dark hero: light enough to stand off the dark base, blurred, a light edge on top. */
 .hero-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; width: min(100%, 26rem); }
 .hero-stat-3 { grid-column: 1 / -1; }

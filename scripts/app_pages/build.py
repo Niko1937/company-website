@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 37
+CSS_VERSION = 38
 
 
 def read(path):
@@ -254,8 +254,7 @@ class App:
         faq = ''.join(f'<details><summary>{e(q)}<i class="ri-add-line" aria-hidden="true"></i></summary><p>{e(a)}</p></details>'
                       for q, a in t['faq']['items'])
         court = court_lines_svg()
-        # Up and to the right of the closing call's, so it sits behind the phone and its cards.
-        hero_court = court_lines_svg(shots=True, at_x=880, at_y=330)
+        hero_court = hero_court_svg()
         # Three of the sample's numbers around the phone (never over it): decorative, as its screens show them too.
         (in_label, in_value), (net_label, net_value), (miss_label, (net_name, net_n), (out_name, out_n)) = h['stats']
         # A label breaks only before its bracket ("…（中央値）"), not inside a word. The space before an English
@@ -418,11 +417,9 @@ class App:
         return self.document(lang, 'privacy/', p, inner)
 
 
-def court_lines_svg(shots=False, at_x=780, at_y=400):
+def court_lines_svg(at_x=780, at_y=400):
     # A court seen at an angle, as in the app's 3D view (the same camera: up behind the near right corner,
-    # looking at the net), faint behind the hero and the closing call. Court metres: across, depth, height.
-    # shots: also a few shots' flights over it (from the near court to the far one, two of them misses), as
-    # the app draws them, so the hero reads as a match being measured.
+    # looking at the net), faint behind the closing call. Court metres: across, depth, height.
     import math
     W, L, NET, K = 6.1, 13.41, 6.705, 2.13
     eye, target = (W + 4, -4.0, 10.0), (W / 2, NET, 0.0)
@@ -447,35 +444,93 @@ def court_lines_svg(shots=False, at_x=780, at_y=400):
     P, H = 0.15, 0.914
     net = (f'M{at(-P, NET)} L{at(-P, NET, H)} L{at(W + P, NET, H)} L{at(W + P, NET)}')
     mesh = f'M{at(-P, NET, H)} L{at(W + P, NET, H)} L{at(W + P, NET)} L{at(-P, NET)} Z'
-    flights = ''
-    if shots:
-        # (hit x, hit y), (end x, end y), apex height (m), missed. Ends past the baseline or on the net are misses.
-        plan = [((1.2, 1.0), (4.6, 11.2), 2.2, False), ((4.8, 2.0), (1.4, 9.0), 1.7, False),
-                ((2.6, 0.6), (3.2, 12.6), 2.6, False), ((5.2, 4.0), (2.2, 8.4), 1.4, False),
-                ((0.8, 3.0), (5.4, 10.4), 2.0, False), ((3.4, 1.6), (0.9, 12.2), 2.4, False),
-                ((4.2, 4.6), (4.9, 8.2), 1.3, False), ((1.8, 0.8), (2.4, 14.4), 2.8, True),
-                ((3.0, 4.2), (3.6, NET), 1.0, True), ((4.6, 1.2), (6.9, 10.6), 2.1, True),
-                ((0.6, 2.2), (0.2, 14.2), 2.5, True)]
-        paths, ends = [], []
-        for (hx, hy), (ex, ey), top, miss in plan:
-            pts = []
-            for i in range(25):
-                s = i / 24
-                # A parabola through the hit (1 m up), the apex and the end (on the ground; a net miss stops at the tape).
-                z0, z1 = 1.0, 0.6 if ey == NET else 0.0
-                z = (1 - s) * z0 + s * z1 + 4 * (top - (z0 + z1) / 2) * s * (1 - s)
-                pts.append(at(hx + (ex - hx) * s, hy + (ey - hy) * s, z))
-            paths.append(f'<path class="{"arc-miss" if miss else "arc"}" d="M{" L".join(pts)}"/>')
-            x, y = map(float, at(ex, ey, 0.6 if ey == NET else 0.0).split())
-            ends.append(f'<path class="end-miss" d="M{x - 6:.0f} {y - 6:.0f} L{x + 6:.0f} {y + 6:.0f} M{x + 6:.0f} {y - 6:.0f} L{x - 6:.0f} {y + 6:.0f}"/>'
-                        if miss else f'<circle class="end" cx="{x:.0f}" cy="{y:.0f}" r="6"/>')
-        flights = ('<defs><linearGradient id="arcFade" x1="0" y1="1" x2="0" y2="0">'
-                   '<stop offset="0" stop-color="#FFB48F" stop-opacity=".25"/><stop offset="1" stop-color="#FCE97A" stop-opacity=".9"/>'
-                   f'</linearGradient></defs><g class="flights">{"".join(paths)}{"".join(ends)}</g>')
-    return (f'<svg class="court-lines{" with-shots" if shots else ""}" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">'
+    return (f'<svg class="court-lines" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">'
             f'<path class="lines" d="{court}" fill="none" stroke="currentColor" stroke-width="2"/>'
             f'<path class="lines" d="{mesh}" fill="currentColor" fill-opacity=".18" stroke="none"/>'
-            f'<path class="lines" d="{net}" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>{flights}</svg>')
+            f'<path class="lines" d="{net}" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg>')
+
+
+def hero_court_svg():
+    # The hero's picture: a big court at the app's 3D angle (up behind the near right corner, looking at the
+    # net), with three of your shots as the app marks them: a drop into the back of the far kitchen and a deep
+    # ball to the far right back (yellow rings, in), and one long past the baseline (an orange x, out).
+    # Each flight is round dots, faint near you and fuller further away; the marks are drawn the size they
+    # would be lying on the court there, so nearer ones are bigger. The net is drawn last so nothing hides it.
+    # Placed (in the 1200 x 700 picture) so the flights start over the near court left of the phone, and the
+    # marks land where the phone and its number cards leave them in view, at 1280 px wide too. Below 1180 px
+    # the cards move under the phone, so the shots (.hero-shots) are left out there and the court stays.
+    import math
+    W, L, NET, K = 6.1, 13.41, 6.705, 2.13
+    TANGERINE, LIGHT_TANGERINE, BALL, LINE = '#FF6B2C', '#FF8A57', '#FCE97A', '#F7F2EC'
+    eye, target = (W + 3.0, -3.0, 6.5), (W / 2 - .5, NET + 1.0, 0.0)
+    sub = lambda a, b: tuple(x - y for x, y in zip(a, b))
+    dot = lambda a, b: sum(x * y for x, y in zip(a, b))
+    cross = lambda a, b: (a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0])
+    unit = lambda a: tuple(x / math.sqrt(dot(a, a)) for x in a)
+    f = unit(sub(target, eye)); r = unit(cross(f, (0, 0, 1))); u = cross(r, f)
+
+    def at(x, y, z=0.0):
+        d = sub((x, y, z), eye)
+        depth = dot(d, f)
+        return 860 + 920 * dot(d, r) / depth, 240 - 920 * dot(d, u) / depth
+
+    pts = lambda ps: ' L'.join(f'{x:.1f} {y:.1f}' for x, y in ps)
+    out = []
+    # The court: its surface and kitchens a faint tangerine, the lines a faint white.
+    out.append(f'<path d="M{pts([at(0, 0), at(W, 0), at(W, L), at(0, L)])} Z" fill="{TANGERINE}" fill-opacity=".07"/>')
+    out.append(f'<path d="M{pts([at(0, NET - K), at(W, NET - K), at(W, NET + K), at(0, NET + K)])} Z" fill="{TANGERINE}" fill-opacity=".07"/>')
+    for a, b in [((0, 0), (W, 0)), ((0, L), (W, L)), ((0, 0), (0, L)), ((W, 0), (W, L)),
+                 ((0, NET - K), (W, NET - K)), ((0, NET + K), (W, NET + K)),
+                 ((W / 2, 0), (W / 2, NET - K)), ((W / 2, NET + K), (W / 2, L))]:
+        (x1, y1), (x2, y2) = at(*a), at(*b)
+        out.append(f'<line x1="{x1:.0f}" y1="{y1:.0f}" x2="{x2:.0f}" y2="{y2:.0f}" stroke="{LINE}" stroke-opacity=".28" stroke-width="2"/>')
+
+    def flight(hit, end, top, peak, z0=.9, n=26):
+        # From the hit (z0 m up) to the ground, highest (top m) at `peak` of the way: a drop peaks early.
+        (hx, hy), (ex, ey) = hit, end
+        for i in range(n + 1):
+            s = i / n
+            z = z0 + (top - z0) * (1 - ((peak - s) / peak) ** 2) if s < peak else top - top * ((s - peak) / (1 - peak)) ** 2
+            yield hx + (ex - hx) * s, hy + (ey - hy) * s, z
+
+    def ring(x, y, rad):
+        ps = [at(x + rad * math.cos(a), y + rad * math.sin(a)) for a in [i / 24 * 2 * math.pi for i in range(24)]]
+        return f'<path d="M{pts(ps)} Z" fill="none" stroke="{BALL}" stroke-width="2.6"/>'
+
+    # (hit, landing, highest point m, where it peaks, out, ring radius m)
+    shots = [((1.75, 4.0), (4.3, 8.3), 1.8, .4, False, .3),     # the drop
+             ((2.5, 1.25), (5.15, 12.2), 1.6, .5, False, .22),  # the deep ball
+             ((4.75, .25), (1.8, 14.6), 2.2, .5, True, .3)]     # the long one, out
+    out.append('<g class="hero-shots">')
+    for hit, end, top, peak, miss, rad in shots:
+        dots = list(flight(hit, end, top, peak))
+        for x, y, z in dots:
+            # Faint near you, fuller further away.
+            s = min(max((y + 1.0) / (L + 2.5), 0), 1)
+            px, py = at(x, y, z)
+            out.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="3.6" fill="{LIGHT_TANGERINE if miss else BALL}" fill-opacity="{.3 + .65 * s ** 1.3:.2f}"/>')
+        if not miss:
+            out.append(ring(*end, rad))
+            continue
+        # The x: an upright x turned (by at most 25 degrees, so it still reads as an x) so the flight comes in
+        # between its arms, and as big as a ring would be there.
+        (ax, ay), (bx, by) = at(*dots[-4]), at(*dots[-1])
+        ang = math.atan2(by - ay, bx - ax)
+        clear = lambda t: min(abs(math.remainder(ang - (math.pi / 4 + t + q * math.pi / 2), math.pi)) for q in (0, 1))
+        turn = max((math.radians(v) for v in range(-25, 26)), key=clear)
+        cx, cy = at(*end)
+        half = math.dist(at(end[0] - rad, end[1]), at(end[0] + rad, end[1])) / 2
+        k, w = half * .85, max(2.4, half * .2)
+        arms = ' '.join(f'M{cx - k * math.cos(a):.1f} {cy - k * math.sin(a):.1f} L{cx + k * math.cos(a):.1f} {cy + k * math.sin(a):.1f}'
+                        for a in (math.pi / 4 + turn, -math.pi / 4 + turn))
+        out.append(f'<path d="{arms}" stroke="{TANGERINE}" stroke-width="{w:.1f}" stroke-linecap="round"/>')
+    out.append('</g>')
+    # The net as it stands (posts, tape and mesh), last.
+    P, H = .15, .914
+    out.append(f'<path d="M{pts([at(-P, NET), at(-P, NET, H), at(W + P, NET, H), at(W + P, NET)])} Z" fill="{LINE}" fill-opacity=".06" '
+               f'stroke="{LINE}" stroke-opacity=".4" stroke-width="2.5" stroke-linejoin="round"/>')
+    return (f'<svg class="court-lines hero-court" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">'
+            f'{"".join(out)}</svg>')
 
 
 # --------------------------------------------------------------------------------------- language-neutral URLs
