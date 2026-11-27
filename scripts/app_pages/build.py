@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 43
+CSS_VERSION = 44
 
 
 def read(path):
@@ -201,6 +201,25 @@ class App:
         return (f'<{tag} class="phone"><img src="{self.img}/screens/{screen}-{lang}.webp" alt="{e(alt)}" '
                 f'width="300" height="{dh}" {load}></{tag}>')
 
+    def faq_figures(self, figs=None):
+        # Pictures under an answer (the app's own examples): {'file', 'w', 'h', 'alt', 'caption', 'good',
+        # 'wide'}, plus {'legend': [(kind, text)]} for the marks drawn on a picture ('corners' rings,
+        # 'players' dashed frames). A wide one takes the whole row; the others go two to a row.
+        if not figs:
+            return ''
+        out = []
+        for f in figs:
+            if 'legend' in f:
+                keys = ''.join(f'<li><span class="faq-mark {k}" aria-hidden="true"></span>{e(v)}</li>' for k, v in f['legend'])
+                out.append(f'<ul class="faq-legend">{keys}</ul>')
+                continue
+            mark = 'ri-check-line' if f['good'] else 'ri-close-line'
+            out.append(f'<figure class="{"good" if f["good"] else "bad"}{" wide" if f.get("wide") else ""}">'
+                       f'<span class="faq-fig-img"><img src="{self.img}/{f["file"]}" alt="{e(f["alt"])}" width="{f["w"]}" '
+                       f'height="{f["h"]}" loading="lazy" decoding="async"><i class="{mark}" aria-hidden="true"></i></span>'
+                       f'<figcaption>{e(f["caption"])}</figcaption></figure>')
+        return f'<div class="faq-figs">{"".join(out)}</div>'
+
     def audio_button(self, audio):
         # A sound sample beside a feature (the score call, in the app's own voice; assets/js/app-audio.js).
         if not audio:
@@ -252,8 +271,9 @@ class App:
 </article>''' for p in t['pricing']['plans'])
         steps = ''.join(f'<li><span class="step-number" lang="en">{n + 1}</span><h3>{e(a)}</h3><p>{e(b)}</p></li>'
                         for n, (a, b) in enumerate(t['how']['steps']))
-        faq = ''.join(f'<details><summary>{e(q)}<i class="ri-add-line" aria-hidden="true"></i></summary><p>{e(a)}</p></details>'
-                      for q, a in t['faq']['items'])
+        faq = ''.join(f'<details><summary>{e(q)}<i class="ri-add-line" aria-hidden="true"></i></summary><p>{e(a)}</p>'
+                      f'{self.faq_figures(*more)}</details>'
+                      for q, a, *more in t['faq']['items'])
         # The closing call shows the hero's court again, without the shots.
         court = hero_court_svg(with_shots=False).replace('<g class="hero-shots"></g>', '')
         hero_court = hero_court_svg()

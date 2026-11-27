@@ -275,6 +275,23 @@ html[lang="ja"] .feature h3 { letter-spacing: 0; }
 .faq details[open] summary i { transform: rotate(45deg); }
 .faq details p { margin: 0 0 1.25rem; color: var(--muted); }
 .faq summary:focus-visible { outline: 2px solid var(--brand-text); outline-offset: 4px; border-radius: 4px; }
+/* Pictures under an answer (the app's filming examples): a wide one, then two to a row. */
+.faq-figs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem .75rem; margin: 0 0 1.5rem; }
+.faq-figs figure { margin: 0; min-width: 0; }
+.faq-figs figure.wide, .faq-legend { grid-column: 1 / -1; }
+.faq-fig-img { position: relative; display: block; }
+.faq-fig-img img { display: block; width: 100%; height: auto; border-radius: 12px; }
+.faq-fig-img i { position: absolute; top: 6px; right: 6px; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; color: #fff; font-size: 15px; }
+.faq-figs .good i { background: #1E8E3E; }
+.faq-figs .bad i { background: #D93025; }
+.faq-figs figcaption { margin-top: .4rem; font-size: .875rem; line-height: 1.5; color: var(--muted); }
+.faq-figs .good.wide figcaption { color: var(--text); font-weight: 700; }
+.faq-legend { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; margin: -.5rem 0 0; padding: 0; list-style: none; font-size: .875rem; color: var(--text); }
+.faq-legend li { display: flex; align-items: center; gap: .5rem; }
+.faq-mark { display: inline-block; flex: none; width: 22px; height: 22px; border-radius: 5px; background: #2C2622 center / 14px 14px no-repeat; }
+.faq-mark.corners { background-image: radial-gradient(circle, transparent 4.2px, #FF5FD2 4.6px, #FF5FD2 6px, transparent 6.4px); background-size: 22px 22px; }
+.faq-mark.players { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Crect x='6' y='3.5' width='10' height='15' rx='2.5' fill='none' stroke='%23E4FF6B' stroke-width='1.8' stroke-dasharray='3 2'/%3E%3C/svg%3E"); background-size: 22px 22px; }
+@media (min-width: 768px) { .faq-figs { gap: 1.25rem 1rem; } }
 
 /* Closing call */
 .cta { text-align: center; }
