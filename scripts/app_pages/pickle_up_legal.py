@@ -3,7 +3,7 @@
 # them together when the app changes how it handles information.
 
 
-UPDATED = {'ja': '2026年11月23日', 'en': 'November 23, 2026'}
+UPDATED = {'ja': '2026年11月27日', 'en': 'November 27, 2026'}
 
 PRIVACY_LEAD = {
     'ja': 'Quests Bay Pte. Ltd.（以下「当社」）は、スマートフォン向けアプリ「Pickle Up」（以下「本アプリ」）で扱う情報について、以下のとおり定めます。当社全体の個人情報の取り扱いは、<a href="/ja/privacy/">当社のプライバシーポリシー</a>をご覧ください。',
@@ -21,7 +21,7 @@ PRIVACY_SECTIONS = {
 <li>撮った動画は、お使いのスマートフォンの中だけに保存します。動画をサーバーに送ることはありません。</li>
 <li>動画の解析（人の姿勢、ボール、ラリーの区切り、スコア）も、すべてスマートフォンの中で行います。</li>
 <li>記録と解析の結果は、アカウントにバックアップします。ログインは必須ではありません。必要になったとき、本アプリが匿名のアカウントを自動で作ります（3章）。</li>
-<li>AI コーチを使ったときだけ、端末で計算した数値と、フォームの静止画（最大4枚）を送ります。静止画は、アドバイスを作ったらすぐに削除します（3章）。</li>
+<li>AI コーチを使ったときだけ、端末で計算した数値を送ります。動画や画像は送りません（3章）。</li>
 <li>機能ごとの1日の利用回数などの匿名の統計を送ります。設定からいつでも止められます（3章）。</li>
 <li>情報を売ることはありません。広告やトラッキングにも使いません。</li>
 </ul>'''),
@@ -48,8 +48,8 @@ PRIVACY_SECTIONS = {
 <li>AI コーチの答え</li>
 </ul>
 <h3>AI コーチ</h3>
-<p>AI コーチのボタンを押したときだけ、端末で計算した数値（関節の角度、打点、スコアや打球のまとめなど）と、レベル・利き手・表示言語などの選択肢を送ります。練習の動画のフォームの評価では、構え・バックスイング・インパクト・フォロースルーの静止画（最大4枚）を送ることがあります。動画は送りません。試合や週・月のふりかえりでは、数値だけを送ります。</p>
-<p>アドバイスの作成には、Amazon Web Services（AWS）の Amazon Bedrock を通じて、Anthropic 社の AI モデル「Claude」を使います。静止画はアドバイスを作ったらすぐに削除し、消し忘れがあっても1日で自動的に削除します。</p>
+<p>AI コーチのボタンを押したときだけ、端末で計算した数値（スコアや打球・ラリーのまとめなど）と、レベル・利き手・表示言語などの選択肢を送ります。動画や画像は送りません。</p>
+<p>アドバイスの作成には、Amazon Web Services（AWS）の Amazon Bedrock を通じて、Anthropic 社の AI モデル「Claude」を使います。</p>
 <h3>購入</h3>
 <p>「Pickle Up プレミアム」と「AI コーチ 10回分」は、App Store または Google Play で購入します。支払いの情報（カード番号など）を当社が受け取ることはありません。購入の状態は RevenueCat 社のサービスで管理し、当社はアカウントごとのプランと残りの回数を保存します。RevenueCat には、当社が付けたアカウントの ID と購入の記録が渡ります。</p>
 <h3>利用状況の統計</h3>
@@ -73,7 +73,6 @@ PRIVACY_SECTIONS = {
         ('retention', '5. 保存期間', '''<div class="table-wrap"><table>
 <tr><th>記録のバックアップ、プロフィール、AI コーチの答え、購入の状態</th><td>アカウントを削除するまで。端末で削除した記録は、サーバーからも削除します。</td></tr>
 <tr><th>AI コーチに送った数値と、作ったアドバイス（サーバーの処理用）</th><td>180日</td></tr>
-<tr><th>AI コーチに送った静止画</th><td>アドバイスを作ったらすぐ削除。遅くとも1日以内</td></tr>
 <tr><th>利用状況の統計</th><td>最大30日</td></tr>
 <tr><th>IP アドレスを含む通信の記録</th><td>最大30日</td></tr>
 <tr><th>地域ごとの件数、アカウントごとの利用の分析</th><td>2年（個人を特定しない月ごとの合計の件数は、期限を設けずに保存することがあります）</td></tr>
@@ -121,7 +120,7 @@ PRIVACY_SECTIONS = {
 <li>The videos you film stay on your phone. We never upload them.</li>
 <li>Videos are analysed on your phone too: body positions, the ball, rallies and the score.</li>
 <li>Your records and analysis results are backed up to an account. You don’t have to sign in: when needed, the app creates an anonymous account for you (section 3).</li>
-<li>Only when you use the AI coach, the app sends numbers worked out on your phone and up to 4 still images of your form. The images are deleted as soon as the advice is ready (section 3).</li>
+<li>Only when you use the AI coach, the app sends numbers worked out on your phone. No videos or images are sent (section 3).</li>
 <li>The app sends anonymous statistics, such as how many times a day each feature is used. You can turn them off in Settings at any time (section 3).</li>
 <li>We never sell your information or use it for advertising or tracking.</li>
 </ul>'''),
@@ -148,8 +147,8 @@ PRIVACY_SECTIONS = {
 <li>AI coach answers</li>
 </ul>
 <h3>AI coach</h3>
-<p>Only when you tap the AI coach button, the app sends numbers worked out on your phone (joint angles, contact point, score and shot summaries and so on) with your level, dominant hand and app language. For the form review of a practice video, it may also send up to 4 still images: ready position, backswing, contact and follow-through. Videos are never sent. For matches and weekly or monthly recaps, only numbers are sent.</p>
-<p>The advice is written by Claude, an AI model from Anthropic, through Amazon Bedrock on Amazon Web Services (AWS). Still images are deleted as soon as the advice is ready, and deleted automatically within a day if anything is missed.</p>
+<p>Only when you tap the AI coach button, the app sends numbers worked out on your phone (score, shot and rally summaries and so on) with your level, dominant hand and app language. No videos or images are sent.</p>
+<p>The advice is written by Claude, an AI model from Anthropic, through Amazon Bedrock on Amazon Web Services (AWS).</p>
 <h3>Purchases</h3>
 <p>Pickle Up Premium and 10 AI Coach sessions are bought through the App Store or Google Play. We never receive your payment details, such as card numbers. Purchases are managed with RevenueCat, and we keep each account’s plan and remaining sessions. RevenueCat receives the account ID we assign and the purchase records.</p>
 <h3>Usage statistics</h3>
@@ -173,7 +172,6 @@ PRIVACY_SECTIONS = {
         ('retention', '5. How long we keep it', '''<div class="table-wrap"><table>
 <tr><th>Record backups, profile, AI coach answers and purchase status</th><td>Until you delete your account. Records you delete on your phone are deleted from our servers too.</td></tr>
 <tr><th>Numbers sent to the AI coach, and the advice written (for processing on our servers)</th><td>180 days</td></tr>
-<tr><th>Still images sent to the AI coach</th><td>Deleted as soon as the advice is ready, within a day at most</td></tr>
 <tr><th>Usage statistics</th><td>Up to 30 days</td></tr>
 <tr><th>Connection logs, including IP addresses</th><td>Up to 30 days</td></tr>
 <tr><th>Location totals and per-account usage analysis</th><td>2 years (monthly totals that identify no one may be kept without a time limit)</td></tr>
