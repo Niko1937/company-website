@@ -51,7 +51,8 @@ img { max-width: 100%; height: auto; }
 .app-brand { display: inline-flex; align-items: center; gap: .625rem; color: var(--on-ink); font-weight: 800; font-size: 1.125rem; letter-spacing: -.01em; text-decoration: none; white-space: nowrap; }
 .app-brand img { width: 32px; height: 32px; border-radius: 8px; }
 .app-nav { display: none; gap: 2rem; }
-.app-nav a { color: #fff; text-decoration: none; font-size: .9375rem; font-weight: 500; transition: color .2s; }
+/* The menu as on the Quests top page: 16px, regular weight. */
+.app-nav a { color: #fff; text-decoration: none; font-size: 1rem; font-weight: 400; white-space: nowrap; transition: color .2s; }
 .app-nav a:hover { color: #FFB48F; }
 .app-actions { display: flex; align-items: center; gap: .75rem; }
 /* The language switch, as on the Quests top page: "English | 日本語" from 1024px, the globe alone below. */
@@ -64,7 +65,7 @@ img { max-width: 100%; height: auto; }
 .lang-switcher .lang-divider { color: rgba(255,255,255,.35); }
 .lang-toggle { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; color: rgba(255,255,255,.85); text-decoration: none; transition: color .2s; }
 .lang-toggle:hover { color: #FFB48F; }
-.lang-toggle i { font-size: 1.25rem; }
+.lang-toggle i { font-size: 1.3333rem; } /* Quests' ri-lg */
 @media (min-width: 1024px) { .lang-switcher { display: inline-flex; } .lang-toggle { display: none; } }
 /* Phones: the sections, support and Download move into a menu under the bar, as on the Quests site */
 .menu-btn { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin-right: -.5rem; border: 0; border-radius: 999px; background: none; color: var(--on-ink); font-size: 1.5rem; cursor: pointer; }
