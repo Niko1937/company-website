@@ -218,13 +218,35 @@ PRIVACY_SECTIONS = {
     ],
 }
 
+# Questions on both the app page (its FAQ) and the support page, written once so that they read the same.
+# A third item: pictures under the answer (build.py faq_figures).
+SHARED_FAQ = {
+    'ja': {
+        'where': ('どこから撮ればいいですか？', 'コートの後ろの、なるべく高い位置がいちばんです。コートの四隅と、手前でサーブを待つ人が入るように、少し広めに映してください。斜めの角や横からでも、四隅が入っていれば撮れます。三脚やフェンスに付けるホルダーが便利です。アプリの「撮影のしかた」にも同じ見本があります。', [{'file': 'placement/good.webp', 'w': 960, 'h': 640, 'alt': '良い例: コートの後ろの高い位置から、四隅と手前の2人の全身が入っている', 'caption': 'コートの四隅と、ラインの後ろでサーブを待つ人まで入っている', 'good': True, 'wide': True}, {'legend': [('corners', 'コートの四隅が入る'), ('players', '手前の2人の全身が入る')]}, {'file': 'placement/corner.webp', 'w': 640, 'h': 427, 'alt': '良い例: コートの斜めの角から撮った写真', 'caption': '斜めの角から。四隅が入っている', 'good': True}, {'file': 'placement/side.webp', 'w': 640, 'h': 427, 'alt': '良い例: コートの横から撮った写真', 'caption': '横から。両端のベースラインまで入っている', 'good': True}, {'file': 'placement/near-cut.webp', 'w': 640, 'h': 285, 'alt': '悪い例: 近すぎて手前の角が切れている写真', 'caption': '近すぎて、手前の角とサーブする人が切れている', 'good': False}, {'file': 'placement/far-cut.webp', 'w': 640, 'h': 285, 'alt': '悪い例: 下を向きすぎて奥のラインが切れている写真', 'caption': '下を向きすぎて、奥のラインが切れている', 'good': False}]),
+        'videos': ('撮った動画はどこに保存されますか？', 'スマホの中の、アプリ専用の場所です。動画をサーバーに送ることはありません。アカウントに保存するのは、記録と解析の結果だけです。'),
+        'accuracy': ('分析はどれくらい正確ですか？', 'スマホ1台の映像から推定しているので、奥のコートの着地点や球の高さには誤差があります。判定に自信がない球は図に描かず、「判定不能」として数えます。'),
+        'free': ('無料で使えますか？', 'はい。録画、スコアの自動カウントと読み上げ、ラリーの区切り、練習メニューと練習の記録は無料です。打球の分析は毎月60分まで、AI コーチは月2回まで無料で、プレミアムにすると打球の分析は無制限、AI コーチは月50回まで使えます。'),
+        'devices': ('対応している機種は？', 'iPhone 版と Android 版を準備しています。公開したら、このサイトでお知らせします。'),
+    },
+    'en': {
+        'where': ('Where do I put my phone?', 'Behind the court and as high as you can. Frame it a little wide, with all four corners and the server on your side in view. A corner or the side works too, as long as all four corners are in view. A tripod or a fence mount helps. The app’s filming guide shows the same examples.', [{'file': 'placement/good.webp', 'w': 960, 'h': 640, 'alt': 'Good: from high behind the court, all four corners and both near players in view', 'caption': 'All four corners, and the players waiting to serve behind the baseline, in view', 'good': True, 'wide': True}, {'legend': [('corners', 'All four corners in view'), ('players', 'Near players fully in view')]}, {'file': 'placement/corner.webp', 'w': 640, 'h': 427, 'alt': 'Good: filmed from a corner of the court', 'caption': 'From a corner: all four corners in view', 'good': True}, {'file': 'placement/side.webp', 'w': 640, 'h': 427, 'alt': 'Good: filmed from the side of the court', 'caption': 'From the side: both baselines in view', 'good': True}, {'file': 'placement/near-cut.webp', 'w': 640, 'h': 285, 'alt': 'Bad: too close, the near corners cut off', 'caption': 'Too close: the near corners and the server are cut off', 'good': False}, {'file': 'placement/far-cut.webp', 'w': 640, 'h': 285, 'alt': 'Bad: tilted down, the far baseline cut off', 'caption': 'Tilted down: the far baseline is cut off', 'good': False}]),
+        'videos': ('Where are my videos kept?', 'In the app’s own storage on your phone. Videos are never sent to our servers. Only your records and analysis results are saved to your account.'),
+        'accuracy': ('How accurate is the analysis?', 'It is estimated from one phone’s video, so landings on the far side and ball heights are off by a little. Shots it cannot judge with confidence are not drawn; they are counted as unclear.'),
+        'free': ('Is it free?', 'Yes. Recording, automatic scoring and calls, rally splitting, the drills and practice logs are free. Shot analysis is free for 60 minutes of video a month and the AI coach twice a month; Premium makes shot analysis unlimited and the AI coach available up to 50 times a month.'),
+        'devices': ('Which phones does it run on?', 'iPhone and Android versions are on the way. We will post on this site when they are out.'),
+    },
+}
+
 SUPPORT_GROUPS = {
     'ja': [
+        ('はじめに', [
+            SHARED_FAQ['ja']['devices'],
+            ('ログインは必要ですか？', '要りません。AI コーチや購入、記録のバックアップを初めて使うとき、アプリが匿名のアカウントを自動で作ります。'),
+        ]),
         ('撮影', [
-            ('スマホはどこに置けばよいですか？', 'ベースラインの後ろの、なるべく高い位置に置いてください。コートの四隅と、手前のラインの後ろでサーブを待つ人まで入るように、少し広めに映します。三脚やフェンスに付けるホルダーが便利です。'),
-            ('前（ネット側）から撮れますか？', '打球がスマホに当たるおそれがあるため、後ろか横から撮ってください。分析は、コートの後ろから撮った動画を前提にしています。'),
+            SHARED_FAQ['ja']['where'],
+            ('前（ネット側）から撮れますか？', '打球がスマホに当たるおそれがあるため、コートの後ろ・斜めの角・横から撮ってください。'),
             ('試合か練習かを選ぶ必要はありますか？', 'ありません。撮った動画から自動で判定します。違っていたら、動画の画面で直せます。'),
-            ('スマホに触らずに録画を始められますか？', '録画タブの「自動録画」で「待機を始める」を押すと、動き出したときや「スタート」と言ったときに録画を始めます。「ストップ」で止められます。端末によっては、録画中は声で止められません。声は端末の中だけで聞き取り、外部には送りません。'),
             ('動画を写真アプリに保存できますか？', 'できます。動画の画面から、端末の写真に保存できます。'),
         ]),
         ('スコアと読み上げ', [
@@ -234,20 +256,20 @@ SUPPORT_GROUPS = {
         ]),
         ('分析', [
             ('分析は、どこで行いますか？', 'すべてスマホの中で行います。骨格・ボール・ラリー・スコアの解析のために動画をサーバーに送ることはありません。'),
+            SHARED_FAQ['ja']['accuracy'],
             ('自分の打球を出すには？', '試合の動画を開き、「自分」から、全員が映った場面で自分の四角をタップします。ラリーごとに打球を取り出し、分析タブに表示します。'),
             ('「判定不能」とは何ですか？', '着地点やイン・アウトを判断できるほど確かでない打球です。図には描かず、本数だけを数えます。'),
             ('ネットからの高さはどう測っていますか？', '映像から打球の軌道を立体で推定し、ネットの真上を通った位置で、球の下端からネットの上端までの高さを出しています。ネットにかかった球は、ネットに当たった位置の高さをマイナスで表します。'),
             ('コートの位置がずれています', '動画の画面の「コートの位置」から、四隅の位置を直せます。直した位置で分析し直します。'),
-            ('AI コーチには何が送られますか？', '端末で計算した数値と、練習の動画ではフォームの静止画（最大4枚）です。動画は送りません。静止画は、アドバイスを作ったらすぐに削除します。'),
+            ('AI コーチには何が送られますか？', '端末で計算した数値（打球・ラリー・スコアなど）だけです。動画や画像は送りません。'),
         ]),
         ('練習メニュー', [
             ('どんな練習メニューがありますか？', '練習タブの「練習メニュー」に、25種類のドリルがあります。USA Pickleball の基準で、レベルの目安ごとに選べます。'),
             ('練習を記録できますか？', 'できます。「練習を記録」から、行ったドリルと練習した時間を記録できます。'),
         ]),
         ('アカウントとデータ', [
-            ('ログインは必要ですか？', '要りません。AI コーチや購入、記録のバックアップを初めて使うとき、アプリが匿名のアカウントを自動で作ります。'),
             ('機種変更したときは？', '記録と解析の結果は、アカウントにバックアップしています。前のスマホで、設定 › アカウントの「アカウントを作成／ログイン」からアカウントを作ってください。新しいスマホで同じアカウントにログインすると、記録が戻ります。動画のファイルは引き継がれないので、残したい動画は写真アプリに保存してください。'),
-            ('動画はサーバーに送られますか？', '送りません。動画はスマホの中だけに保存します。アカウントに保存するのは、記録と解析の結果だけです。'),
+            SHARED_FAQ['ja']['videos'],
             ('スマホの容量を空けたい', '設定 › プライバシーとデータの「容量を空ける」で、大きい動画や古い動画をまとめて削除できます。分析のある動画は、動画のファイルだけを消して、分析と記録を残します。'),
             ('動画を削除するには？', '動画の画面から1本ずつ削除できます。動画ライブラリやフォルダの「選択」で、まとめて削除もできます。分析のある動画は「動画だけ削除」を選ぶと、骨格や打球を動画なしで見られます。'),
             ('フォルダを削除すると、中の動画も消えますか？', '選べます。「フォルダだけ削除（動画は残す）」なら、中の動画は残ります。「フォルダと中の動画を削除」なら、動画も削除します。'),
@@ -258,19 +280,21 @@ SUPPORT_GROUPS = {
             ('パドルを登録できますか？', 'できます。設定タブの「パドル」から、メーカー・モデル・重さ・形・購入日を登録できます。新しく撮った動画や、練習・試合の記録に、使ったパドルが付きます。'),
         ]),
         ('プランと購入', [
-            ('無料でどこまで使えますか？', '録画、スコアの自動カウントと読み上げ、ラリーの区切り、練習の記録は無料で使えます。打球の分析とフォームの評価はそれぞれ毎月60分まで、AI コーチは月2回まで無料で使えます。'),
+            SHARED_FAQ['ja']['free'],
             ('プレミアムでは何ができますか？', '打球の分析を何本でも見られます。AI コーチは月50回まで使えます。月額と年額から選べます。'),
-            ('「AI コーチ 10回分」とは？', 'AI コーチを10回分、追加で使える商品です。期限はありません。今月のプランの回数を使い切ったあとに使います。'),
             ('購入した内容を、新しいスマホで使うには？', '同じアカウントでログインしてください。設定 › プランの「購入を復元」でも、以前に購入したプランを使えるようにできます。'),
             ('解約するには？', '設定 › プランの「サブスクリプションを管理・解約」から、App Store または Google Play で解約できます。アカウントを削除しても、自動では解約されません。'),
         ]),
     ],
     'en': [
+        ('Getting started', [
+            SHARED_FAQ['en']['devices'],
+            ('Do I need to sign in?', 'No. The first time you use the AI coach, buy something or back up your records, the app creates an anonymous account for you.'),
+        ]),
         ('Filming', [
-            ('Where should I put my phone?', 'Behind the baseline, as high as you can. Frame it a little wide, so all four corners and the player waiting to serve behind the near line are in view. A tripod or a fence mount helps.'),
-            ('Can I film from the front, by the net?', 'Please film from behind or from the side: a shot could hit your phone. The analysis expects video taken from behind the court.'),
+            SHARED_FAQ['en']['where'],
+            ('Can I film from the front, by the net?', 'Please film from behind the court, a corner or the side: a shot could hit your phone.'),
             ('Do I need to say whether it’s a match or practice?', 'No. The app works it out from the video. If it gets it wrong, you can change it on the video’s screen.'),
-            ('Can I start recording without touching my phone?', 'Yes. In the Record tab, open Auto record and tap Arm. Recording starts when you start moving or say “Start”, and “Stop” stops it. On some phones you can’t stop by voice while recording. Your voice is recognised on your phone only and never sent anywhere.'),
             ('Can I save a video to my Photos app?', 'Yes. Save it to your phone’s photos from the video’s screen.'),
         ]),
         ('Score and calls', [
@@ -280,20 +304,20 @@ SUPPORT_GROUPS = {
         ]),
         ('Analysis', [
             ('Where are my videos analysed?', 'On your phone. Your videos are never uploaded to analyse skeletons, the ball, rallies or the score.'),
+            SHARED_FAQ['en']['accuracy'],
             ('How do I see my own shots?', 'Open the match’s video, choose You, and tap your box in a frame where everyone is in view. Your shots are found rally by rally and shown in the Insights tab.'),
             ('What does “Unclear” mean?', 'A shot whose landing, or whether it was in or out, can’t be judged with enough certainty. It is counted but not drawn.'),
             ('How is the height over the net measured?', 'The shot’s flight is estimated in 3D from the video. Where it passes over the net, we measure from the bottom of the ball to the top of the net. For a ball that hits the net, the height where it met the net is shown as a negative number.'),
             ('The court is in the wrong place', 'Open Court position on the video’s screen and move the corners. The video is analysed again with the corrected court.'),
-            ('What does the AI coach send?', 'Numbers worked out on your phone and, for practice videos, up to 4 still images of your form. Videos are never sent. The images are deleted as soon as the advice is ready.'),
+            ('What does the AI coach send?', 'Only numbers worked out on your phone (your shots, rallies, score and so on). No videos or images are sent.'),
         ]),
         ('Practice', [
             ('What drills are there?', 'The Practice tab has 25 drills, grouped by level on the USA Pickleball scale, so you can pick ones that suit you.'),
             ('Can I log my practice?', 'Yes. Use Log practice to record the drills you did and for how long.'),
         ]),
         ('Account and data', [
-            ('Do I need to sign in?', 'No. The first time you use the AI coach, buy something or back up your records, the app creates an anonymous account for you.'),
             ('What happens when I change phones?', 'Your records and analysis results are backed up to your account. On your old phone, create an account in Settings › Account › Create account / Sign in. Sign in with it on your new phone and your records come back. Video files don’t move across, so save the ones you want to keep to your Photos app.'),
-            ('Are my videos uploaded?', 'No. Videos stay on your phone. Only your records and analysis results are saved to your account.'),
+            SHARED_FAQ['en']['videos'],
             ('How do I free up space?', 'Use Free up space in Settings › Privacy and data to delete large or old videos in one go. Videos with analysis lose only the video file; their analysis and records stay.'),
             ('How do I delete videos?', 'Delete one from its screen, or tap Select in the video library or a folder to delete several at once. For a video with analysis, choose Delete video only to keep its skeletons and shots without the video.'),
             ('Does deleting a folder delete its videos?', 'You choose. Delete folder only (keep videos) leaves the videos. Deleting the folder and its videos removes them too.'),
@@ -304,9 +328,8 @@ SUPPORT_GROUPS = {
             ('Can I add my paddles?', 'Yes. Add the maker, model, weight, shape and purchase date under Paddles in the Settings tab. Your paddle is then added to new videos and to practice and match records.'),
         ]),
         ('Plans and purchases', [
-            ('What can I do for free?', 'Recording, automatic scoring and calls, rally splitting and practice logs are all free. Shot analysis and form review are each free for 60 minutes of video a month, and the AI coach twice a month.'),
+            SHARED_FAQ['en']['free'],
             ('What does Premium add?', 'Shot analysis for every video, and the AI coach up to 50 times a month. Choose monthly or yearly.'),
-            ('What are 10 AI Coach sessions?', 'Ten extra uses of the AI coach. They never expire, and are used once your plan’s sessions for the month run out.'),
             ('How do I use my purchases on a new phone?', 'Sign in with the same account. You can also use Restore purchases in Settings › Plan to bring back a plan you bought before.'),
             ('How do I cancel?', 'Use Manage or cancel subscription in Settings › Plan to cancel in the App Store or Google Play. Deleting your account doesn’t cancel it.'),
         ]),

@@ -379,7 +379,8 @@ class App:
         s = self.text(lang)['support']
         groups = []
         for name, items in s['groups']:
-            qa = ''.join(f'<details><summary>{e(q)}<i class="ri-add-line" aria-hidden="true"></i></summary><p>{e(a)}</p></details>' for q, a in items)
+            qa = ''.join(f'<details><summary>{e(q)}<i class="ri-add-line" aria-hidden="true"></i></summary><p>{e(a)}</p>'
+                         f'{self.faq_figures(*more)}</details>' for q, a, *more in items)
             groups.append(f'<section class="doc-section"><h2>{e(name)}</h2><div class="faq">{qa}</div></section>')
         inner = f'''<h1>{e(s['h1'])}</h1>
 <p class="lead">{e(s['lead'])}</p>
