@@ -48,7 +48,8 @@ img { max-width: 100%; height: auto; }
 .app-header.over-hero { margin-bottom: -65px; background: rgba(20,17,16,0); -webkit-backdrop-filter: blur(0); backdrop-filter: blur(0); border-bottom-color: transparent; }
 .app-header.over-hero.is-scrolled { background: rgba(20,17,16,.8); -webkit-backdrop-filter: blur(15px); backdrop-filter: blur(15px); border-bottom-color: rgba(255,255,255,.06); }
 .app-header.over-hero + main > .hero:first-child { padding-top: 64px; }
-.app-brand { display: inline-flex; align-items: center; gap: .625rem; color: var(--on-ink); font-weight: 800; font-size: 1.125rem; letter-spacing: -.01em; text-decoration: none; white-space: nowrap; }
+/* The name at about half the icon's height in capitals (22px beside the 32px icon). */
+.app-brand { display: inline-flex; align-items: center; gap: .625rem; color: var(--on-ink); font-weight: 800; font-size: 1.375rem; letter-spacing: -.01em; text-decoration: none; white-space: nowrap; }
 .app-brand img { width: 32px; height: 32px; border-radius: 8px; }
 .app-nav { display: none; gap: 2rem; }
 /* The menu as on the Quests top page: 16px, regular weight. */
