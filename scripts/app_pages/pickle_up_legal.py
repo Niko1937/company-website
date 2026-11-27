@@ -245,7 +245,6 @@ SUPPORT_GROUPS = {
         ]),
         ('撮影', [
             SHARED_FAQ['ja']['where'],
-            ('前（ネット側）から撮れますか？', '打球がスマホに当たるおそれがあるため、コートの後ろ・斜めの角・横から撮ってください。'),
             ('試合か練習かを選ぶ必要はありますか？', 'ありません。撮った動画から自動で判定します。違っていたら、動画の画面で直せます。'),
             ('動画を写真アプリに保存できますか？', 'できます。動画の画面から、端末の写真に保存できます。'),
         ]),
@@ -293,7 +292,6 @@ SUPPORT_GROUPS = {
         ]),
         ('Filming', [
             SHARED_FAQ['en']['where'],
-            ('Can I film from the front, by the net?', 'Please film from behind the court, a corner or the side: a shot could hit your phone.'),
             ('Do I need to say whether it’s a match or practice?', 'No. The app works it out from the video. If it gets it wrong, you can change it on the video’s screen.'),
             ('Can I save a video to my Photos app?', 'Yes. Save it to your phone’s photos from the video’s screen.'),
         ]),
