@@ -16,7 +16,7 @@ LANGS = ('ja', 'en')
 OTHER = {'ja': 'en', 'en': 'ja'}
 LANG_LABEL = {'ja': '日本語', 'en': 'English'}
 OG_LOCALE = {'ja': 'ja_JP', 'en': 'en_US'}
-CSS_VERSION = 44
+CSS_VERSION = 45
 
 
 def read(path):
@@ -141,7 +141,7 @@ class App:
 <a href="{top}#faq">{e(n['faq'])}</a>
 </nav>
 <div class="app-actions">
-<a class="lang" href="/{other}/{path}" hreflang="{other}" lang="{other}" aria-label="{e(t['langSwitch'])}"><i class="ri-global-line" aria-hidden="true"></i><span>{LANG_LABEL[other]}</span></a>
+{self.lang_switcher(lang, path, t)}
 <a class="button button-small header-download" href="{top}#download">{e(n['download'])}</a>
 <button type="button" id="appMenuBtn" class="menu-btn" aria-expanded="false" aria-controls="appMenu" aria-label="{e(n['menuOpen'])}" data-open-label="{e(n['menuOpen'])}" data-close-label="{e(n['menuClose'])}"><i class="ri-menu-line" aria-hidden="true"></i></button>
 </div>
@@ -157,6 +157,19 @@ class App:
 </nav>
 </div>
 </header>'''
+
+    def lang_switcher(self, lang, path, t):
+        # As on the Quests top page: from 1024px the globe with "English | 日本語", the current one marked;
+        # below it the globe alone, which goes to the other language.
+        def link(code):
+            current = ' class="lang-active" aria-current="true"' if code == lang else ''
+            return (f'<a href="/{code}/{path}" hreflang="{code}" lang="{code}" data-label="{LANG_LABEL[code]}"{current}>'
+                    f'{LANG_LABEL[code]}</a>')
+        other = OTHER[lang]
+        return (f'<div class="lang-switcher"><i class="ri-global-line" aria-hidden="true"></i>{link("en")}'
+                f'<span class="lang-divider" aria-hidden="true">|</span>{link("ja")}</div>'
+                f'<a class="lang-toggle" href="/{other}/{path}" hreflang="{other}" lang="{other}" aria-label="{e(t["langSwitch"])}">'
+                f'<i class="ri-global-line" aria-hidden="true"></i></a>')
 
     def footer(self, lang, path):
         t = self.text(lang)

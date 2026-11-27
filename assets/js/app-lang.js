@@ -1,4 +1,4 @@
-// The app pages' language link (built by scripts/app_pages/build.py) opens the same page in the other language
+// The app pages' language links (built by scripts/app_pages/build.py) opens the same page in the other language
 // where the reader was, as the Quests site's switch does, instead of at the top.
 // Both languages are built from the same template, so the n-th block of text in one is the n-th in the other:
 // the link remembers the block at the top of the screen and where it sat (or, when it runs under the header, how
@@ -12,8 +12,9 @@
     return h ? h.getBoundingClientRect().bottom : 0;
   }
 
-  var link = document.querySelector('.app-header a.lang');
-  if (link) {
+  // The other language's links: in the switcher from 1024px, and the globe below it.
+  var links = document.querySelectorAll('.app-header .lang-switcher a:not(.lang-active), .app-header a.lang-toggle');
+  Array.prototype.forEach.call(links, function (link) {
     link.addEventListener('click', function () {
       if (window.scrollY < 1) return;
       var blocks = document.querySelectorAll(BLOCKS);
@@ -31,7 +32,7 @@
         }
       }
     });
-  }
+  });
 
   var saved = null;
   try {
